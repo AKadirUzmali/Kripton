@@ -90,7 +90,7 @@ namespace Core
         // burada her çalışan (worker), "workerLoop" fonksiyonuna girer
         // "this" gönderilir çünkü üye fonksiyon çağırıyoruz
         for( std::size_t worker_count = 0; worker_count < thread_count; ++worker_count )
-            workers.emplace_back(&ThreadPool::worker_loop, this);
+            workers.emplace_back(&ThreadPool::workerLoop, this);
     }
 
     /**
@@ -151,7 +151,7 @@ namespace Core
         cond_var.notify_one();
 
         // görev tamamlandığında sonucu alabilmek için future döndür
-        return task->get_future();
+        return newtask->get_future();
     }
 
     /**
