@@ -60,12 +60,13 @@ namespace core
                 return msg.c_str();
             }
     };
+    
+    // Type
+    using sizetype = std::uint16_t;
 
     // Class: Thread Pool
     class ThreadPool
     {
-        using sizetype = std::uint16_t;
-
         protected:
             static constexpr sizetype MIN_TASK_SIZE = 1;
             static constexpr sizetype MAX_TASK_SIZE = (sizetype)~0;
@@ -75,7 +76,7 @@ namespace core
             std::vector<std::thread> workers;
             std::queue<std::function<void()>> tasks;
 
-            std::mutex queue_mutex;
+            mutable std::mutex queue_mutex;
             std::condition_variable condition;
 
             std::atomic<bool> running = true;
@@ -150,7 +151,7 @@ namespace core
      * 
      * @return İşlem Miktarı
      */
-    sizetype task_size() noexcept const
+    sizetype ThreadPool::task_size() const noexcept
     {
         // kilit koruması ile eş zamanlı olarak
         // erişmeyi engelliyoruz sonrasında ise
@@ -164,7 +165,7 @@ namespace core
      * 
      * @return Çalışan İşlem Sayısı
      */
-    sizetype thread_count() noexcept const
+    sizetype ThreadPool::thread_count() const noexcept
     {
         // aktif çalışanların sayısı
         return static_cast<sizetype>(workers.size());
@@ -196,16 +197,10 @@ namespace core
         // başta belirttiğimiz dönüş tipinde yapsın, işlem içinde kullanılacak
         // fonksiyon direk verdiğimiz fonksiyon olsun ve
         // kullanılacak argümanlar ise verdiğimiz argümanlar olsun ki argüman
-        // olmayabilir de, önemli değil. Yeni tarz uyumlu olması adına
-        // lambda ifadesi ile yaptık ama alternatif olarak bind ile de yapılabilir.
-        auto newtask = std::make_shared<std::packaged_task<ReturnType()>>(
-            [func = std::forward<Function>(_function),
-            ... args = std::forward<Args>(_args)]() mutable {
-                return func(args...);
-            }
-            
-            // alternatif ve eski tarz uyumlu
-            // std::bind(std::forward<Function>(_function), std::forward<Args>(_args)...)
+        // olmayabilir de, önemli değil. Bind kullandık çünkü verileri kopyalayıp
+        // performans kaybı yaşatmaması adına
+        auto newtask = std::make_shared<std::packaged_task<ReturnType()>>(            
+            std::bind(std::forward<Function>(_function), std::forward<Args>(_args)...)
         );
 
         // işlemin gelecekteki halini saklasın
