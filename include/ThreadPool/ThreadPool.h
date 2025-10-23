@@ -1,31 +1,23 @@
 // Abdulkadir U. - 22/10/2025
-/*
-    Thread Pool (İşlem Havuzu)
-    
-    Programımız birden çok iş yapabilir ve bunu biz birden çok
-    işlemciye olabildiğince adaletli dağıtmalıyız. Bunu ise
-    thread yapısı ile sağlayacağız. Bu thread yapısında işlemler
-    birbirinden bağımsız olmamalı, bu yüzden bir havuz (pool)
-    tasarlayacağız ve bu işlemler bu havuz içerisinde düzenli
-    bir şekilde bulunacak. İstenirse eğer, işlemin kendi sonlandırması
-    geldiğinde havuzdan çıkarabilir ya da el ile (manuel) olarak da
-    havuzdan çıkarma sağlanıp diğer işlemlere yer açılabilir.
-    İstendiği durumda havuzda bulunabilecek en fazla işlem sınırı
-    uygulanabilir fakat bu sınırında performansdan kayıp yaşanmaması
-    adına ortalama hesaptan biraz fazla, güvenlik problemi oluşup
-    sonsuz işlem üretmeye çalışmaması adına da bir sınırı olması
-    en iyi seçenek olacaktır şuan için.
-*/
+#pragma once
 
-// C++ Zorunluluğu
+// C++
 #ifndef __cplusplus
     #error "[PRE ERROR] C++ Required"
 #endif
 
-// THREAD POOL.H
-#pragma once
+/*
+ * Thread Pool (İşlem Havuzu)
+ * 
+ * ThreadPool, birden çok görevi (task) paralel olarak çalıştırmak için
+ * önceden oluşturulmuş bir iş parçacığı (thread) havuzu kullanır.
+ * 
+ * Bu yapı, her görev için yeni thread oluşturmanın maliyetini ortadan kaldırır,
+ * CPU çekirdeklerinin dengeli kullanımını sağlar ve kaynak tüketimini azaltır.
+ */
 
 // Include:
+#include <cstdint>
 #include <vector>
 #include <queue>
 #include <thread>
@@ -35,69 +27,105 @@
 #include <mutex>
 #include <atomic>
 #include <stdexcept>
+#include <exception>
+#include <string>
 
 // Namespace: Core
-namespace Core
+namespace core
 {
-    // Class: ThreadPool
+    // Class: Thread Pool Stop Error
+    class threadpool_stop_error : public std::exception
+    {
+        std::string msg;
+
+        public:
+            explicit threadpool_stop_error(const std::string& message = "[THREADPOOL STOP ERROR] Thread Pool is not running")
+            : msg(message) {}
+
+            const char* what() const noexcept override {
+                return msg.c_str();
+            }
+    };
+
+    // Class: Thread Pool Full Error
+    class threadpool_full_error : public std::exception
+    {
+        std::string msg;
+
+        public:
+            explicit threadpool_full_error(const std::string& message = "[THREADPOOL FULL ERROR] Thread Pool is full")
+            : msg(message) {}
+
+            const char* what() const noexcept override {
+                return msg.c_str();
+            }
+    };
+
+    // Class: Thread Pool
     class ThreadPool
     {
         private:
-            std::queue<std::function<void()>> tasks;        // görev kuyruğu, lambda fonksiyonlar burada saklanır
-            std::vector<std::thread> workers;               // çalışan görevleri tutacak
-            mutable std::mutex queue_mutex;                 // kuyruğu koruyan mutex
-            std::condition_variable cond_var;               // çalışanları (worker) uyandıran koşul değişkeni
-            std::atomic<bool> running;                      // havuzun (pool) aktif olup olmadığını gösterir
-            std::size_t max_queue_size;                     // kuyruk kapasitesi limiti
+            std::vector<std::thread> workers;
+            std::queue<std::function<void()>> tasks;
 
-        private:
-            void workerLoop();
+            std::mutex queue_mutex;
+            std::condition_variable condition;
+
+            std::atomic<bool> running = true;
 
         public:
-            explicit ThreadPool(std::size_t, std::size_t);
+            explicit ThreadPool(size_t = std::thread::hardware_concurrency());
             ~ThreadPool();
 
-            template <typename F, typename... Args>
-            auto submit(F&&, Args&&...)
-                -> std::future<typename std::invoke_result_t<F, Args...>>;
+            size_t task_size() const noexcept;
+            size_t thread_count() const noexcept;
 
-            void shutdown();
+            template<typename Function, typename... Args>
+            auto add(Function&&, Args&&... args)
+                -> std::future<typename std::invoke_result_t<Function, Args...>>;
 
-            std::size_t queueSize() const;
-            std::size_t threadCount() const;
-
-        protected:
-            static const std::size_t MAX_DEFAULT_THREAD = 1024;
+            void shutdown() noexcept;
     };
 
     /**
-     * @brief [Public Constructor] Thread Pool
+     * @brief [Public] Constructor
      * 
-     * Thread Pool sınıfı, belirli sayıda çalışan işleri içeren genel amaçlı
-     * bir havuzdur. Görevleri sıraya alır, boşta kalan işleri dağıtır ve
-     * gelecekteki sonuçlarını döndürür. C++ 17 uyumluluğuna sahiptir.
+     * @param size_t Toplam İşlem
      */
-    ThreadPool::ThreadPool(std::size_t _thread_count = std::thread::hardware_concurrency(),
-                           std::size_t _max_queue_size = ThreadPool::MAX_DEFAULT_THREAD)
-    : running(true),                    // başlangıçta havuz çalışıyor
-      max_queue_size(_max_queue_size)   // görev kuyruğu kapasitesi
+    ThreadPool::ThreadPool(size_t _threadcount)
     {
-        // donanım çekirdeği sayısı tespit edilememiş
-        if( !thread_count )
-            thread_count = 1;
+        // hiç thread yoksa 1 yapsın çünkü
+        // işlemci zaten en az 1 çekirdek içerir
+        if( !_threadcount ) _threadcount = 1;
 
-        // çalışan işleyiciler (worker thread) oluştur
-        // burada her çalışan (worker), "workerLoop" fonksiyonuna girer
-        // "this" gönderilir çünkü üye fonksiyon çağırıyoruz
-        for( std::size_t worker_count = 0; worker_count < thread_count; ++worker_count )
-            workers.emplace_back(&ThreadPool::workerLoop, this);
+        for( size_t counter = 0; counter < _threadcount; ++counter )
+        {
+            workers.emplace_back([this] {
+                while( running ) {
+                    std::function<void()> newtask;
+                    {
+                        std::unique_lock<std::mutex> lock(queue_mutex);
+                        condition.wait(lock, [this] {
+                            return !running || !tasks.empty()
+                        });
+
+                        if( !running && tasks.empty() )
+                            return;
+
+                        newtask = std::move(tasks.front());
+                        tasks.pop();
+                    }
+
+                    newtask();
+                }
+            });
+        }
     }
 
     /**
-     * @brief [Public Destructor] Thread Pool
+     * @brief [Public] Destructor
      * 
-     * Havuz nesnesi yok edilirken otomatik olarak shutdown() çağırılır.
-     * Bu, tüm çalışanların (worker) güvenli şekilde kapanmasını sağlar
+     * Sınıf sonlandırıcısı
      */
     ThreadPool::~ThreadPool()
     {
@@ -105,7 +133,31 @@ namespace Core
     }
 
     /**
-     * @brief [Public] Submit
+     * @brief [Public] Task Size
+     * 
+     * @return İşlem Miktarı
+     */
+    size_t task_size() noexcept const
+    {
+        // kilit koruması ile eş zamanlı olarak
+        // erişmeyi engelliyoruz sonrasında ise
+        // işlemlerin boyutunu döndürüyoruz
+        std::lock_guard<std::mutex> lock(queue_mutex);
+        return tasks.size();
+    }
+
+    /**
+     * @brief [Public] Thread Count
+     * 
+     * @return Çalışan İşlem Sayısı
+     */
+    size_t thread_count() noexcept const
+    {
+        // aktif çalışanların sayısı
+        return workers.size();
+    }
+
+    /** @brief [Public] Add
      * 
      * Yeni bir görevi (lambda, fonksiyon, callable) havuza ekler.
      * Görev, uygun bir worker boşaldığında çalıştırılır.
@@ -115,43 +167,48 @@ namespace Core
      * Şablon (template), parametre olarak herhangi bir çağırılabilir
      * nesneyi kabul eder
      * 
-     * @param F
-     * @param Args
-     * 
-     * @return std::future<typename std::invoke_result_t<F, Args...>> 
+     * @tparam Function 
+     * @tparam Args 
+     * @return Function, Lambda, Callable Type
      */
-    template <typename F, typename... Args>
-    auto ThreadPool::submit (F&& _f, Args&&... _args)
-                -> std::future<typename std::invoke_result_t<F, Args...>>
+    template<typename Function, typename... Args>
+    auto ThreadPool::add(Function&& _function, Args&&... _args)
+        -> std::future<typename std::invoke_result_t<Function, Args...>>
     {
-        // görevin dönüş türünü belirleme
-        using R = typename std::invoke_result_t<F, Args...>;
+        // işlem bittiğinde dönecek veri türü tipi kısaltması
+        using ReturnType = typename std::invoke_result_t<Function, Args...>;
 
-        // görevi çalıştırıp sonucu future aracılığıyla döndürecek
-        auto newtask = std::make_shared<std::packaged_task<R()>>
-        ( std::bind(std::forward<F>(_f), std::forward<Args>(_args)...) );
+        // yeni işlemi oluştursun fakat paylaşımlı şekilde oluştursun
+        // oluşturulup çalıştırması beklenecek paket de ise tipini
+        // başta belirttiğimiz dönüş tipinde yapsın, işlem içinde kullanılacak
+        // fonksiyon direk verdiğimiz fonksiyon olsun ve
+        // kullanılacak argümanlar ise verdiğimiz argümanlar olsun ki argüman
+        // olmayabilir de, önemli değil. Bind kullandık çünkü verileri kopyalayıp
+        // performans kaybı yaşatmaması adına
+        auto newtask = std::make_shared<std::packaged_task<ReturnType()>>(
+            std::bind(std::forward<Function>(_function), std::forward<Args>(_args)...)
+        );
+
+        // işlemin gelecekteki halini saklasın
+        // vakti geldiğinde buraya gelecek zaten
+        std::future<ReturnType> future = newtask->get_future();
 
         {
-            // kuyruğu korumak için kilit
+            // eş zamanlı erişimi durdursun
             std::unique_lock<std::mutex> lock(queue_mutex);
 
-            // eğer havuz kapalıysa yeni işlem kabul etmesin
-            if( !running )
-                throw std::runtime_error("[THREAD POOL] ThreadPool is shutting down");
+            // işleyici havuzu durdurulmuş ise ona göre hata fırlatsın
+            if( !running ) throw core::threadpool_stop_error();
 
-            // görev kuyruğu doluysa yenisini oluşturmasın
-            if( tasks.size() >= max_queue_size )
-                throw std::runtime_error("[THREAD POOL] Task queue is full");
-
-            // görev kuyruğuna ekle
+            // işlemlerin arasına yenisini eklesin ve çalıştırsın
             tasks.emplace([newtask]() { (*newtask)(); });
         }
 
-        // kuyruğa yeni iş olduğunu çalışanlara (worker) bildiriyoruz
-        cond_var.notify_one();
+        // yeni bir işlem olduğuna dair yeni bir bildiri yapsın
+        condition.notify_one();
 
-        // görev tamamlandığında sonucu alabilmek için future döndür
-        return newtask->get_future();
+        // gelecekteki durumuna eriştik, şimdi bunu döndürsün
+        return future;
     }
 
     /**
@@ -162,93 +219,22 @@ namespace Core
      * - Kalan görevler tamamlanır
      * - Tüm çalışanların (worker) bitmesi beklenir (join)
      */
-    void ThreadPool::shutdown()
+    void ThreadPool::shutdown() noexcept
     {
+        // eş zamanlı erişimi durdurup
+        // çalışıyor durumunu sonlandırsın
         {
-            // mutex kilitliyoruz çünkü artık görev almayacak
-            std::lock_guard<std::mutex> lock(queue_mutex);
-            running = false; 
+            std::unique_lock<std::mutex> lock(queue_mutex);
+            running = false;
         }
 
-        // bekleyen tüm işleri uyandır çünkü bazıları bekleme (wait)
-        // durumunda olabilir
-        cond_var.notify_all();
+        // tüm thread yapısını uyandırsın
+        condition.notify_all();
 
-        // çalışan (worker) işlemleri (thread) kapat
-        for( auto& worker : workers ) {
-            if( worker.joinable() )     // bitebilmiş durumda mı?
-                worker.join();          // bitmişi sonlandır
-        }
-
-        // listeyi temizle (isteğe bağlı)
-        workers.clear();
-    }
-
-    /**
-     * @brief [Public] Queue Size
-     * 
-     * Şu anda kuyruğa kaç görev eklendiğini verir
-     * 
-     * @return Queue Size
-     */
-    std::size_t ThreadPool::queueSize() const
-    {
-        // kuyruğa yeni bir iş eklenmesini ya da çıkarılmasını
-        // engelliyoruz (kitliyoruz) bu sayede o anki
-        // işlem sayısının bilgisini güvenle alabiliyoruz
-        std::lock_guard<std::mutex> lock(queue_mutex);
-        return tasks.size();
-    }
-
-    /**
-     * @brief [Public] Thread Count
-     * 
-     *  Kaç aktif çalışan (worker) olduğunun bilgisini verir
-     * 
-     * @return Thread Count
-     */
-    std::size_t ThreadPool::threadCount() const
-    {
-        // herhangi bir kilit mekanizmasına gerek yok
-        // direk aktif çalışan sayısının döndürür
-        return workers.size();
-    }
-
-    /**
-     * @brief [Private] Worker Loop
-     * 
-     * + Her çalışan işlemin çalıştığı ana döngü
-     * + Sürekli olarak görev kuyruğunu dinler
-     * + Yeni görev gelirse çalıştırır, yoksa bekler
-     */
-    void ThreadPool::workerLoop()
-    {
-        while( true )
-        {
-            std::function<void()> job; // çalıştırılacak görev fonksiyonu
-
-            {
-                // kuyruk için kilit (iş seçimi sırasında koruma)
-                std::unique_lock<std::mutex> lock(queue_mutex);
-
-                // kuyrukta görev yoksa veya kapanıyorsa bekle
-                cond_var.wait(lock, [this] {
-                    // bekleme koşulu: ya görev var ya da sistem kapanıyor
-                    return !running || !tasks.empty();
-                });
-
-                // havuz kapanıyor ve görev açık kalmamışsa çıksın
-                if( !running && tasks.empty() )
-                    return;
-
-                // bir görev al
-                job = std::move(tasks.front());
-                tasks.pop();
-            }
-
-            // kilit bırakıldıktan sonra görev çalıştırılır
-            // böylece diğer thread'ler kuyruğa erişebilir
-            job();
-        }
+        // tüm çalışan işlemleri döngüye alsın
+        // bitmiş olanları sonlandırsın
+        for( auto& worker : workers )
+            if( worker.joinable() )
+                worker.join();
     }
 }
