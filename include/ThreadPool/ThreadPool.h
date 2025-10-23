@@ -64,6 +64,11 @@ namespace core
     // Class: Thread Pool
     class ThreadPool
     {
+        protected:
+            static constexpr std::uint16_t MIN_TASK_SIZE = 1;
+            static constexpr std::uint16_t MAX_TASK_SIZE = (std::uint16_t)~0;
+            static constexpr std::uint16_t DEF_TASK_SIZE = 1024;
+
         private:
             std::vector<std::thread> workers;
             std::queue<std::function<void()>> tasks;
@@ -73,12 +78,14 @@ namespace core
 
             std::atomic<bool> running = true;
 
+            std::uint16_t max_tasks = DEF_TASK_SIZE;
+
         public:
-            explicit ThreadPool(size_t = std::thread::hardware_concurrency());
+            explicit ThreadPool(std::uint16_t = std::thread::hardware_concurrency(), std::uint16_t = DEF_TASK_SIZE);
             ~ThreadPool();
 
-            size_t task_size() const noexcept;
-            size_t thread_count() const noexcept;
+            std::uint16_t task_size() const noexcept;
+            std::uint16_t thread_count() const noexcept;
 
             template<typename Function, typename... Args>
             auto add(Function&&, Args&&... args)
@@ -90,15 +97,17 @@ namespace core
     /**
      * @brief [Public] Constructor
      * 
-     * @param size_t Toplam İşlem
+     * @param uint16_t Eş Zamanlı İşlem Miktarı
+     * @param uint16_t Toplam İşlem Miktarı
      */
-    ThreadPool::ThreadPool(size_t _threadcount)
+    ThreadPool::ThreadPool(std::uint16_t _threadcount, std::uint16_t _max_task_limit)
+    : max_tasks(_max_task_limit)
     {
         // hiç thread yoksa 1 yapsın çünkü
         // işlemci zaten en az 1 çekirdek içerir
         if( !_threadcount ) _threadcount = 1;
 
-        for( size_t counter = 0; counter < _threadcount; ++counter )
+        for( decltype(_threadcount) counter = 0; counter < _threadcount; ++counter )
         {
             workers.emplace_back([this] {
                 while( running ) {
@@ -137,7 +146,7 @@ namespace core
      * 
      * @return İşlem Miktarı
      */
-    size_t task_size() noexcept const
+    std::uint16_t task_size() noexcept const
     {
         // kilit koruması ile eş zamanlı olarak
         // erişmeyi engelliyoruz sonrasında ise
@@ -151,7 +160,7 @@ namespace core
      * 
      * @return Çalışan İşlem Sayısı
      */
-    size_t thread_count() noexcept const
+    std::uint16_t thread_count() noexcept const
     {
         // aktif çalışanların sayısı
         return workers.size();
@@ -198,7 +207,12 @@ namespace core
             std::unique_lock<std::mutex> lock(queue_mutex);
 
             // işleyici havuzu durdurulmuş ise ona göre hata fırlatsın
-            if( !running ) throw core::threadpool_stop_error();
+            if( !running )
+                throw core::threadpool_stop_error();
+
+            // en fazla işlem oluşturma limiti aşıldı
+            if( tasks.size() >= max_tasks )
+                throw core::threadpool_full_error();
 
             // işlemlerin arasına yenisini eklesin ve çalıştırsın
             tasks.emplace([newtask]() { (*newtask)(); });
