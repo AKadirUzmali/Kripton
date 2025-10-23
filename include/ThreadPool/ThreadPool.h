@@ -64,10 +64,12 @@ namespace core
     // Class: Thread Pool
     class ThreadPool
     {
+        using sizetype = std::uint16_t;
+
         protected:
-            static constexpr std::uint16_t MIN_TASK_SIZE = 1;
-            static constexpr std::uint16_t MAX_TASK_SIZE = (std::uint16_t)~0;
-            static constexpr std::uint16_t DEF_TASK_SIZE = 1024;
+            static constexpr sizetype MIN_TASK_SIZE = 1;
+            static constexpr sizetype MAX_TASK_SIZE = (sizetype)~0;
+            static constexpr sizetype DEF_TASK_SIZE = 1024;
 
         private:
             std::vector<std::thread> workers;
@@ -78,14 +80,14 @@ namespace core
 
             std::atomic<bool> running = true;
 
-            std::uint16_t max_tasks = DEF_TASK_SIZE;
+            sizetype max_tasks = DEF_TASK_SIZE;
 
         public:
-            explicit ThreadPool(std::uint16_t = std::thread::hardware_concurrency(), std::uint16_t = DEF_TASK_SIZE);
+            explicit ThreadPool(sizetype = static_cast<sizetype>(std::thread::hardware_concurrency()), sizetype = static_cast<sizetype>(DEF_TASK_SIZE));
             ~ThreadPool();
 
-            std::uint16_t task_size() const noexcept;
-            std::uint16_t thread_count() const noexcept;
+            sizetype task_size() const noexcept;
+            sizetype thread_count() const noexcept;
 
             template<typename Function, typename... Args>
             auto add(Function&&, Args&&... args)
@@ -100,12 +102,14 @@ namespace core
      * @param uint16_t Eş Zamanlı İşlem Miktarı
      * @param uint16_t Toplam İşlem Miktarı
      */
-    ThreadPool::ThreadPool(std::uint16_t _threadcount, std::uint16_t _max_task_limit)
+    ThreadPool::ThreadPool(sizetype _threadcount, sizetype _max_task_limit)
     : max_tasks(_max_task_limit)
     {
         // hiç thread yoksa 1 yapsın çünkü
         // işlemci zaten en az 1 çekirdek içerir
-        if( !_threadcount ) _threadcount = 1;
+        // ya da en üst limiti aşmısa, en üst limite ayarlasın
+        if( _threadcount <= (MIN_TASK_SIZE - 1) ) _threadcount = 1;
+        else if( _threadcount > MAX_TASK_SIZE ) _threadcount = MAX_TASK_SIZE;
 
         for( decltype(_threadcount) counter = 0; counter < _threadcount; ++counter )
         {
@@ -115,7 +119,7 @@ namespace core
                     {
                         std::unique_lock<std::mutex> lock(queue_mutex);
                         condition.wait(lock, [this] {
-                            return !running || !tasks.empty()
+                            return !running || !tasks.empty();
                         });
 
                         if( !running && tasks.empty() )
@@ -146,13 +150,13 @@ namespace core
      * 
      * @return İşlem Miktarı
      */
-    std::uint16_t task_size() noexcept const
+    sizetype task_size() noexcept const
     {
         // kilit koruması ile eş zamanlı olarak
         // erişmeyi engelliyoruz sonrasında ise
         // işlemlerin boyutunu döndürüyoruz
         std::lock_guard<std::mutex> lock(queue_mutex);
-        return tasks.size();
+        return static_cast<sizetype>(tasks.size());
     }
 
     /**
@@ -160,10 +164,10 @@ namespace core
      * 
      * @return Çalışan İşlem Sayısı
      */
-    std::uint16_t thread_count() noexcept const
+    sizetype thread_count() noexcept const
     {
         // aktif çalışanların sayısı
-        return workers.size();
+        return static_cast<sizetype>(workers.size());
     }
 
     /** @brief [Public] Add
@@ -192,10 +196,16 @@ namespace core
         // başta belirttiğimiz dönüş tipinde yapsın, işlem içinde kullanılacak
         // fonksiyon direk verdiğimiz fonksiyon olsun ve
         // kullanılacak argümanlar ise verdiğimiz argümanlar olsun ki argüman
-        // olmayabilir de, önemli değil. Bind kullandık çünkü verileri kopyalayıp
-        // performans kaybı yaşatmaması adına
+        // olmayabilir de, önemli değil. Yeni tarz uyumlu olması adına
+        // lambda ifadesi ile yaptık ama alternatif olarak bind ile de yapılabilir.
         auto newtask = std::make_shared<std::packaged_task<ReturnType()>>(
-            std::bind(std::forward<Function>(_function), std::forward<Args>(_args)...)
+            [func = std::forward<Function>(_function),
+            ... args = std::forward<Args>(_args)]() mutable {
+                return func(args...);
+            }
+            
+            // alternatif ve eski tarz uyumlu
+            // std::bind(std::forward<Function>(_function), std::forward<Args>(_args)...)
         );
 
         // işlemin gelecekteki halini saklasın
