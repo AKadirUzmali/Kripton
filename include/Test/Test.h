@@ -29,8 +29,8 @@ namespace test
     static inline constexpr status failed = false;
     static inline constexpr status passed = true;
 
-    static inline const char* text_failed = "[FAILED]";
-    static inline const char* text_passed = "[PASSED]";
+    static inline const char* text_failed = "[ FAIL ]";
+    static inline const char* text_passed = "[ PASS ]";
 
     // Color: Windows
     #if defined(_WIN32) || defined(_WIN64)
