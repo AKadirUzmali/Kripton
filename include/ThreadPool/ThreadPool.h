@@ -24,26 +24,11 @@
 #include <condition_variable>
 #include <mutex>
 #include <atomic>
-#include <exception>
 #include <string>
 
 // Namespace: Core
 namespace core
 {
-    // Class: Thread Pool Stop Error
-    class threadpool_stop_error : public std::exception
-    {
-        std::string msg;
-
-        public:
-            explicit threadpool_stop_error(const std::string& message = "[THREADPOOL STOP ERROR] Thread Pool is not running")
-            : msg(message) {}
-
-            const char* what() const noexcept override {
-                return msg.c_str();
-            }
-    };
-
     // Class: Thread Pool
     class ThreadPool
     {
