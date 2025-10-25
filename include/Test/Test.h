@@ -46,7 +46,7 @@ namespace test
         static inline constexpr color color_purple     = 5;
         static inline constexpr color color_turquoise  = 3;
         static inline constexpr color color_white      = 7;
-        static inline constexpr color color_reset      = white;
+        static inline constexpr color color_reset      = color_white;
     // Color: Linux & Unix
     #elif defined(__linux__) || defined(__unix__) || defined(__unix)
         using color = std::string_view;
@@ -69,7 +69,7 @@ namespace test
         #if defined(_WIN32) || defined(_WIN64)
             static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
             FlushConsoleInputBuffer(hConsole);
-            SetConsoleTextAttribute(hConsole, color);
+            SetConsoleTextAttribute(hConsole, _color);
         // Linux & Unix
         #elif defined(__linux__) || defined(__unix__) || defined(__unix)
             std::cout << _color;
@@ -85,7 +85,7 @@ namespace test
         // Windows
         #if defined(_WIN32) || defined(_WIN64)
             static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            SetConsoleTextAttribute(hConsole, reset);
+            SetConsoleTextAttribute(hConsole, color_reset);
         // Linux & Unix
         #elif defined(__linux__) || defined(__unix__) || defined(__unix)
             std::cout << color_reset;
