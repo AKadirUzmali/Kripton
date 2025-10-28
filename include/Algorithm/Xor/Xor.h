@@ -10,13 +10,13 @@
 
 // Include:
 #include <Algorithm/Algorithm.h>
-namespace algo = core::virbase;
+using namespace core::virbase;
 
 // Namespace: Core::Crypt::Algorithm
 namespace core::crypt::algorithm
 {
     // Class: Xor
-    class Xor : public virtual algo::Algorithm
+    class Xor : public virtual Algorithm
     {
         public:
             static inline const std::string NAME = "Xor";
