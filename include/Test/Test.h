@@ -10,15 +10,15 @@
  * görebileceğiz ve buna göre önlem alabileceğiz.
  */
 
-// C++
-#ifndef __cplusplus
-    #error "[PRE ERROR] C++ Required"
-#endif
-
 // Include:
+#include <cstdlib>
+
 #include <iostream>
 #include <string>
 #include <string_view>
+#include <sstream>
+#include <codecvt>
+#include <locale>
 
 // Namespace: Test
 namespace test
@@ -26,11 +26,13 @@ namespace test
     // Text: Passed | Failed
     using status = bool;
 
-    static inline constexpr status failed = false;
-    static inline constexpr status passed = true;
+    static inline constexpr status fail = false;
+    static inline constexpr status pass = true;
 
-    static inline const char* text_failed = "[ FAIL ]";
-    static inline const char* text_passed = "[ PASS ]";
+    static inline const char* text_fail = "[ FAIL ]";
+    static inline const char* text_pass = "[ PASS ]";
+    static inline const char* text_info = "[ INFO ]";
+    static inline const char* text_warn = "[ WARN ]";
 
     // Color: Windows
     #if defined(_WIN32) || defined(_WIN64)
@@ -61,6 +63,32 @@ namespace test
         static inline constexpr color color_white      = "\033[37m";
         static inline constexpr color color_reset      = "\033[0m";
     #endif
+
+    // UTF-32 -> UTF8
+    static inline std::string to_utf8(const std::u32string& input) {
+        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conv;
+        return conv.to_bytes(input);
+    }
+
+    // UTF32 -> UTF8
+    static inline std::string to_string(const std::u32string& input) {
+        return to_utf8(input);
+    }
+
+    // Görünebilir
+    static inline std::string to_visible(const std::u32string& text) {
+        std::string result;
+        for (auto ch : text) {
+            if (ch >= 32 && ch <= 126) // ASCII
+                result += static_cast<char>(ch);
+            else {
+                std::stringstream ss;
+                ss << "\\x" << std::hex << static_cast<int>(ch);
+                result += ss.str();
+            }
+        }
+        return result;
+    }
 
     // Set Color
     static void set_color(color _color)
@@ -121,9 +149,47 @@ namespace test
         const bool result = (_first == _second);
         
         set_color(result ? color_green : color_red);
-        std::cout << (result ? text_passed : text_failed) << ' ' << _message << std::endl;
+        std::cout << (result ? text_pass : text_fail) << ' ' << _message << std::endl;
         reset_color();
 
         return result;
+    }
+
+    /**
+     * @brief Exit Equal With Message
+     * 
+     * @tparam First Value
+     * @tparam Second Value
+     * @param Message
+     */
+    template <typename First, typename Second>
+    static void exit_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
+    {
+        if( test::expect_eq(_first, _second, _message) ) return;
+        std::exit(EXIT_FAILURE);
+    }
+
+    /**
+     * @brief Info Message
+     * 
+     * @param Message
+     */
+    static void info_msg(const std::string& _message) noexcept
+    {
+        set_color(color_blue);
+        std::cout << text_info << ' ' << _message << std::endl;
+        reset_color();
+    }
+
+    /**
+     * @brief Warning Message
+     * 
+     * @param Message
+     */
+    static void warn_msg(const std::string& _message) noexcept
+    {
+        set_color(color_yellow);
+        std::cout << text_warn << ' ' << _message << std::endl;
+        reset_color();
     }
 }
