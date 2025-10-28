@@ -51,6 +51,39 @@ int main(void)
     algo_xor.decrypt(tmp_copytext);
     test::exit_eq(tmp_copytext, tmp_text, "Text Is Decrypted");
 
+    // algoritmanın ismini değiştirme
+    std::string tmp_oldname(algo_xor.getName());
+    algo_xor.setName("New Xor Algo");
+
+    test::expect_eq(tmp_oldname != algo_xor.getName(), true, "Algorithm Name Changed");
+
+    std::stringstream ss;
+    ss << "Algorithm New Name Is: \"" << algo_xor.getName() << "\""; 
+    test::info_msg(ss.str());
+    ss.clear();
+
+    // algoritmanın anahtarını değiştirme
+    std::u32string tmp_oldkey(algo_xor.getKey());
+    algo_xor.setKey(U"NebawwXobfawrKeyüği.çşq32ü");
+
+    test::exit_eq(tmp_oldkey != algo_xor.getKey(), true, "Algorithm Key Changed");
+    test::info_msg(test::to_visible(algo_xor.getKey()));
+
+    // veriyi şifrelesin
+    tmp_copytext = tmp_text;
+    algo_xor.encrypt(tmp_copytext);
+
+    // eğer veri şifrelenmiş ise orijinal metinle uyuşmamalı
+    test::exit_eq(tmp_copytext != tmp_text, true, "Text Is Encrypted With New Key");
+
+    // verinin yeni şifreli halini ve orijinal halini çıktı versin
+    test::info_msg(test::to_visible(tmp_text));
+    test::info_msg(test::to_visible(tmp_copytext));
+
+    // yeni şifrelenmiş veriyi çözsün ve uyumluluğu kontrol etsin
+    algo_xor.decrypt(tmp_copytext);
+    test::exit_eq(tmp_copytext, tmp_text, "Text Is Decrypted With New Key");
+
     // test sonlandırılıyor
     test::warn_msg("Test Is Ending");
 
