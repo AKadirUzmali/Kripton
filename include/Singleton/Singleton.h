@@ -1,11 +1,6 @@
 // Abdulkadir U. - 22/10/2025
 #pragma once
 
-// C++
-#ifndef __cplusplus
-    #error "[PRE ERROR] C++ Required"
-#endif
-
 /*
  * Singleton
  * 
