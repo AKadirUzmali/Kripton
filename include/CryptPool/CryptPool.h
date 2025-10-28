@@ -20,9 +20,5 @@
 namespace core
 {
     // Class: Crypt Pool
-    class CryptPool
-    {
-        private:
-            
-    };
+    class CryptPool { };
 }
