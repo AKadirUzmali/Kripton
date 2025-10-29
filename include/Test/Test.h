@@ -34,6 +34,16 @@ namespace test
     static inline const char* text_info = "[ INFO ]";
     static inline const char* text_warn = "[ WARN ]";
 
+    // Enum Class: Status
+    enum class e_status : unsigned short
+    {
+        error = 0,
+        success,
+        warning,
+        information,
+        base
+    };
+
     // Color: Windows
     #if defined(_WIN32) || defined(_WIN64)
         #include <Windows.h>
@@ -66,8 +76,26 @@ namespace test
 
     // UTF-32 -> UTF8
     static inline std::string to_utf8(const std::u32string& input) {
-        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> conv;
-        return conv.to_bytes(input);
+        std::string output;
+        output.reserve(input.size() * 4);
+        for (char32_t c : input) {
+            if (c <= 0x7F)
+                output.push_back(static_cast<char>(c));
+            else if (c <= 0x7FF) {
+                output.push_back(static_cast<char>(0xC0 | ((c >> 6) & 0x1F)));
+                output.push_back(static_cast<char>(0x80 | (c & 0x3F)));
+            } else if (c <= 0xFFFF) {
+                output.push_back(static_cast<char>(0xE0 | ((c >> 12) & 0x0F)));
+                output.push_back(static_cast<char>(0x80 | ((c >> 6) & 0x3F)));
+                output.push_back(static_cast<char>(0x80 | (c & 0x3F)));
+            } else {
+                output.push_back(static_cast<char>(0xF0 | ((c >> 18) & 0x07)));
+                output.push_back(static_cast<char>(0x80 | ((c >> 12) & 0x3F)));
+                output.push_back(static_cast<char>(0x80 | ((c >> 6) & 0x3F)));
+                output.push_back(static_cast<char>(0x80 | (c & 0x3F)));
+            }
+        }
+        return output;
     }
 
     // UTF32 -> UTF8
@@ -170,26 +198,28 @@ namespace test
     }
 
     /**
-     * @brief Info Message
+     * @brief Message
+     * 
+     * Ekrana mesaj çıktısı vermek
      * 
      * @param Message
      */
-    static void info_msg(const std::string& _message) noexcept
+    static void message
+    (
+        const e_status _status = e_status::base,
+        const std::string& _message = ""
+    ) noexcept
     {
-        set_color(color_blue);
-        std::cout << text_info << ' ' << _message << std::endl;
-        reset_color();
-    }
+        switch( _status )
+        {
+            case e_status::error:       set_color(color_red);       std::cout << text_fail << ' '; break;
+            case e_status::success:     set_color(color_green);     std::cout << text_pass << ' '; break;
+            case e_status::warning:     set_color(color_yellow);    std::cout << text_warn << ' '; break;
+            case e_status::information: set_color(color_blue);      std::cout << text_info << ' '; break;
+            default:                    set_color(color_reset);     break;
+        }
 
-    /**
-     * @brief Warning Message
-     * 
-     * @param Message
-     */
-    static void warn_msg(const std::string& _message) noexcept
-    {
-        set_color(color_yellow);
-        std::cout << text_warn << ' ' << _message << std::endl;
+        std::cout <<  _message << std::endl;
         reset_color();
     }
 }
