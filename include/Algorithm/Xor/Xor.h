@@ -23,7 +23,8 @@ namespace core::crypt::algorithm
 
             explicit Xor(const std::u32string&);
 
-            virtual void encrypt(std::u32string&) noexcept override;
-            virtual void decrypt(std::u32string&) noexcept override;
+        protected:
+            virtual bool doEncrypt(std::u32string&) noexcept override;
+            virtual bool doDecrypt(std::u32string&) noexcept override;
     };
 }

@@ -16,51 +16,57 @@ using namespace core::crypt::algorithm;
  * @param u32string Key
  */
 Xor::Xor(const std::u32string& _key)
-: algo::Algorithm(Xor::NAME, _key)
+: Algorithm(Xor::NAME, _key)
 {}
 
 /**
- * @brief [Public] Encrypt
+ * @brief [Protected] Do Encrypt
  * 
  * Xor şifreleme de anahtar alınır ve
  * her turda anahtar ile şifreleme yapılır
  * 
  * @param u32string Text
  */
-void Xor::encrypt(std::u32string& _text) noexcept
+bool Xor::doEncrypt(std::u32string& _text) noexcept
 {
     // anahtar bilgisini geçici olarak tutsun
     const std::u32string& tmp_key = this->getKey();
     const size_t tmp_key_len = tmp_key.length();
     
-    // geçerli anahtar uzunluğu yok
-    if( !tmp_key_len ) return;
+    // geçerli anahtar veya metin uzunluğu yok
+    if( !tmp_key_len || !_text.length() )
+        return false;
 
     // anahtarı döndürerek kullansın
     for( size_t counter = 0; counter < _text.length(); ++counter ) {
         _text.at(counter) ^= tmp_key.at(counter % tmp_key_len);
     }
+
+    return true;
 }
 
 /**
- * @brief [Public] Decrypt
+ * @brief [Protected] Do Decrypt
  * 
  * Xor şifreleme ile aynı işlemi yapar
  * fakat bu sefer tam aksine şifre çözer
  * 
  * @param u32string Text
  */
-void Xor::decrypt(std::u32string& _text) noexcept
+bool Xor::doDecrypt(std::u32string& _text) noexcept
 {
     // anahtar bilgisini geçici olarak tutsun
     const std::u32string& tmp_key = this->getKey();
     const size_t tmp_key_len = tmp_key.length();
     
-    // geçerli anahtar uzunluğu yok
-    if( !tmp_key_len ) return;
+    // geçerli anahtar veya metin uzunluğu yok
+    if( !tmp_key_len || !_text.length() )
+        return false;
 
     // anahtarı döndürerek kullansın
     for( size_t counter = 0; counter < _text.length(); ++counter ) {
         _text.at(counter) ^= tmp_key.at(counter % tmp_key_len);
     }
+
+    return true;
 }
