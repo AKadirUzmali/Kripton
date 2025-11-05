@@ -91,8 +91,10 @@ namespace core::virbase
             virtual algorithm::e_algorithm setName(const std::string&)     noexcept;
             virtual algorithm::e_algorithm setKey(const std::u32string&)   noexcept;
 
-            inline bool encrypt(std::u32string&) noexcept;
-            inline bool decrypt(std::u32string&) noexcept;
+            bool encrypt(std::u32string&) noexcept;
+            bool decrypt(std::u32string&) noexcept;
+
+            virtual bool clear() noexcept;
 
             static bool checkValidName(const std::string&)     noexcept;
             static bool checkValidKey(const std::u32string&)   noexcept;
@@ -101,60 +103,4 @@ namespace core::virbase
             virtual bool doEncrypt(std::u32string&) noexcept { return false; };
             virtual bool doDecrypt(std::u32string&) noexcept { return false; };
     };
-
-    using namespace algorithm;
-
-    /**
-     * @brief [Public] Encrypt
-     * 
-     * Şifreleme yapmayı sağlayacak fonksiyon
-     * ve güvenlik kontrollü olabilmesi için
-     * ana sınıf içinde değiştirilemez olacak
-     * ve güvenlik kısmından sonra asıl şifreleme
-     * çalışması için ayrılmış olan fonksiyon çalışacak
-     * 
-     * @param u32string& Text
-     * @return bool
-     */
-    bool Algorithm::encrypt(std::u32string& _text) noexcept
-    {
-        if( !Algorithm::checkValidName(this->getName()) )
-            this->flag.change(flag_valid_name, flag_err_name);
-
-        if( !Algorithm::checkValidKey(this->getKey()) )
-            this->flag.change(flag_valid_key, flag_err_key);
-
-        this->flag.change(flag_decrypt, flag_encrypt);
-
-        return this->hasError() ?
-            false :
-            this->doEncrypt(_text) && !this->hasError();
-    }
-
-    /**
-     * @brief [Public] Decrypt
-     * 
-     * Şifre çözmeyi sağlayacak fonksiyon
-     * ve güvenlik kontrollü olabilmesi için
-     * ana sınıf içinde değiştirilemez olacak
-     * ve güvenlik kısmından sonra asıl şifre çözücünün
-     * çalışması için ayrılmış olan fonksiyon çalışacak
-     * 
-     * @param u32string& Text
-     * @return bool
-     */
-    bool Algorithm::decrypt(std::u32string& _text) noexcept
-    {
-        if( !Algorithm::checkValidName(this->getName()) )
-            this->flag.change(flag_valid_name, flag_err_name);
-
-        if( !Algorithm::checkValidKey(this->getKey()) )
-            this->flag.change(flag_valid_key, flag_err_key);
-
-        this->flag.change(flag_encrypt, flag_decrypt);
-
-        return this->hasError() ?
-            false :
-            this->doDecrypt(_text) && !this->hasError();
-    }
 }
