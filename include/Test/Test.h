@@ -75,7 +75,7 @@ namespace test
     #endif
 
     // UTF-32 -> UTF8
-    static inline std::string to_utf8(const std::u32string& input) {
+    [[maybe_unused]] inline static std::string to_utf8(const std::u32string& input) {
         std::string output;
         output.reserve(input.size() * 4);
         for (char32_t c : input) {
@@ -99,12 +99,12 @@ namespace test
     }
 
     // UTF32 -> UTF8
-    static inline std::string to_string(const std::u32string& input) {
+    [[maybe_unused]] inline static std::string to_string(const std::u32string& input) {
         return to_utf8(input);
     }
 
     // Görünebilir
-    static inline std::string to_visible(const std::u32string& text) {
+    [[maybe_unused]] inline static std::string to_visible(const std::u32string& text) {
         std::string result;
         for (auto ch : text) {
             if (ch >= 32 && ch <= 126) // ASCII
@@ -119,7 +119,7 @@ namespace test
     }
 
     // Set Color
-    static void set_color(color _color)
+    [[maybe_unused]] inline static void set_color(color _color)
     {
         // Windows
         #if defined(_WIN32) || defined(_WIN64)
@@ -136,7 +136,7 @@ namespace test
     }
         
     // Reset Color
-    static void reset_color()
+    [[maybe_unused]] inline static void reset_color()
     {
         // Windows
         #if defined(_WIN32) || defined(_WIN64)
@@ -157,7 +157,7 @@ namespace test
      * @return Is Equal?
      */
     template <typename First, typename Second>
-    static bool expect_eq(const First& _first, const Second& _second) noexcept
+    [[maybe_unused]] inline static bool expect_eq(const First& _first, const Second& _second) noexcept
     {
         return (_first == _second);
     }
@@ -172,7 +172,7 @@ namespace test
      * @return Is Equal?
      */
     template <typename First, typename Second>
-    static bool expect_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
+    [[maybe_unused]] inline static bool expect_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
     {
         const bool result = (_first == _second);
         
@@ -191,7 +191,7 @@ namespace test
      * @param Message
      */
     template <typename First, typename Second>
-    static void exit_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
+    [[maybe_unused]] inline static void exit_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
     {
         if( test::expect_eq(_first, _second, _message) ) return;
         std::exit(EXIT_FAILURE);
@@ -204,11 +204,12 @@ namespace test
      * 
      * @param Message
      */
-    static void message
+    
+    [[maybe_unused]] inline static void message
     (
         const e_status _status = e_status::base,
         const std::string& _message = ""
-    ) noexcept
+    )
     {
         switch( _status )
         {
