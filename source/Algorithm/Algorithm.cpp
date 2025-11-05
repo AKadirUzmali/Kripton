@@ -52,8 +52,7 @@ Algorithm::Algorithm(const std::string& _name, const std::u32string& _key) noexc
  */
 Algorithm::~Algorithm() noexcept
 {
-    this->name = "";
-    this->key = U"";
+    this->clear();
     this->flag.change(flag_notfree | flag_valid_name | flag_valid_key | flag_active,
         flag_free | flag_err_name | flag_err_key | flag_idle);
 }
@@ -267,6 +266,76 @@ e_algorithm Algorithm::setKey(const std::u32string& _key) noexcept
     return (this->key == _key && this->key.length() == _key.length()) ?
         e_algorithm::success :
         e_algorithm::error;
+}
+
+/**
+ * @brief [Public] Encrypt
+ * 
+ * Şifreleme yapmayı sağlayacak fonksiyon
+ * ve güvenlik kontrollü olabilmesi için
+ * ana sınıf içinde değiştirilemez olacak
+ * ve güvenlik kısmından sonra asıl şifreleme
+ * çalışması için ayrılmış olan fonksiyon çalışacak
+ * 
+ * @param u32string& Text
+ * @return bool
+ */
+bool Algorithm::encrypt(std::u32string& _text) noexcept
+{
+    if( !Algorithm::checkValidName(this->getName()) )
+        this->flag.change(flag_valid_name, flag_err_name);
+
+    if( !Algorithm::checkValidKey(this->getKey()) )
+        this->flag.change(flag_valid_key, flag_err_key);
+
+    this->flag.change(flag_decrypt, flag_encrypt);
+
+    return this->hasError() ?
+        false :
+        this->doEncrypt(_text) && !this->hasError();
+}
+
+/**
+ * @brief [Public] Decrypt
+ * 
+ * Şifre çözmeyi sağlayacak fonksiyon
+ * ve güvenlik kontrollü olabilmesi için
+ * ana sınıf içinde değiştirilemez olacak
+ * ve güvenlik kısmından sonra asıl şifre çözücünün
+ * çalışması için ayrılmış olan fonksiyon çalışacak
+ * 
+ * @param u32string& Text
+ * @return bool
+ */
+bool Algorithm::decrypt(std::u32string& _text) noexcept
+{
+    if( !Algorithm::checkValidName(this->getName()) )
+        this->flag.change(flag_valid_name, flag_err_name);
+
+    if( !Algorithm::checkValidKey(this->getKey()) )
+        this->flag.change(flag_valid_key, flag_err_key);
+
+    this->flag.change(flag_encrypt, flag_decrypt);
+
+    return this->hasError() ?
+        false :
+        this->doDecrypt(_text) && !this->hasError();
+}
+
+/**
+ * @brief [Public] Clear
+ * 
+ * Sınıftaki verilen temizlenmesini
+ * sağlayarak sınıftaki değişkenleri boş bırakmak
+ * 
+ * @return bool
+ */
+bool Algorithm::clear() noexcept
+{
+    this->key = U"";
+    this->name = "";
+
+    return true;
 }
 
 /**
