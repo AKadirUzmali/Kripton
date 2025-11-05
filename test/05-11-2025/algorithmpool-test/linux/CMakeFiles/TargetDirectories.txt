@@ -1,3 +1,0 @@
-/media/debian/Depolama/Kodlama/Projeler/Kripton/test/05-11-2025/algorithmpool-test/linux/CMakeFiles/algorithmpool-test.dir
-/media/debian/Depolama/Kodlama/Projeler/Kripton/test/05-11-2025/algorithmpool-test/linux/CMakeFiles/edit_cache.dir
-/media/debian/Depolama/Kodlama/Projeler/Kripton/test/05-11-2025/algorithmpool-test/linux/CMakeFiles/rebuild_cache.dir
