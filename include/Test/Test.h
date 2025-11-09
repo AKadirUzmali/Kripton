@@ -37,10 +37,11 @@ namespace test
     // Enum Class: Status
     enum class e_status : unsigned short
     {
-        error = 0,
-        success,
-        warning,
-        information,
+        unknown = 0x0,
+        error   = 0x1,
+        warning = 0x2,
+        success = 0x3,
+        information = 0x4,
         base
     };
 
@@ -74,8 +75,18 @@ namespace test
         static inline constexpr color color_reset      = "\033[0m";
     #endif
 
-    // UTF-32 -> UTF8
-    [[maybe_unused]] inline static std::string to_utf8(const std::u32string& input) {
+    /**
+     * @brief To UTF-8
+     * 
+     * UTF-32 karakter kümesindeki karakterleri
+     * değişken boyutlu UTF-8 karakter kümesindeki
+     * karakterlere uygunlağa göre ayarlamak
+     * 
+     * @param u32string& Input
+     * @return string
+     */
+    [[maybe_unused]]
+    static std::string to_utf8(const std::u32string& input) {
         std::string output;
         output.reserve(input.size() * 4);
         for (char32_t c : input) {
@@ -98,13 +109,35 @@ namespace test
         return output;
     }
 
-    // UTF32 -> UTF8
-    [[maybe_unused]] inline static std::string to_string(const std::u32string& input) {
+    /**
+     * @brief To String
+     * 
+     * 4 bayt (32 bit) karakter kümesindeki karakterleri
+     * 1 bayt (8 bit) karakter kümesindeki karakterlere dönüştürecek
+     * fakat bu karakter kümesindeki karakterlerin hepsi aynı
+     * boyuta sahip değil. 1 bayt da olabilir 4 bayt da olabilir.
+     * 
+     * @param u32string& Input
+     * @return string
+     */
+    [[maybe_unused]]
+    static std::string to_string(const std::u32string& input) {
         return to_utf8(input);
     }
 
-    // Görünebilir
-    [[maybe_unused]] inline static std::string to_visible(const std::u32string& text) {
+    /**
+     * @brief To Visible
+     * 
+     * 4 bayt (32 bit) karakter kümesindeki karakterler
+     * konsol ya da terminal ekranında gösterilemeyebilir
+     * bu yüzden o karakterleri 16'lık (hexadecimal)
+     * şekilde bile olsa görünebilir kılmak için var
+     * 
+     * @param ustring32& Text
+     * @return string
+     */
+    [[maybe_unused]]
+    static std::string to_visible(const std::u32string& text) {
         std::string result;
         for (auto ch : text) {
             if (ch >= 32 && ch <= 126) // ASCII
@@ -119,7 +152,17 @@ namespace test
     }
 
     // Set Color
-    [[maybe_unused]] inline static void set_color(color _color)
+    /**
+     * @brief Set Color
+     * 
+     * Konsol ya da terminal ekranında
+     * yazılacak yazıların rengini değiştirmeyi
+     * sağlar ve çoklu platform desteğine sahiptir
+     * 
+     * @param color Color
+     */
+    [[maybe_unused]]
+    static void set_color(color _color)
     {
         // Windows
         #if defined(_WIN32) || defined(_WIN64)
@@ -135,8 +178,14 @@ namespace test
         #endif
     }
         
-    // Reset Color
-    [[maybe_unused]] inline static void reset_color()
+    /**
+     * @brief Reset Color
+     * 
+     * Konsol veya terminal ekranının yazı rengini
+     * değiştirmek yerine tam aksine eski haline çevirir
+     */
+    [[maybe_unused]]
+    static void reset_color()
     {
         // Windows
         #if defined(_WIN32) || defined(_WIN64)
@@ -157,7 +206,8 @@ namespace test
      * @return Is Equal?
      */
     template <typename First, typename Second>
-    [[maybe_unused]] inline static bool expect_eq(const First& _first, const Second& _second) noexcept
+    [[maybe_unused]]
+    static bool expect_eq(const First& _first, const Second& _second) noexcept
     {
         return (_first == _second);
     }
@@ -172,7 +222,8 @@ namespace test
      * @return Is Equal?
      */
     template <typename First, typename Second>
-    [[maybe_unused]] inline static bool expect_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
+    [[maybe_unused]]
+    static bool expect_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
     {
         const bool result = (_first == _second);
         
@@ -191,7 +242,8 @@ namespace test
      * @param Message
      */
     template <typename First, typename Second>
-    [[maybe_unused]] inline static void exit_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
+    [[maybe_unused]]
+    static void exit_eq(const First& _first, const Second& _second, const std::string& _message) noexcept
     {
         if( test::expect_eq(_first, _second, _message) ) return;
         std::exit(EXIT_FAILURE);
@@ -204,8 +256,8 @@ namespace test
      * 
      * @param Message
      */
-    
-    [[maybe_unused]] inline static void message
+    [[maybe_unused]]
+    static void message
     (
         const e_status _status = e_status::base,
         const std::string& _message = ""
