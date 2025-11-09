@@ -4,8 +4,8 @@
 // Include:
 #include <cstdint>
 
-// Namespace: Core::Flag
-namespace core::flag
+// Namespace: Core
+namespace core
 {
     using flag_t = uint8_t;
 
