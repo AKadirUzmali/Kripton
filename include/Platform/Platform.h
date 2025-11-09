@@ -10,6 +10,8 @@
 
 // Include:
 #include <string_view>
+#include <chrono>
+#include <sstream>
 
 // Namespace: Platform
 namespace platform
@@ -60,6 +62,32 @@ namespace platform
             case Os::Unix:    return "Unix";
             default:          return "Unknown";
         }
+    }
+
+    /**
+     * @brief Current Time
+     * 
+     * Sistemin o an bulunduğu zamanı
+     * almayı sağlamak için
+     * 
+     * @return string
+     */
+    static std::string current_time() noexcept
+    {
+        const auto tmp__now = std::chrono::system_clock::now();
+        const auto tmp__time = std::chrono::system_clock::to_time_t(tmp__now);
+
+        std::tm tmp__tm {};
+
+        if constexpr (current() == Os::Windows)
+            localtime_s(&tmp__tm, &tmp__time);
+        else if constexpr(current() == Os::Linux || current() == Os::Unix)
+            localtime_r(&tmp__time, &tmp__tm);
+        
+        std::ostringstream tmp__oss;
+        tmp__oss << std::put_time(&tmp__tm, "%Y-%m-%d %H:%M:%S");
+
+        return tmp__oss.str();
     }
 
     // Yardımcı Fonksiyonlar
