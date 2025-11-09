@@ -12,12 +12,18 @@
 #include <string_view>
 #include <chrono>
 #include <sstream>
+#include <iomanip>
+
+// Os: Windows
+#if defined(_WIN32) || defined(_WIN64)
+    #include <Windows.h>
+#endif
 
 // Namespace: Platform
 namespace platform
 {
-    // Enum Class: OS
-    enum class Os {
+    // Enum Class: Os Code
+    enum class e_os {
         Windows,
         Linux,
         Unix,
@@ -29,18 +35,18 @@ namespace platform
      * 
      * Derleme zamanında işletim sistemi tespiti
      * 
-     * @return constexpr Os
+     * @return Os
      */
-    constexpr Os current() noexcept
+    constexpr e_os current() noexcept
     {
         #if defined(_WIN32) || defined(_WIN64)
-            return Os::Windows;
+            return e_os::Windows;
         #elif defined(__linux__)
-            return Os::Linux;
+            return e_os::Linux;
         #elif defined(__unix__)
-            return Os::Unix;
+            return e_os::Unix;
         #else
-            return Os::Unknown;
+            return e_os::Unknown;
         #endif
     }
 
@@ -49,19 +55,20 @@ namespace platform
      * 
      * İşletim sisteminin insan okunabilir hali
      * 
-     * @return constexpr std::string_view
+     * @return std::string_view
      */
     constexpr std::string_view name() noexcept
     {
-        constexpr Os operatingsystem = current();
+        constexpr e_os operatingsystem = current();
 
-        switch ( operatingsystem )
-        {
-            case Os::Windows: return "Windows";
-            case Os::Linux:   return "Linux";
-            case Os::Unix:    return "Unix";
-            default:          return "Unknown";
-        }
+        if constexpr (current() == e_os::Windows)
+            return "Windows";
+        else if constexpr (current() == e_os::Linux)
+            return "Linux";
+        else if constexpr(current() == e_os::Unix)
+            return "Unix";
+        else
+            return "Unknown";
     }
 
     /**
@@ -79,10 +86,12 @@ namespace platform
 
         std::tm tmp__tm {};
 
-        if constexpr (current() == Os::Windows)
+        if constexpr (current() == e_os::Windows)
             localtime_s(&tmp__tm, &tmp__time);
-        else if constexpr(current() == Os::Linux || current() == Os::Unix)
+        else if constexpr(current() == e_os::Linux || current() == e_os::Unix)
             localtime_r(&tmp__time, &tmp__tm);
+        else
+            return "0000-00-00 00:00:00";
         
         std::ostringstream tmp__oss;
         tmp__oss << std::put_time(&tmp__tm, "%Y-%m-%d %H:%M:%S");
@@ -90,15 +99,10 @@ namespace platform
         return tmp__oss.str();
     }
 
-    // Yardımcı Fonksiyonlar
-    constexpr inline bool is_windows()  noexcept { return current() == Os::Windows; }
-    constexpr inline bool is_linux()    noexcept { return current() == Os::Linux; }
-    constexpr inline bool is_unix()     noexcept { return current() == Os::Unix;  }
-    constexpr inline bool is_posix()    noexcept { return is_linux() || is_unix(); }
-    constexpr inline bool is_platform() noexcept { return is_posix() || is_windows(); }
-
-    // Os: Windows
-    #if defined(_WIN32) || defined(_WIN64)
-        #include <Windows.h>
-    #endif
+    // Platform
+    constexpr bool is_windows()  noexcept { return current() == e_os::Windows; }
+    constexpr bool is_linux()    noexcept { return current() == e_os::Linux; }
+    constexpr bool is_unix()     noexcept { return current() == e_os::Unix;  }
+    constexpr bool is_posix()    noexcept { return is_linux() || is_unix(); }
+    constexpr bool is_platform() noexcept { return is_posix() || is_windows(); }
 }
