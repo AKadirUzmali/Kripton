@@ -105,8 +105,8 @@ namespace core
             virtual e_file close()    noexcept;
             virtual e_file clear()    noexcept;
 
-            virtual e_file write(const std::string&) noexcept;
-            virtual e_file read(std::string&) noexcept;
+            virtual e_file write(const std::u32string&) noexcept;
+            virtual e_file read(std::u32string&) noexcept;
 
             virtual e_file location(const size_t = 0) noexcept;
             virtual e_file reset() noexcept;
@@ -257,12 +257,12 @@ e_file File::clear() noexcept
     return e_file::succ_clear;
 }
 
-e_file File::write(const std::string& _input) noexcept
+e_file File::write(const std::u32string& _input) noexcept
 {
     return e_file::err_not_write;
 }
 
-e_file File::read(std::string& _output) noexcept
+e_file File::read(std::u32string& _output) noexcept
 {
     return e_file::err_not_read;
 }
