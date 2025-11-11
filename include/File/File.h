@@ -12,16 +12,10 @@
 
 // Include:
 #include <iostream>
-#include <iomanip>
 #include <fstream>
-#include <mutex>
-#include <chrono>
 #include <string>
-#include <sstream>
 #include <vector>
 #include <filesystem>
-
-#include <Flag/Flag.h>
 
 // Namespace: Core
 namespace core
@@ -48,9 +42,14 @@ namespace core
             err_not_add,
             err_not_clear,
             err_not_newfile,
-            err_set_filename,
+            err_set_filepath,
             err_set_location,
+            err_set_openmode,
+            err_already_open,
+            err_close_file_for_setpath,
+            err_close_file_for_setmode,
             err_reset,
+            err_print,
 
             succ_opened = 2000,
             succ_closed,
@@ -63,11 +62,14 @@ namespace core
             succ_on_add,
             succ_clear,
             succ_is_newfile,
-            succ_set_filename,
+            succ_set_filepath,
             succ_set_location,
+            succ_set_openmode,
             succ_reset,
+            succ_print,
 
-            warn_still_open = 3000
+            warn_still_open = 3000,
+            warn_already_close,
         };
     }
 
@@ -75,42 +77,42 @@ namespace core
     class File
     {
         private:
-            std::u32string filename;
-            std::ofstream path;
-            std::mutex mtx;
+            std::string path;
+            std::fstream file;
+            std::ios::openmode mode = std::ios::in | std::ios::out;
 
-            Flag flag;
-
-            e_file setFilename(const std::u32string&) noexcept;
+            e_file setPath(const std::string&) noexcept;
+            e_file setMode(const std::ios::openmode) noexcept;
 
         public:
-            explicit File(const std::u32string&) noexcept;
+            explicit File(const std::string&, const std::ios::openmode) noexcept;
             ~File() noexcept;
 
-            virtual bool hasError() const noexcept;
-            virtual bool hasFile()  const noexcept;
-            virtual bool hasPath()  const noexcept;
+            virtual inline bool hasError() const noexcept;
+            virtual inline bool hasFile()  const noexcept;
+            virtual inline bool hasPath()  const noexcept;
 
-            virtual bool isOpen()     const noexcept;
-            virtual bool isClose()     const noexcept;
-            virtual bool isRead()       const noexcept;
-            virtual bool isWrite()      const noexcept;
-            virtual bool isAdd()        const noexcept;
-            virtual bool isNewFile()    const noexcept;
+            virtual inline bool isOpen()     const noexcept;
+            virtual inline bool isClose()     const noexcept;
+            virtual inline bool isRead()       const noexcept;
+            virtual inline bool isWrite()      const noexcept;
+            virtual inline bool isAdd()        const noexcept;
 
-            virtual const std::u32string& getFilename() const noexcept;
+            virtual inline const std::string& getPath() const noexcept;
+            virtual inline const std::fstream& getFile() const noexcept;
 
             virtual e_file open()     noexcept;
             virtual e_file close()    noexcept;
-            virtual e_file status()   noexcept;
             virtual e_file clear()    noexcept;
 
-            virtual e_file write(const std::u32string&) noexcept;
-            virtual e_file read(std::u32string&) noexcept;
+            virtual e_file write(const std::string&) noexcept;
+            virtual e_file read(std::string&) noexcept;
 
             virtual e_file location(const size_t = 0) noexcept;
             virtual e_file reset() noexcept;
             virtual e_file undo() noexcept = 0;
+
+            virtual e_file print() noexcept;
     };
 }
 
@@ -125,11 +127,17 @@ using namespace file;
  * bulmayı dener ve eğer dosya adı yoksa yenisini
  * oluşturur
  * 
- * @param u32string& Filename
+ * @param string& Filepath
+ * @param ios::openmode Mode
  */
-File::File(const std::u32string& _filename)
+File::File
+(
+    const std::string& _filepath,
+    const std::ios::openmode _mode = std::ios::in | std::ios::out
+)
 {
-    this->setFilename(_filename);
+    this->setPath(_filepath);
+    this->setMode(_mode);
 }
 
 /**
@@ -146,85 +154,115 @@ File::~File() noexcept
 
 bool File::hasError() const noexcept
 {
-    return true;
+    return this->file.fail() || this->file.bad();
 }
 
 bool File::hasFile() const noexcept
 {
-    return false;
+    return !this->path.empty() && std::filesystem::exists(this->path);
 }
 
 bool File::hasPath() const noexcept
 {
-    return false;
+    return !this->path.empty();
 }
 
 bool File::isOpen() const noexcept
 {
-    return false;
+    return this->hasFile() && this->file.is_open();
 }
 
 bool File::isClose() const noexcept
 {
-    return false;
+    return this->hasFile() && !this->file.is_open();
 }
 
 bool File::isRead() const noexcept
 {
-    return false;
+    return this->hasFile() && this->mode & std::ios::in;
 }
 
 bool File::isWrite() const noexcept
 {
-    return false;
+    return this->hasFile() && this->mode & std::ios::out;
 }
 
 bool File::isAdd() const noexcept
 {
-    return false;
+    return this->hasFile() && this->mode & std::ios::app;
 }
 
-bool File::isNewFile() const noexcept
+const std::string& File::getPath() const noexcept
 {
-    return false;
+    return this->path;
 }
 
-const std::u32string& File::getFilename() const noexcept
+const std::fstream& File::getFile() const noexcept
 {
-    return this->filename;
+    return this->file;
 }
 
-e_file File::setFilename(const std::u32string& _filename) noexcept
+e_file File::setPath(const std::string& _filepath) noexcept
 {
-    return e_file::err_set_filename;
+    if( _filepath.empty() || _filepath.length() < 1 )
+        return e_file::err_no_path;
+
+    if( !this->file.is_open() )
+        return e_file::err_close_file_for_setpath;
+
+    this->path.assign(_filepath);
+    return this->path.compare(_filepath) == 0 ? e_file::succ_set_filepath : e_file::err_set_filepath;
+}
+
+e_file File::setMode(const std::ios::openmode _openmode) noexcept
+{
+    if( this->file.is_open() )
+        return e_file::err_close_file_for_setmode;
+
+    this->mode = _openmode;
+    return this->mode == _openmode ? e_file::succ_set_openmode : e_file::err_set_openmode;
 }
 
 e_file File::open() noexcept
 {
-    return e_file::err_not_opened;
+    if( this->path.empty() )
+        return e_file::err_no_path;
+
+    if( this->file.is_open() )
+        return e_file::err_already_open;
+
+    this->file.open(this->path, this->mode);
+    return this->file.is_open() ? e_file::succ_opened : e_file::err_not_opened;
 }
 
 e_file File::close() noexcept
 {
-    return e_file::err_not_closed;
-}
+    if( !this->file.is_open() )
+        return e_file::warn_already_close;
 
-e_file File::status() noexcept
-{
-    return e_file::err_no_status;
+    return this->file.is_open() ? e_file::err_not_closed : e_file::succ_closed;
 }
 
 e_file File::clear() noexcept
 {
-    return e_file::err_not_clear;
+    if( this->file.is_open() )
+        this->file.close();
+
+    if( this->file.is_open() )
+        return e_file::err_not_closed;
+
+    this->file.clear();
+    this->path.assign("");
+
+    return e_file::succ_clear;
 }
 
-e_file File::write(const std::u32string& _input) noexcept
+e_file File::write(const std::string& _input) noexcept
 {
     return e_file::err_not_write;
 }
 
-e_file File::read(std::u32string& _output) noexcept
+e_file File::read(std::string& _output) noexcept
 {
     return e_file::err_not_read;
 }
@@ -237,4 +275,9 @@ e_file File::location(const size_t _location) noexcept
 e_file File::reset() noexcept
 {
     return e_file::err_reset;
+}
+
+e_file File::print() noexcept
+{
+    return e_file::succ_print;
 }
