@@ -12,12 +12,12 @@
 
 // Include:
 #include <iostream>
+#include <filesystem>
 #include <fstream>
 #include <string>
-#include <filesystem>
 #include <codecvt>
 #include <locale>
-#include <cstdint>
+#include <mutex>
 
 // Namespace: Core
 namespace core
@@ -25,6 +25,85 @@ namespace core
     // Namespace: File
     namespace file
     {
+        // Limit:
+        static inline constexpr size_t MAX_READ_LETTER = 1024;
+        static inline constexpr size_t MAX_WRITE_LETTER = 1024;
+
+        // Enum Clas: IO Code
+        enum class e_io : int
+        {
+            read = static_cast<int>(std::ios::in),
+            write = static_cast<int>(std::ios::out),
+            add = static_cast<int>(std::ios::app),
+            trunc = static_cast<int>(std::ios::trunc),
+            binary = static_cast<int>(std::ios::binary),
+            read_write = static_cast<int>(std::ios::in | std::ios::out),
+            read_write_bin = static_cast<int>(std::ios::in | std::ios::out | std::ios::binary),
+            add_bin = static_cast<int>(std::ios::app | std::ios::binary)
+        };
+
+        /**
+         * @brief [Operator] |
+         * 
+         * e_io enum sınıfı için bit türünde |
+         * işlemi yapabilmek
+         * 
+         * @param e_io Lhs
+         * @param e_io Rhs
+         * @return e_io
+         */
+        inline constexpr e_io operator|(e_io _lhs, e_io _rhs) noexcept {
+            return static_cast<e_io>(
+                static_cast<int>(_lhs) |
+                static_cast<int>(_rhs)
+            );
+        }
+
+        /**
+         * @brief [Operator] &
+         * 
+         * e_io enum sınıfı için bit türünde &
+         * işlemi yapabilmek
+         * 
+         * @param e_io Lhs
+         * @param e_io Rhs
+         * @return e_io
+         */
+        inline constexpr e_io operator&(e_io _lhs, e_io _rhs) noexcept {
+            return static_cast<e_io>(
+                static_cast<int>(_lhs) &
+                static_cast<int>(_rhs)
+            );
+        }
+
+        /**
+         * @brief [Operator] |
+         * 
+         * e_io ile std::ios::openmode operator |
+         * kullanımını sağlamak
+         * 
+         * @param e_io Lhs
+         * @param std::ios::openmode Rhs
+         * @return std::ios::openmode
+         */
+        inline constexpr std::ios::openmode operator|(e_io _lhs, std::ios::openmode _rhs) noexcept {
+            return static_cast<std::ios::openmode>(static_cast<int>(_lhs)) | _rhs;
+        }
+
+        /**
+         * @brief [Operator] &
+         * 
+         * e_io ile std::ios::openmode operator &
+         * kullanımını sağlamak
+         * 
+         * @param e_io Lhs
+         * @param std::ios::openmode Rhs
+         * @return std::ios::openmode
+         */
+        inline constexpr std::ios::openmode operator&(e_io _lhs, std::ios::openmode _rhs) noexcept {
+            return static_cast<std::ios::openmode>(static_cast<int>(_lhs)) & _rhs;
+        }
+
         // Enum Class: File Code
         enum class e_file : size_t
         {
@@ -40,12 +119,17 @@ namespace core
             err_no_file,
             err_no_path,
             err_not_read,
+            err_not_read_mode,
             err_not_write,
+            err_not_write_mode,
             err_not_add,
             err_not_clear,
+            err_not_remove,
             err_not_newfile,
             err_set_filepath,
             err_invalid_position,
+            err_invalid_position_over,
+            err_invalid_position_under,
             err_set_position,
             err_set_openmode,
             err_already_open,
@@ -54,6 +138,7 @@ namespace core
             err_read,
             err_write,
             err_reset,
+            err_undo,
             err_print,
 
             succ_opened = 2000,
@@ -66,6 +151,7 @@ namespace core
             succ_on_write,
             succ_on_add,
             succ_clear,
+            succ_remove,
             succ_is_newfile,
             succ_set_filepath,
             succ_valid_position,
@@ -85,15 +171,21 @@ namespace core
     class File
     {
         private:
-            std::string path;
-            std::fstream file;
-            std::ios::openmode mode = std::ios::in | std::ios::out;
+            static std::string to_utf8(const std::u32string& _text) noexcept;
+            static std::u32string to_utf32(const std::string& _text) noexcept;
 
-            e_file setPath(const std::string&) noexcept;
-            e_file setMode(const std::ios::openmode) noexcept;
+        private:
+            std::u32string path;
+            std::fstream file;
+            file::e_io mode;
+
+            mutable std::mutex mtx;
+
+            e_file setPath(const std::u32string&) noexcept;
+            e_file setMode(const e_io) noexcept;
 
         public:
-            explicit File(const std::string&, const std::ios::openmode) noexcept;
+            explicit File(const std::u32string&, const e_io = e_io::read_write_bin) noexcept;
             ~File() noexcept;
 
             virtual inline bool hasError() const noexcept;
@@ -106,9 +198,9 @@ namespace core
             virtual inline bool isWrite() const noexcept;
             virtual inline bool isAdd() const noexcept;
 
-            virtual inline const std::string& getPath() const noexcept;
+            virtual inline const std::u32string& getPath() const noexcept;
             virtual inline const std::fstream& getFile() const noexcept;
-            virtual inline const std::ios::openmode& getMode() const noexcept;
+            virtual inline const e_io& getMode() const noexcept;
 
             virtual e_file open() noexcept;
             virtual e_file close() noexcept;
@@ -119,7 +211,7 @@ namespace core
 
             virtual e_file position(const std::streampos = std::ios::end) noexcept;
             virtual e_file reset() noexcept;
-            virtual e_file undo() noexcept = 0;
+            virtual e_file undo() noexcept;
 
             virtual e_file print() noexcept;
     };
@@ -130,19 +222,47 @@ using namespace core;
 using namespace file;
 
 /**
+ * @brief [Static Private] To UTF-8
+ * 
+ * UTF-32 metini UTF-8 metine çevirme işlemi
+ * 
+ * @param u32string& Text
+ * @return string
+ */
+std::string File::to_utf8(const std::u32string& _text) noexcept
+{
+    std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
+    return tmp__conv.to_bytes(_text);
+}
+
+/**
+ * @brief [Static Private] To UTF-32
+ * 
+ * UTF-8 metini UTF-32 metine çevirme işlemi
+ * 
+ * @param string& Text
+ * @return u32string
+ */
+std::u32string File::to_utf32(const std::string& _text) noexcept
+{
+    std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
+    return tmp__conv.from_bytes(_text);
+}
+
+/**
  * @brief [Public] Constructor
  * 
  * Sınıfın oluşturucu. Gerekli dosyanın yolunu
  * bulmayı dener ve eğer dosya adı yoksa yenisini
  * oluşturur
  * 
- * @param string& Filepath
+ * @param u32string& Filepath
  * @param ios::openmode Mode
  */
 File::File
 (
-    const std::string& _filepath,
-    const std::ios::openmode _mode = std::ios::in | std::ios::out
+    const std::u32string& _filepath,
+    const e_io _mode
 )
 {
     this->setPath(_filepath);
@@ -158,7 +278,6 @@ File::File
 File::~File() noexcept
 {
     this->close();
-    this->clear();
 }
 
 /**
@@ -186,7 +305,7 @@ bool File::hasError() const noexcept
  */
 bool File::hasFile() const noexcept
 {
-    return !this->path.empty() && std::filesystem::exists(this->path);
+    return !this->path.empty() && std::filesystem::exists(to_utf8(this->path));
 }
 
 /**
@@ -237,7 +356,7 @@ bool File::isClose() const noexcept
  */
 bool File::isRead() const noexcept
 {
-    return this->hasFile() && this->mode & std::ios::in;
+    return this->hasFile() && (static_cast<std::ios::openmode>(static_cast<int>(this->mode)) & std::ios::in);
 }
 
 /**
@@ -250,7 +369,7 @@ bool File::isRead() const noexcept
  */
 bool File::isWrite() const noexcept
 {
-    return this->hasFile() && this->mode & std::ios::out;
+    return this->hasFile() && (static_cast<std::ios::openmode>(static_cast<int>(this->mode)) & std::ios::out);
 }
 
 /**
@@ -263,7 +382,7 @@ bool File::isWrite() const noexcept
  */
 bool File::isAdd() const noexcept
 {
-    return this->hasFile() && this->mode & std::ios::app;
+    return this->hasFile() && (static_cast<std::ios::openmode>(static_cast<int>(this->mode)) & std::ios::app);
 }
 
 /**
@@ -271,9 +390,9 @@ bool File::isAdd() const noexcept
  * 
  * Dosya yoluna ait bilgiyi getirir
  * 
- * @return string&
+ * @return u32string&
  */
-const std::string& File::getPath() const noexcept
+const std::u32string& File::getPath() const noexcept
 {
     return this->path;
 }
@@ -298,7 +417,7 @@ const std::fstream& File::getFile() const noexcept
  * 
  * @return openmode
  */
-const std::ios::openmode& File::getMode() const noexcept
+const e_io& File::getMode() const noexcept
 {
     return this->mode;
 }
@@ -309,18 +428,21 @@ const std::ios::openmode& File::getMode() const noexcept
  * Dosya yolunu güvenli ve kontrollü şekilde değiştirmeyi
  * sağlar ve bu süre zarfında dosyanın kendisi kapalı olmaldır
  * 
+ * @param u32string& File Path
  * @return e_file
  */
-e_file File::setPath(const std::string& _filepath) noexcept
+e_file File::setPath(const std::u32string& _filepath) noexcept
 {
+    std::lock_guard<std::mutex> tmp__lock(this->mtx);
+
     if( _filepath.empty() || _filepath.length() < 1 )
         return e_file::err_no_path;
 
-    if( !this->isOpen() )
+    if( this->isOpen() )
         return e_file::err_close_file_for_setpath;
 
     this->path.assign(_filepath);
-    return this->path.compare(_filepath) == 0 ? e_file::succ_set_filepath : e_file::err_set_filepath;
+    return this->path == _filepath ? e_file::succ_set_filepath : e_file::err_set_filepath;
 }
 
 /**
@@ -333,13 +455,16 @@ e_file File::setPath(const std::string& _filepath) noexcept
  * @param openmode Openmode
  * @return e_file
  */
-e_file File::setMode(const std::ios::openmode _openmode) noexcept
+e_file File::setMode(const e_io _openmode) noexcept
 {
+    std::lock_guard<std::mutex> tmp__lock(this->mtx);
+
     if( this->isOpen() )
         return e_file::err_close_file_for_setmode;
 
     this->mode = _openmode;
-    return this->mode == _openmode ? e_file::succ_set_openmode : e_file::err_set_openmode;
+    return (this->mode & _openmode) == _openmode ?
+        e_file::succ_set_openmode : e_file::err_set_openmode;
 }
 
 /**
@@ -351,13 +476,15 @@ e_file File::setMode(const std::ios::openmode _openmode) noexcept
  */
 e_file File::open() noexcept
 {
+    std::lock_guard<std::mutex> tmp__lock(this->mtx);
+
     if( this->path.empty() )
         return e_file::err_no_path;
 
     if( this->isOpen() )
         return e_file::err_already_open;
 
-    this->file.open(this->path, this->mode);
+    this->file.open(to_utf8(this->getPath()), static_cast<std::ios::openmode>(this->mode));
     return this->isOpen() ? e_file::succ_opened : e_file::err_not_opened;
 }
 
@@ -370,34 +497,46 @@ e_file File::open() noexcept
  */
 e_file File::close() noexcept
 {
+    std::lock_guard<std::mutex> tmp__lock(this->mtx);
+
     if( !this->isOpen() )
         return e_file::warn_already_close;
-
+        
+    this->file.close();
     return this->isOpen() ? e_file::err_not_closed : e_file::succ_closed;
 }
 
 /**
- * @brief [Public] Open
+ * @brief [Public] Clear
  * 
- * Dosyayı temizlemesi yani; dosya adı,
- * dosya ve dosya yolu temizlenmiş oluyor
+ * Dosyanın içeriğini temizleyip boş bırakmak için
  * 
  * @return e_file
  */
 e_file File::clear() noexcept
 {
-    if( this->isOpen() )
-    {
-        this->file.close();
+    std::scoped_lock tmp__lock(this->mtx);
 
-        if( this->isOpen() )
-            return e_file::err_not_closed;
-    }
+    if( !this->isOpen() )
+        return e_file::err_not_opened;
 
-    this->file.clear();
-    this->path.clear();
+    e_file tmp__status = this->close();
+    
+    if( tmp__status != e_file::succ_closed )
+        return e_file::err_not_closed;
 
-    return e_file::succ_clear;
+    std::ofstream tmp__trunc(to_utf8(this->getPath()), std::ios::out | std::ios::trunc | std::ios::binary);
+
+    if( !tmp__trunc )
+        return e_file::err_not_write_mode;
+
+    tmp__trunc.close();
+    tmp__status = this->open();
+
+    if( tmp__status != e_file::succ_opened )
+        return e_file::err_not_opened;
+
+    return this->isOpen() ? e_file::succ_clear : e_file::err_not_clear;
 }
 
 /**
@@ -411,17 +550,18 @@ e_file File::clear() noexcept
  */
 e_file File::write(const std::u32string& _input) noexcept
 {
+    std::scoped_lock tmp__lock(this->mtx);
+
     if( !this->isOpen() )
-        return e_file::err_no_file;
+        return e_file::err_not_opened;
 
-    try {
-        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
-        std::string tmp__utf8 = tmp__conv.to_bytes(_input);
-        this->file << tmp__utf8;
-    } catch(...) {
-        return e_file::err_write;
-    }
+    for( auto c32 : _input )
+        this->file.write(reinterpret_cast<const char*>(&c32), sizeof(char32_t));
 
+    if( !this->file.good() )
+        return e_file::err_not_write;
+
+    this->file.flush();
     return e_file::succ_write;
 }
 
@@ -436,17 +576,26 @@ e_file File::write(const std::u32string& _input) noexcept
  */
 e_file File::read(std::u32string& _output) noexcept
 {
-    if( !this->isOpen() )
-        return e_file::err_no_file;
+    std::scoped_lock tmp__lock(this->mtx);
 
-    try {
-        std::string tmp__buf((std::istreambuf_iterator<char>(this->file)), std::istreambuf_iterator<char>());
-        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
-        _output = tmp__conv.from_bytes(tmp__buf);
-    } catch(...) {
-        return e_file::err_read;
+    if( !this->isOpen() )
+        return e_file::err_not_opened;
+
+    if( this->file.eof() ) {
+        this->file.clear();
+        this->file.seekg(0, std::ios::beg);
     }
 
+    std::u32string tmp__buffer;
+    char32_t tmp__c32;
+
+    for( size_t counter = 0;
+        counter < file::MAX_READ_LETTER &&
+        this->file.read(reinterpret_cast<char*>(&tmp__c32), sizeof(char32_t));
+        ++counter )
+            tmp__buffer.push_back(tmp__c32);
+
+    _output = std::move(tmp__buffer);
     return e_file::succ_read;
 }
 
@@ -461,14 +610,16 @@ e_file File::read(std::u32string& _output) noexcept
  */
 e_file File::position(const std::streampos _position) noexcept
 {
+    std::lock_guard<std::mutex> tmp__lock(this->mtx);
+
     if( !this->isOpen() )
         return e_file::err_no_file;
 
     this->file.seekg(0, std::ios::end);
-    auto tmp__end = this->file.tellg();
-
-    if( _position < 0 || _position > tmp__end )
-        return e_file::err_invalid_position;
+    auto tmp__size = this->file.tellg();
+    
+    if( tmp__size < 0 || _position < 0 ) return e_file::err_invalid_position_under;
+    if( _position > tmp__size ) return e_file::err_invalid_position_over;
 
     this->file.seekg(_position, std::ios::beg);
     this->file.seekp(_position, std::ios::beg);
@@ -486,16 +637,36 @@ e_file File::position(const std::streampos _position) noexcept
  */
 e_file File::reset() noexcept
 {
-    if( !this->isOpen() )
-        return e_file::err_no_file;
+    std::lock_guard<std::mutex> tmp__lock(this->mtx);
 
-    if( this->close() != e_file::succ_closed )
-        return e_file::err_not_closed;
+    e_file tmp__status = this->isOpen() ? this->close() : e_file::warn_already_close;
 
-    if( this->open() != e_file::succ_opened )
-        return e_file::err_not_opened;
+    switch( tmp__status )
+    {
+        case e_file::succ_closed:
+        case e_file::warn_already_close:
+            break;
+        default:
+            return e_file::err_not_closed;
+    }
 
-    return this->isOpen() ? e_file::succ_reset : e_file::err_reset;
+    tmp__status = this->open();
+    return tmp__status == e_file::succ_opened ? e_file::succ_reset : e_file::err_reset;
+}
+
+/**
+ * @brief [Public] Undo
+ * 
+ * Dosyadaki işlemi bir önceki işleme doğru
+ * geri sarma işlemi fakat şuan için ihtiyacımız yok
+ * gelecekte yeni sınıflar türetilmek istenirse
+ * fonksiyonel hale getirilebilir
+ * 
+ * @return e_file
+ */
+e_file File::undo() noexcept
+{
+    return e_file::err_undo;
 }
 
 /**
@@ -509,12 +680,12 @@ e_file File::reset() noexcept
 e_file File::print() noexcept
 {
     std::cout << "\n===== FILE =====\n";
-    std::cout << "Path: " << (this->path.empty() ? "(none)" : this->path) << "\n";
+    std::cout << "Path: " << (this->getPath().empty() ? "(none)" : to_utf8(this->getPath())) << "\n";
     std::cout << "Is Open: " << (this->isOpen() ? "yes" : "no") << "\n";
     std::cout << "Has Error: " << (this->hasError() ? "yes" : "no") << "\n";
     std::cout << "Read: " << (this->isRead() ? "yes" : "no") << "\n";
     std::cout << "Write: " << (this->isWrite() ? "yes" : "no") << "\n";
-    std::cout << "Add: " << (this->isAdd() ? "yes" : "no") << "\n";
+    std::cout << "Append: " << (this->isAdd() ? "yes" : "no") << "\n";
 
     return e_file::succ_print;
 }
