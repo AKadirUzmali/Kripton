@@ -82,5 +82,8 @@ int main(void)
     // test bitiyor mesajı
     test::message(test::e_status::warning, "Test Is Ending...");
 
+    // dosyaya ait bilgi çıktısı
+    testfile.print();
+
     return 0;
 }
