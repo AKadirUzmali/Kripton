@@ -17,6 +17,10 @@
 // Os: Windows
 #if defined(_WIN32) || defined(_WIN64)
     #include <Windows.h>
+    #include <time.h>
+// Os: Linux | Unix
+#elif defined(__linux__) || defined(__unix__) || defined(__unix)
+    #include <ctime>
 #endif
 
 // Namespace: Platform
@@ -59,8 +63,6 @@ namespace platform
      */
     constexpr std::string_view name() noexcept
     {
-        constexpr e_os operatingsystem = current();
-
         if constexpr (current() == e_os::Windows)
             return "Windows";
         else if constexpr (current() == e_os::Linux)
@@ -79,6 +81,7 @@ namespace platform
      * 
      * @return string
      */
+    [[maybe_unused]]
     static std::string current_time() noexcept
     {
         const auto tmp__now = std::chrono::system_clock::now();
@@ -86,11 +89,12 @@ namespace platform
 
         std::tm tmp__tm {};
 
-        if constexpr (current() == e_os::Windows)
+        // Os: Windows
+        #if defined(_WIN32)
             localtime_s(&tmp__tm, &tmp__time);
-        else if constexpr(current() == e_os::Linux || current() == e_os::Unix)
+        #elif defined(__linux__) || defined(__unix__) || defined(__unix)
             localtime_r(&tmp__time, &tmp__tm);
-        else
+        #endif
             return "0000-00-00 00:00:00";
         
         std::ostringstream tmp__oss;
