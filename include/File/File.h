@@ -140,6 +140,8 @@ namespace core
             err_reset,
             err_undo,
             err_print,
+            err_already_has_file,
+            err_not_created,
 
             succ_opened = 2000,
             succ_closed,
@@ -161,11 +163,15 @@ namespace core
             succ_write,
             succ_reset,
             succ_print,
+            succ_create,
 
             warn_still_open = 3000,
             warn_already_close,
         };
     }
+
+    // Using Namespace:
+    using namespace file;
 
     // Class: File
     class File
@@ -178,6 +184,8 @@ namespace core
             std::u32string path;
             std::fstream file;
             file::e_io mode;
+
+            bool error;
 
             mutable std::mutex mtx;
 
@@ -201,7 +209,9 @@ namespace core
             virtual inline const std::u32string& getPath() const noexcept;
             virtual inline const std::fstream& getFile() const noexcept;
             virtual inline const e_io& getMode() const noexcept;
+            virtual inline const std::streampos getPosition() noexcept;
 
+            virtual e_file create() noexcept;
             virtual e_file open() noexcept;
             virtual e_file close() noexcept;
             virtual e_file clear() noexcept;
@@ -209,7 +219,7 @@ namespace core
             virtual e_file write(const std::u32string&) noexcept;
             virtual e_file read(std::u32string&) noexcept;
 
-            virtual e_file position(const std::streampos = std::ios::end) noexcept;
+            virtual e_file position(const std::streamoff = 0, const std::ios_base::seekdir = std::ios::cur) noexcept;
             virtual e_file reset() noexcept;
             virtual e_file undo() noexcept;
 
@@ -217,7 +227,7 @@ namespace core
     };
 }
 
-// Core::File
+// Using Namespace:
 using namespace core;
 using namespace file;
 
@@ -263,10 +273,14 @@ File::File
 (
     const std::u32string& _filepath,
     const e_io _mode
-)
+) noexcept
 {
     this->setPath(_filepath);
     this->setMode(_mode);
+
+    e_file tmp__status = this->open();
+    if( tmp__status == e_file::err_no_file )
+        this->create();
 }
 
 /**
@@ -291,7 +305,7 @@ File::~File() noexcept
  */
 bool File::hasError() const noexcept
 {
-    return this->file.fail() || this->file.bad();
+    return (!this->hasFile() || !this->hasPath()) || (this->isOpen() && (this->file.fail() || this->file.bad()));
 }
 
 /**
@@ -423,6 +437,19 @@ const e_io& File::getMode() const noexcept
 }
 
 /**
+ * @brief [Public] Get Position
+ * 
+ * Dosyanın konum olarak geldiği kısımın
+ * bilgisini döndürsün
+ * 
+ * @return streampos
+ */
+const std::streampos File::getPosition() noexcept
+{
+    return this->file.tellp();
+}
+
+/**
  * @brief [Private] Set Path
  * 
  * Dosya yolunu güvenli ve kontrollü şekilde değiştirmeyi
@@ -468,6 +495,36 @@ e_file File::setMode(const e_io _openmode) noexcept
 }
 
 /**
+ * @brief [Public] Create
+ * 
+ * Dosya varolmamışsa eğer, dosyayı oluşturmasını sağlar
+ * ve bilinmeyen hatalardan dolayı sonsuz dosya oluşturması
+ * yapmaması adına dosyayı açmaya çalışır ve bu hatayı önler
+ * 
+ * @return e_file
+ */
+e_file File::create() noexcept
+{
+    std::scoped_lock tmp__lock(this->mtx);
+
+    if( this->hasFile() )
+        return e_file::err_already_has_file;
+
+    std::ios::openmode mode = std::ios::out | std::ios::trunc;
+    if ((static_cast<int>(this->mode) & static_cast<int>(e_io::binary)) != 0)
+        mode |= std::ios::binary;
+
+    std::ofstream tmp__file(to_utf8(this->path), mode);
+    if( !tmp__file )
+        return e_file::err_not_created;
+
+    tmp__file.close();
+
+    this->file.open(to_utf8(this->path), static_cast<std::ios::openmode>(this->mode));
+    return this->isOpen() ? e_file::succ_create : e_file::err_not_opened;
+}
+
+/**
  * @brief [Public] Open
  * 
  * Dosyayı istediğimiz mod da açmamızı sağlayacak yapıdır
@@ -477,6 +534,9 @@ e_file File::setMode(const e_io _openmode) noexcept
 e_file File::open() noexcept
 {
     std::lock_guard<std::mutex> tmp__lock(this->mtx);
+
+    if( !this->hasFile() )
+        return e_file::err_no_file;
 
     if( this->path.empty() )
         return e_file::err_no_path;
@@ -497,13 +557,13 @@ e_file File::open() noexcept
  */
 e_file File::close() noexcept
 {
-    std::lock_guard<std::mutex> tmp__lock(this->mtx);
+    std::scoped_lock tmp__lock(this->mtx);
 
     if( !this->isOpen() )
         return e_file::warn_already_close;
         
     this->file.close();
-    return this->isOpen() ? e_file::err_not_closed : e_file::succ_closed;
+    return !this->isOpen() ? e_file::succ_closed : e_file::err_not_closed;
 }
 
 /**
@@ -517,26 +577,20 @@ e_file File::clear() noexcept
 {
     std::scoped_lock tmp__lock(this->mtx);
 
-    if( !this->isOpen() )
+    if( !this->hasFile() )
+        return e_file::err_no_file;
+
+    std::ios::openmode mode = std::ios::out | std::ios::trunc;
+    if ((static_cast<int>(this->mode) & static_cast<int>(e_io::binary)) != 0)
+        mode |= std::ios::binary;
+
+    std::ofstream tmp__file(to_utf8(this->path), mode);
+
+    if( !tmp__file.is_open() )
         return e_file::err_not_opened;
 
-    e_file tmp__status = this->close();
-    
-    if( tmp__status != e_file::succ_closed )
-        return e_file::err_not_closed;
-
-    std::ofstream tmp__trunc(to_utf8(this->getPath()), std::ios::out | std::ios::trunc | std::ios::binary);
-
-    if( !tmp__trunc )
-        return e_file::err_not_write_mode;
-
-    tmp__trunc.close();
-    tmp__status = this->open();
-
-    if( tmp__status != e_file::succ_opened )
-        return e_file::err_not_opened;
-
-    return this->isOpen() ? e_file::succ_clear : e_file::err_not_clear;
+    tmp__file.close();
+    return !tmp__file.is_open() ? e_file::succ_clear : e_file::err_not_clear;
 }
 
 /**
@@ -552,14 +606,12 @@ e_file File::write(const std::u32string& _input) noexcept
 {
     std::scoped_lock tmp__lock(this->mtx);
 
-    if( !this->isOpen() )
-        return e_file::err_not_opened;
+    if( !this->isOpen() ) return e_file::err_not_opened;
 
     for( auto c32 : _input )
         this->file.write(reinterpret_cast<const char*>(&c32), sizeof(char32_t));
 
-    if( !this->file.good() )
-        return e_file::err_not_write;
+    if( !this->file.good() ) return e_file::err_not_write;
 
     this->file.flush();
     return e_file::succ_write;
@@ -608,7 +660,7 @@ e_file File::read(std::u32string& _output) noexcept
  * @param streampos Position
  * @return e_file
  */
-e_file File::position(const std::streampos _position) noexcept
+e_file File::position(const std::streamoff _offset, const std::ios_base::seekdir _dir) noexcept
 {
     std::lock_guard<std::mutex> tmp__lock(this->mtx);
 
@@ -616,13 +668,30 @@ e_file File::position(const std::streampos _position) noexcept
         return e_file::err_no_file;
 
     this->file.seekg(0, std::ios::end);
-    auto tmp__size = this->file.tellg();
-    
-    if( tmp__size < 0 || _position < 0 ) return e_file::err_invalid_position_under;
-    if( _position > tmp__size ) return e_file::err_invalid_position_over;
 
-    this->file.seekg(_position, std::ios::beg);
-    this->file.seekp(_position, std::ios::beg);
+    std::streampos tmp__size = this->file.tellg();
+    std::streampos tmp__target = 0;
+
+    switch( _dir )
+    {
+        case std::ios::beg:
+            tmp__target = _offset;
+            break;
+        case std::ios::cur:
+            tmp__target = this->file.tellg() + _offset;
+            break;
+        case std::ios::end:
+            tmp__target = tmp__size + _offset;
+            break;
+        default:
+            return e_file::err_invalid_position;
+    }
+
+    if( tmp__target < 0) return e_file::err_invalid_position_under;
+    if( tmp__target > tmp__size ) return e_file::err_invalid_position_over;
+
+    this->file.seekg(tmp__target, std::ios::beg);
+    this->file.seekp(tmp__target, std::ios::beg);
 
     return this->file.good() ? e_file::succ_set_position : e_file::err_set_position;
 }
