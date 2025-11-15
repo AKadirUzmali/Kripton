@@ -46,7 +46,7 @@ int main(void)
     test::message(test::e_status::information, testfile.isWrite() ? "Write Mode" : "Not Write Mode");
 
     std::stringstream tmp__ss;
-    tmp__ss << "File Path Is: " << test::to_utf8(testfile.getPath());
+    tmp__ss << "File Path Is: " << file::to_fs_path(testfile.getPath());
     test::message(test::e_status::information, tmp__ss.str());
     tmp__ss.clear();
 
