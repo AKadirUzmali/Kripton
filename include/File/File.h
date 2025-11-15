@@ -14,10 +14,9 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
-#include <string>
-#include <codecvt>
-#include <locale>
 #include <mutex>
+
+#include <Tool/Utf/Utf.h>
 
 // Namespace: Core
 namespace core
@@ -104,6 +103,20 @@ namespace core
             return static_cast<std::ios::openmode>(static_cast<int>(_lhs)) & _rhs;
         }
 
+        /**
+         * @brief To Filesystem Path
+         * 
+         * U32String türündeki dosya yolunu
+         * filesystem path türüne dönüştürmek
+         * 
+         * @param u32string& Path
+         * @return filesystem::path
+         */
+        [[maybe_unused]]
+        static inline std::filesystem::path to_fs_path(const std::u32string& _path) noexcept {
+            return std::filesystem::path(tool::to_os_utf(_path));
+        }
+
         // Enum Class: File Code
         enum class e_file : size_t
         {
@@ -177,10 +190,6 @@ namespace core
     class File
     {
         private:
-            static std::string to_utf8(const std::u32string& _text) noexcept;
-            static std::u32string to_utf32(const std::string& _text) noexcept;
-
-        private:
             std::u32string path;
             std::fstream file;
             file::e_io mode;
@@ -230,34 +239,6 @@ namespace core
 // Using Namespace:
 using namespace core;
 using namespace file;
-
-/**
- * @brief [Static Private] To UTF-8
- * 
- * UTF-32 metini UTF-8 metine çevirme işlemi
- * 
- * @param u32string& Text
- * @return string
- */
-std::string File::to_utf8(const std::u32string& _text) noexcept
-{
-    std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
-    return tmp__conv.to_bytes(_text);
-}
-
-/**
- * @brief [Static Private] To UTF-32
- * 
- * UTF-8 metini UTF-32 metine çevirme işlemi
- * 
- * @param string& Text
- * @return u32string
- */
-std::u32string File::to_utf32(const std::string& _text) noexcept
-{
-    std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
-    return tmp__conv.from_bytes(_text);
-}
 
 /**
  * @brief [Public] Constructor
@@ -319,7 +300,7 @@ bool File::hasError() const noexcept
  */
 bool File::hasFile() const noexcept
 {
-    return !this->path.empty() && std::filesystem::exists(to_utf8(this->path));
+    return !this->path.empty() && std::filesystem::exists(file::to_fs_path(this->path));
 }
 
 /**
@@ -514,13 +495,13 @@ e_file File::create() noexcept
     if ((static_cast<int>(this->mode) & static_cast<int>(e_io::binary)) != 0)
         mode |= std::ios::binary;
 
-    std::ofstream tmp__file(to_utf8(this->path), mode);
+    std::ofstream tmp__file(file::to_fs_path(this->path), mode);
     if( !tmp__file )
         return e_file::err_not_created;
 
     tmp__file.close();
 
-    this->file.open(to_utf8(this->path), static_cast<std::ios::openmode>(this->mode));
+    this->file.open(file::to_fs_path(this->path), static_cast<std::ios::openmode>(this->mode));
     return this->isOpen() ? e_file::succ_create : e_file::err_not_opened;
 }
 
@@ -544,7 +525,7 @@ e_file File::open() noexcept
     if( this->isOpen() )
         return e_file::err_already_open;
 
-    this->file.open(to_utf8(this->getPath()), static_cast<std::ios::openmode>(this->mode));
+    this->file.open(tool::to_os_utf(this->getPath()), static_cast<std::ios::openmode>(this->mode));
     return this->isOpen() ? e_file::succ_opened : e_file::err_not_opened;
 }
 
@@ -584,7 +565,7 @@ e_file File::clear() noexcept
     if ((static_cast<int>(this->mode) & static_cast<int>(e_io::binary)) != 0)
         mode |= std::ios::binary;
 
-    std::ofstream tmp__file(to_utf8(this->path), mode);
+    std::ofstream tmp__file(file::to_fs_path(this->path), mode);
 
     if( !tmp__file.is_open() )
         return e_file::err_not_opened;
@@ -749,7 +730,7 @@ e_file File::undo() noexcept
 e_file File::print() noexcept
 {
     std::cout << "\n===== FILE =====\n";
-    std::cout << "Path: " << (this->getPath().empty() ? "(none)" : to_utf8(this->getPath())) << "\n";
+    std::cout << "Path: " << (this->getPath().empty() ? "(none)" : tool::to_os_utf(this->getPath())) << "\n";
     std::cout << "Is Open: " << (this->isOpen() ? "yes" : "no") << "\n";
     std::cout << "Has Error: " << (this->hasError() ? "yes" : "no") << "\n";
     std::cout << "Read: " << (this->isRead() ? "yes" : "no") << "\n";
