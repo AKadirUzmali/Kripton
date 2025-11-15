@@ -75,89 +75,20 @@ namespace test
         static inline constexpr color color_reset      = "\033[0m";
     #endif
 
-    /**
-     * @brief To UTF-8
-     * 
-     * UTF-32 karakter kümesindeki karakterleri
-     * değişken boyutlu UTF-8 karakter kümesindeki
-     * karakterlere uygunlağa göre ayarlamak
-     * 
-     * @param u32string& Input
-     * @return string
-     */
-    [[maybe_unused]]
-    static std::string to_utf8(const std::u32string& input) {
-        std::string output;
-        output.reserve(input.size() * 4);
-        for (char32_t c : input) {
-            if (c <= 0x7F)
-                output.push_back(static_cast<char>(c));
-            else if (c <= 0x7FF) {
-                output.push_back(static_cast<char>(0xC0 | ((c >> 6) & 0x1F)));
-                output.push_back(static_cast<char>(0x80 | (c & 0x3F)));
-            } else if (c <= 0xFFFF) {
-                output.push_back(static_cast<char>(0xE0 | ((c >> 12) & 0x0F)));
-                output.push_back(static_cast<char>(0x80 | ((c >> 6) & 0x3F)));
-                output.push_back(static_cast<char>(0x80 | (c & 0x3F)));
-            } else {
-                output.push_back(static_cast<char>(0xF0 | ((c >> 18) & 0x07)));
-                output.push_back(static_cast<char>(0x80 | ((c >> 12) & 0x3F)));
-                output.push_back(static_cast<char>(0x80 | ((c >> 6) & 0x3F)));
-                output.push_back(static_cast<char>(0x80 | (c & 0x3F)));
-            }
-        }
-        return output;
-    }
-
-    /**
-     * @brief To String
-     * 
-     * 4 bayt (32 bit) karakter kümesindeki karakterleri
-     * 1 bayt (8 bit) karakter kümesindeki karakterlere dönüştürecek
-     * fakat bu karakter kümesindeki karakterlerin hepsi aynı
-     * boyuta sahip değil. 1 bayt da olabilir 4 bayt da olabilir.
-     * 
-     * @param u32string& Input
-     * @return string
-     */
-    [[maybe_unused]]
-    static std::string to_string(const std::u32string& input) {
-        return to_utf8(input);
-    }
-
-    /**
-     * @brief To Visible
-     * 
-     * 4 bayt (32 bit) karakter kümesindeki karakterler
-     * konsol ya da terminal ekranında gösterilemeyebilir
-     * bu yüzden o karakterleri 16'lık (hexadecimal)
-     * şekilde bile olsa görünebilir kılmak için var
-     * 
-     * @param ustring32& Text
-     * @return string
-     */
-    [[maybe_unused]]
-    static std::string to_visible(const std::u32string& text) {
-        std::string result;
-        for (auto ch : text) {
-            if (ch >= 32 && ch <= 126) // ASCII
-                result += static_cast<char>(ch);
-            else {
-                std::stringstream ss;
-                ss << "\\x" << std::hex << static_cast<int>(ch);
-                result += ss.str();
-            }
-        }
-        return result;
-    }
-
     // Set Color
     /**
      * @brief Set Color
      * 
      * Konsol ya da terminal ekranında
      * yazılacak yazıların rengini değiştirmeyi
-     * sağlar ve çoklu platform desteğine sahiptir
+     * sağlar ve çoklu platforr _color)
+    {
+        // Windows
+        #if defined(_WIN32) || defined(_WIN64)
+            static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+            FlushConsoleInputBuffer(hConsole);
+            SetConsoleTextAttribute(hConsole, _color);
+        // Linux & Unixm desteğine sahiptir
      * 
      * @param color Color
      */
