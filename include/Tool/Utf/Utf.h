@@ -10,6 +10,7 @@
 
 // Include:
 #include <string>
+#include <sstream>
 #include <codecvt>
 #include <locale>
 
@@ -62,6 +63,32 @@ namespace tool
     {
         std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
         return tmp__conv.from_bytes(_text);
+    }
+
+    /**
+     * @brief To Visible
+     * 
+     * 4 bayt (32 bit) karakter kümesindeki karakterler
+     * konsol ya da terminal ekranında gösterilemeyebilir
+     * bu yüzden o karakterleri 16'lık (hexadecimal)
+     * şekilde bile olsa görünebilir kılmak için var
+     * 
+     * @param ustring32& Text
+     * @return string
+     */
+    [[maybe_unused]]
+    static std::string to_visible(const std::u32string& text) {
+        std::string tmp__result;
+        for (auto ch : text) {
+            if (ch >= 32 && ch <= 126) // ASCII
+                tmp__result += static_cast<char>(ch);
+            else {
+                std::stringstream tmp__ss;
+                tmp__ss << "\\x" << std::hex << static_cast<int>(ch);
+                tmp__result += tmp__ss.str();
+            }
+        }
+        return tmp__result;
     }
 
     // Os: Windows
