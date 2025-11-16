@@ -19,6 +19,9 @@
 
 #include <Tool/Utf/Utf.h>
 
+// Using Namespace:
+using namespace tool;
+
 // Namespace: Core
 namespace core
 {
@@ -38,6 +41,9 @@ namespace core
             trunc = static_cast<int>(std::ios::trunc),
             binary = static_cast<int>(std::ios::binary),
             read_write = static_cast<int>(std::ios::in | std::ios::out),
+            add_write = static_cast<int>(std::ios::app | std::ios::out),
+            read_bin = static_cast<int>(std::ios::in | std::ios::binary),
+            write_bin = static_cast<int>(std::ios::out | std::ios::binary),
             read_write_bin = static_cast<int>(std::ios::in | std::ios::out | std::ios::binary),
             add_bin = static_cast<int>(std::ios::app | std::ios::binary)
         };
@@ -115,7 +121,7 @@ namespace core
          */
         [[maybe_unused]]
         static inline std::filesystem::path to_fs_path(const std::u32string& _path) noexcept {
-            return std::filesystem::path(tool::to_os_utf(_path));
+            return std::filesystem::path(utf::to_os_utf(_path));
         }
 
         // Enum Class: File Code
@@ -201,7 +207,7 @@ namespace core
             e_file setMode(const e_io) noexcept;
 
         public:
-            explicit File(const std::u32string&, const e_io = e_io::read_write_bin) noexcept;
+            explicit File(const std::u32string&, const e_io = e_io::read_write) noexcept;
             ~File() noexcept;
 
             virtual inline bool hasError() const noexcept;
@@ -524,7 +530,7 @@ e_file File::open() noexcept
     if( this->isOpen() )
         return e_file::err_already_open;
 
-    this->file.open(tool::to_os_utf(this->getPath()), static_cast<std::ios::openmode>(this->mode));
+    this->file.open(utf::to_os_utf(this->getPath()), static_cast<std::ios::openmode>(this->mode));
     return this->isOpen() ? e_file::succ_opened : e_file::err_not_opened;
 }
 
@@ -579,19 +585,21 @@ e_file File::clear() noexcept
  * Dosyaya veri yazmak için vardır ve veri tür
  * dönüşümü yaparak yapar bunları
  * 
- * @param u32string Input
+ * @param u32string& Input
  * @return e_file
  */
 e_file File::write(const std::u32string& _input) noexcept
 {
     std::scoped_lock tmp__lock(this->mtx);
 
-    if( !this->isOpen() ) return e_file::err_not_opened;
+    if( !this->isOpen() )
+        return e_file::err_not_opened;
 
-    for( auto c32 : _input )
-        this->file.write(reinterpret_cast<const char*>(&c32), sizeof(char32_t));
+    std::string utf8_buffer = utf::to_utf8(_input);
 
-    if( !this->file.good() ) return e_file::err_not_write;
+    this->file.write(utf8_buffer.data(), utf8_buffer.size());
+    if( !this->file.good() )
+        return e_file::err_not_write;
 
     this->file.flush();
     return e_file::succ_write;
@@ -603,7 +611,7 @@ e_file File::write(const std::u32string& _input) noexcept
  * Dosyaya bakıp okumak için vardır ve veri tür
  * dönüşümü yaparak yapar bunları
  * 
- * @param u32string Input
+ * @param u32string& Output
  * @return e_file
  */
 e_file File::read(std::u32string& _output) noexcept
@@ -618,16 +626,11 @@ e_file File::read(std::u32string& _output) noexcept
         this->file.seekg(0, std::ios::beg);
     }
 
-    std::u32string tmp__buffer;
-    char32_t tmp__c32;
+    std::string utf8_buffer;
+    utf8_buffer.assign(std::istreambuf_iterator<char>(this->file),
+        std::istreambuf_iterator<char>());
 
-    for( size_t counter = 0;
-        counter < file::MAX_READ_LETTER &&
-        this->file.read(reinterpret_cast<char*>(&tmp__c32), sizeof(char32_t));
-        ++counter )
-            tmp__buffer.push_back(tmp__c32);
-
-    _output = std::move(tmp__buffer);
+    _output = utf::to_utf32(utf8_buffer);
     return e_file::succ_read;
 }
 
@@ -729,7 +732,7 @@ e_file File::undo() noexcept
 e_file File::print() noexcept
 {
     std::cout << "\n==================== FILE ====================\n";
-    std::cout << std::setw(20) << std::left << "Path " << " => " << (this->getPath().empty() ? "(none)" : tool::to_os_utf(this->getPath())) << "\n";
+    std::cout << std::setw(20) << std::left << "Path " << " => " << (this->getPath().empty() ? "(none)" : utf::to_os_utf(this->getPath())) << "\n";
     std::cout << std::setw(20) << std::left << "Is Open " << " => " << (this->isOpen() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Has Error " << " => " << (this->hasError() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Read " << " => " << (this->isRead() ? "yes" : "no") << "\n";

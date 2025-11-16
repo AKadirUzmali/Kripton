@@ -14,8 +14,8 @@
 #include <codecvt>
 #include <locale>
 
-// Namespace: Tool
-namespace tool
+// Namespace: Tool::Utf
+namespace tool::utf
 {
     /**
      * @brief [Static] To UTF-8
@@ -178,6 +178,95 @@ namespace tool
         }
 
         return out;
+    }
+
+    /**
+     * @brief [Static] To Lower
+     * 
+     * 4 bayt (32 bit) karakter kümesindeki karakterleri
+     * küçük harfe çevirmek için var
+     * 
+     * @param ustring32& Text
+     * @return ustring32&
+     */
+    [[maybe_unused]]
+    static std::u32string to_lower(const std::u32string& text) noexcept
+    {
+        std::u32string result;
+        for (auto ch : text) {
+            if (ch >= U'A' && ch <= U'Z')
+                result += ch + (U'a' - U'A');
+            else
+                result += ch;
+        }
+        return result;
+    }
+
+    /**
+     * @brief [Static] To Lower
+     * 
+     * 1 bayt (8 bit) karakter kümesindeki karakterleri
+     * küçük harfe çevirmek için var
+     * 
+     * @param string& Text
+     * @return string&
+     */
+    [[maybe_unused]]
+    static std::string to_lower(const std::string& text) noexcept
+    {
+        std::string result;
+        for (auto ch : text)
+        {
+            if (ch >= 'A' && ch <= 'Z') result += ch + ('a' - 'A');
+            else result += ch;
+        }
+        return result;
+    }
+
+    /**
+     * @brief [Static] To Upper
+     * 
+     * 4 bayt (32 bit) karakter kümesindeki karakterleri
+     * büyük harfe çevirmek için var
+     * 
+     * @param string& Text
+     * @return string&
+     */
+    [[maybe_unused]]
+    std::u32string to_upper(const std::u32string& text) {
+        std::u32string result;
+        result.reserve(text.size());
+
+        for (auto c : text)
+        {
+            if (c >= U'a' && c <= U'z') result.push_back(c - 32);
+            else result.push_back(c);
+        }
+
+        return result;
+    }
+
+    /**
+     * @brief [Static] To Upper
+     * 
+     * 1 bayt (8 bit) karakter kümesindeki karakterleri
+     * büyük harfe çevirmek için var
+     * 
+     * @param string& Text
+     * @return string&
+     */
+    [[maybe_unused]]
+    std::string to_upper(const std::string& text) {
+        std::string result;
+        result.reserve(text.size());
+    
+        for (auto c : text)
+        {
+            if (c >= 'a' && c <= 'z') result.push_back(c - 32);
+            else result.push_back(c);
+        }
+    
+        return result;
     }
 
     /**
