@@ -121,7 +121,7 @@ namespace core
          */
         [[maybe_unused]]
         static inline std::filesystem::path to_fs_path(const std::u32string& _path) noexcept {
-            return std::filesystem::path(utf::to_os_utf(_path));
+            return std::filesystem::path(utf::to_utf8(_path));
         }
 
         // Enum Class: File Code
@@ -530,7 +530,7 @@ e_file File::open() noexcept
     if( this->isOpen() )
         return e_file::err_already_open;
 
-    this->file.open(utf::to_os_utf(this->getPath()), static_cast<std::ios::openmode>(this->mode));
+    this->file.open(file::to_fs_path(this->path), static_cast<std::ios::openmode>(this->mode));
     return this->isOpen() ? e_file::succ_opened : e_file::err_not_opened;
 }
 
@@ -732,7 +732,7 @@ e_file File::undo() noexcept
 e_file File::print() noexcept
 {
     std::cout << "\n==================== FILE ====================\n";
-    std::cout << std::setw(20) << std::left << "Path " << " => " << (this->getPath().empty() ? "(none)" : utf::to_os_utf(this->getPath())) << "\n";
+    std::cout << std::setw(20) << std::left << "Path " << " => " << (this->getPath().empty() ? "(none)" : file::to_fs_path(this->path)) << "\n";
     std::cout << std::setw(20) << std::left << "Is Open " << " => " << (this->isOpen() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Has Error " << " => " << (this->hasError() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Read " << " => " << (this->isRead() ? "yes" : "no") << "\n";
