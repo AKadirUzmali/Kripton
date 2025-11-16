@@ -18,7 +18,7 @@
 namespace tool
 {
     /**
-     * @brief [Static Private] To UTF-8
+     * @brief [Static] To UTF-8
      * 
      * UTF-32 metini UTF-8 metine çevirme işlemi
      * 
@@ -26,40 +26,40 @@ namespace tool
      * @return string
      */
     [[maybe_unused]]
-    std::string to_utf8(const std::u32string& _text) noexcept
+    static std::string to_utf8(const std::u32string& _text) noexcept
     {
-        std::string tmp__out;
-        tmp__out.reserve(_text.size() * sizeof(char32_t));
+        std::string out;
+        out.reserve(_text.size() * sizeof(char32_t));
 
         for (char32_t c32 : _text)
         {
             if (c32 <= 0x7F)
-                tmp__out.push_back(static_cast<char>(c32));
+                out.push_back(static_cast<char>(c32));
             else if (c32 <= 0x7FF)
             {
-                tmp__out.push_back(static_cast<char>(0xC0 | (c32 >> 6)));
-                tmp__out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+                out.push_back(static_cast<char>(0xC0 | (c32 >> 6)));
+                out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
             }
             else if (c32 <= 0xFFFF)
             {
-                tmp__out.push_back(static_cast<char>(0xE0 | (c32 >> 12)));
-                tmp__out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
-                tmp__out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+                out.push_back(static_cast<char>(0xE0 | (c32 >> 12)));
+                out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
+                out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
             }
             else
             {
-                tmp__out.push_back(static_cast<char>(0xF0 | (c32 >> 18)));
-                tmp__out.push_back(static_cast<char>(0x80 | ((c32 >> 12) & 0x3F)));
-                tmp__out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
-                tmp__out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+                out.push_back(static_cast<char>(0xF0 | (c32 >> 18)));
+                out.push_back(static_cast<char>(0x80 | ((c32 >> 12) & 0x3F)));
+                out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
+                out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
             }
         }
 
-        return tmp__out;
+        return out;
     }
 
     /**
-     * @brief [Static Private] To UTF-16
+     * @brief [Static] To UTF-16
      * 
      * UTF-32 metini UTF-16 metine çevirme işlemi
      * 
@@ -67,29 +67,29 @@ namespace tool
      * @return string
      */
     [[maybe_unused]]
-    std::wstring to_utf16(const std::u32string& _text) noexcept
+    static std::wstring to_utf16(const std::u32string& _text) noexcept
     {
-        std::wstring tmp__out;
+        std::wstring out;
 
         for (char32_t c32 : _text)
         {
             if (c32 <= 0xFFFF)
-                tmp__out.push_back(static_cast<wchar_t>(c32));
+                out.push_back(static_cast<wchar_t>(c32));
             else
             {
                 c32 -= 0x10000;
                 wchar_t high = static_cast<wchar_t>((c32 >> 10) + 0xD800);
                 wchar_t low  = static_cast<wchar_t>((c32 & 0x3FF) + 0xDC00);
-                tmp__out.push_back(high);
-                tmp__out.push_back(low);
+                out.push_back(high);
+                out.push_back(low);
             }
         }
 
-        return tmp__out;
+        return out;
     }
 
     /**
-     * @brief [Static Private] To UTF-32
+     * @brief [Static] To UTF-32
      * 
      * UTF-8 metini UTF-32 metine çevirme işlemi
      * 
@@ -97,10 +97,10 @@ namespace tool
      * @return u32string
      */
     [[maybe_unused]]
-    std::u32string to_utf32(const std::string& _text) noexcept
+    static std::u32string to_utf32(const std::string& _text) noexcept
     {
-        std::u32string tmp__out;
-        tmp__out.reserve(_text.size());
+        std::u32string out;
+        out.reserve(_text.size());
 
         size_t i = 0;
         const size_t n = _text.size();
@@ -112,7 +112,7 @@ namespace tool
             // 1 byte: 0xxxxxxx
             if (c < 0x80)
             {
-                tmp__out.push_back(c);
+                out.push_back(c);
                 i++;
                 continue;
             }
@@ -129,7 +129,7 @@ namespace tool
                     ((c & 0x1F) << 6) |
                     (c1 & 0x3F);
 
-                tmp__out.push_back(code);
+                out.push_back(code);
                 i += 2;
                 continue;
             }
@@ -148,7 +148,7 @@ namespace tool
                     ((c1 & 0x3F) << 6) |
                     (c2 & 0x3F);
 
-                tmp__out.push_back(code);
+                out.push_back(code);
                 i += 3;
                 continue;
             }
@@ -169,7 +169,7 @@ namespace tool
                     ((c2 & 0x3F) << 6) |
                     (c3 & 0x3F);
 
-                tmp__out.push_back(code);
+                out.push_back(code);
                 i += 4;
                 continue;
             }
@@ -177,11 +177,11 @@ namespace tool
             i++;
         }
 
-        return tmp__out;
+        return out;
     }
 
     /**
-     * @brief To Visible
+     * @brief [Static] To Visible
      * 
      * 4 bayt (32 bit) karakter kümesindeki karakterler
      * konsol ya da terminal ekranında gösterilemeyebilir
