@@ -195,8 +195,6 @@ namespace core
             std::fstream file;
             file::e_io mode;
 
-            bool error;
-
             mutable std::mutex mtx;
 
             e_file setPath(const std::u32string&) noexcept;
