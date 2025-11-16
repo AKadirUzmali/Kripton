@@ -12,6 +12,7 @@
 
 // Include:
 #include <iostream>
+#include <iomanip>
 #include <filesystem>
 #include <fstream>
 #include <mutex>
@@ -729,13 +730,15 @@ e_file File::undo() noexcept
  */
 e_file File::print() noexcept
 {
-    std::cout << "\n===== FILE =====\n";
-    std::cout << "Path: " << (this->getPath().empty() ? "(none)" : tool::to_os_utf(this->getPath())) << "\n";
-    std::cout << "Is Open: " << (this->isOpen() ? "yes" : "no") << "\n";
-    std::cout << "Has Error: " << (this->hasError() ? "yes" : "no") << "\n";
-    std::cout << "Read: " << (this->isRead() ? "yes" : "no") << "\n";
-    std::cout << "Write: " << (this->isWrite() ? "yes" : "no") << "\n";
-    std::cout << "Append: " << (this->isAdd() ? "yes" : "no") << "\n";
+    std::cout << "\n==================== FILE ====================\n";
+    std::cout << std::setw(20) << std::left << "Path " << " => " << (this->getPath().empty() ? "(none)" : tool::to_os_utf(this->getPath())) << "\n";
+    std::cout << std::setw(20) << std::left << "Is Open " << " => " << (this->isOpen() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Has Error " << " => " << (this->hasError() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Read " << " => " << (this->isRead() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Write " << " => " << (this->isWrite() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Append " << " => " << (this->isAdd() ? "yes" : "no") << "\n";
+    std::cout << "==============================================\n";
+    std::cout << std::endl;
 
     return e_file::succ_print;
 }
