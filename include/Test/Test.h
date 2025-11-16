@@ -11,12 +11,8 @@
  */
 
 // Include:
-#include <cstdlib>
-
 #include <iostream>
 #include <string>
-#include <string_view>
-#include <sstream>
 #include <codecvt>
 #include <locale>
 
@@ -29,10 +25,10 @@ namespace test
     static inline constexpr status fail = false;
     static inline constexpr status pass = true;
 
-    static inline const char* text_fail = "[ FAIL ]";
-    static inline const char* text_pass = "[ PASS ]";
-    static inline const char* text_info = "[ INFO ]";
-    static inline const char* text_warn = "[ WARN ]";
+    static inline const std::string text_fail = "[ FAIL ]";
+    static inline const std::string text_pass = "[ PASS ]";
+    static inline const std::string text_info = "[ INFO ]";
+    static inline const std::string text_warn = "[ WARN ]";
 
     // Enum Class: Status
     enum class e_status : unsigned short
@@ -75,20 +71,13 @@ namespace test
         static inline constexpr color color_reset      = "\033[0m";
     #endif
 
-    // Set Color
     /**
      * @brief Set Color
      * 
      * Konsol ya da terminal ekranında
      * yazılacak yazıların rengini değiştirmeyi
-     * sağlar ve çoklu platforr _color)
-    {
-        // Windows
-        #if defined(_WIN32) || defined(_WIN64)
-            static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-            FlushConsoleInputBuffer(hConsole);
-            SetConsoleTextAttribute(hConsole, _color);
-        // Linux & Unixm desteğine sahiptir
+     * sağlar ve çoklu platform desteği ile
+     * çalışır
      * 
      * @param color Color
      */
