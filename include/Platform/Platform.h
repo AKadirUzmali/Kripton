@@ -14,28 +14,19 @@
 #include <sstream>
 #include <iomanip>
 
-// Os: Windows
-#if defined(_WIN32) || defined(_WIN64)
-    #include <Windows.h>
-    #include <time.h>
-// Os: Linux | Unix
-#elif defined(__linux__) || defined(__unix__) || defined(__unix)
-    #include <ctime>
-#endif
-
 // Namespace: Platform
 namespace platform
 {
     // Enum Class: Os Code
-    enum class e_os {
+    enum class e_os : int {
+        Unknown = 0,
         Windows,
         Linux,
-        Unix,
-        Unknown
+        Unix
     };
 
     /**
-     * @brief Current Operating System
+     * @brief [Constexpr] Current Operating System
      * 
      * Derleme zamanında işletim sistemi tespiti
      * 
@@ -45,9 +36,9 @@ namespace platform
     {
         #if defined(_WIN32) || defined(_WIN64)
             return e_os::Windows;
-        #elif defined(__linux__)
+        #elif defined(__linux__) || defined(__i386__) || defined(__x86_64__)
             return e_os::Linux;
-        #elif defined(__unix__)
+        #elif defined(__unix__) || defined(__unix)
             return e_os::Unix;
         #else
             return e_os::Unknown;
@@ -55,26 +46,57 @@ namespace platform
     }
 
     /**
-     * @brief Current Operating System Text
+     * @brief [Constexpr] Current Operating System Text
      * 
      * İşletim sisteminin insan okunabilir hali
      * 
-     * @return std::string_view
+     * @return std::string
      */
-    constexpr std::string_view name() noexcept
+    [[maybe_unused]]
+    static inline std::string name() noexcept
     {
-        if constexpr (current() == e_os::Windows)
+        #if defined(_WIN32) || defined(_WIN64)
             return "Windows";
-        else if constexpr (current() == e_os::Linux)
+        #elif defined(__linux__) || defined(__i386__) || defined(__x86_64__)
             return "Linux";
-        else if constexpr(current() == e_os::Unix)
+        #elif defined(__unix__) || defined(__unix)
             return "Unix";
-        else
+        #else
             return "Unknown";
+        #endif
     }
 
     /**
-     * @brief Current Time
+     * @brief [Static] Current Date
+     * 
+     * Sistemin o an bulunduğu tarihi
+     * gün-ay-yıl olarak alabilmeyi sağlar
+     * 
+     * @return string
+     */
+    [[maybe_unused]]
+    static std::string current_date() noexcept
+    {
+        const auto tmp__now = std::chrono::system_clock::now();
+        const auto tmp__time = std::chrono::system_clock::to_time_t(tmp__now);
+
+        std::tm tmp__tm {};
+
+        // Os: Windows
+        #if defined(_WIN32) || defined(_WIN64)
+            localtime_s(&tmp__tm, &tmp__time);
+        #elif defined(__linux__) || defined(__i386__) || defined(__x86_64__) || defined(__unix__) || defined(__unix)
+            localtime_r(&tmp__time, &tmp__tm);
+        #endif
+
+        std::ostringstream tmp__oss;
+        tmp__oss << std::put_time(&tmp__tm, "%Y-%m-%d");
+
+        return tmp__oss.str();
+    }
+
+    /**
+     * @brief [Static] Current Time
      * 
      * Sistemin o an bulunduğu zamanı
      * almayı sağlamak için
@@ -84,23 +106,17 @@ namespace platform
     [[maybe_unused]]
     static std::string current_time() noexcept
     {
-        const auto tmp__now = std::chrono::system_clock::now();
-        const auto tmp__time = std::chrono::system_clock::to_time_t(tmp__now);
+        using namespace std::chrono;
 
-        std::tm tmp__tm {};
+        auto now = system_clock::now();
+        auto in_time_t = system_clock::to_time_t(now);
+        auto ms = duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
 
-        // Os: Windows
-        #if defined(_WIN32)
-            localtime_s(&tmp__tm, &tmp__time);
-        #elif defined(__linux__) || defined(__unix__) || defined(__unix)
-            localtime_r(&tmp__time, &tmp__tm);
-        #endif
-            return "0000-00-00 00:00:00";
-        
-        std::ostringstream tmp__oss;
-        tmp__oss << std::put_time(&tmp__tm, "%Y-%m-%d %H:%M:%S");
+        std::stringstream ss;
+        ss << std::put_time(std::localtime(&in_time_t), "%H:%M:%S")
+            << ':' << std::setw(3) << std::setfill('0') << ms.count();
 
-        return tmp__oss.str();
+        return ss.str();
     }
 
     // Platform
