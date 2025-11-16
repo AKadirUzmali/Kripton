@@ -28,8 +28,34 @@ namespace tool
     [[maybe_unused]]
     std::string to_utf8(const std::u32string& _text) noexcept
     {
-        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
-        return tmp__conv.to_bytes(_text);
+        std::string tmp__out;
+        tmp__out.reserve(_text.size() * sizeof(char32_t));
+
+        for (char32_t c32 : _text)
+        {
+            if (c32 <= 0x7F)
+                tmp__out.push_back(static_cast<char>(c32));
+            else if (c32 <= 0x7FF)
+            {
+                tmp__out.push_back(static_cast<char>(0xC0 | (c32 >> 6)));
+                tmp__out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+            }
+            else if (c32 <= 0xFFFF)
+            {
+                tmp__out.push_back(static_cast<char>(0xE0 | (c32 >> 12)));
+                tmp__out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
+                tmp__out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+            }
+            else
+            {
+                tmp__out.push_back(static_cast<char>(0xF0 | (c32 >> 18)));
+                tmp__out.push_back(static_cast<char>(0x80 | ((c32 >> 12) & 0x3F)));
+                tmp__out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
+                tmp__out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+            }
+        }
+
+        return tmp__out;
     }
 
     /**
@@ -43,11 +69,23 @@ namespace tool
     [[maybe_unused]]
     std::wstring to_utf16(const std::u32string& _text) noexcept
     {
-        std::wstring tmp__result;
-        for( char32_t c32 : _text )
-            tmp__result.push_back(static_cast<wchar_t>(c32));
+        std::wstring tmp__out;
 
-        return tmp__result;
+        for (char32_t c32 : _text)
+        {
+            if (c32 <= 0xFFFF)
+                tmp__out.push_back(static_cast<wchar_t>(c32));
+            else
+            {
+                c32 -= 0x10000;
+                wchar_t high = static_cast<wchar_t>((c32 >> 10) + 0xD800);
+                wchar_t low  = static_cast<wchar_t>((c32 & 0x3FF) + 0xDC00);
+                tmp__out.push_back(high);
+                tmp__out.push_back(low);
+            }
+        }
+
+        return tmp__out;
     }
 
     /**
@@ -61,8 +99,85 @@ namespace tool
     [[maybe_unused]]
     std::u32string to_utf32(const std::string& _text) noexcept
     {
-        std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> tmp__conv;
-        return tmp__conv.from_bytes(_text);
+        std::u32string tmp__out;
+        tmp__out.reserve(_text.size());
+
+        size_t i = 0;
+        const size_t n = _text.size();
+
+        while (i < n)
+        {
+            unsigned char c = _text[i];
+
+            // 1 byte: 0xxxxxxx
+            if (c < 0x80)
+            {
+                tmp__out.push_back(c);
+                i++;
+                continue;
+            }
+
+            // 2 byte: 110xxxxx 10xxxxxx
+            if ((c >> 5) == 0x6)
+            {
+                if (i + 1 >= n) break;
+
+                unsigned char c1 = _text[i + 1];
+                if ((c1 >> 6) != 0x2) break;
+
+                char32_t code =
+                    ((c & 0x1F) << 6) |
+                    (c1 & 0x3F);
+
+                tmp__out.push_back(code);
+                i += 2;
+                continue;
+            }
+
+            // 3 byte: 1110xxxx 10xxxxxx 10xxxxxx
+            if ((c >> 4) == 0xE)
+            {
+                if (i + 2 >= n) break;
+
+                unsigned char c1 = _text[i + 1];
+                unsigned char c2 = _text[i + 2];
+                if ((c1 >> 6) != 0x2 || (c2 >> 6) != 0x2) break;
+
+                char32_t code =
+                    ((c & 0x0F) << 12) |
+                    ((c1 & 0x3F) << 6) |
+                    (c2 & 0x3F);
+
+                tmp__out.push_back(code);
+                i += 3;
+                continue;
+            }
+
+            // 4 byte: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+            if ((c >> 3) == 0x1E)
+            {
+                if (i + 3 >= n) break;
+
+                unsigned char c1 = _text[i + 1];
+                unsigned char c2 = _text[i + 2];
+                unsigned char c3 = _text[i + 3];
+                if ((c1 >> 6) != 0x2 || (c2 >> 6) != 0x2 || (c3 >> 6) != 0x2) break;
+
+                char32_t code =
+                    ((c & 0x07) << 18) |
+                    ((c1 & 0x3F) << 12) |
+                    ((c2 & 0x3F) << 6) |
+                    (c3 & 0x3F);
+
+                tmp__out.push_back(code);
+                i += 4;
+                continue;
+            }
+
+            i++;
+        }
+
+        return tmp__out;
     }
 
     /**
