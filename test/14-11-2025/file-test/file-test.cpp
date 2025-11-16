@@ -79,11 +79,10 @@ int main(void)
     // dosyayı temizlesin
     test::expect_eq(testfile.clear(), e_file::succ_clear, "File Successfully Cleared");
 
+    // dosyaya ait bilgileri yazdırsın
+    test::message(test::e_status::information, "Printing File Informations...");
+    test::expect_eq(testfile.print(), e_file::succ_print, "File Informations Printed");
+
     // test bitiyor mesajı
     test::message(test::e_status::warning, "Test Is Ending...");
-
-    // dosyaya ait bilgi çıktısı
-    testfile.print();
-
-    return 0;
 }
