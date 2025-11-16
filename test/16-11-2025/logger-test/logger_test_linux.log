@@ -1,0 +1,9 @@
+Name: LoggerTest
+Os: Linux
+Date: 2025-11-16
+Key: lnx-2025-11-16-22:10:37:766-lo
+
+[LOGGER START]
+22:10:37:766 [ PASS ] Logger name is equals
+22:10:37:767 [ PASS ] Logger has no error
+[LOGGER END]
