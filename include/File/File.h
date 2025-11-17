@@ -29,8 +29,8 @@ namespace core
     namespace file
     {
         // Limit:
-        static inline constexpr size_t MAX_READ_LETTER = 1024;
-        static inline constexpr size_t MAX_WRITE_LETTER = 1024;
+        static inline constexpr size_t MAX_READ_LETTER = 2048;
+        static inline constexpr size_t MAX_WRITE_LETTER = 2048;
 
         // Enum Clas: IO Code
         enum class e_io : int
@@ -597,7 +597,7 @@ e_file File::write(const std::u32string& _input) noexcept
 
     std::string utf8_buffer = utf::to_utf8(_input);
 
-    this->file.write(utf8_buffer.data(), utf8_buffer.size());
+    this->file.write(utf8_buffer.data(), utf8_buffer.size() > MAX_WRITE_LETTER ? MAX_WRITE_LETTER : utf8_buffer.size());
     if( !this->file.good() )
         return e_file::err_not_write;
 
