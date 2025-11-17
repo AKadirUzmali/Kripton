@@ -14,6 +14,17 @@
 #include <sstream>
 #include <iomanip>
 
+// PreProcessor Directives:
+#if defined(_WIN32) || defined(_WIN64)
+    #define __PLATFORM_WINDOWS__
+#elif defined(__linux__)
+    #define __PLATFORM_LINUX__
+#elif defined(__FreeBSD__) || defined(__unix__)
+    #define __PLATFORM_UNIX__
+#else
+    #define __PLATFORM_UNKNOWN__
+#endif
+
 // Namespace: Platform
 namespace platform
 {
@@ -34,11 +45,11 @@ namespace platform
      */
     constexpr e_os current() noexcept
     {
-        #if defined(_WIN32) || defined(_WIN64)
+        #if defined(__PLATFORM_WINDOWS__)
             return e_os::Windows;
-        #elif defined(__linux__)
+        #elif defined(__PLATFORM_LINUX__)
             return e_os::Linux;
-        #elif defined(__FreeBSD__) || defined(__unix__)
+        #elif defined(__PLATFORM_UNIX__)
             return e_os::Unix;
         #else
             return e_os::Unknown;
@@ -55,11 +66,11 @@ namespace platform
     [[maybe_unused]]
     static inline std::string name() noexcept
     {
-        #if defined(_WIN32) || defined(_WIN64)
+        #if defined(_PLATFORM_WINDOWS__)
             return "Windows";
-        #elif defined(__linux__)
+        #elif defined(__PLATFORM_LINUX__)
             return "Linux";
-        #elif defined(__FreeBSD__) || defined(__unix__)
+        #elif defined(__PLATFORM_UNIX__)
             return "Unix";
         #else
             return "Unknown";
@@ -83,9 +94,9 @@ namespace platform
         std::tm tmp__tm {};
 
         // Os: Windows
-        #if defined(_WIN32) || defined(_WIN64)
+        #if defined(__PLATFORM_WINDOWS__)
             localtime_s(&tmp__tm, &tmp__time);
-        #elif defined(__linux__) || defined(__i386__) || defined(__x86_64__) || defined(__unix__) || defined(__unix)
+        #elif defined(__PLATFORM_LINUX__) || defined(__PLATFORM_UNIX__)
             localtime_r(&tmp__time, &tmp__tm);
         #endif
 
