@@ -1,9 +1,0 @@
-Name: LoggerTest
-Os: Windows
-Date: 2025-11-16
-Key: win-2025-11-16-22:41:58:940-lo
-
-[LOGGER START]
-22:41:58:941 [ PASS ] Logger name is equals
-22:41:58:942 [ PASS ] Logger has no error
-[LOGGER END]

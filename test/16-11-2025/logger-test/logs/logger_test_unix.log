@@ -1,0 +1,9 @@
+Name: LoggerTest
+Os: Unix
+Date: 2025-11-17
+Key: unx-2025-11-17-04:49:14:979-lo
+
+[LOGGER START]
+04:49:14:980 [ PASS ] Logger name is equals
+04:49:14:980 [ PASS ] Logger has no error
+[LOGGER END]
