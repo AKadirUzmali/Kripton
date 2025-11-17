@@ -156,7 +156,7 @@ e_log Logger::setKey() noexcept
 
     tmp__oss << "-" << platform::current_date();
     tmp__oss << "-" << platform::current_time();
-    tmp__oss << "-" << utf::to_utf8(utf::to_lower(this->name.substr(0, (this->name.length() % 3) + 1)));
+    tmp__oss << "-" << utf::to_utf8(utf::to_lower(this->name));
 
     this->key = tmp__oss.str();
     return !this->key.empty() && this->key == tmp__oss.str() ?
