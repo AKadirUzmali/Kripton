@@ -36,9 +36,9 @@ namespace platform
     {
         #if defined(_WIN32) || defined(_WIN64)
             return e_os::Windows;
-        #elif defined(__linux__) || defined(__i386__) || defined(__x86_64__)
+        #elif defined(__linux__)
             return e_os::Linux;
-        #elif defined(__unix__) || defined(__unix)
+        #elif defined(__FreeBSD__) || defined(__unix__)
             return e_os::Unix;
         #else
             return e_os::Unknown;
@@ -57,9 +57,9 @@ namespace platform
     {
         #if defined(_WIN32) || defined(_WIN64)
             return "Windows";
-        #elif defined(__linux__) || defined(__i386__) || defined(__x86_64__)
+        #elif defined(__linux__)
             return "Linux";
-        #elif defined(__unix__) || defined(__unix)
+        #elif defined(__FreeBSD__) || defined(__unix__)
             return "Unix";
         #else
             return "Unknown";
