@@ -75,17 +75,17 @@ namespace core::virbase
             explicit Algorithm(const std::string&, const std::u32string&) noexcept;
             ~Algorithm() noexcept;
 
-            virtual bool hasError()     const noexcept;
-            virtual bool hasName()      const noexcept;
-            virtual bool hasKey()       const noexcept;
+            virtual inline bool hasError()     const noexcept;
+            virtual inline bool hasName()      const noexcept;
+            virtual inline bool hasKey()       const noexcept;
 
-            virtual bool isEncrypt()    const noexcept;
-            virtual bool isDecrypt()    const noexcept;
-            virtual bool isIdle()       const noexcept;
-            virtual bool isActive()     const noexcept;
+            virtual inline bool isEncrypt()    const noexcept;
+            virtual inline bool isDecrypt()    const noexcept;
+            virtual inline bool isIdle()       const noexcept;
+            virtual inline bool isActive()     const noexcept;
             
-            virtual const std::string& getName()    const noexcept;
-            virtual const std::u32string& getKey()  const noexcept;
+            virtual inline const std::string& getName()    const noexcept;
+            virtual inline const std::u32string& getKey()  const noexcept;
 
             virtual algorithm::e_algorithm setName(const std::string&)     noexcept;
             virtual algorithm::e_algorithm setKey(const std::u32string&)   noexcept;
@@ -104,9 +104,8 @@ namespace core::virbase
     };
 }
 
-// Core::Virbase
-using namespace core;
-using namespace virbase;
+// Using Namespace:
+using namespace core::virbase;
 using namespace algorithm;
 
 /**
