@@ -19,13 +19,14 @@ namespace core
 
             friend constexpr inline Flag operator|(const Flag& _left, const Flag& _right) noexcept;
 
-            constexpr inline Flag& operator|=(const Flag& _other)   noexcept;
-            constexpr inline bool operator&(const Flag& _other)     noexcept;
+            constexpr inline Flag& operator|=(const Flag& _other) noexcept;
+            constexpr inline bool operator&(const Flag& _other) noexcept;
 
-            constexpr inline void set(const flag_t)                     noexcept;
-            constexpr inline void add(const flag_t)                     noexcept;
-            constexpr inline void remove(const flag_t)                  noexcept;
-            constexpr inline void change(const flag_t, const flag_t)    noexcept;
+            constexpr inline void set(const flag_t) noexcept;
+            constexpr inline void add(const flag_t) noexcept;
+            constexpr inline void unset(const flag_t) noexcept;
+            constexpr inline void change(const flag_t, const flag_t) noexcept;
+            constexpr inline void clear() noexcept;
 
             constexpr inline flag_t get() const noexcept;
     };
@@ -103,13 +104,13 @@ namespace core
     }
 
     /**
-     * @brief [Public] Remove
+     * @brief [Public] Unset
      * 
      * Bayrak değerinde varolanı silsin
      * 
      * @param flag_t _value
      */
-    constexpr void Flag::remove(const flag_t _value) noexcept
+    constexpr void Flag::unset(const flag_t _value) noexcept
     {
         this->value &= ~_value;
     }
@@ -126,6 +127,16 @@ namespace core
     constexpr void Flag::change(const flag_t _remove, const flag_t _add) noexcept
     {
         this->value = (this->value & ~_remove) | _add;
+    }
+
+    /**
+     * @brief [Public] Clear
+     * 
+     * Bayrak değerlerini sıfırlasın
+     */
+    constexpr inline void Flag::clear() noexcept
+    {
+        this->value = 0;
     }
 
     /**
