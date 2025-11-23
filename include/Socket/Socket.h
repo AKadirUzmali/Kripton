@@ -148,7 +148,7 @@ namespace core::virbase
             socket_port_t port;
 
         public:
-            explicit Socket(Algo&&) noexcept;
+            explicit Socket(Algo&&, const socket_port_t = invalid_port) noexcept;
             ~Socket() noexcept;
 
             virtual inline bool hasError() const noexcept;
@@ -196,15 +196,17 @@ using namespace socket;
  * @return Socket
  */
 template<class Algo, typename Type>
-Socket<Algo, Type>::Socket(Algo&& _algo) noexcept
+Socket<Algo, Type>::Socket(Algo&& _algo, const socket_port_t _port) noexcept
 :   algo(std::forward<Algo>(_algo)),
     flag(flag_socket_free),
     sock(invalid_socket),
-    sock_type(e_socket_type::tcp),
+    sock_type(e_socket_type::unknown),
     port(invalid_port)
 {
-    if constexpr ( std::is_same<Type, Udp>::value )
-        this->setSocketType(e_socket_type::udp);
+    if constexpr ( std::is_same<Type, Tcp>::value ) this->setSocketType(e_socket_type::tcp);
+    else if constexpr ( std::is_same<Type, Udp>::value ) this->setSocketType(e_socket_type::udp);
+
+    this->setPort(_port);
 }
 
 /**
