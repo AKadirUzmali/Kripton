@@ -294,17 +294,4 @@ namespace tool::utf
         }
         return tmp__result;
     }
-
-    // Os: Windows
-    #if defined(_WIN32) || defined(_WIN64)
-        using os_utf = std::wstring(*)(const std::u32string&) noexcept;
-        static constexpr os_utf to_os_utf = to_utf16;
-    // Os: Linux / Bsd
-    #elif defined(__linux__) || defined(__unix__) || defined(__unix)
-        using os_utf = std::string(*)(const std::u32string&) noexcept;
-        static constexpr os_utf to_os_utf = to_utf8;
-    // Os: Unknown
-    #else
-        #error "Unsupported Operating System for UTF conversion!"
-    #endif
 }
