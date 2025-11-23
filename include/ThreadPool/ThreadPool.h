@@ -19,13 +19,12 @@
 #include <condition_variable>
 #include <mutex>
 #include <atomic>
-#include <string>
 
 // Namespace: Core
 namespace core
 {
     // Class: Thread Pool
-    class ThreadPool
+    class ThreadPool final
     {
         private:
             std::vector<std::thread> workers;
@@ -34,7 +33,7 @@ namespace core
             std::mutex queue_mutex;
             std::condition_variable condition;
 
-            std::atomic<bool> running = true;
+            std::atomic<bool> stop;
 
         public:
             explicit ThreadPool(size_t = std::thread::hardware_concurrency());
@@ -44,36 +43,37 @@ namespace core
             inline size_t threadCount() const noexcept;
 
             void enqueue(std::function<void()>) noexcept;
-            void shutdown() noexcept;
     };
 
     /**
      * @brief [Public] Constructor
      * 
-     * @param size_t Eş Zamanlı İşleyici Miktarı
+     * İzlek havuzu ile aynı anda fazla işlem
+     * yapabilmemizi sağlayacak olan sınıf oluşturucusu
+     * 
+     * @param size_t Thread Count
      */
     ThreadPool::ThreadPool(size_t _threadcount)
+    : stop(false)
     {
         for( size_t counter = 0; counter < _threadcount; ++counter )
         {
-            workers.emplace_back([this] {
-                while( true ) {
-                    std::function<void()> newtask;
-
+            workers.emplace_back([this]{
+                while( !this->stop )
+                {
+                    std::function<void()> task;
                     {
-                        std::unique_lock<std::mutex> lock(queue_mutex);
-                        condition.wait(lock, [this] {
-                            return !running || !tasks.empty();
-                        });
+                        std::unique_lock<std::mutex> lock(this->queue_mutex);
+                        this->condition.wait(lock, [this]{ return stop || !this->tasks.empty(); });
 
-                        if( !running && tasks.empty() )
+                        if( this->stop && this->tasks.empty() )
                             return;
 
-                        newtask = std::move(tasks.front());
-                        tasks.pop();
+                        task = std::move(this->tasks.front());
+                        this->tasks.pop();
                     }
 
-                    newtask();
+                    task();
                 }
             });
         }
@@ -86,7 +86,17 @@ namespace core
      */
     ThreadPool::~ThreadPool()
     {
-        shutdown();
+        {
+            std::unique_lock<std::mutex> lock(this->queue_mutex);
+            this->stop = true;
+        }
+
+        this->condition.notify_all();
+
+        for( auto& worker : this->workers ) {
+            if( worker.joinable() )
+                worker.join();
+        }
     }
 
     /**
@@ -94,17 +104,17 @@ namespace core
      * 
      * Çalışıp çalışmadığını kontrol etsin
      * 
-     * @return Is Running?
+     * @return bool
      */
     bool ThreadPool::isRunning() const noexcept
     {
-        return running;
+        return !this->stop;
     }
 
     /**
      * @brief [Public] Thread Count
      * 
-     * @return Çalışan İşlem Sayısı
+     * @return size_t
      */
     size_t ThreadPool::threadCount() const noexcept
     {
@@ -128,32 +138,5 @@ namespace core
 
         // yeni bir iş eklendiğinde dair haberdar etsin
         condition.notify_one();
-    }
-
-    /**
-     * @brief [Public] Shutdown
-     *
-     * Thread havuzunu güvenli şekilde kapatır
-     * - Yeni görev kabul edilmez
-     * - Kalan görevler tamamlanır
-     * - Tüm çalışanların (worker) bitmesi beklenir (join)
-     */
-    void ThreadPool::shutdown() noexcept
-    {
-        // eş zamanlı erişimi durdurup
-        // çalışıyor durumunu sonlandırsın
-        {
-            std::unique_lock<std::mutex> lock(queue_mutex);
-            running = false;
-        }
-
-        // tüm thread yapısını uyandırsın
-        condition.notify_all();
-
-        // tüm çalışan işlemleri döngüye alsın
-        // bitmiş olanları sonlandırsın
-        for( auto& worker : workers )
-            if( worker.joinable() )
-                worker.join();
     }
 }
