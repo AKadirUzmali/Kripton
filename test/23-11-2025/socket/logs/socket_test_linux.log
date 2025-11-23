@@ -1,0 +1,24 @@
+Name: Socket Test
+Os: Linux
+Date: 2025-11-24
+Key: lnx-2025-11-24-00:08:46:058-socket test
+
+[LOGGER START]
+00:08:46:059 ==> [ PASS ] Socket has no error
+00:08:46:059 ==> [ PASS ] Socket type is Tcp
+00:08:46:059 ==> [ PASS ] Socket created
+00:08:46:059 ==> [ PASS ] Socket is valid
+00:08:46:059 ==> [ PASS ] Socket port is not valid (No Connection | Just Base Class)
+00:08:46:059 ==> [ INFO ] Printing Socket informations...
+00:08:46:059 ==> [ PASS ] Socket informations printed
+00:08:46:059 ==> [ PASS ] Socket type changed to Udp from Tcp
+00:08:46:059 ==> [ PASS ] Verified that the socket type is Udp
+00:08:46:059 ==> [ INFO ] Printing Socket informations...
+00:08:46:059 ==> [ PASS ] Socket informations printed
+00:08:46:059 ==> [ PASS ] Socket closed
+00:08:46:059 ==> [ PASS ] Verified the socket closed
+00:08:46:059 ==> [ PASS ] Socket cleared
+00:08:46:059 ==> [ PASS ] Socket is free
+00:08:46:059 ==> [ INFO ] Printing Socket informations...
+00:08:46:059 ==> [ PASS ] Socket informations printed
+[LOGGER END]
