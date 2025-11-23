@@ -17,13 +17,23 @@
 #include <Flag/Flag.h>
 #include <Tool/Utf/Utf.h>
 
+// Using Namespace:
+using namespace core::algorithmpool;
+
 // Os Support:
 #if defined(__PLATFORM_WINDOWS__)
     #include <winsock2.h>
     #include <ws2tcpip.h>
     
     using socket_t = SOCKET;
+    using socket_port_t = uint16_t;
+    using socket_domain_t = int;
+    using socket_conn_t = int;
+    using socket_proto_t = int;
+
     constexpr socket_t invalid_socket = INVALID_SOCKET;
+    constexpr socket_port_t invalid_port = 0;
+
     inline socket_t close_socket(socket_t _sock) { return static_cast<socket_t>(closesocket(_sock)); }
 #elif defined(__PLATFORM_LINUX__) || defined(__PLATFORM_UNIX__)
     #include <sys/socket.h>
@@ -31,7 +41,14 @@
     #include <unistd.h>
 
     using socket_t = int;
+    using socket_port_t = uint16_t;
+    using socket_domain_t = int;
+    using socket_conn_t = int;
+    using socket_proto_t = int;
+
     constexpr socket_t invalid_socket = -1;
+    constexpr socket_port_t invalid_port = 0;
+
     inline socket_t close_socket(socket_t _sock) { return static_cast<socket_t>(close(_sock)); }
 #endif
 
@@ -41,10 +58,6 @@ namespace core::virbase
     // Namespace: Socket
     namespace socket
     {
-        // Using Declarations:
-        using socket_port_t = uint16_t;
-        constexpr socket_port_t invalid_port = 0;
-
         // Enum Class: Socket Code
         enum class e_socket : size_t
         {
@@ -77,22 +90,6 @@ namespace core::virbase
             udp = SOCK_DGRAM
         };
 
-        // Struct: TCP
-        struct Tcp
-        {
-            static constexpr int domain = AF_INET;
-            static constexpr int type = SOCK_STREAM;
-            static constexpr int protocol = IPPROTO_TCP;
-        };
-
-        // Struct: UDP
-        struct Udp
-        {
-            static constexpr int domain = AF_INET;
-            static constexpr int type = SOCK_DGRAM;
-            static constexpr int protocol = IPPROTO_UDP;
-        };
-
         // Limit:
         constexpr size_t MAX_SOCKET_BUFFER_SIZE = 8192;
 
@@ -104,8 +101,32 @@ namespace core::virbase
         inline constexpr flag_t flag_socket_created         { 1 << 1 };
         inline constexpr flag_t flag_socket_error           { 1 << 2 };
         inline constexpr flag_t flag_socket_open            { 1 << 3 };
-        inline constexpr flag_t flag_socket_type_udp        { 1 << 4 };
-        inline constexpr flag_t flag_socket_type_tcp        { 1 << 5 };
+
+        // Class: Tcp
+        class Tcp final
+        {
+            public:
+                Tcp() = delete;
+
+                static constexpr socket_domain_t domain = AF_INET;
+                static constexpr socket_conn_t type = SOCK_STREAM;
+                static constexpr socket_proto_t protocol = IPPROTO_TCP;
+        };
+
+        // Class: Udp
+        class Udp final
+        {
+            public:
+                Udp() = delete;
+
+                static constexpr socket_domain_t domain = AF_INET;
+                static constexpr socket_conn_t type = SOCK_DGRAM;
+                static constexpr socket_proto_t protocol = IPPROTO_UDP;
+        };
+
+        template<typename> struct is_socket_type : std::false_type {};
+        template<> struct is_socket_type<Tcp> : std::true_type {};
+        template<> struct is_socket_type<Udp> : std::true_type {};
     }
 
     // Using Namespace:
@@ -115,8 +136,11 @@ namespace core::virbase
     template<class Algo, typename Type>
     class Socket
     {
+        static_assert(std::is_base_of<Algorithm, Algo>::value, "<Algo> Has To Be At The Base Of The <Algorithm> Class");
+        static_assert(socket::is_socket_type<Type>::value, "<Type> Has To Be <Tcp> Or <Udp> Class");
+
         private:
-            Algo& algo;
+            Algo algo;
             Flag flag;
 
             socket_t sock;
@@ -124,7 +148,7 @@ namespace core::virbase
             socket_port_t port;
 
         public:
-            explicit Socket(Algo&) noexcept;
+            explicit Socket(Algo&&) noexcept;
             ~Socket() noexcept;
 
             virtual inline bool hasError() const noexcept;
@@ -144,7 +168,7 @@ namespace core::virbase
             virtual inline const socket_port_t& getPort() const noexcept;
             virtual e_socket setPort(const socket_port_t) noexcept;
 
-            virtual inline Algo& getAlgorithm() const noexcept;
+            virtual inline const Algo& getAlgorithm() const noexcept;
 
             virtual inline const e_socket_type& getSocketType() const noexcept;
             virtual e_socket setSocketType(const e_socket_type) noexcept;
@@ -172,14 +196,14 @@ using namespace socket;
  * @return Socket
  */
 template<class Algo, typename Type>
-Socket<Algo, Type>::Socket(Algo& _algo) noexcept
-:   algo(_algo),
+Socket<Algo, Type>::Socket(Algo&& _algo) noexcept
+:   algo(std::forward<Algo>(_algo)),
     flag(flag_socket_free),
     sock(invalid_socket),
-    port(invalid_port),
-    sock_type(e_socket_type::tcp)
+    sock_type(e_socket_type::tcp),
+    port(invalid_port)
 {
-    if(std::is_same<Type, Udp>::value)
+    if constexpr ( std::is_same<Type, Udp>::value )
         this->setSocketType(e_socket_type::udp);
 }
 
@@ -297,7 +321,7 @@ bool Socket<Algo, Type>::isClose() const noexcept
 template<class Algo, typename Type>
 bool Socket<Algo, Type>::isUdp() const noexcept
 {
-    return static_cast<bool>(this->flag.get() & flag_socket_type_udp) && this->getSocketType() == e_socket_type::udp;
+    return static_cast<bool>(this->sock_type == e_socket_type::udp);
 }
 
 /**
@@ -310,7 +334,7 @@ bool Socket<Algo, Type>::isUdp() const noexcept
 template<class Algo, typename Type>
 bool Socket<Algo, Type>::isTcp() const noexcept
 {
-    return static_cast<bool>(this->flag.get() & flag_socket_type_tcp) && this->getSocketType() == e_socket_type::tcp;
+    return static_cast<bool>(this->sock_type == e_socket_type::tcp);
 }
 
 /**
@@ -385,7 +409,7 @@ e_socket Socket<Algo, Type>::setPort(const socket_port_t _sockport) noexcept
  * @return Algo& Algorithm
  */
 template<class Algo, typename Type>
-Algo& Socket<Algo, Type>::getAlgorithm() const noexcept
+const Algo& Socket<Algo, Type>::getAlgorithm() const noexcept
 {
     return this->algo;
 }
@@ -420,15 +444,9 @@ e_socket Socket<Algo, Type>::setSocketType(const e_socket_type _socktype) noexce
     {
         case e_socket_type::tcp:
             this->sock_type = e_socket_type::tcp;
-            this->flag.unset(flag_socket_type_udp);
-            this->flag.set(flag_socket_type_tcp);
-
             return e_socket::succ_socket_set_type_tcp;
         case e_socket_type::udp:
             this->sock_type = e_socket_type::udp;
-            this->flag.unset(flag_socket_type_tcp);
-            this->flag.set(flag_socket_type_udp);
-
             return e_socket::succ_socket_set_type_udp;
         default:
             return e_socket::err_socket_set_type_unknown;
@@ -514,5 +532,15 @@ e_socket Socket<Algo, Type>::clear() noexcept
 template<class Algo, typename Type>
 e_socket Socket<Algo, Type>::print() noexcept
 {
-    return e_socket::err_socket_print;
+    std::cout << "\n==================== SOCKET ====================\n";
+    std::cout << std::setw(20) << std::left << "Socket " << " => " << (this->sock != invalid_socket ? "Valid" : "Invalid") << "\n";
+    std::cout << std::setw(20) << std::left << "Has Error " << " => " << (this->hasError() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Is Open " << " => " << (this->isOpen() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Is Tcp " << " => " << (this->isTcp() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Is Udp " << " => " << (this->isUdp() ? "yes" : "no") << "\n";
+    std::cout << std::setw(20) << std::left << "Is Free " << " => " << (this->isFree() ? "yes" : "no") << "\n";
+    std::cout << "================================================\n";
+    std::cout << std::endl;
+
+    return e_socket::succ_socket_print;
 }
