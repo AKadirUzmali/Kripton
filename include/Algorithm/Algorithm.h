@@ -39,16 +39,11 @@ namespace core::virbase
         };
 
         // Flag: Algorithm Status
-        inline constexpr flag_t flag_free           { 0 << 0 };
-        inline constexpr flag_t flag_notfree        { 1 << 0 };
-        inline constexpr flag_t flag_valid_name     { 0 << 1 };
-        inline constexpr flag_t flag_valid_key      { 0 << 2 };
-        inline constexpr flag_t flag_err_name       { 1 << 1 };
-        inline constexpr flag_t flag_err_key        { 1 << 2 };
-        inline constexpr flag_t flag_decrypt        { 0 << 3 };
-        inline constexpr flag_t flag_encrypt        { 1 << 3 };
-        inline constexpr flag_t flag_idle           { 0 << 4 };
-        inline constexpr flag_t flag_active         { 1 << 4 };
+        inline constexpr flag_t flag_algo_free          { 1 << 0 };
+        inline constexpr flag_t flag_algo_error         { 1 << 1 };
+        inline constexpr flag_t flag_algo_valid_name    { 1 << 2 };
+        inline constexpr flag_t flag_algo_valid_key     { 1 << 3 };
+        inline constexpr flag_t flag_algo_idle          { 1 << 4 };
     }
 
     // Class: Algorithm
@@ -62,8 +57,6 @@ namespace core::virbase
 
             virtual void setIdle()      noexcept;
             virtual void setActive()    noexcept;
-            virtual void setEncrypt()   noexcept;
-            virtual void setDecrypt()   noexcept;
 
         public:
             static inline constexpr size_t MIN_NAME_SIZE = 1;
@@ -79,8 +72,6 @@ namespace core::virbase
             virtual inline bool hasName()      const noexcept;
             virtual inline bool hasKey()       const noexcept;
 
-            virtual inline bool isEncrypt()    const noexcept;
-            virtual inline bool isDecrypt()    const noexcept;
             virtual inline bool isIdle()       const noexcept;
             virtual inline bool isActive()     const noexcept;
             
@@ -90,17 +81,13 @@ namespace core::virbase
             virtual algorithm::e_algorithm setName(const std::string&)     noexcept;
             virtual algorithm::e_algorithm setKey(const std::u32string&)   noexcept;
 
-            bool encrypt(std::u32string&) noexcept;
-            bool decrypt(std::u32string&) noexcept;
+            virtual bool encrypt(std::u32string&) noexcept = 0;
+            virtual bool decrypt(std::u32string&) noexcept = 0;
 
             virtual bool clear() noexcept;
 
             static bool checkValidName(const std::string&)     noexcept;
             static bool checkValidKey(const std::u32string&)   noexcept;
-
-        protected:
-            virtual bool doEncrypt(std::u32string&) noexcept { return false; };
-            virtual bool doDecrypt(std::u32string&) noexcept { return false; };
     };
 }
 
@@ -118,7 +105,7 @@ using namespace algorithm;
  * @param u32string Şifreleme anahtarı
  */
 Algorithm::Algorithm(const std::string& _name, const std::u32string& _key) noexcept
-: flag(flag_idle | flag_notfree | flag_err_name | flag_err_key | flag_encrypt)
+: flag(flag_algo_idle)
 {
     e_algorithm name_status = this->setName(_name);
     e_algorithm key_status = this->setKey(_key);
@@ -126,20 +113,20 @@ Algorithm::Algorithm(const std::string& _name, const std::u32string& _key) noexc
     switch( name_status )
     {
         case e_algorithm::success:
-            this->flag.change(flag_err_name, flag_valid_name);
+            this->flag.set(flag_algo_valid_name);
             break;
         default:
-            this->flag.change(flag_valid_name, flag_err_name);
+            this->flag.unset(flag_algo_valid_name);
     }
 
     switch( key_status )
     {
         case e_algorithm::success:
-            this->flag.change(flag_err_key, flag_valid_key);
+            this->flag.set(flag_algo_valid_key);
             break;
         case e_algorithm::err_key_length_invalid:
         default:
-            this->flag.change(flag_valid_key, flag_err_key);
+            this->flag.unset(flag_algo_valid_key);
     }
 }
 
@@ -154,8 +141,8 @@ Algorithm::Algorithm(const std::string& _name, const std::u32string& _key) noexc
 Algorithm::~Algorithm() noexcept
 {
     this->clear();
-    this->flag.change(flag_notfree | flag_valid_name | flag_valid_key | flag_active,
-        flag_free | flag_err_name | flag_err_key | flag_idle);
+    this->flag.clear();
+    this->flag.set(flag_algo_free);
 }
 
 /**
@@ -165,7 +152,7 @@ Algorithm::~Algorithm() noexcept
  */
 void Algorithm::setIdle() noexcept
 {
-    this->flag.change(flag_active, flag_idle);
+    this->flag.set(flag_algo_idle);
 }
 
 /**
@@ -175,27 +162,7 @@ void Algorithm::setIdle() noexcept
  */
 void Algorithm::setActive() noexcept
 {
-    this->flag.change(flag_idle, flag_active);
-}
-
-/**
- * @brief [Private] Set Encrypt
- * 
- * Bayrağı şifreleme durumuna almak
- */
-void Algorithm::setEncrypt() noexcept
-{
-    this->flag.change(flag_decrypt, flag_encrypt);
-}
-
-/**
- * @brief [Private] Set Decrypt
- * 
- * Bayrağı şifre çözme durumuna almak
- */
-void Algorithm::setDecrypt() noexcept
-{
-    this->flag.change(flag_encrypt, flag_decrypt);
+    this->flag.unset(flag_algo_idle);
 }
 
 /**
@@ -208,7 +175,7 @@ void Algorithm::setDecrypt() noexcept
  */
 bool Algorithm::hasError() const noexcept
 {
-    constexpr flag_t error_flags = flag_err_name | flag_err_key;
+    constexpr flag_t error_flags = flag_algo_error;
     return static_cast<bool>(this->flag.get() & error_flags);
 }
 
@@ -222,7 +189,7 @@ bool Algorithm::hasError() const noexcept
  */
 bool Algorithm::hasName() const noexcept
 {
-    return static_cast<bool>(this->flag.get() & flag_valid_name);
+    return static_cast<bool>(this->flag.get() & flag_algo_valid_name);
 }
 
 /**
@@ -235,33 +202,7 @@ bool Algorithm::hasName() const noexcept
  */
 bool Algorithm::hasKey() const noexcept
 {
-    return static_cast<bool>(this->flag.get() & flag_valid_key);
-}
-
-/**
- * @brief [Public] Is Encrypt
- * 
- * Bayrak durumunu inceleyerek şifreleme
- * durumunda olup olmadığını döndürecek
- * 
- * @return bool
- */
-bool Algorithm::isEncrypt() const noexcept
-{
-    return static_cast<bool>(this->flag.get() & flag_encrypt);
-}
-
-/**
- * @brief [Public] Is Decrypt
- * 
- * Bayrak durumunu inceleyerek şifre çözme
- * durumunda olup olmadığını döndürecek
- * 
- * @return bool
- */
-bool Algorithm::isDecrypt() const noexcept
-{
-    return static_cast<bool>(this->flag.get() & flag_decrypt);
+    return static_cast<bool>(this->flag.get() & flag_algo_valid_key);
 }
 
 /**
@@ -274,7 +215,7 @@ bool Algorithm::isDecrypt() const noexcept
  */
 bool Algorithm::isIdle() const noexcept
 {
-    return static_cast<bool>(this->flag.get() & flag_idle);
+    return static_cast<bool>(this->flag.get() & flag_algo_idle);
 }
 
 /**
@@ -287,7 +228,7 @@ bool Algorithm::isIdle() const noexcept
  */
 bool Algorithm::isActive() const noexcept
 {
-    return static_cast<bool>(this->flag.get() & flag_active);
+    return !this->isIdle();
 }
 
 /**
@@ -332,10 +273,10 @@ e_algorithm Algorithm::setName(const std::string& _name) noexcept
         return e_algorithm::err_name_length_invalid;
 
     // isimi değiştirsin
-    this->name = _name;
+    this->name = std::move(_name);
 
     // eğer hata varsa düzeltsin
-    this->flag.change(flag_err_name, flag_valid_name);
+    this->flag.set(flag_algo_valid_name);
 
     return (this->name == _name && this->name.length() == _name.length()) ?
         e_algorithm::success :
@@ -359,68 +300,14 @@ e_algorithm Algorithm::setKey(const std::u32string& _key) noexcept
         return e_algorithm::err_key_length_invalid;
 
     // anahtarı kopyalayıp değiştirsin
-    this->key = _key;
+    this->key = std::move(_key);
 
     // eğer hata varsa düzeltsin
-    this->flag.change(flag_err_key, flag_valid_key);
+    this->flag.set(flag_algo_valid_key);
 
     return (this->key == _key && this->key.length() == _key.length()) ?
         e_algorithm::success :
         e_algorithm::error;
-}
-
-/**
- * @brief [Public] Encrypt
- * 
- * Şifreleme yapmayı sağlayacak fonksiyon
- * ve güvenlik kontrollü olabilmesi için
- * ana sınıf içinde değiştirilemez olacak
- * ve güvenlik kısmından sonra asıl şifreleme
- * çalışması için ayrılmış olan fonksiyon çalışacak
- * 
- * @param u32string& Text
- * @return bool
- */
-bool Algorithm::encrypt(std::u32string& _text) noexcept
-{
-    if( !Algorithm::checkValidName(this->getName()) )
-        this->flag.change(flag_valid_name, flag_err_name);
-
-    if( !Algorithm::checkValidKey(this->getKey()) )
-        this->flag.change(flag_valid_key, flag_err_key);
-
-    this->flag.change(flag_decrypt, flag_encrypt);
-
-    return this->hasError() ?
-        false :
-        this->doEncrypt(_text) && !this->hasError();
-}
-
-/**
- * @brief [Public] Decrypt
- * 
- * Şifre çözmeyi sağlayacak fonksiyon
- * ve güvenlik kontrollü olabilmesi için
- * ana sınıf içinde değiştirilemez olacak
- * ve güvenlik kısmından sonra asıl şifre çözücünün
- * çalışması için ayrılmış olan fonksiyon çalışacak
- * 
- * @param u32string& Text
- * @return bool
- */
-bool Algorithm::decrypt(std::u32string& _text) noexcept
-{
-    if( !Algorithm::checkValidName(this->getName()) )
-        this->flag.change(flag_valid_name, flag_err_name);
-
-    if( !Algorithm::checkValidKey(this->getKey()) )
-        this->flag.change(flag_valid_key, flag_err_key);
-
-    this->flag.change(flag_encrypt, flag_decrypt);
-
-    return this->hasError() ?
-        false :
-        this->doDecrypt(_text) && !this->hasError();
 }
 
 /**
