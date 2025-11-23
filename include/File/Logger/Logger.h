@@ -19,6 +19,7 @@
 #include <File/File.h>
 #include <Tool/Utf/Utf.h>
 #include <Platform/Platform.h>
+#include <Test/Test.h>
 
 #include <string>
 #include <sstream>
@@ -84,6 +85,9 @@ namespace subcore
             const inline std::string& getKey() const noexcept;
             const inline std::u32string& getName() const noexcept;
 
+            template<typename _Ltype, typename _Rtype>
+            e_log log(_Ltype, _Rtype, const std::u32string&) noexcept;
+
             virtual e_log log(const std::u32string&) noexcept;
             virtual e_log end() noexcept;
     };
@@ -107,7 +111,7 @@ Logger::Logger(
     const std::u32string& _logname,
     const std::u32string& _logpath
 ) noexcept
-: File(_logpath + U".log", file::e_io::write)
+: File(_logpath + utf::to_utf32(utf::to_lower("_" + platform::name() + ".log")), file::e_io::write)
 {
     this->setName(_logname);
     this->setKey();
@@ -255,8 +259,29 @@ e_log Logger::log(const std::u32string& _logtext) noexcept
 
     std::u32string msg_buffer = _logtext;
 
-    this->write(utf::to_utf32(platform::current_time()) + U" " + msg_buffer + U"\n");
+    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + msg_buffer + U"\n");
     return e_log::succ_logged;
+}
+
+/**
+ * @brief [Public] Log
+ * 
+ * Log dosyayı oluşturulduktan sonra
+ * verilen kayıt işlemlerini dosyaya kaydetmemizi
+ * sağlayacak olan kayıt fonksiyonu ve kayıt
+ * öncesinden bilgilendirme amaçlı test çıktısını
+ * verecektir.
+ * 
+ * @tparam _Ltype First
+ * @tparam _Rtype Second
+ * @param string Log Text
+ * @return e_logger
+ */
+template<typename _Ltype, typename _Rtype>
+e_log Logger::log(_Ltype _first, _Rtype _second, const std::u32string& _logtext) noexcept
+{
+    bool status = test::expect_eq(_first, _second, utf::to_utf8(_logtext));
+    return this->log(utf::to_utf32(status ? test::text_pass : test::text_fail) + U" " + _logtext);
 }
 
 /**
