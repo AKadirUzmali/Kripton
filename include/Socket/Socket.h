@@ -17,6 +17,8 @@
 #include <Flag/Flag.h>
 #include <Tool/Utf/Utf.h>
 
+#include <mutex>
+
 // Using Namespace:
 using namespace core::algorithmpool;
 
@@ -69,6 +71,7 @@ namespace core::virbase
             err_socket_set_type,
             err_socket_set_type_unknown,
             err_socket_set_algorithm,
+            err_socket_port_invalid,
             err_socket_set_port,
 
             succ_socket_create = 2000,
@@ -79,7 +82,9 @@ namespace core::virbase
             succ_socket_set_type_udp,
             succ_socket_set_type_tcp,
             succ_socket_set_algorithm,
-            succ_socket_set_port
+            succ_socket_set_port,
+
+            warn_socket_type_same = 3000
         };
 
         // Enum Class: Socket Type
@@ -146,6 +151,8 @@ namespace core::virbase
             socket_t sock;
             e_socket_type sock_type;
             socket_port_t port;
+
+            mutable std::mutex sock_mtx;
 
         public:
             explicit Socket(Algo&&, const socket_port_t = invalid_port) noexcept;
@@ -363,7 +370,10 @@ const socket_t& Socket<Algo, Type>::getSocket() const noexcept
 template<class Algo, typename Type>
 e_socket Socket<Algo, Type>::setSocket(const socket_t _sock) noexcept
 {
-    this->sock = _sock;
+    {
+        std::scoped_lock<std::mutex> lock(this->sock_mtx);
+        this->sock = _sock;
+    }
 
     return (_sock != invalid_socket) ?
         e_socket::succ_socket_set :
@@ -397,10 +407,16 @@ template<class Algo, typename Type>
 e_socket Socket<Algo, Type>::setPort(const socket_port_t _sockport) noexcept
 {
     if( _sockport <= invalid_port )
-        return e_socket::err_socket_set_port;
+        return e_socket::err_socket_port_invalid;
 
-    this->port = _sockport;
-    return e_socket::succ_socket_set_port;
+    {
+        std::scoped_lock<std::mutex> lock(this->sock_mtx);
+        this->port = _sockport;
+    }
+
+    return this->port == _sockport ?
+        e_socket::succ_socket_set_port :
+        e_socket::err_socket_set_port;
 }
 
 /**
@@ -442,13 +458,25 @@ const e_socket_type& Socket<Algo, Type>::getSocketType() const noexcept
 template<class Algo, typename Type>
 e_socket Socket<Algo, Type>::setSocketType(const e_socket_type _socktype) noexcept
 {
+    if( this->sock_type == _socktype )
+        return e_socket::warn_socket_type_same;
+
+    if( this->close() != e_socket::succ_socket_close )
+        return e_socket::err_socket_close;
+
     switch( _socktype )
     {
         case e_socket_type::tcp:
-            this->sock_type = e_socket_type::tcp;
+            {
+                std::scoped_lock<std::mutex> lock(this->sock_mtx);
+                this->sock_type = e_socket_type::tcp;
+            }
             return e_socket::succ_socket_set_type_tcp;
         case e_socket_type::udp:
-            this->sock_type = e_socket_type::udp;
+            {
+                std::scoped_lock<std::mutex> lock(this->sock_mtx);
+                this->sock_type = e_socket_type::udp;
+            }
             return e_socket::succ_socket_set_type_udp;
         default:
             return e_socket::err_socket_set_type_unknown;
@@ -478,12 +506,20 @@ e_socket Socket<Algo, Type>::create() noexcept
         return e_socket::err_socket_create;
     }
 
-    this->sock = fd;
-    this->flag.set(flag_socket_created);
-    this->flag.set(flag_socket_open);
-    this->flag.unset(flag_socket_free);
+    {
+        std::scoped_lock<std::mutex> lock(this->sock_mtx);
 
-    return e_socket::succ_socket_create;
+        this->sock = fd;
+        
+        this->flag.set(flag_socket_created);
+        this->flag.set(flag_socket_open);
+        this->flag.unset(flag_socket_free);
+        this->flag.unset(flag_socket_error);
+    }
+
+    return this->sock != invalid_socket ?
+        e_socket::succ_socket_create :
+        e_socket::err_socket_create;
 }
 
 /**
@@ -500,14 +536,21 @@ e_socket Socket<Algo, Type>::close() noexcept
     if( this->sock == invalid_socket )
         return e_socket::err_socket_close;
 
-    close_socket(this->sock);
+    {
+        std::scoped_lock<std::mutex> lock(this->sock_mtx);
 
-    this->sock = invalid_socket;
-    this->flag.unset(flag_socket_open);
-    this->flag.unset(flag_socket_created);
-    this->flag.set(flag_socket_free);
+        close_socket(this->sock);
 
-    return e_socket::succ_socket_close;
+        this->sock = invalid_socket;
+
+        this->flag.unset(flag_socket_open);
+        this->flag.unset(flag_socket_created);
+        this->flag.set(flag_socket_free);
+    }
+
+    return this->sock == invalid_socket ?
+        e_socket::succ_socket_close :
+        e_socket::err_socket_close;
 }
 
 /**
@@ -522,13 +565,20 @@ e_socket Socket<Algo, Type>::close() noexcept
 template<class Algo, typename Type>
 e_socket Socket<Algo, Type>::clear() noexcept
 {
-    this->close();
+    {
+        std::scoped_lock(std::mutex) lock(this->sock_mtx);
 
-    this->port = invalid_port;
-    this->flag.clear();
-    this->flag.set(flag_socket_free);
+        this->close();
 
-    return e_socket::succ_socket_clear;
+        this->port = invalid_port;
+
+        this->flag.clear();
+        this->flag.set(flag_socket_free);
+    }
+
+    return this->sock == invalid_socket ?
+        e_socket::succ_socket_clear :
+        e_socket::err_socket_clear;
 }
 
 template<class Algo, typename Type>
