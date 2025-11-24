@@ -25,9 +25,14 @@
 #include <Tool/Utf/Utf.h>
 #include <Socket/Socket.h>
 #include <ThreadPool/ThreadPool.h>
+#include <Socket/AccessPolicy.h>
 
 #include <atomic>
 #include <mutex>
+#include <unordered_map>
+#include <string>
+#include <string_view>
+#include <iostream>
 
 // Namespace: Core::Socket
 namespace core::socket
@@ -42,13 +47,12 @@ namespace core::socket
         // Enum Class: Server Code
         enum class e_server
         {
-            err_max_conn_under_limit = 1000,
-            err_max_conn_over_limit,
-            err_set_max_conn,
-            err_set_secure_passwd,
+            err_ip_not_allowed_for_connection = 1000,
+            err_connection_is_full,
+            err_auth_fail,
 
-            succ_set_max_conn = 2000,
-            succ_set_secure_passwd
+            succ_connection = 2000,
+            succ_auth
         };
     }
 
@@ -58,125 +62,150 @@ namespace core::socket
 
     // Class: Server
     template<class Algo, typename SockType>
-    class Server final : public virtual Socket<Algo, SockType>
+    class Server final : public Socket<Algo, SockType>
     {
         private:
-            std::atomic<uint16_t> max_connection;
-
-            std::atomic<bool> secure_password;
-            std::vector<int> banned_list;
-
             ThreadPool& tpool;
+            AccessPolicy policy;
 
-            mutable std::mutex srv_mutex;
+            std::atomic<size_t> clients;
+            std::unordered_map<std::string, bool> client_list;
+
+            mutable std::mutex mtx;
 
         public:
             explicit Server(
                 Algo&&,
                 ThreadPool&,
-                const size_t = server::MAX_CONN,
-                const bool = false,
-                const socket_port_t = invalid_port
-            ) noexcept;
+                const socket_port_t = invalid_port,
+                const bool = false
+            );
             
-            ~Server() noexcept;
+            ~Server() = default;
 
-            e_server setConnectionLimit(const size_t = MAX_CONN) noexcept;
-            e_server setSecurePassword(const bool = false) noexcept;
+            inline AccessPolicy& getPolicy() noexcept;
+
+            e_server connection(const std::string&) noexcept;
+            e_server authenticate(const std::string&, const std::u32string&);
+
+            inline size_t getClientCount() const noexcept;
     };
+}
 
-    /**
-     * @brief [Public] Constructor
-     * 
-     * Algoritma yapısı ve işlem havuzunu alaraktan sunucu
-     * oluşturmayı yapacak ve istendiği durumda sunucu kullanıcı
-     * limiti ile de belirlenen kullanıcı sayısını aşmayacak şekilde
-     * olacak ve parola koruması da ayarlanabilir şekilde ama başlangıçta kapalı.
-     * 
-     * @tparam Algo&& Algorithm
-     * @param ThreadPool& Thread Pool
-     * @param size_t Max Connection
-     * @param bool Secure Password
-     */
-    template<class Algo, typename SockType>
-    Server<Algo, SockType>::Server(
-        Algo&& _algo,
-        ThreadPool& _tpool,
-        const size_t _max_conn,
-        const bool _passwd,
-        const socket_port_t _port
-    ) noexcept
-    : Socket<Algo, SockType>(_algo, _port),
-      tpool(_tpool)
+// Using Namespace:
+using namespace core::socket;
+using namespace server;
+
+/**
+ * @brief [Public] Constructor
+ * 
+ * Algoritma yapısı ve işlem havuzunu alaraktan sunucu
+ * oluşturmayı yapacak ve istendiği durumda sunucu kullanıcı
+ * limiti ile de belirlenen kullanıcı sayısını aşmayacak şekilde
+ * olacak ve parola koruması da ayarlanabilir şekilde ama başlangıçta kapalı.
+ * 
+ * @tparam Algo&& Algorithm
+ * @param ThreadPool& Thread Pool
+ * @param size_t Max Connection
+ * @param bool Secure Password
+ */
+template<class Algo, typename SockType>
+Server<Algo, SockType>::Server(
+    Algo&& _algo,
+    ThreadPool& _tpool,
+    const socket_port_t _port,
+    const bool _password_require
+)
+: Socket<Algo, SockType>(std::forward<Algo>(_algo), _port),
+  tpool(_tpool),
+  clients(0)
+{
+    this->policy.enablePassword(_password_require);
+}
+
+/**
+ * @brief [Public] Get Policy
+ * 
+ * Erişim kontrolü durumlarına erişebilmeyi
+ * sağlamak için nesneyi referans olarak döndürür
+ * 
+ * @return AccessPolicy&
+ */
+template<class Algo, typename SockType>
+AccessPolicy& Server<Algo, SockType>::getPolicy() noexcept
+{
+    return this->policy;
+}
+
+/**
+ * @brief [Public] Connection
+ * 
+ * Sunucuya bağlanmayı sağlayan fonksiyondur.
+ * İp adresinin yasaklı olup olmaması gibi etkenleri de
+ * kontrol ederek istemcinin sunucuya bağlantı sağlaması gibi
+ * işlemleri yapar.
+ * 
+ * @param string& Ip Address
+ * @return e_server
+ */
+template<class Algo, typename SockType>
+e_server Server<Algo, SockType>::connection(const std::string& _ipaddr) noexcept
+{
+    if( this->policy.canAllow(_ipaddr) != e_accesspolicy::succ_allow_ip )
+        return e_server::err_ip_not_allowed_for_connection;
+
+    if( this->clients.load() >= this->policy.getMaxConnection() )
+        return e_server::err_connection_is_full;
+
     {
-        this->setConnectionLimit(_max_conn);
-        this->setSecurePassword(_passwd);
+        std::scoped_lock<std::mutex> lock(this->mtx);
+        this->client_list[_ipaddr] = true;
     }
 
-    /**
-     * @brief [Public] Destructor
-     * 
-     * Sunucu sınıfı ile işlem bittiğinde
-     * yapılması gereken sonlandırma işlemlerinin
-     * yapılacağı sınıfın yıkıcı yapısı
-     */
-    template<class Algo, typename SockType>
-    Server<Algo, SockType>::~Server() noexcept
+    this->clients++;
+
+    this->tpool.enqueue([this, _ipaddr]()
     {
-        this->setConnectionLimit(MIN_CONN - 1);
-        this->setSecurePassword(false);
-
-        ~Socket();
-    }
-
-    /**
-     * @brief [Public] Set Connection Limit
-     * 
-     * Sunucuya bağlanan istemci sayısının belirli bir
-     * miktarı olmak zorunda, bunu sınır aşımı olmaması adına
-     * ve fazla fazla imkan sunmak adına unsigned short
-     * sayı miktarı sınırı ile 1 arasında sınırladık.
-     * Kontrollü bir şekilde kullanıcı limitini belirleyecek fonksiyon.
-     * 
-     * @param size_t Max Connection
-     * @return e_server
-     */
-    template<class Algo, typename SockType>
-    e_server Server<Algo, SockType>::setConnectionLimit(const size_t _max_conn) noexcept
-    {
-        if( _max_conn < MIN_CONN ) return e_server::err_max_conn_under_limit;
-        else if( _max_conn > MAX_CONN ) return e_server::err_max_conn_over_limit;
-
-        {
-            std::unique_lock<std::mutex> lock(this->srv_mutex);
-            this->max_connection = _max_conn;
-        }
         
-        return this->max_connection == _max_conn ?
-            e_server::succ_set_max_conn :
-            e_server::err_set_max_conn;
-    }
+    });
 
-    /**
-     * @brief [Public] Set Secure Password
-     * 
-     * Sunucu isterse eğer şifreli girişleri kabul etme
-     * ile sınırlandırabilir. Bu durumu ayarlamamızı
-     * sağlayacak olan fonksiyon.
-     * 
-     * @param bool Secure Passwd
-     * @return e_server
-     */
-    template<class Algo, typename SockType>
-    e_server Server<Algo, SockType>::setSecurePassword(const bool _secure_passwd) noexcept
-    {
-        {
-            std::unique_lock<std::mutex> lock(this->srv_mutex);
-            this->secure_password = _secure_passwd;
-        }
+    return e_server::succ_connection;
+}
 
-        return this->secure_password == _secure_passwd ?
-            e_server::succ_set_secure_passwd :
-            e_server::err_set_secure_passwd
-    }
+/**
+ * @brief [Public] Authenticate
+ * 
+ * Sunucuya giriş de şifre kontrolü yapar ve
+ * eğer şifre doğrulanmış ise doğrulama başarılı döner
+ * ve kullanıcının erişim izni olur
+ * 
+ * @param string& Ip Address
+ * @param u32string& Password
+ * @return e_server
+ */
+template<class Algo, typename SockType>
+e_server Server<Algo, SockType>::authenticate(const std::string& _ipaddr, const std::u32string& _passwd)
+{
+    auto auth = this->policy.canAuth(_passwd);
+
+    if( auth == e_accesspolicy::succ_auto_auth ||
+        auth == e_accesspolicy::succ_auth_with_passwd )
+        return e_server::succ_auth;
+
+    return e_server::err_auth_fail;
+}
+
+/**
+ * @brief [Public] Get Client Count
+ * 
+ * Sunucu da aktif olarak bulunan istemci miktarını
+ * saklı tutan bir değişken var. Bu değişkenin değerini
+ * döndürerek sunucu daki istemci sayısını öğrenmiş oluyoruz.
+ * 
+ * @return size_t
+ */
+template<class Algo, typename SockType>
+size_t Server<Algo, SockType>::getClientCount() const noexcept
+{
+    return this->clients;
 }
