@@ -284,13 +284,13 @@ namespace tool::utf
      * @return bool
      */
     [[maybe_unused]]
-    static bool cmp_utf8(const std::string& const _first, const std::string& const _second) noexcept
+    static bool cmp_utf8(const std::string& _first, const std::string& _second) noexcept
     {
         if( _first.size() != _second.size() )
             return false;
 
         for( size_t counter = 0; counter < _first.size(); ++counter )
-            if( _first[counter] ^ _second[counter]) return false;
+            if( _first.at(counter) ^ _second.at(counter)) return false;
 
         return true;
     }
@@ -311,7 +311,7 @@ namespace tool::utf
      * @return bool
      */
     [[maybe_unused]]
-    static bool cmp_utf32(const std::u32string& const _first, const std::u32string& const _second) noexcept
+    static bool cmp_utf32(const std::u32string& _first, const std::u32string& _second) noexcept
     {
         if( _first.size() != _second.size() )
             return false;
