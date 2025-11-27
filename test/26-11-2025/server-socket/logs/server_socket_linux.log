@@ -1,0 +1,12 @@
+Name: Server Socket
+Os: Linux
+Date: 2025-11-27
+Key: lnx-2025-11-27-04:20:39:605-server socket
+
+[LOGGER START]
+04:20:39:605 ==> [ PASS ] Server has no error
+04:20:39:605 ==> [ INFO ] Printing Server Socket informations...
+04:20:39:605 ==> [ PASS ] Server Socket informations printed
+04:20:39:606 ==> [ PASS ] Ip address banned
+04:20:39:606 ==> [ PASS ] Ip address not allowing
+04:20:39:606 ==> [ PASS ] Ip address ban removed
