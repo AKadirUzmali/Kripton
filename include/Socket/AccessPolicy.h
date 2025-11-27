@@ -37,7 +37,7 @@ namespace core::socket
         // Enum Class: Access Policy Code
         enum class e_accesspolicy
         {
-            err_enable_password = 1000,
+            err_enable_password,
             err_max_conn_under_limit,
             err_max_conn_over_limit,
             err_set_max_conn,
@@ -49,7 +49,7 @@ namespace core::socket
             err_ip_addr_ban_not_removed,
             err_ip_addr_not_banned,
 
-            succ_enable_password = 2000,
+            succ_enable_password,
             succ_set_max_conn,
             succ_set_password,
             succ_allow_ip,
@@ -58,7 +58,7 @@ namespace core::socket
             succ_ip_addr_banned,
             succ_ip_addr_ban_removed,
 
-            warn_enable_password_same_value = 3000,
+            warn_enable_password_same_value,
             warn_ip_already_banned,
             warn_ip_not_banned,
         };
@@ -97,7 +97,7 @@ namespace core::socket
             AccessPolicy(AccessPolicy&&) noexcept = default;
             AccessPolicy& operator=(AccessPolicy&&) noexcept = default;
 
-            bool isBanned(std::string_view) noexcept;
+            bool isBanned(std::string&) noexcept;
 
             e_accesspolicy enablePassword(const bool = true) noexcept;
             inline const std::u32string& getPassword() const noexcept;
@@ -106,7 +106,7 @@ namespace core::socket
             inline max_conn_t getMaxConnection() const noexcept;
             e_accesspolicy setMaxConnection(const max_conn_t = DEF_CONNECTION) noexcept;
 
-            e_accesspolicy canAllow(const std::string_view) const noexcept;
+            e_accesspolicy canAllow(const std::string&) const noexcept;
             e_accesspolicy canAuth(const std::u32string&) const noexcept;
 
             e_accesspolicy ban(const std::string) noexcept;
@@ -126,10 +126,10 @@ using namespace accesspolicy;
  * sonuna gelmiş ise, ip adresi yasaklanmamıştır bu yüzden
  * bulunamamıştır ama aksi halde yasaklıdır.
  * 
- * @param string_view Ip Address
+ * @param string& Ip Address
  * @return bool
  */
-bool AccessPolicy::isBanned(std::string_view _ipaddr) noexcept
+bool AccessPolicy::isBanned(std::string& _ipaddr) noexcept
 {
     std::scoped_lock<std::mutex> lock(this->mtx);
     return this->banned_ip_list.find(std::string(_ipaddr)) != this->banned_ip_list.end();
@@ -232,10 +232,10 @@ e_accesspolicy AccessPolicy::setMaxConnection(const max_conn_t _max_connection) 
  * kontrol eder ve arama listesinde bulunamamış ise
  * ip adresi izin verilebilir demektir.
  * 
- * @param string_view Ip Address
+ * @param string& Ip Address
  * @return e_accesspolicy
  */
-e_accesspolicy AccessPolicy::canAllow(const std::string_view _ipaddr) const noexcept
+e_accesspolicy AccessPolicy::canAllow(const std::string& _ipaddr) const noexcept
 {
     std::scoped_lock<std::mutex> lock(this->mtx);
     return this->banned_ip_list.find(std::string(_ipaddr)) == this->banned_ip_list.end() ?
