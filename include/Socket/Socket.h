@@ -20,6 +20,7 @@
 
 #include <mutex>
 #include <atomic>
+#include <iostream>
 
 // Using Namespace:
 using namespace core::algorithmpool;
@@ -42,6 +43,7 @@ using namespace core::algorithmpool;
 #elif defined(__PLATFORM_LINUX__) || defined(__PLATFORM_UNIX__)
     #include <sys/socket.h>
     #include <arpa/inet.h>
+    #include <netinet/in.h>
     #include <unistd.h>
 
     using socket_t = int;
@@ -49,6 +51,8 @@ using namespace core::algorithmpool;
     using socket_domain_t = int;
     using socket_conn_t = int;
     using socket_proto_t = int;
+
+    using socket_addr = sockaddr;
 
     constexpr socket_t invalid_socket = -1;
     constexpr socket_port_t invalid_port = 0;
@@ -152,7 +156,6 @@ namespace core::virbase
 
             std::atomic<buffer_size_t> buffer_size;
             std::u32string nickname;
-            
 
         public:
             explicit Socket
@@ -612,8 +615,7 @@ e_socket Socket<Algo>::print() noexcept
     std::cout << std::setw(20) << std::left << "Has Error " << " => " << (this->hasError() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Is Open " << " => " << (this->isOpen() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Is Free " << " => " << (this->isFree() ? "yes" : "no") << "\n";
-    std::cout << "======================================================\n";
-    std::cout << std::endl;
+    std::cout << "======================================================\n\n";
 
     return e_socket::succ_socket_print;
 }
