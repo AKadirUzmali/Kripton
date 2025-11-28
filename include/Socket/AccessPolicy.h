@@ -79,10 +79,10 @@ namespace core::socket
     class AccessPolicy final
     {
         private:
-            std::atomic<bool> require_password;
+            std::atomic<bool> require_password { false };
             std::u32string password;
 
-            std::atomic<max_conn_t> max_connection = DEF_CONNECTION;
+            std::atomic<max_conn_t> max_connection { DEF_CONNECTION };
             std::unordered_set<std::string> banned_ip_list;
 
             mutable std::mutex mtx;
@@ -90,12 +90,6 @@ namespace core::socket
         public:
             AccessPolicy() = default;
             ~AccessPolicy() = default;
-
-            AccessPolicy(const AccessPolicy&) = delete;
-            AccessPolicy& operator=(const AccessPolicy&) = delete;
-
-            AccessPolicy(AccessPolicy&&) noexcept = default;
-            AccessPolicy& operator=(AccessPolicy&&) noexcept = default;
 
             bool isBanned(std::string&) noexcept;
 
@@ -146,12 +140,12 @@ bool AccessPolicy::isBanned(std::string& _ipaddr) noexcept
  */
 e_accesspolicy AccessPolicy::enablePassword(const bool _status) noexcept
 {
-    if( this->require_password == _status )
+    if( this->require_password.load() == _status )
         return e_accesspolicy::warn_enable_password_same_value;
 
-    this->require_password = _status;
+    this->require_password.store(_status);
 
-    return this->require_password == _status ?
+    return this->require_password.load() == _status ?
         e_accesspolicy::succ_enable_password :
         e_accesspolicy::err_enable_password;
 }
@@ -255,7 +249,7 @@ e_accesspolicy AccessPolicy::canAllow(const std::string& _ipaddr) const noexcept
  */
 e_accesspolicy AccessPolicy::canAuth(const std::u32string& _passwd) const noexcept
 {
-    if( !this->require_password )
+    if( !this->require_password.load() )
         return e_accesspolicy::succ_auto_auth;
 
     std::scoped_lock<std::mutex> lock(this->mtx);
