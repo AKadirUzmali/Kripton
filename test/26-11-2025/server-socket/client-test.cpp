@@ -14,9 +14,6 @@
 #include <Socket/Socket.h>
 
 #include <iostream>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <unistd.h>
 #include <vector>
 
 // Using Namespace:
