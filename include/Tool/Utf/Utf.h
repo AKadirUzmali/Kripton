@@ -13,6 +13,7 @@
 #include <sstream>
 #include <codecvt>
 #include <locale>
+#include <vector>
 
 // Namespace: Tool::Utf
 namespace tool::utf
@@ -320,5 +321,29 @@ namespace tool::utf
             if( _first[counter] ^ _second[counter]) return false;
 
         return true;
+    }
+
+    /**
+     * @brief [Static] U32Vector Clear
+     * 
+     * Char32_t türünden karakter tutan vektör listesini
+     * platform bağımsız ve güvenli şekilde temizlememizi
+     * sağlayacak güvenli ve performanslı bir fonksiyon
+     * 
+     * @param vector<char32_t>& Buffer
+     */
+    [[maybe_unused]]
+    static void u32vector_clear(std::vector<char32_t>& _buffer)
+    {
+        if( _buffer.empty() )
+            return;
+
+        volatile char* cptr = reinterpret_cast<volatile char*>(_buffer.data());
+        size_t csize = _buffer.size() * sizeof(char32_t);
+
+        while( csize-- )
+            *cptr++ = 0;
+
+        _buffer.clear();
     }
 }
