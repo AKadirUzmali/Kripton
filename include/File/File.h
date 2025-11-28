@@ -738,8 +738,7 @@ e_file File::print() noexcept
     std::cout << std::setw(20) << std::left << "Read " << " => " << (this->isRead() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Write " << " => " << (this->isWrite() ? "yes" : "no") << "\n";
     std::cout << std::setw(20) << std::left << "Append " << " => " << (this->isAdd() ? "yes" : "no") << "\n";
-    std::cout << "==============================================\n";
-    std::cout << std::endl;
+    std::cout << "==============================================\n\n";
 
     return e_file::succ_print;
 }
