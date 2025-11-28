@@ -144,26 +144,33 @@ Logger::~Logger() noexcept
  */
 e_log Logger::setKey() noexcept
 {
-    std::ostringstream tmp__oss;
+    std::u32string lowered = this->name;
+    utf::to_lower(lowered);
+
+    for( auto& c32 : lowered )
+        if( c32 == U' ')
+            c32 = U'-';
+
+    std::ostringstream oss;
     
     switch( platform::current() )
     {
         // Unix (BSD)
-        case platform::e_os::Unix: tmp__oss << "unx"; break;
+        case platform::e_os::Unix: oss << "unx"; break;
         // Linux
-        case platform::e_os::Linux: tmp__oss << "lnx"; break;
+        case platform::e_os::Linux: oss << "lnx"; break;
         // Windows
-        case platform::e_os::Windows: tmp__oss << "win"; break;
+        case platform::e_os::Windows: oss << "win"; break;
         // Unknown
-        default: tmp__oss << "unk"; break;
+        default: oss << "unk"; break;
     }
 
-    tmp__oss << "-" << platform::current_date();
-    tmp__oss << "-" << platform::current_time();
-    tmp__oss << "-" << utf::to_utf8(utf::to_lower(this->name));
+    oss << "-" << platform::current_date();
+    oss << "-" << platform::current_time();
+    oss << "-" << utf::to_utf8(lowered);
 
-    this->key = tmp__oss.str();
-    return !this->key.empty() && this->key == tmp__oss.str() ?
+    this->key = oss.str();
+    return !this->key.empty() && this->key == oss.str() ?
         e_log::succ_set_key : e_log::err_not_set_key;
 }
 
