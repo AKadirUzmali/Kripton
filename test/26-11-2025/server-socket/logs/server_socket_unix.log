@@ -1,0 +1,12 @@
+Name: Server Socket
+Os: Unix
+Date: 2025-11-28
+Key: unx-2025-11-28-03:52:10:947-Server-Socket
+
+[LOGGER START]
+03:52:10:948 ==> [ PASS ] Server has no error
+03:52:10:948 ==> [ INFO ] Printing Server Socket informations...
+03:52:10:948 ==> [ PASS ] Server Socket informations printed
+03:52:10:948 ==> [ PASS ] Ip address banned
+03:52:10:948 ==> [ PASS ] Ip address not allowing
+03:52:10:948 ==> [ PASS ] Ip address ban removed

@@ -10,10 +10,15 @@ include_directories(${CMAKE_SOURCE_DIR}/../../../include)
 file(GLOB_RECURSE SRC_FILES "${CMAKE_SOURCE_DIR}/server-socket-test.cpp")
 
 if( NOT SRC_FILES )
-    message(FATAL_ERROR "Source files couldn't find")
+message(FATAL_ERROR "Source files couldn't find")
 endif()
 
 add_executable(server-socket-test ${SRC_FILES})
+
+if(UNIX)
+    find_package(Threads REQUIRED)
+    target_link_libraries(server-socket-test PRIVATE pthread)
+endif()
 
 if(WIN32)
     message(STATUS "Building on Windows...")
