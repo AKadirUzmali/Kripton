@@ -458,7 +458,7 @@ void Server<Algo>::client_worker
     const std::string& _ip
 ) noexcept
 {
-    std::vector<char32_t> buffer(MAX_READ_LETTER);
+    std::vector<char32_t> buffer(this->getBufferSize());
 
     while( this->running.load() )
     {
@@ -479,6 +479,8 @@ void Server<Algo>::client_worker
         this->getAlgorithm().encrypt(data);
 
         ::send(_soc, data.data(), data.size() * size_c32, 0);
+
+        utf::u32vector_clear(buffer);
     }
 
     ::close(_soc);
