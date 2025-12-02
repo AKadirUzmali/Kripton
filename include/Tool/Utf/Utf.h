@@ -5,7 +5,7 @@
  * Utf
  * 
  * Çoklu karakter setleri arasında dönüşüm işlemlerini sağlar.
- * Genel olarak UTF-8, UTF-16 ve UTF-32 formatları arasında dönüşümler yapılır.
+ * Genel olarak UTF-8, UTF-32 formatları arasında dönüşümler yapılır.
  */
 
 // Include:
@@ -13,6 +13,7 @@
 #include <sstream>
 #include <codecvt>
 #include <locale>
+#include <vector>
 
 // Namespace: Tool::Utf
 namespace tool::utf
@@ -52,36 +53,6 @@ namespace tool::utf
                 out.push_back(static_cast<char>(0x80 | ((c32 >> 12) & 0x3F)));
                 out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
                 out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
-            }
-        }
-
-        return out;
-    }
-
-    /**
-     * @brief [Static] To UTF-16
-     * 
-     * UTF-32 metini UTF-16 metine çevirme işlemi
-     * 
-     * @param u32string& Text
-     * @return string
-     */
-    [[maybe_unused]]
-    static std::wstring to_utf16(const std::u32string& _text) noexcept
-    {
-        std::wstring out;
-
-        for (char32_t c32 : _text)
-        {
-            if (c32 <= 0xFFFF)
-                out.push_back(static_cast<wchar_t>(c32));
-            else
-            {
-                c32 -= 0x10000;
-                wchar_t high = static_cast<wchar_t>((c32 >> 10) + 0xD800);
-                wchar_t low  = static_cast<wchar_t>((c32 & 0x3FF) + 0xDC00);
-                out.push_back(high);
-                out.push_back(low);
             }
         }
 
@@ -233,7 +204,8 @@ namespace tool::utf
      * @return string&
      */
     [[maybe_unused]]
-    std::u32string to_upper(const std::u32string& text) {
+    std::u32string to_upper(const std::u32string& text) noexcept
+    {
         std::u32string result;
         result.reserve(text.size());
 
@@ -256,7 +228,8 @@ namespace tool::utf
      * @return string&
      */
     [[maybe_unused]]
-    std::string to_upper(const std::string& text) {
+    std::string to_upper(const std::string& text) noexcept
+    {
         std::string result;
         result.reserve(text.size());
     
@@ -281,7 +254,8 @@ namespace tool::utf
      * @return string
      */
     [[maybe_unused]]
-    static std::string to_visible(const std::u32string& text) {
+    static std::string to_visible(const std::u32string& text) noexcept
+    {
         std::string tmp__result;
         for (auto ch : text) {
             if (ch >= 32 && ch <= 126) // ASCII
@@ -293,5 +267,83 @@ namespace tool::utf
             }
         }
         return tmp__result;
+    }
+
+    /**
+     * @brief [Static] Compare UTF-8
+     * 
+     * İki adet utf-8 metin alır ve bu metinleri ilk önce
+     * boyutuna göre karşılaştırır. Boyutları uyuşmazsa eğer
+     * metinler aynı olamaz. Sonrasında döngü ile karakter karakter
+     * xor işlemine tabi tutar. Xor işlemine göre eğer iki karakter de
+     * aynı ise 0, farklı ise 1 olur ve işlem sonucunda eğer
+     * 1 oluşmuş ise hata döndürsün, oluşmamış ise aynılardır ve
+     * bu yüzden doğru döndürsün
+     * 
+     * @param string& First
+     * @param string& Second
+     * @return bool
+     */
+    [[maybe_unused]]
+    static bool cmp_utf8(const std::string& _first, const std::string& _second) noexcept
+    {
+        if( _first.size() != _second.size() )
+            return false;
+
+        for( size_t counter = 0; counter < _first.size(); ++counter )
+            if( _first.at(counter) ^ _second.at(counter)) return false;
+
+        return true;
+    }
+
+    /**
+     * @brief [Static] Compare UTF-32
+     * 
+     * İki adet utf-32 metin alır ve bu metinleri ilk önce
+     * boyutuna göre karşılaştırır. Boyutları uyuşmazsa eğer
+     * metinler aynı olamaz. Sonrasında döngü ile karakter karakter
+     * xor işlemine tabi tutar. Xor işlemine göre eğer iki karakter de
+     * aynı ise 0, farklı ise 1 olur ve işlem sonucunda eğer
+     * 1 oluşmuş ise hata döndürsün, oluşmamış ise aynılardır ve
+     * bu yüzden doğru döndürsün
+     * 
+     * @param u32string& First
+     * @param u32string& Second
+     * @return bool
+     */
+    [[maybe_unused]]
+    static bool cmp_utf32(const std::u32string& _first, const std::u32string& _second) noexcept
+    {
+        if( _first.size() != _second.size() )
+            return false;
+
+        for( size_t counter = 0; counter < _first.size(); ++counter )
+            if( _first[counter] ^ _second[counter]) return false;
+
+        return true;
+    }
+
+    /**
+     * @brief [Static] U32Vector Clear
+     * 
+     * Char32_t türünden karakter tutan vektör listesini
+     * platform bağımsız ve güvenli şekilde temizlememizi
+     * sağlayacak güvenli ve performanslı bir fonksiyon
+     * 
+     * @param vector<char32_t>& Buffer
+     */
+    [[maybe_unused]]
+    static void u32vector_clear(std::vector<char32_t>& _buffer)
+    {
+        if( _buffer.empty() )
+            return;
+
+        volatile char* cptr = reinterpret_cast<volatile char*>(_buffer.data());
+        size_t csize = _buffer.size() * sizeof(char32_t);
+
+        while( csize-- )
+            *cptr++ = 0;
+
+        _buffer.clear();
     }
 }
