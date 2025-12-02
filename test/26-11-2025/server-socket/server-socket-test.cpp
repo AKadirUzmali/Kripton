@@ -47,6 +47,7 @@ int main(void)
     std::this_thread::sleep_for(std::chrono::seconds(2));
     logger.log(testserver.getPolicy().unban("127.0.0.1"), e_accesspolicy::succ_ip_addr_ban_removed, U"Ip address ban removed");
 
+    logger.log(utf::to_utf32(test::text_info + " ") + U"Running Server Socket for 10 seconds...");
     auto fut_run = testserver.run();
     std::this_thread::sleep_for(std::chrono::seconds(10));
     auto fut_stop = testserver.stop();

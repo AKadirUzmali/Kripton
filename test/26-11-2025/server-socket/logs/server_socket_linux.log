@@ -1,15 +1,16 @@
 Name: Server Socket
 Os: Linux
 Date: 2025-12-03
-Key: lnx-2025-12-03-01:21:10:826-Server-Socket
+Key: lnx-2025-12-03-01:35:45:563-Server-Socket
 
 [LOGGER START]
-01:21:10:826 ==> [ PASS ] Server has no error
-01:21:10:826 ==> [ INFO ] Printing Server Socket informations...
-01:21:10:826 ==> [ PASS ] Server Socket informations printed
-01:21:10:826 ==> [ PASS ] Ip address banned
-01:21:10:826 ==> [ PASS ] Ip address not allowing
-01:21:12:826 ==> [ PASS ] Ip address ban removed
-01:21:22:827 ==> [ PASS ] Server runned
-01:21:22:827 ==> [ PASS ] Server closed
+01:35:45:563 ==> [ PASS ] Server has no error
+01:35:45:563 ==> [ INFO ] Printing Server Socket informations...
+01:35:45:563 ==> [ PASS ] Server Socket informations printed
+01:35:45:563 ==> [ PASS ] Ip address banned
+01:35:45:563 ==> [ PASS ] Ip address not allowing
+01:35:47:564 ==> [ PASS ] Ip address ban removed
+01:35:47:564 ==> [ INFO ] Running Server Socket for 10 seconds...
+01:35:57:564 ==> [ PASS ] Server runned
+01:35:57:564 ==> [ PASS ] Server closed
 [LOGGER END]
