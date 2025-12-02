@@ -43,8 +43,14 @@ int main(void)
 
     logger.log(testserver.getPolicy().ban("127.0.0.1"), e_accesspolicy::succ_ip_addr_banned, U"Ip address banned");
     logger.log(testserver.getPolicy().canAllow("127.0.0.1"), e_accesspolicy::err_not_allow_ip, U"Ip address not allowing");
+
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     logger.log(testserver.getPolicy().unban("127.0.0.1"), e_accesspolicy::succ_ip_addr_ban_removed, U"Ip address ban removed");
 
-    logger.log(testserver.run().get(), e_server::succ_server_run, U"Server runned");
-    logger.log(testserver.stop().get(), e_server::succ_server_close, U"Server closed");
+    auto fut_run = testserver.run();
+    std::this_thread::sleep_for(std::chrono::seconds(10));
+    auto fut_stop = testserver.stop();
+
+    logger.log(fut_run.get(), e_server::succ_server_run, U"Server runned");
+    logger.log(fut_stop.get(), e_server::succ_server_close, U"Server closed");
 }
