@@ -20,6 +20,7 @@
 #include <Tool/Utf/Utf.h>
 #include <Platform/Platform.h>
 #include <Test/Test.h>
+#include <Handler/Crash/CrashBase.h>
 
 #include <string>
 #include <sstream>
@@ -60,9 +61,10 @@ namespace subcore
 
     // Using Namespace:
     using namespace logger;
+    using namespace handler;
     
     // Class: Logger
-    class Logger : virtual public File
+    class Logger : virtual public File, virtual public CrashBase
     {
         private:
             std::string key;
@@ -90,6 +92,8 @@ namespace subcore
 
             virtual e_log log(const std::u32string&) noexcept;
             virtual e_log end() noexcept;
+
+            void onCrash() noexcept override;
     };
 }
 
@@ -310,4 +314,16 @@ e_log Logger::end() noexcept
 
     return !this->isOpen() ?
         e_log::succ_end : e_log::err_log_not_ended;
+}
+
+/**
+ * @brief [Public] On Crash
+ * 
+ * Çökme durumunda log kaydına
+ * çökme bilgisini yazmak için
+ */
+void Logger::onCrash() noexcept
+{
+    this->log(U"[LOGGER:CRASH HANDLER] Application crashed unexpectedly.");
+    this->finish();
 }
