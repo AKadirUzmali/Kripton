@@ -17,12 +17,17 @@
 // PreProcessor Directives:
 #if defined(_WIN32) || defined(_WIN64)
     #define __PLATFORM_WINDOWS__
+    #define __PLATFORM_DOS__
 #elif defined(__linux__)
     #define __PLATFORM_LINUX__
 #elif defined(__FreeBSD__) || defined(__unix__)
     #define __PLATFORM_UNIX__
 #else
     #define __PLATFORM_UNKNOWN__
+#endif
+
+#if defined(__PLATFORM_LINUX__) || defined(__PLATFORM_UNIX__)
+    #define __PLATFORM_POSIX__
 #endif
 
 // Namespace: Platform
