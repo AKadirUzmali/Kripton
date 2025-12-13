@@ -25,17 +25,24 @@ namespace core::virbase
         // Enum Class: Algorithm Code
         enum class e_algorithm : size_t
         {
-            unknown = 0x0,
-            error   = 0x1,
-            warning = 0x2,
-            success = 0x3,
-
-            err_key_length_invalid = 1000,
+            err = 1000,
+            err_key_length_invalid,
             err_name_length_invalid,
             err_flag_notchanged,
+            err_set_key_fail,
+            err_set_name_fail,
+            err_flag_invalid_name,
+            err_flag_invalid_key,
 
-            succ_flag_default = 2000,
-            succ_flag_changed
+            succ = 2000,
+            succ_flag_default,
+            succ_flag_changed,
+            succ_set_key,
+            succ_set_name,
+            succ_flag_valid_name,
+            succ_flag_valid_key,
+
+            warn = 3000
         };
 
         // Flag: Algorithm Status
@@ -112,7 +119,7 @@ Algorithm::Algorithm(const std::string& _name, const std::u32string& _key) noexc
 
     switch( name_status )
     {
-        case e_algorithm::success:
+        case e_algorithm::succ_flag_valid_name:
             this->flag.set(flag_algo_valid_name);
             break;
         default:
@@ -121,7 +128,7 @@ Algorithm::Algorithm(const std::string& _name, const std::u32string& _key) noexc
 
     switch( key_status )
     {
-        case e_algorithm::success:
+        case e_algorithm::succ_flag_valid_key:
             this->flag.set(flag_algo_valid_key);
             break;
         case e_algorithm::err_key_length_invalid:
@@ -279,8 +286,8 @@ e_algorithm Algorithm::setName(const std::string& _name) noexcept
     this->flag.set(flag_algo_valid_name);
 
     return (this->name == _name && this->name.length() == _name.length()) ?
-        e_algorithm::success :
-        e_algorithm::error;
+        e_algorithm::succ_set_name :
+        e_algorithm::err_set_name_fail;
 }
 
 /**
@@ -306,8 +313,8 @@ e_algorithm Algorithm::setKey(const std::u32string& _key) noexcept
     this->flag.set(flag_algo_valid_key);
 
     return (this->key == _key && this->key.length() == _key.length()) ?
-        e_algorithm::success :
-        e_algorithm::error;
+        e_algorithm::succ_set_key :
+        e_algorithm::err_set_key_fail;
 }
 
 /**
