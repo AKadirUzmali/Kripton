@@ -15,7 +15,9 @@ endif()
 
 add_executable(server-socket-test ${SRC_FILES})
 
-if(UNIX)
+if(WIN32)
+    target_link_libraries(server-socket-test PRIVATE ws2_32)
+elseif(UNIX)
     find_package(Threads REQUIRED)
     target_link_libraries(server-socket-test PRIVATE pthread)
 endif()

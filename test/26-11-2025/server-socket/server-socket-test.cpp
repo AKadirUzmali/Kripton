@@ -9,13 +9,13 @@
  */
 
 // Include:
-#include <Test/Test.h>
-#include <File/Logger/Logger.h>
-#include <Tool/Utf/Utf.h>
-
 #include <Algorithm/AlgorithmPool.h>
 #include <ThreadPool/ThreadPool.h>
 #include <Socket/Server/Server.h>
+
+#include <File/Logger/Logger.h>
+#include <Tool/Utf/Utf.h>
+#include <Test/Test.h>
 
 // Using Namespace:
 using namespace core::algorithmpool;
@@ -24,16 +24,22 @@ using namespace core::socket;
 // main
 int main(void)
 {
+    // Windows UTF-8
+    #if defined __PLATFORM_DOS__
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
+    #endif
+
     Logger logger(U"Server Socket", U"../logs/server_socket");
     ThreadPool tpool;
 
     auto handle = [&](const std::u32string& message = U"Client Message")
     {
-        std::cout << utf::to_utf8(U"[Client] " + message) << "\n";
+        std::cout << "[Client] " << utf::to_utf8(message) << "\n";
         return e_server::succ_set_running;
     };
 
-    Server<Xor> testserver(Xor(U"xor-test-key-123"), tpool, handle, 8080);
+    Server<Xor> testserver(Xor(U"xor-test-key-123"), tpool, handle, 9876);
 
     logger.log(testserver.hasError(), false, U"Server has no error");
 
@@ -49,9 +55,10 @@ int main(void)
 
     logger.log(utf::to_utf32(test::text_info + " ") + U"Running Server Socket for 10 seconds...");
     auto fut_run = testserver.run();
+
     std::this_thread::sleep_for(std::chrono::seconds(10));
     auto fut_stop = testserver.stop();
 
     logger.log(fut_run.get(), e_server::succ_server_run, U"Server runned");
-    logger.log(fut_stop.get(), e_server::succ_server_close, U"Server closed");
+    logger.log(fut_stop, e_server::succ_server_close, U"Server closed");
 }
