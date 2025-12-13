@@ -33,17 +33,20 @@ namespace test
     // Enum Class: Status
     enum class e_status : unsigned short
     {
-        unknown = 0x0,
-        error   = 0x1,
-        warning = 0x2,
-        success = 0x3,
-        information = 0x4,
-        base
+        unknown = 0,
+        error,
+        warning,
+        success,
+        information
     };
 
     // Color: Windows
     #if defined(_WIN32) || defined(_WIN64)
         #include <Windows.h>
+
+        #ifndef WIN32_LEAN_AND_MEAN
+            #define WIN32_LEAN_AND_MEAN
+        #endif
 
         using color = int;
 
@@ -179,7 +182,7 @@ namespace test
     [[maybe_unused]]
     static void message
     (
-        const e_status _status = e_status::base,
+        const e_status _status = e_status::information,
         const std::string& _message = ""
     )
     {
