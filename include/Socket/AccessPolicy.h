@@ -20,7 +20,6 @@
 #include <mutex>
 #include <atomic>
 #include <string>
-#include <string_view>
 
 // Using Namespace:
 using namespace tool;
@@ -37,6 +36,7 @@ namespace core::socket
         // Enum Class: Access Policy Code
         enum class e_accesspolicy
         {
+            err = 1000,
             err_enable_password,
             err_max_conn_under_limit,
             err_max_conn_over_limit,
@@ -49,6 +49,7 @@ namespace core::socket
             err_ip_addr_ban_not_removed,
             err_ip_addr_not_banned,
 
+            succ = 2000,
             succ_enable_password,
             succ_set_max_conn,
             succ_set_password,
@@ -58,6 +59,7 @@ namespace core::socket
             succ_ip_addr_banned,
             succ_ip_addr_ban_removed,
 
+            warn = 3000,
             warn_enable_password_same_value,
             warn_ip_already_banned,
             warn_ip_not_banned,
@@ -266,7 +268,7 @@ e_accesspolicy AccessPolicy::canAuth(const std::u32string& _passwd) const noexce
  * doldurmasın diye uyarı mesajı döndürür ama aksi halde
  * verilen ip adresini yasaklı listeye ekler.
  * 
- * @param string_view Ip Address
+ * @param string Ip Address
  * @return e_accesspolicy
  */
 e_accesspolicy AccessPolicy::ban(const std::string _ipaddr) noexcept
