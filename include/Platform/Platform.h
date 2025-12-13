@@ -18,6 +18,10 @@
 #if defined(_WIN32) || defined(_WIN64)
     #define __PLATFORM_WINDOWS__
     #define __PLATFORM_DOS__
+
+    #ifndef WIN32_LEAN_AND_MEAN
+        #define WIN32_LEAN_AND_MEAN
+    #endif
 #elif defined(__linux__)
     #define __PLATFORM_LINUX__
 #elif defined(__FreeBSD__) || defined(__unix__)
@@ -71,7 +75,7 @@ namespace platform
     [[maybe_unused]]
     static inline std::string name() noexcept
     {
-        #if defined(_PLATFORM_WINDOWS__)
+        #if defined(__PLATFORM_WINDOWS__)
             return "Windows";
         #elif defined(__PLATFORM_LINUX__)
             return "Linux";
