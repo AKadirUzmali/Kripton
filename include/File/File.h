@@ -127,12 +127,8 @@ namespace core
         // Enum Class: File Code
         enum class e_file : size_t
         {
-            unknown = 0x0,
-            error   = 0x1,
-            warning = 0x2,
-            success = 0x3,
-
-            err_not_opened = 1000,
+            err = 1000,
+            err_not_opened,
             err_not_closed,
             err_no_status,
             err_has_error,
@@ -163,7 +159,8 @@ namespace core
             err_already_has_file,
             err_not_created,
 
-            succ_opened = 2000,
+            succ = 2000,
+            succ_opened,
             succ_closed,
             succ_no_error,
             succ_status_good,
@@ -185,7 +182,8 @@ namespace core
             succ_print,
             succ_create,
 
-            warn_still_open = 3000,
+            warn = 3000,
+            warn_still_open,
             warn_already_close,
         };
     }

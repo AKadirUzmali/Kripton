@@ -37,6 +37,7 @@
 #include <chrono>
 #include <thread>
 #include <vector>
+#include <array>
 #include <future>
 #include <functional>
 
@@ -48,14 +49,6 @@ namespace core::socket
     {        
         // Using:
         using wait_time_t = uint16_t;
-
-        // Define:
-        static constexpr size_t size_c32 = sizeof(char32_t);
-
-        static constexpr socket_t invalid_bind = 0;
-        static constexpr socket_t invalid_recive = 0;
-        static constexpr socket_t invalid_accept = 0;
-        static constexpr socket_t invalid_listen = 0;
         
         // Limit:
         static constexpr wait_time_t MIN_WAIT_TIME = 0; // ms
@@ -68,6 +61,7 @@ namespace core::socket
         // Enum Class: Server Code
         enum class e_server : size_t
         {
+            err = 1000,
             err_server_not_created,
             err_server_bind_fail,
             err_server_listen_fail,
@@ -80,11 +74,16 @@ namespace core::socket
             err_server_already_running,
             err_server_close_fail,
 
+            succ = 2000,
+            succ_server_bind,
+            succ_server_listen,
+            succ_server_accept,
             succ_server_run,
             succ_set_wait_time,
             succ_set_running,
             succ_server_close,
 
+            warn = 3000,
             warn_no_status,
             warn_server_run_status_same,
             warn_server_already_stop
@@ -108,7 +107,6 @@ namespace core::socket
             AccessPolicy policy;
 
             mutable std::shared_future<e_server> frun {};
-            mutable std::shared_future<e_server> fstop {};
 
             std::atomic<e_server> status { e_server::warn_no_status };
 
@@ -120,10 +118,17 @@ namespace core::socket
             std::mutex mtx;
             work_handler handler {};
 
+            std::shared_ptr<std::promise<e_server>> internal_promise;
+
         private:
+            void setPromise(e_server) noexcept;
+
             e_server loop() noexcept;
             void accept_loop() noexcept;
-            void client_worker(socket_t _soc,const std::string& _ip) noexcept;
+            void client_worker(socket_t, const std::string&) noexcept;
+
+            e_server bind() noexcept;
+            e_server listen() noexcept;
 
         public:
             explicit Server(
@@ -150,7 +155,7 @@ namespace core::socket
             inline void setHandler(work_handler _handler) noexcept;
 
             std::shared_future<e_server> run() noexcept;
-            std::shared_future<e_server> stop() noexcept;
+            e_server stop() noexcept;
 
             void onCrash() noexcept override;
     };
@@ -180,11 +185,11 @@ namespace core::socket
         const wait_time_t _wait_time
     )
     : Socket<Algo>(std::forward<Algo>(_algorithm), DEF_NICKNAME, _port, _buffsize),
-      tpool(_tpool),
-      handler(std::move(_handler))
+      tpool(_tpool)
     {
         this->policy.enablePassword(_passwd_require);
         this->policy.setMaxConnection(_max_conn);
+        this->setHandler(_handler);
 
         if( this->setWaitTime(_wait_time) != e_server::succ_set_wait_time )
             this->setWaitTime(DEF_WAIT_TIME);
@@ -202,9 +207,25 @@ namespace core::socket
     Server<Algo>::~Server()
     {
         this->stop();
+    }
 
-        if( this->frun.valid() )
-            this->frun.wait();
+    /**
+     * @brief [Private] Set Promise
+     * 
+     * Yanıt döndürmeyi söz vermeye ayarlıyoruz
+     * 
+     * @param e_server Value
+     */
+    template<class Algo>
+    void Server<Algo>::setPromise(e_server _value) noexcept
+    {
+        auto prom = this->internal_promise;
+        if( !prom )
+            return;
+
+        try {
+            prom->set_value(_value);
+        } catch( ... ) {}
     }
 
     /**
@@ -285,10 +306,59 @@ namespace core::socket
             e_server::err_set_wait_time_fail;
     }
 
+    /**
+     * @brief [Public] Set Handler
+     * 
+     * Çalışma işlevini gerçekleştirecek yapıyı
+     * atayacak.
+     * 
+     * @param work_handler Handler
+     */
     template<class Algo>
     void Server<Algo>::setHandler(work_handler _handler) noexcept
     {
         this->handler = std::move(_handler);
+    }
+
+    /**
+     * @brief [Private] Bind
+     * 
+     * Sunucunun her adresten bağlantıyı kabul etmeyi, port adresini
+     * ayarlamayı ve bağlantı ipv4 türünü ayarlamayı sağlamak
+     * 
+     * @return e_server
+     */
+    template<class Algo>
+    e_server Server<Algo>::bind() noexcept
+    {
+        sockaddr_in addr {};
+        addr.sin_family = AF_INET;
+        addr.sin_addr.s_addr = INADDR_ANY;
+        addr.sin_port = htons(this->getPort());
+
+        int result = ::bind(this->getSocket(), (sockaddr*)&addr, sizeof(addr));
+        return result == 0 ?
+            e_server::succ_server_bind :
+            e_server::err_server_bind_fail;
+    }
+
+    /**
+     * @brief [Private] Listen
+     * 
+     * Sunucunun istemciyi dinlemesini sağlamak
+     * 
+     * @return e_server
+     */
+    template<class Algo>
+    e_server Server<Algo>::listen() noexcept
+    {
+        int backlog = static_cast<int>(this->getPolicy().getMaxConnection());
+        if( backlog < static_cast<int>(MIN_CONNECTION) )
+            backlog = static_cast<int>(DEF_CONNECTION);
+
+        return ::listen(this->getSocket(), backlog) == 0 ?
+            e_server::succ_server_listen :
+            e_server::err_server_listen_fail;
     }
 
     /**
@@ -310,36 +380,45 @@ namespace core::socket
         }
 
         this->running.store(true);
+        this->internal_promise = std::make_shared<std::promise<e_server>>();
+
+        try {
+            this->frun = this->internal_promise->get_future().share();
+        } catch( ... ) {
+            this->status.store(e_server::err_set_running_failed);
+
+            std::promise<e_server> tmprom;
+            tmprom.set_value(this->status.load());
+            return tmprom.get_future().share();
+        }
 
         if( this->create() != e_socket::succ_socket_create )
         {
             this->status.store(e_server::err_server_not_created);
-            return std::shared_future<e_server>{};
+            this->setPromise(this->status.load());
+            return this->frun;
         }
 
-        sockaddr_in addr {};
-        addr.sin_family = AF_INET;
-        addr.sin_port = htons(this->getPort());
-        addr.sin_addr.s_addr = INADDR_ANY;
-
-        if( ::bind(this->getSocket(), (sockaddr*)&addr, sizeof(addr)) < invalid_bind )
+        if( this->bind() != e_server::succ_server_bind )
         {
             this->status.store(e_server::err_server_bind_fail);
-            return std::shared_future<e_server>{};
+            this->setPromise(this->status.load());
+            return this->frun;
         }
 
-        if( ::listen(this->getSocket(), (int)this->policy.getMaxConnection()) < invalid_listen )
+        if( this->listen() != e_server::succ_server_listen )
         {
             this->status.store(e_server::err_server_listen_fail);
-            return std::shared_future<e_server>{};
+            this->setPromise(this->status.load());
+            return this->frun;
         }
 
         auto fut = std::async(std::launch::async, [this] {
             this->status.store(this->loop());
-            return this->status.load();
+            this->setPromise(this->status.load());
+            return this->frun;
         });
 
-        this->frun = fut.share();
         return this->frun;
     }
 
@@ -350,21 +429,33 @@ namespace core::socket
      * gerekli kontrolleri yaparak bunu güvenli şekilde
      * yapar
      * 
-     * @return shared_future<e_server>&
+     * @return e_server
      */
     template<class Algo>
-    std::shared_future<e_server> Server<Algo>::stop() noexcept
+    e_server Server<Algo>::stop() noexcept
     {
         this->running.store(false);
-        this->close();
+        
+        socket_t socketdata = this->getSocket();
+
+        if( socketdata != invalid_socket )
+        {
+            #if defined __PLATFORM_DOS__
+                ::shutdown(socketdata, SD_BOTH);
+                ::closesocket(socketdata);
+            #else
+                ::shutdown(socketdata, SHUT_RDWR);
+                ::close(socketdata);
+            #endif
+        }
 
         this->status.store(this->isClose() ?
             e_server::succ_server_close :
             e_server::err_server_close_fail);
 
-        std::promise<e_server> prom;
-        prom.set_value(this->status.load());
-        return prom.get_future().share();
+        this->setPromise(this->status.load());
+
+        return this->status.load();
     }
 
     /**
@@ -380,9 +471,6 @@ namespace core::socket
     e_server Server<Algo>::loop() noexcept
     {
         this->tpool.enqueue([this]{ this->accept_loop(); });
-
-        while( this->isRunning() )
-            std::this_thread::sleep_for(std::chrono::microseconds(this->wait_us.load()));
         return e_server::succ_server_run;
     }
 
@@ -400,37 +488,41 @@ namespace core::socket
     template<class Algo>
     void Server<Algo>::accept_loop() noexcept
     {
+        const auto timeout = static_cast<long>(std::max<size_t>(MIN_WAIT_TIME, this->wait_us.load()));
+        
         while( this->isRunning() )
         {
-            sockaddr_in cli {};
-            socklen_t len = sizeof(cli);
-            socket_t fd = ::accept(this->getSocket(), (sockaddr*)&cli, &len);
+            std::this_thread::sleep_for(std::chrono::microseconds(timeout));
 
-            if( fd <= invalid_socket )
+            if( this->getSocket() == invalid_socket )
+                break;
+
+            sockaddr_in servaddr {};
+            socklen_t servlen = sizeof(servaddr);
+            socket_t servaccpt = ::accept(this->getSocket(), reinterpret_cast<sockaddr*>(&servaddr), &servlen);
+
+            if( servaccpt == invalid_accept )
                 continue;
 
-            std::string ip = inet_ntoa(cli.sin_addr);
-
-            if( this->policy.isBanned(ip) )
-            {
-                ::close(fd);
+            std::string ipaddr = inet_ntoa(servaddr.sin_addr);
+            if( this->policy.isBanned(ipaddr) ) {
+                close_socket(servaccpt);
                 continue;
             }
 
             {
                 std::scoped_lock<std::mutex> lock(this->mtx);
 
-                if( this->clients.size() >= this->policy.getMaxConnection() )
-                {
-                    ::close(fd);
+                if( this->clients.size() >= this->policy.getMaxConnection() ) {
+                    close_socket(servaccpt);
                     continue;
                 }
 
-                this->clients[ip] = true;
+                this->clients[ipaddr] = true;
             }
 
-            this->tpool.enqueue([this, fd, ip] {
-                this->client_worker(fd, ip);
+            this->tpool.enqueue([this, servaccpt, ipaddr] {
+                this->client_worker(servaccpt, ipaddr);
             });
         }
     }
@@ -458,34 +550,34 @@ namespace core::socket
         const std::string& _ip
     ) noexcept
     {
-        std::vector<char32_t> buffer(this->getBufferSize());
+        const size_t timeout = static_cast<size_t>(std::max<size_t>(MIN_WAIT_TIME, this->wait_us.load()));
 
-        while( this->isRunning() )
-        {
-            std::this_thread::sleep_for(std::chrono::microseconds(this->wait_us.load()));
+        std::vector<char> ubuffer(std::max<size_t>(MIN_SIZE_BUFFER, this->getBufferSize()));
+        std::u32string u32data;
 
-            int recive = ::recv(_soc, buffer.data(), buffer.size() * size_c32, 0);
-            if( recive <= invalid_recive )
+        while( this->isRunning() ) {
+            std::this_thread::sleep_for(std::chrono::microseconds(timeout));
+
+            if( this->receive(_soc, u32data) != e_socket::succ_socket_recv )
                 break;
 
-            buffer.resize(recive / size_c32);
-
-            std::u32string data(buffer.begin(), buffer.end());
-            this->getAlgorithm().decrypt(data);
+            this->getAlgorithm().decrypt(u32data);
 
             if( this->handler )
-                this->handler(data);
+                this->handler(u32data);
 
-            this->getAlgorithm().encrypt(data);
+            this->getAlgorithm().encrypt(u32data);
 
-            ::send(_soc, data.data(), data.size() * size_c32, 0);
-
-            utf::u32vector_clear(buffer);
+            if( this->send(_soc, u32data) != e_socket::succ_socket_send )
+                break;
         }
 
-        ::close(_soc);
-        std::scoped_lock lock(this->mtx);
-        this->clients.erase(_ip);
+        close_socket(_soc);
+
+        {
+            std::scoped_lock<std::mutex> lock(this->mtx);
+            this->clients.erase(_ip);
+        }
     }
 
     /**
@@ -497,6 +589,7 @@ namespace core::socket
     template<class Algo>
     void Server<Algo>::onCrash() noexcept
     {
+        this->stop();
         this->close();
     }
 }
