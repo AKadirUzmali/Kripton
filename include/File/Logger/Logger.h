@@ -39,7 +39,8 @@ namespace subcore
         // Enum Class: e_log
         enum class e_log : int
         {
-            err_log_not_opened = 1000,
+            err = 1000,
+            err_log_not_opened,
             err_not_set_key,
             err_name_empty,
             err_name_length_zero,
@@ -49,13 +50,15 @@ namespace subcore
             err_set_path,
             err_log_not_ended,
 
-            succ_logged = 2000,
+            succ = 2000,
+            succ_logged,
             succ_set_key,
             succ_set_name,
             succ_set_path,
             succ_end,
 
-            warn_log_already_exists = 3000
+            warn = 3000,
+            warn_log_already_exists
         };
     }
 
