@@ -18,16 +18,21 @@
 // Include:
 #include <Platform/Platform.h>
 
-#if defined __PLATFORM_DOS__
-    #include <windows.h>
-#endif
-
+#include <iostream>
 #include <vector>
 #include <mutex>
 #include <algorithm>
 
 #include <csignal>
 #include <cstdlib>
+
+#if defined __PLATFORM_DOS__
+    #include <windows.h>
+
+    #ifndef WIN32_LEAN_AND_MEAN
+        #define WIN32_LEAN_AND_MEAN
+    #endif
+#endif
 
 // Namespace: Core::Handler
 namespace core::handler
@@ -39,6 +44,10 @@ namespace core::handler
             static inline std::vector<CrashBase*> s_instances {};
             static inline std::mutex s_list_mutex {};
             static inline bool s_initialized { false };
+
+            #if defined __PLATFORM_DOS__
+                static inline void* s_vectored_handler { nullptr };
+            #endif
 
         public:
             virtual ~CrashBase() noexcept;
@@ -53,14 +62,8 @@ namespace core::handler
             static void runCrashHandlers() noexcept;
             static void ensureInit() noexcept;
             static void installHandlers() noexcept;
-
-            #if defined __PLATFORM_POSIX__
-                static void onSignal(int) noexcept;
-            #elif defined __PLATFORM_DOS__
-                static LONG WINAPI onException(EXCEPTION_POINTERS*) noexcept;
-            #else
-                #error "Crash handlers are not implemented for this platform."
-            #endif
+            static void uninstallHandlers() noexcept;
+            static void onSignal(int) noexcept;
     };
 
     /**
@@ -110,10 +113,9 @@ namespace core::handler
     void CrashBase::unregisterInstance(CrashBase* instance) noexcept
     {
         std::scoped_lock<std::mutex> lock(s_list_mutex);
-        s_instances.erase(
-            std::remove(s_instances.begin(), s_instances.end(), instance),
-            s_instances.end()
-        );
+        auto it = std::remove(s_instances.begin(), s_instances.end(), instance);
+        if( it != s_instances.end() )
+            s_instances.erase(it, s_instances.end());
     }
 
     /**
@@ -125,7 +127,6 @@ namespace core::handler
     void CrashBase::runCrashHandlers() noexcept
     {
         std::scoped_lock<std::mutex> lock(s_list_mutex);
-
         for( auto it = s_instances.rbegin(); it != s_instances.rend(); ++it )
         {
             if( *it )
@@ -160,47 +161,42 @@ namespace core::handler
     [[maybe_unused]]
     void CrashBase::installHandlers() noexcept
     {
-        #if defined __PLATFORM_POSIX__
-            std::signal(SIGSEGV, onSignal);
-            std::signal(SIGABRT, onSignal);
-            std::signal(SIGFPE,  onSignal);
-            std::signal(SIGILL,  onSignal);
-            std::signal(SIGTERM, onSignal);
-            std::signal(SIGINT,  onSignal);
-        #elif defined __PLATFORM_DOS__
-            SetUnhandledExceptionFilter(&onException);
+        std::signal(SIGSEGV, onSignal);
+        std::signal(SIGABRT, onSignal);
+        std::signal(SIGFPE,  onSignal);
+        std::signal(SIGILL,  onSignal);
+        std::signal(SIGTERM, onSignal);
+        std::signal(SIGINT,  onSignal);
+    }
+
+    /**
+     * @brief [Private] Uninstall Handlers
+     * 
+     * Çökme işleyicilerini kaldırır
+     */
+    void CrashBase::uninstallHandlers() noexcept
+    {
+        #if defined __PLATFORM_DOS__
+            if( s_vectored_handler != nullptr )
+            {
+                RemoveVectoredExceptionHandler(s_vectored_handler);
+                s_vectored_handler = nullptr;
+            }
         #endif
     }
 
-    #if defined __PLATFORM_POSIX__
-        /**
-         * @brief [Private] On Signal
-         * 
-         * Sinyal işleyici.
-         * 
-         * @param int Signal Code
-         */
-        [[maybe_unused]]
-        void CrashBase::onSignal(int signal) noexcept
-        {
-            (void)signal;
-            runCrashHandlers();
-            std::exit(EXIT_FAILURE);
-        }
-    #elif defined __PLATFORM_DOS__
-        /**
-         * @brief [Private] On Exception
-         * 
-         * İstisna işleyici.
-         * 
-         * @param EXCEPTION_POINTERS* Exception Pointers
-         * @return LONG
-         */
-        [[maybe_unused]]
-        LONG WINAPI CrashBase::onException(EXCEPTION_POINTERS* exceptionInfo) noexcept
-        {
-            runCrashHandlers();
-            std:exit(EXIT_FAILURE);
-        }
-    #endif
+    /**
+     * @brief [Private] On Signal
+     * 
+     * Sinyal işleyici. Sinyal hatası durumunda çalışacak.
+     * 
+     * @param int Signal Code
+     */
+    [[maybe_unused]]
+    void CrashBase::onSignal(int signal) noexcept
+    {
+        (void)signal;
+        runCrashHandlers();
+        std::exit(EXIT_FAILURE);
+    }
 }
