@@ -96,8 +96,8 @@ namespace core::socket
     using namespace server;
 
     // Class: Server
-    template<class Algo>
-    class Server final : public Socket<Algo>, public virtual CrashBase
+    template<class Algo = Algorithm>
+    class Server final : public Socket<Algo>
     {
         public:
             using work_handler = std::function<e_server(const std::u32string&)>;
@@ -123,8 +123,7 @@ namespace core::socket
         private:
             void setPromise(e_server) noexcept;
 
-            e_server loop() noexcept;
-            void accept_loop() noexcept;
+            void loop() noexcept;
             void client_worker(socket_t, const std::string&) noexcept;
 
             e_server bind() noexcept;
@@ -157,7 +156,7 @@ namespace core::socket
             std::shared_future<e_server> run() noexcept;
             e_server stop() noexcept;
 
-            void onCrash() noexcept override;
+            virtual void onCrash() noexcept override;
     };
 
     /**
@@ -414,8 +413,11 @@ namespace core::socket
         }
 
         auto fut = std::async(std::launch::async, [this] {
-            this->status.store(this->loop());
+            this->tpool.enqueue([this]{ this->loop(); });
+
+            this->status.store(e_server::succ_server_run);
             this->setPromise(this->status.load());
+
             return this->frun;
         });
 
@@ -461,22 +463,6 @@ namespace core::socket
     /**
      * @brief [Private] Loop
      * 
-     * Döngü halinde çalışacak ve durdurma yapılana dek
-     * geçici bekletme ile çalışacak. İşlem bittiğinde
-     * başarı kodunu döndürecek
-     * 
-     * @return e_server
-     */
-    template<class Algo>
-    e_server Server<Algo>::loop() noexcept
-    {
-        this->tpool.enqueue([this]{ this->accept_loop(); });
-        return e_server::succ_server_run;
-    }
-
-    /**
-     * @brief [Private] Accept Loop
-     * 
      * Döngü ile işlem sonlanması durumu ayarlanana
      * dek çalışacak ve istemciyi dinleyecek.
      * İstemci yasaklı ise pas geçecek ama eğer
@@ -486,7 +472,7 @@ namespace core::socket
      * işlemlerine başlayacak
      */
     template<class Algo>
-    void Server<Algo>::accept_loop() noexcept
+    void Server<Algo>::loop() noexcept
     {
         const auto timeout = static_cast<long>(std::max<size_t>(MIN_WAIT_TIME, this->wait_us.load()));
         
