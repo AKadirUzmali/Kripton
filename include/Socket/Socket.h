@@ -9,6 +9,57 @@
  * Proje yapısı gereği şifreleme desteği de sunar.
  * Bu sayede güvenli veri iletişimi sağlanabilir.
  * Sunucu ve istemci tarafında kullanılabilir.
+ * 
+ * ====================================================================================================
+ * 
+ * Güncelleme: 16/12/2025
+ * 
+ * Veri gönderimi yapılırken bir yapı kullanılacak.
+ * Bu yapıda ilk 256 bayt (64 u32) şifre için ayrılacak,
+ * sonraki 128 (32 u32) bayt gönderim yapanın ismi için ayrılacak,
+ * ve en son gönderilen 2048 bayt (512 u32) ise en fazla 512 karakter
+ * u32 içerebilen mesaj olacak ve bu gönderilen verilerin hepsi
+ * u32 işlenip buna göre değerlendirme yapılacak. Sunucuya gönderilen
+ * veri, sunucudaki anahtar ile çözülmeye başlanılacak. Eğer engellenmiş
+ * ise zaten buralara kadar gelemeden verisi pas geçilecek ama eğer
+ * engellenmemiş ise, şifre verisi çözümlenilecek ve şifre uyuşmaz ise
+ * veri yine pas edilecek. Ek güvenlik amaçlı olarak, eğer 3 defadan fazla
+ * kez şifre yanlış girilmiş ise, kişi engellenecek ve bu sayede
+ * bruteforce saldırıları önlenmiş olacak. Engelleme durumu ise kişiye
+ * bildirilecek ama normal kullanıcı sunucunun şifre değişimi sonrası
+ * engelleme almaması için bağlantısı kesilecek ve listeden silinecek
+ * bu sayede istenmeyen kullanıcı engellenmiş olacak. Anahtar verisi doğru
+ * ise eğer eski şifreyi verdiği için kullanıcı, sunucu bu şifrenin kayıtlı son
+ * şifre olduğunu tespit edecek ve şifre değişimi olduğunu belirten şifreli
+ * bir mesaj kullanıcılara toplu şekilde iletilecek. Ama sadece en son şifre
+ * kayıtlı tutulacak sunucuda, bu sayede daha önceki şifrelin tahmin edilmemesi
+ * sağlanacak (ek güvenlik). Tüm bu şifre işleminden sonra anahtar eğer
+ * geçersiz ise zaten şifre aşaması da başarısız olacağından sonrasında
+ * anahtar ile kullanıcının isimi çözülecek ve aynı isime sahip başkaları
+ * da varsa, kullanıcının isminin sonuna o isimden kaç tane kullanıcı varsa
+ * o sayıdan bir fazlası parantez içine eklenerek yazılacak.
+ * 
+ * Örnek: client_user (21)
+ * 
+ * Bu sayede saldırılara karşı güvenlikli bir soket yapısı oluşacak.
+ * Tabi pek akıllı kullanıcımız string işlemlerinde sınır aşımı yapamasın diye
+ * bu veriler parçalara ayrılacağından güvenlik açıklarını da es geçecek
+ * ve fazla veri kabul edilmediği gibi eğer eksik veri göndermişse de
+ * bu veri yine değerlendirilecek ve ona göre yanıt dönülecek.
+ * 
+ * Örnek: 380 bayt şifre, 70 bayt isim, 3400 bayt mesaj
+ * 
+ * Bu gönderilen veride ilk 256 bayt alınacak ve işlencek,
+ * uyuşma olmazsa zaten elenecek. 256 bayt'dan sonra sıradaki
+ * 128 bayt alınacak ve işlenip kullanıcı adı olarak belirlenecek.
+ * en son da kalan 2048 bayt ise alınıp mesaj olarak belirlenecek ve
+ * bu sayede fazlalık bayt umursanmayacak. Eğer olurda aşırı fazla
+ * bayt gönderip sunucuya saldırı yapmak isteyen olursa, en fazla bayt
+ * sayısının az bir miktar üstü limiti geçen tüm herkes anında
+ * engellenecek ve engelleme sebebi olarak "sunucu saldırısı" koduna
+ * işaret eden bir kod olacak.
+ * 
+ * ====================================================================================================
  */
 
 // Include:
@@ -203,9 +254,15 @@ namespace core::virbase
             std::atomic<buffer_size_t> buffer_size;
             std::u32string nickname;
 
+            inline static std::atomic<size_t> total_socket { 0 };
+
             #if defined __PLATFORM_DOS__
                 inline static std::atomic<bool> wsa_started { false };
             #endif
+
+        private:
+            inline static void incTotalSocket() noexcept { ++total_socket; }
+            inline static void decTotalSocket() noexcept { if( total_socket ) --total_socket; };
 
         public:
             explicit Socket
@@ -223,6 +280,8 @@ namespace core::virbase
             virtual inline bool isFree() const noexcept;
             virtual inline bool isCreate() const noexcept;
             virtual inline bool isClose() const noexcept;
+
+            inline static size_t getTotalSocket() noexcept { return Socket::total_socket; };
 
             virtual inline buffer_size_t getBufferSize() const noexcept;
             virtual e_socket setBufferSize(const buffer_size_t = DEF_SIZE_BUFFER) noexcept;
@@ -245,7 +304,7 @@ namespace core::virbase
             virtual e_socket receive(const socket_t, std::u32string&) noexcept;
             virtual e_socket print() noexcept;
 
-            void onCrash() noexcept override;
+            virtual void onCrash() noexcept override;
     };
 
     /**
@@ -273,9 +332,21 @@ namespace core::virbase
         port(invalid_port),
         buffer_size(DEF_SIZE_BUFFER)
     {
+        #if defined __PLATFORM_DOS__
+            if( !Socket::wsa_started.load() && !total_socket )
+            {
+                WSAData wsadata;
+                if( ::WSAStartup(MAKEWORD(2,2), &wsadata) != 0 )
+                    this->flag.set(flag_socket_error);
+
+                Socket::wsa_started.store(true);
+            }
+        #endif
+
         this->setPort(_port);
         this->setBufferSize(_buffsize);
         this->setNickname(_nickname);
+        this->incTotalSocket();
     }
 
     /**
@@ -288,9 +359,10 @@ namespace core::virbase
     Socket<Algo>::~Socket() noexcept
     {
         this->clear();
+        this->decTotalSocket();
 
         #if defined __PLATFORM_DOS__
-            if( this->wsa_started.load() ) {
+            if( this->wsa_started.load() && !total_socket ) {
                 ::WSACleanup();
                 this->wsa_started.store(false);
             }
@@ -535,17 +607,6 @@ namespace core::virbase
     template<class Algo>
     e_socket Socket<Algo>::create() noexcept
     {
-        #if defined __PLATFORM_DOS__
-            if( !Socket::wsa_started.load() )
-            {
-                WSAData wsadata;
-                if( ::WSAStartup(MAKEWORD(2,2), &wsadata) != 0 )
-                    this->flag.set(flag_socket_error);
-
-                Socket::wsa_started.store(true);
-            }
-        #endif
-
         socket_t fd = ::socket(tcp::domain, tcp::type, tcp::protocol);
         if(fd == invalid_socket) {
             this->flag.set(flag_socket_error);
@@ -716,7 +777,10 @@ namespace core::virbase
         this->close();
 
         #if defined __PLATFORM_DOS__
-            WSACleanup();
+            if( this->wsa_started.load() && total_socket ) {
+                ::WSACleanup();
+                this->wsa_started.store(false);
+            }
         #endif
     }
 }
