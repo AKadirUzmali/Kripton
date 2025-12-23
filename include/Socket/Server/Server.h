@@ -41,14 +41,23 @@
 #include <future>
 #include <functional>
 
-// Namespace: Core::Socket
-namespace core::socket
+// Namespace: Core::Virbase::Socket
+namespace core::virbase::socket
 {
     // Namespace: Server
     namespace server
     {        
         // Using:
         using wait_time_t = uint16_t;
+
+        // Windows / DOS (Winsock)
+        #if defined __PLATFORM_DOS__
+            static inline constexpr int inv_accept = SOCKET_ERROR;
+            static inline constexpr int inv_bind = -1;
+        #elif defined __PLATFORM_POSIX__
+            static inline constexpr int inv_accept = -1;
+            static inline constexpr int inv_bind = -1;
+        #endif
         
         // Limit:
         static constexpr wait_time_t MIN_WAIT_TIME = 0; // ms
@@ -73,6 +82,18 @@ namespace core::socket
             err_set_running_failed,
             err_server_already_running,
             err_server_close_fail,
+            err_socket_not_found_in_list,
+            err_socket_banned,
+            err_server_send,
+            err_server_recv,
+            err_send_pack_over_size,
+            err_recv_socket_closed,
+            err_recv_server,
+            err_recv_over_limit_and_banned,
+            err_socket_potential_attacker,
+            err_client_socket_invalid,
+            err_client_send_no_data,
+            err_socket_password_changed,
 
             succ = 2000,
             succ_server_bind,
@@ -82,29 +103,32 @@ namespace core::socket
             succ_set_wait_time,
             succ_set_running,
             succ_server_close,
+            succ_server_send,
+            succ_server_recv,
 
             warn = 3000,
             warn_no_status,
             warn_server_run_status_same,
-            warn_server_already_stop
+            warn_server_already_stop,
+            warn_socket_can_be_close,
+            warn_server_send_not_all_data,
+            warn_recv_wrong_password
         };
     }
 
     // Using Namespace:
-    using namespace core::virbase;
     using namespace core::handler;
     using namespace server;
 
     // Class: Server
     template<class Algo = Algorithm>
-    class Server final : public Socket<Algo>
+    class Server final : public Socket<Algo, e_server>
     {
         public:
-            using work_handler = std::function<e_server(const std::u32string&)>;
+            using work_handler = std::function<e_server(NetPacket&)>;
 
         private:
             ThreadPool& tpool;
-            AccessPolicy policy;
 
             mutable std::shared_future<e_server> frun {};
 
@@ -113,7 +137,7 @@ namespace core::socket
             std::atomic<bool> running { false };
             std::atomic<wait_time_t> wait_us { DEF_WAIT_TIME };
 
-            std::unordered_map<std::string, bool> clients;
+            std::unordered_map<std::string, UserPacket_t> clients;
 
             std::mutex mtx;
             work_handler handler {};
@@ -134,16 +158,17 @@ namespace core::socket
                 Algo&& _algorithm,
                 ThreadPool& _tpool,
                 work_handler _handler,
-                const socket_port_t _port = invalid_port,
-                const bool _passwd_require = false,
+                const socket_port_t _port,
+                const bool _passwd_require,
+                const bool _log,
+                const std::u32string& _logheader,
+                const std::u32string& _logfilename,
                 const size_t _buffsize = DEF_SIZE_BUFFER,
                 const max_conn_t _max_conn = DEF_CONNECTION,
                 const wait_time_t _wait_time = DEF_WAIT_TIME
             );
             
             ~Server();
-
-            inline AccessPolicy& getPolicy() noexcept;
 
             inline bool isRunning() const noexcept;
             inline e_server getStatus() const noexcept;
@@ -152,6 +177,9 @@ namespace core::socket
             e_server setWaitTime(const wait_time_t _wait = DEF_WAIT_TIME, const bool _secure = true) noexcept;
 
             inline void setHandler(work_handler _handler) noexcept;
+
+            virtual auto send(const socket_t, NetPacket&) noexcept -> e_server override;
+            virtual auto receive(const socket_t, NetPacket&) noexcept -> e_server override;
 
             std::shared_future<e_server> run() noexcept;
             e_server stop() noexcept;
@@ -179,15 +207,25 @@ namespace core::socket
         work_handler _handler,
         const socket_port_t _port,
         const bool _passwd_require,
+        const bool _log,
+        const std::u32string& _logheader,
+        const std::u32string& _logfilename,
         const size_t _buffsize,
         const max_conn_t _max_conn,
         const wait_time_t _wait_time
     )
-    : Socket<Algo>(std::forward<Algo>(_algorithm), DEF_NICKNAME, _port, _buffsize),
+    : Socket<Algo, e_server>(
+        std::forward<Algo>(_algorithm),
+        DEF_NICKNAME,
+        _port,
+        _log,
+        _logheader,
+        _logfilename,
+        _buffsize),
       tpool(_tpool)
     {
-        this->policy.enablePassword(_passwd_require);
-        this->policy.setMaxConnection(_max_conn);
+        this->getPolicy().enablePassword(_passwd_require);
+        this->getPolicy().setMaxConnection(_max_conn);
         this->setHandler(_handler);
 
         if( this->setWaitTime(_wait_time) != e_server::succ_set_wait_time )
@@ -225,20 +263,6 @@ namespace core::socket
         try {
             prom->set_value(_value);
         } catch( ... ) {}
-    }
-
-    /**
-     * @brief [Public] Get Policy
-     * 
-     * Erişim kontrolü durumlarına erişebilmeyi
-     * sağlamak için nesneyi referans olarak döndürür
-     * 
-     * @return AccessPolicy&
-     */
-    template<class Algo>
-    AccessPolicy& Server<Algo>::getPolicy() noexcept
-    {
-        return this->policy;
     }
 
     /**
@@ -320,6 +344,126 @@ namespace core::socket
     }
 
     /**
+     * @brief [Public] Send
+     * 
+     * Socketler arası iletişimde veri gönderimini sağlayacak
+     * olan send fonksiyonu gönderilmek istenen metini alır
+     * istenen nesneye çevirip gönderir
+     * 
+     * @param socket_t Socket
+     * @param NetPacket& NetPack
+     * 
+     * @return e_socket
+     */
+    template<class Algo>
+    auto Server<Algo>::send(const socket_t _socket, NetPacket& _netpack) noexcept -> e_server
+    {
+        if( _socket == inv_socket )
+            return e_server::err_client_socket_invalid;
+
+        const std::string ipaddr = getIP(_socket);
+        const auto findip = this->clients.find(ipaddr);
+
+        if( findip == this->clients.end() )
+            return e_server::err_socket_not_found_in_list;
+        // else if( !this->getPolicy().isBanned(ipaddr) )
+        //     return e_server::err_socket_banned;
+
+        if( _netpack.get().empty() )
+            return e_server::err_client_send_no_data;
+
+        const std::u32string tmp_message = utf::to_utf32(_netpack.getMessage());
+        NetPacket tmp_netpack(this->getPolicy().getPassword(), this->getPolicy().getUsername(), tmp_message);
+
+        const size_t pack_size = tmp_netpack.get().size();
+        if( pack_size > SIZE_OVER_SOCKET )
+            return e_server::err_send_pack_over_size;
+
+        int send_bytes = ::send(_socket, tmp_netpack.get().data(), static_cast<int>(pack_size), 0);
+
+        if( send_bytes < 0 )
+            return e_server::err_server_send;
+        else if( send_bytes == 0 )
+            return e_server::warn_socket_can_be_close;
+        else if( send_bytes < static_cast<int>(pack_size) )
+            return e_server::warn_server_send_not_all_data;
+
+        if( this->isLog() )
+            LOG_MSG(this->getLogger(), utf::to_utf32(_netpack.getMessage()), test::e_status::information, false);
+
+        return send_bytes >= static_cast<int>(pack_size) ?
+            e_server::succ_server_send :
+            e_server::err_server_send;
+    }
+
+    /**
+     * @brief [Public] Receive
+     * 
+     * Socketler arası iletişimde gönderilen veriyi almak
+     * için kullanılan recv fonksiyonundan faydalanarak
+     * gönderilen veriyi alıp işleyip belirtilen
+     * çıktı değişkenine aktarır
+     * 
+     * @param socket_t Socket
+     * @param NetPacket& NetPack
+     * 
+     * @return e_server
+     */
+    template<class Algo>
+    auto Server<Algo>::receive(const socket_t _socket, NetPacket& _netpack) noexcept -> e_server
+    {
+        if( _socket == inv_socket )
+            return e_server::err_client_socket_invalid;
+
+        const std::string ipaddr = getIP(_socket);
+        const auto findip = this->clients.find(ipaddr);
+
+        if( findip == this->clients.end() )
+            return e_server::err_socket_not_found_in_list;
+        // else if( !this->getPolicy().isBanned(ipaddr) )
+        //     return e_server::err_socket_banned;
+
+        if( _netpack.get().empty() )
+            return e_server::err_client_send_no_data;
+
+        int recv_bytes = ::recv(_socket, _netpack.get().data(), static_cast<int>(_netpack.get().size()), 0);
+
+        if( recv_bytes == 0 )
+            return e_server::err_recv_socket_closed;
+        else if( recv_bytes < 0 )
+            return e_server::err_recv_server;
+        else if( recv_bytes > static_cast<int>(SIZE_OVER_SOCKET) ) {
+            this->getPolicy().ban(ipaddr);
+            return e_server::err_recv_over_limit_and_banned;
+        }
+
+        std::u32string u32passwd = utf::to_utf32(_netpack.getPassword());
+        this->getAlgorithm().decrypt(u32passwd);
+
+        if( u32passwd != this->getPolicy().getPassword() )
+        {
+            this->clients[ipaddr].try_passwd++;
+
+            if(this->clients[ipaddr].try_passwd == static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
+                return e_server::err_socket_banned;
+            else if( this->clients[ipaddr].try_passwd > static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
+                return e_server::err_socket_potential_attacker;
+
+            return e_server::warn_recv_wrong_password;
+        }
+        else if( u32passwd == this->getPolicy().getOldPassword() )
+        {
+            this->clients[ipaddr].try_passwd++;
+            return e_server::err_socket_password_changed;
+        }
+
+        std::u32string u32username = utf::to_utf32(std::to_string(this->clients[ipaddr].same_user_count)) + this->clients[ipaddr].username;
+        _netpack.pack(U" ", u32username, utf::to_utf32(_netpack.getMessage()));
+
+        return e_server::succ_server_recv;
+    }
+
+    /**
      * @brief [Private] Bind
      * 
      * Sunucunun her adresten bağlantıyı kabul etmeyi, port adresini
@@ -336,7 +480,7 @@ namespace core::socket
         addr.sin_port = htons(this->getPort());
 
         int result = ::bind(this->getSocket(), (sockaddr*)&addr, sizeof(addr));
-        return result == 0 ?
+        return result != inv_bind ?
             e_server::succ_server_bind :
             e_server::err_server_bind_fail;
     }
@@ -440,7 +584,7 @@ namespace core::socket
         
         socket_t socketdata = this->getSocket();
 
-        if( socketdata != invalid_socket )
+        if( socketdata != inv_socket )
         {
             #if defined __PLATFORM_DOS__
                 ::shutdown(socketdata, SD_BOTH);
@@ -480,18 +624,18 @@ namespace core::socket
         {
             std::this_thread::sleep_for(std::chrono::microseconds(timeout));
 
-            if( this->getSocket() == invalid_socket )
+            if( this->getSocket() == inv_socket )
                 break;
 
             sockaddr_in servaddr {};
             socklen_t servlen = sizeof(servaddr);
             socket_t servaccpt = ::accept(this->getSocket(), reinterpret_cast<sockaddr*>(&servaddr), &servlen);
 
-            if( servaccpt == invalid_accept )
+            if( servaccpt == inv_accept )
                 continue;
 
             std::string ipaddr = inet_ntoa(servaddr.sin_addr);
-            if( this->policy.isBanned(ipaddr) ) {
+            if( this->getPolicy().isBanned(ipaddr) ) {
                 close_socket(servaccpt);
                 continue;
             }
@@ -499,12 +643,22 @@ namespace core::socket
             {
                 std::scoped_lock<std::mutex> lock(this->mtx);
 
-                if( this->clients.size() >= this->policy.getMaxConnection() ) {
+                if( this->clients.size() >= this->getPolicy().getMaxConnection() ) {
                     close_socket(servaccpt);
                     continue;
                 }
 
-                this->clients[ipaddr] = true;
+                this->clients[ipaddr].try_passwd = 0;
+                this->clients[ipaddr].username = this->getPolicy().getUsername();
+                this->clients[ipaddr].same_user_count = 0;
+
+                for( auto& [ip, datapack] : this->clients ) {
+                    if( ipaddr == ip )
+                        continue;
+
+                    if( this->clients[ipaddr].username == datapack.username )
+                        this->clients[ipaddr].same_user_count++;
+                }
             }
 
             this->tpool.enqueue([this, servaccpt, ipaddr] {
@@ -536,25 +690,104 @@ namespace core::socket
         const std::string& _ip
     ) noexcept
     {
+        int opt = 1;
+        ::setsockopt(_soc, SOL_SOCKET, SO_KEEPALIVE, &opt, sizeof(opt));
+
         const size_t timeout = static_cast<size_t>(std::max<size_t>(MIN_WAIT_TIME, this->wait_us.load()));
 
-        std::vector<char> ubuffer(std::max<size_t>(MIN_SIZE_BUFFER, this->getBufferSize()));
-        std::u32string u32data;
+        NetPacket netpack;
+        e_server status_client;
 
-        while( this->isRunning() ) {
+        while( !this->getPolicy().isBanned(_ip) && this->isRunning() )
+        {
             std::this_thread::sleep_for(std::chrono::microseconds(timeout));
 
-            if( this->receive(_soc, u32data) != e_socket::succ_socket_recv )
+            status_client = this->receive(_soc, netpack);
+            
+            if( status_client != e_server::succ_server_recv && !this->isLog() )
                 break;
 
-            this->getAlgorithm().decrypt(u32data);
+            switch( status_client )
+            {
+                case e_server::succ_server_recv:
+                    continue;
+                case e_server::err_client_socket_invalid:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address socket not valid"), test::e_status::error, false);
+                    break;
+                case e_server::err_socket_not_found_in_list:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address not found in client list"), test::e_status::error, false);
+                    break;
+                case e_server::err_socket_banned:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address banned"), test::e_status::error, false);
+                    break;
+                case e_server::err_client_send_no_data:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address send no data"), test::e_status::error, false);
+                    break;
+                case e_server::err_recv_server:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " server recv error"), test::e_status::error, false);
+                    break;
+                case e_server::err_recv_over_limit_and_banned:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address sent data over limit and banned"), test::e_status::error, false);
+                    break;
+                case e_server::err_socket_potential_attacker:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address is potential attacker"), test::e_status::error, false);
+                    break;
+                case e_server::warn_recv_wrong_password:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address sent wrong password"), test::e_status::error, false);
+                    break;
+                default:
+                    LOG_MSG(this->getLogger(), U"Unknown problem occured", test::e_status::unknown, false);
+                    break;
+            }
 
             if( this->handler )
-                this->handler(u32data);
+                this->handler(netpack);
 
-            this->getAlgorithm().encrypt(u32data);
+            std::u32string u32pack;
+            netpack.copy(u32pack);
 
-            if( this->send(_soc, u32data) != e_socket::succ_socket_send )
+            this->getAlgorithm().encrypt(u32pack);
+            netpack.pack(u32pack);
+
+            status_client = this->send(_soc, netpack);
+
+            if( status_client != e_server::succ_server_send && !this->isLog() )
+                break;
+
+            switch( status_client )
+            {
+                case e_server::succ_server_send:
+                    continue;
+                case e_server::err_client_socket_invalid:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address socket not valid"), test::e_status::error, false);
+                    break;
+                case e_server::err_socket_not_found_in_list:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address not found in client list"), test::e_status::error, false);
+                    break;
+                case e_server::err_socket_banned:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address banned"), test::e_status::error, false);
+                    break;
+                case e_server::err_client_send_no_data:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address send no data"), test::e_status::error, false);
+                    break;
+                case e_server::err_send_pack_over_size:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address sent packet over size limit"), test::e_status::error, false);
+                    break;
+                case e_server::warn_socket_can_be_close:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " ip address socket can be close"), test::e_status::warning, false);
+                    break;
+                case e_server::warn_server_send_not_all_data:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " Server couldn't send all data"), test::e_status::warning, false);
+                    break;
+                case e_server::err_server_send:
+                    LOG_MSG(this->getLogger(), utf::to_utf32(_ip + " Server data send process failed"), test::e_status::error, false);
+                    break;
+                default:
+                    LOG_MSG(this->getLogger(), U"Unknown problem occured", test::e_status::unknown, false);
+                    break;
+            }
+
+            if( status_client != e_server::succ_server_send )
                 break;
         }
 
