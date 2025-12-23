@@ -35,24 +35,24 @@ namespace tool::utf
         for (char32_t c32 : _text)
         {
             if (c32 <= 0x7F)
-                out.push_back(static_cast<char>(c32));
+                out.push_back(static_cast<u_char>(c32));
             else if (c32 <= 0x7FF)
             {
-                out.push_back(static_cast<char>(0xC0 | (c32 >> 6)));
-                out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+                out.push_back(static_cast<u_char>(0xC0 | (c32 >> 6)));
+                out.push_back(static_cast<u_char>(0x80 | (c32 & 0x3F)));
             }
             else if (c32 <= 0xFFFF)
             {
-                out.push_back(static_cast<char>(0xE0 | (c32 >> 12)));
-                out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
-                out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+                out.push_back(static_cast<u_char>(0xE0 | (c32 >> 12)));
+                out.push_back(static_cast<u_char>(0x80 | ((c32 >> 6) & 0x3F)));
+                out.push_back(static_cast<u_char>(0x80 | (c32 & 0x3F)));
             }
             else
             {
-                out.push_back(static_cast<char>(0xF0 | (c32 >> 18)));
-                out.push_back(static_cast<char>(0x80 | ((c32 >> 12) & 0x3F)));
-                out.push_back(static_cast<char>(0x80 | ((c32 >> 6) & 0x3F)));
-                out.push_back(static_cast<char>(0x80 | (c32 & 0x3F)));
+                out.push_back(static_cast<u_char>(0xF0 | (c32 >> 18)));
+                out.push_back(static_cast<u_char>(0x80 | ((c32 >> 12) & 0x3F)));
+                out.push_back(static_cast<u_char>(0x80 | ((c32 >> 6) & 0x3F)));
+                out.push_back(static_cast<u_char>(0x80 | (c32 & 0x3F)));
             }
         }
 
@@ -78,7 +78,7 @@ namespace tool::utf
 
         while (i < n)
         {
-            unsigned char c = _text[i];
+            u_char c = _text[i];
 
             // 1 byte: 0xxxxxxx
             if (c < 0x80)
@@ -93,7 +93,7 @@ namespace tool::utf
             {
                 if (i + 1 >= n) break;
 
-                unsigned char c1 = _text[i + 1];
+                u_char c1 = _text[i + 1];
                 if ((c1 >> 6) != 0x2) break;
 
                 char32_t code =
@@ -110,8 +110,8 @@ namespace tool::utf
             {
                 if (i + 2 >= n) break;
 
-                unsigned char c1 = _text[i + 1];
-                unsigned char c2 = _text[i + 2];
+                u_char c1 = _text[i + 1];
+                u_char c2 = _text[i + 2];
                 if ((c1 >> 6) != 0x2 || (c2 >> 6) != 0x2) break;
 
                 char32_t code =
@@ -129,9 +129,9 @@ namespace tool::utf
             {
                 if (i + 3 >= n) break;
 
-                unsigned char c1 = _text[i + 1];
-                unsigned char c2 = _text[i + 2];
-                unsigned char c3 = _text[i + 3];
+                u_char c1 = _text[i + 1];
+                u_char c2 = _text[i + 2];
+                u_char c3 = _text[i + 3];
                 if ((c1 >> 6) != 0x2 || (c2 >> 6) != 0x2 || (c3 >> 6) != 0x2) break;
 
                 char32_t code =
@@ -259,7 +259,7 @@ namespace tool::utf
         std::string tmp__result;
         for (auto ch : text) {
             if (ch >= 32 && ch <= 126) // ASCII
-                tmp__result += static_cast<char>(ch);
+                tmp__result += static_cast<u_char>(ch);
             else {
                 std::stringstream tmp__ss;
                 tmp__ss << "\\x" << std::hex << static_cast<int>(ch);
@@ -321,29 +321,5 @@ namespace tool::utf
             if( _first[counter] ^ _second[counter]) return false;
 
         return true;
-    }
-
-    /**
-     * @brief [Static] U32Vector Clear
-     * 
-     * Char32_t türünden karakter tutan vektör listesini
-     * platform bağımsız ve güvenli şekilde temizlememizi
-     * sağlayacak güvenli ve performanslı bir fonksiyon
-     * 
-     * @param vector<char32_t>& Buffer
-     */
-    [[maybe_unused]]
-    static void u32vector_clear(std::vector<char32_t>& _buffer)
-    {
-        if( _buffer.empty() )
-            return;
-
-        volatile char* cptr = reinterpret_cast<volatile char*>(_buffer.data());
-        size_t csize = _buffer.size() * sizeof(char32_t);
-
-        while( csize-- )
-            *cptr++ = 0;
-
-        _buffer.clear();
     }
 }
