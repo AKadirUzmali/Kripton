@@ -44,14 +44,13 @@ namespace core::handler
             static inline std::vector<CrashBase*> s_instances {};
             static inline std::mutex s_list_mutex {};
             static inline bool s_initialized { false };
-
-            #if defined __PLATFORM_DOS__
-                static inline void* s_vectored_handler { nullptr };
-            #endif
+            static inline int signal_code { 0 };
 
         public:
             virtual ~CrashBase() noexcept;
             virtual void onCrash() noexcept {}
+
+            static inline int getSignal() noexcept;
 
         protected:
             CrashBase() noexcept;
@@ -62,7 +61,6 @@ namespace core::handler
             static void runCrashHandlers() noexcept;
             static void ensureInit() noexcept;
             static void installHandlers() noexcept;
-            static void uninstallHandlers() noexcept;
             static void onSignal(int) noexcept;
     };
 
@@ -86,6 +84,18 @@ namespace core::handler
     {
         ensureInit();
         registerInstance(this);
+    }
+
+    /**
+     * @brief [Public] Get Signal
+     * 
+     * Sinyal değerini döndürür
+     * 
+     * @return int
+     */
+    int CrashBase::getSignal() noexcept
+    {
+        return signal_code;
     }
 
     /**
@@ -170,22 +180,6 @@ namespace core::handler
     }
 
     /**
-     * @brief [Private] Uninstall Handlers
-     * 
-     * Çökme işleyicilerini kaldırır
-     */
-    void CrashBase::uninstallHandlers() noexcept
-    {
-        #if defined __PLATFORM_DOS__
-            if( s_vectored_handler != nullptr )
-            {
-                RemoveVectoredExceptionHandler(s_vectored_handler);
-                s_vectored_handler = nullptr;
-            }
-        #endif
-    }
-
-    /**
      * @brief [Private] On Signal
      * 
      * Sinyal işleyici. Sinyal hatası durumunda çalışacak.
@@ -195,7 +189,11 @@ namespace core::handler
     [[maybe_unused]]
     void CrashBase::onSignal(int signal) noexcept
     {
-        (void)signal;
+        {
+            std::scoped_lock<std::mutex> lock(s_list_mutex);
+            signal_code = signal;
+        }
+
         runCrashHandlers();
         std::exit(EXIT_FAILURE);
     }
