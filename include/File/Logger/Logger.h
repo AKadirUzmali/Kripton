@@ -13,6 +13,15 @@
  * belirlenen bir isimle oluşturulmuş dosyaya kaydedilir.
  * Bu sayede herkes işlemlerin sonucunda oluşan durumları
  * görüp değerlendirebilir.
+ * 
+ * ====================================================================================================
+ * Güncelleme: 19/12/2025
+ * 
+ * Kaç adet test yapıldı ve kaç tanesi başarı diye test çıktısı ve
+ * kaç tanesi normal mesaj diye çıktı verebiliriz ve bu sayede ek bir bilgi
+ * sağlanmış olur
+ * 
+ * ====================================================================================================
  */
 
 // Include:
@@ -24,7 +33,11 @@
 
 #include <string>
 #include <sstream>
+#include <iostream>
 #include <iomanip>
+#include <atomic>
+#include <mutex>
+#include <array>
 
 // Using Namespace:
 using namespace core;
@@ -49,6 +62,9 @@ namespace subcore
             err_path_length_zero,
             err_set_path,
             err_log_not_ended,
+            err_log_add_pass,
+            err_log_add_fail,
+            err_log_add_other,
 
             succ = 2000,
             succ_logged,
@@ -60,6 +76,49 @@ namespace subcore
             warn = 3000,
             warn_log_already_exists
         };
+
+        // Static Constexpr
+        static inline constexpr size_t code_pass = 0;
+        static inline constexpr size_t code_fail = 1;
+        static inline constexpr size_t code_other = 2;
+
+        // Function: Short Path
+        [[maybe_unused]]
+        static std::u32string short_path(const char* _path) noexcept
+        {
+            std::u32string filepath = utf::to_utf32(_path);
+
+            const auto pos = filepath.find_last_of(U"/\\");
+            if( pos == std::u32string::npos )
+                return filepath;
+
+            return filepath.substr(pos + 1);
+        }
+
+        // Struct: Source Info
+        typedef struct srcinfo_t
+        {
+            std::u32string file;
+            const int line;
+            const char* func;
+        } srcinfo_t;
+
+        // Define Functions:
+        #define LOG_MSG(logger, msg, status, console) \
+            (logger).log( \
+                msg, \
+                srcinfo_t{ short_path(__FILE__), __LINE__, __func__ }, \
+                status, \
+                console \
+            )
+
+        #define LOG_EXPECT(logger, first, second, msg) \
+            (logger).log( \
+                first, \
+                second, \
+                msg, \
+                srcinfo_t{ short_path(__FILE__), __LINE__, __func__ } \
+            )
     }
 
     // Using Namespace:
@@ -73,11 +132,19 @@ namespace subcore
             std::string key;
             std::u32string name;
 
+            std::array<std::atomic<size_t>, 3> tests {{
+                ATOMIC_VAR_INIT(0),
+                ATOMIC_VAR_INIT(0),
+                ATOMIC_VAR_INIT(0)
+            }};
+
             e_log setKey() noexcept;
             e_log setName(const std::u32string&) noexcept;
 
             void start() noexcept;
             void finish() noexcept;
+
+            bool inc(test::e_status) noexcept;
 
         public:
             explicit Logger(
@@ -93,8 +160,23 @@ namespace subcore
             template<typename _Ltype, typename _Rtype>
             e_log log(_Ltype, _Rtype, const std::u32string&) noexcept;
 
-            virtual e_log log(const std::u32string&) noexcept;
+            template<typename _Ltype, typename _Rtype>
+            e_log log(
+                _Ltype, _Rtype,
+                const std::u32string&,
+                const srcinfo_t&
+            ) noexcept;
+
+            virtual e_log log(
+                const std::u32string&,
+                const srcinfo_t&,
+                const test::e_status = test::e_status::information,
+                const bool = true
+            ) noexcept;
+
             virtual e_log end() noexcept;
+
+            virtual void print_test_result() noexcept;
 
             void onCrash() noexcept override;
     };
@@ -233,6 +315,35 @@ void Logger::finish() noexcept
 }
 
 /**
+ * @brief [Private] Increase
+ * 
+ * Belirlenen türdeki duruma göre
+ * yapılan test değerini arttıracak
+ * 
+ * @param e_status Status
+ * @return bool
+ */
+bool Logger::inc(test::e_status _status) noexcept
+{
+    if( !this->isOpen() )
+        return false;
+
+    switch( _status ) {
+        case test::e_status::success:
+            this->tests.at(logger::code_pass)++;
+            break;
+        case test::e_status::error:
+            this->tests.at(logger::code_fail)++;
+            break;
+        case test::e_status::information:
+        default:
+            this->tests.at(logger::code_other)++;
+    }
+
+    return true;
+}
+
+/**
  * @brief [Public] Get Key
  * 
  * Log kaydının anahtarını almak için
@@ -261,27 +372,6 @@ const inline std::u32string& Logger::getName() const noexcept
  * 
  * Log dosyayı oluşturulduktan sonra
  * verilen kayıt işlemlerini dosyaya kaydetmemizi
- * sağlayacak olan kayıt fonksiyonu
- * 
- * @param string logtext
- * @return e_logger
- */
-e_log Logger::log(const std::u32string& _logtext) noexcept
-{
-    if( !this->isOpen() )
-        return e_log::err_log_not_opened;
-
-    std::u32string msg_buffer = _logtext;
-
-    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + msg_buffer + U"\n");
-    return e_log::succ_logged;
-}
-
-/**
- * @brief [Public] Log
- * 
- * Log dosyayı oluşturulduktan sonra
- * verilen kayıt işlemlerini dosyaya kaydetmemizi
  * sağlayacak olan kayıt fonksiyonu ve kayıt
  * öncesinden bilgilendirme amaçlı test çıktısını
  * verecektir.
@@ -294,8 +384,100 @@ e_log Logger::log(const std::u32string& _logtext) noexcept
 template<typename _Ltype, typename _Rtype>
 e_log Logger::log(_Ltype _first, _Rtype _second, const std::u32string& _logtext) noexcept
 {
+    if( !this->isOpen() )
+        return e_log::err_log_not_opened;
+
     bool status = test::expect_eq(_first, _second, utf::to_utf8(_logtext));
-    return this->log(utf::to_utf32(status ? test::text_pass : test::text_fail) + U" " + _logtext);
+    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + (status ? U"[ PASS ] " : U"[ FAIL ] ") + _logtext + U"\n");
+
+    return e_log::succ_logged;
+}
+
+/**
+ * @brief [Public] Log
+ * 
+ * Log dosyayı oluşturulduktan sonra
+ * verilen kayıt işlemlerini dosyaya kaydetmemizi
+ * sağlayacak olan kayıt fonksiyonu ve kayıt
+ * öncesinden bilgilendirme amaçlı test çıktısını
+ * verecektir fakat ek olarak hangi dosya, satır
+ * ve fonksiyon bilgisin de tutabilecek
+ * 
+ * @tparam _Ltype First
+ * @tparam _Rtype Second
+ * @param string Log Text
+ * @param srcinfo_t Log Source
+ * 
+ * @return e_logger
+ */
+template<typename _Ltype, typename _Rtype>
+e_log Logger::log(
+    _Ltype _first,
+    _Rtype _second,
+    const std::u32string& _logtext,
+    const srcinfo_t& _logsrc
+) noexcept
+{
+    const std::u32string& msg =
+        U"[ FILE: " + _logsrc.file +
+        utf::to_utf32(
+            " | LINE: " + std::to_string(_logsrc.line) +
+            " | FUNC: " + std::string(_logsrc.func) + 
+            " ] "
+        ) + _logtext;
+
+    return this->log(_first, _second, msg);
+}
+
+/**
+ * @brief [Public] Log
+ * 
+ * Log dosyayı oluşturulduktan sonra
+ * verilen kayıt işlemlerini dosyaya kaydetmemizi
+ * sağlayacak olan kayıt fonksiyonu fakat ek olarak
+ * hangi dosya, satır ve fonksiyon bilgisin de
+ * tutabilecek
+ * 
+ * @param string logtext
+ * @param srcinfo_t Log Source
+ * @param e_status Log Type
+ * @param bool Console Output
+ * 
+ * @return e_logger
+ */
+e_log Logger::log(
+    const std::u32string& _logtext,
+    const srcinfo_t& _logsrc,
+    const test::e_status _logtype,
+    const bool _console
+) noexcept
+{
+    if( !this->inc(_logtype) )
+        return e_log::err_log_not_opened;
+
+    std::string logtypestr;
+
+    switch( _logtype ) {
+        case test::e_status::success: logtypestr = "PASS"; break;
+        case test::e_status::error: logtypestr = "FAIL"; break;
+        case test::e_status::information: logtypestr = "INFO"; break;
+        default: logtypestr = "TEXT";
+    }
+
+    const std::u32string& msg =
+        U"[ FILE: " + _logsrc.file +
+        utf::to_utf32(
+            " | LINE: " + std::to_string(_logsrc.line) +
+            " | FUNC: " + std::string(_logsrc.func) + 
+            " ] "
+        ) + _logtext;
+
+    this->write(utf::to_utf32(platform::current_time() + " ==> [ " + logtypestr  + " ] ") + msg + U"\n");
+
+    if( _console )
+        test::message(_logtype, utf::to_utf8(_logtext));
+
+    return e_log::succ_logged;
 }
 
 /**
@@ -320,6 +502,31 @@ e_log Logger::end() noexcept
 }
 
 /**
+ * @brief [Public] Print Test Result
+ * 
+ * Test sonuçlarının çıktısını vererek kullanıcıyı
+ * daha iyi bir şekilde bilgilendirmeyi amaçlamak
+ */
+void Logger::print_test_result() noexcept
+{
+    test::reset_color();
+    std::cout << "\n==================== LOGGER ====================\n";
+    std::cout << std::setw(20) << std::left << "Total Test: " << this->tests.at(logger::code_pass).load() + this->tests.at(logger::code_fail).load() << "\n";
+
+    test::set_color(test::color_pass);
+    std::cout << std::setw(20) << std::left << "Pass: " << this->tests.at(logger::code_pass).load() << "\n";
+
+    test::set_color(test::color_fail);
+    std::cout << std::setw(20) << std::left << "Fail: " << this->tests.at(logger::code_fail).load() << "\n";
+
+    test::set_color(test::color_info);
+    std::cout << std::setw(20) << std::left << "Other: " << this->tests.at(logger::code_other).load() << "\n";
+
+    test::reset_color();
+    std::cout << "\n================================================\n";
+}
+
+/**
  * @brief [Public] On Crash
  * 
  * Çökme durumunda log kaydına
@@ -327,6 +534,11 @@ e_log Logger::end() noexcept
  */
 void Logger::onCrash() noexcept
 {
-    this->log(U"[LOGGER:CRASH HANDLER] Application crashed unexpectedly.");
+    LOG_MSG((*this),
+        utf::to_utf32("[LOGGER:CRASH HANDLER] [ CODE: " + std::to_string(getSignal()) + " ] Application crashed unexpectedly"),
+        test::e_status::error,
+        false
+    );
+    
     this->finish();
 }
