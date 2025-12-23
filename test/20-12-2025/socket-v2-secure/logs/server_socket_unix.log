@@ -1,0 +1,18 @@
+Name: Server Socket
+Os: Unix
+Date: 2025-12-20
+Key: unx-2025-12-20-05:24:05:748-Server-Socket
+
+[LOGGER START]
+05:24:05:749 ==> [ PASS ] Server Password Setted
+05:24:05:749 ==> [ INFO ] Password@123!-_üçşğ
+05:24:05:749 ==> [ PASS ] Server has no error
+05:24:05:749 ==> [ INFO ] Printing Server Socket informations...
+05:24:05:749 ==> [ PASS ] Server Socket informations printed
+05:24:05:749 ==> [ PASS ] Ip address banned
+05:24:05:749 ==> [ PASS ] Ip address not allowing
+05:24:07:755 ==> [ PASS ] Ip address ban removed
+05:24:07:755 ==> [ INFO ] Running Server Socket for 10 seconds...
+05:24:17:821 ==> [ PASS ] Server runned
+05:24:17:821 ==> [ PASS ] Server closed
+[LOGGER END]
