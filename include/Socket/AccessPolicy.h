@@ -48,6 +48,9 @@ namespace core::socket
             err_auth_fail_with_passwd,
             err_ip_addr_ban_not_removed,
             err_ip_addr_not_banned,
+            err_set_nickname_len_under_limit,
+            err_set_nickname_len_over_limit,
+            err_set_nickname_fail,
 
             succ = 2000,
             succ_enable_password,
@@ -58,6 +61,7 @@ namespace core::socket
             succ_auth_with_passwd,
             succ_ip_addr_banned,
             succ_ip_addr_ban_removed,
+            succ_set_nickname,
 
             warn = 3000,
             warn_enable_password_same_value,
@@ -65,13 +69,16 @@ namespace core::socket
             warn_ip_not_banned,
         };
 
-        // Limit
-        inline constexpr max_conn_t MIN_CONNECTION = 1;
-        inline constexpr max_conn_t DEF_CONNECTION = 1024;
-        inline constexpr max_conn_t MAX_CONNECTION = 8192;
+        // Limit:
+        static inline constexpr max_conn_t MIN_CONNECTION = 1;
+        static inline constexpr max_conn_t DEF_CONNECTION = 1024;
+        static inline constexpr max_conn_t MAX_CONNECTION = 8192;
 
-        inline constexpr size_t MIN_LEN_PASSWORD = 4;
-        inline constexpr size_t MAX_LEN_PASSWORD = 128;
+        static inline constexpr size_t MIN_LEN_PASSWORD = 4;
+        static inline constexpr size_t MAX_LEN_PASSWORD = 128;
+
+        static inline constexpr size_t MIN_LEN_NICKNAME = 2;
+        static inline constexpr size_t MAX_LEN_NICKNAME = 32;
     }
 
     // Using Namespace:
@@ -82,7 +89,9 @@ namespace core::socket
     {
         private:
             std::atomic<bool> require_password { false };
-            std::u32string password;
+            std::u32string password {};
+            std::u32string old_password {};
+            std::u32string username {};
 
             std::atomic<max_conn_t> max_connection { DEF_CONNECTION };
             std::unordered_set<std::string> banned_ip_list;
@@ -93,11 +102,15 @@ namespace core::socket
             AccessPolicy() = default;
             ~AccessPolicy() = default;
 
-            bool isBanned(std::string&) noexcept;
+            bool isBanned(const std::string&) noexcept;
 
             e_accesspolicy enablePassword(const bool = true) noexcept;
             inline const std::u32string& getPassword() const noexcept;
+            inline const std::u32string& getOldPassword() const noexcept;
             e_accesspolicy setPassword(const std::u32string&) noexcept;
+
+            inline const std::u32string& getUsername() const noexcept;
+            e_accesspolicy setUsername(const std::u32string&, const bool = true) noexcept;
 
             inline max_conn_t getMaxConnection() const noexcept;
             e_accesspolicy setMaxConnection(const max_conn_t = DEF_CONNECTION) noexcept;
@@ -125,10 +138,10 @@ using namespace accesspolicy;
  * @param string& Ip Address
  * @return bool
  */
-bool AccessPolicy::isBanned(std::string& _ipaddr) noexcept
+bool AccessPolicy::isBanned(const std::string& _ipaddr) noexcept
 {
     std::scoped_lock<std::mutex> lock(this->mtx);
-    return this->banned_ip_list.find(std::string(_ipaddr)) != this->banned_ip_list.end();
+    return this->banned_ip_list.find(_ipaddr) != this->banned_ip_list.end();
 }
 
 /**
@@ -157,11 +170,23 @@ e_accesspolicy AccessPolicy::enablePassword(const bool _status) noexcept
  * 
  * Belirlenen şifre bilgisini döndürecek
  * 
- * @return u32string&
+ * @return std::u32string&
  */
 const std::u32string& AccessPolicy::getPassword() const noexcept
 {
     return this->password;
+}
+
+/**
+ * @brief [Public] Get Old Password
+ * 
+ * Eski şifre bilgisini döndürecek
+ * 
+ * @return std::u32string&
+ */
+const std::u32string& AccessPolicy::getOldPassword() const noexcept
+{
+    return this->old_password;
 }
 
 /**
@@ -170,7 +195,7 @@ const std::u32string& AccessPolicy::getPassword() const noexcept
  * Erişim için bir şifre gerekebilir ve bu şifreyi
  * belirli bir standarta göre ayarlayacak
  * 
- * @param u32string& Password
+ * @param std::u32string& Password
  * @return e_accesspolicy
  */
 e_accesspolicy AccessPolicy::setPassword(const std::u32string& _password) noexcept
@@ -179,11 +204,61 @@ e_accesspolicy AccessPolicy::setPassword(const std::u32string& _password) noexce
     else if( _password.length() > MAX_LEN_PASSWORD ) return e_accesspolicy::err_password_len_over_limit;
 
     std::scoped_lock<std::mutex> lock(this->mtx);
+
+    this->old_password = this->password;
     this->password = _password;
 
     return this->password == _password ?
         e_accesspolicy::succ_set_password :
         e_accesspolicy::err_set_password;
+}
+
+/**
+ * @brief [Public] Get Username
+ * 
+ * Soket bağlantısını kullanan kişiye ait
+ * özel bir nickname vermesi amaçlanır ve
+ * bu kullanıcıya ait adı döndürecek
+ * 
+ * @return std::u32string&
+ */
+const std::u32string& AccessPolicy::getUsername() const noexcept
+{
+    return this->username;
+}
+
+/**
+ * @brief [Public] Set Username
+ * 
+ * Soket bağlantısı sağlayan kullanıcıya ait
+ * özel isimi ayarlamasını sağlayacak ve bu
+ * sayede kullanıcı istediği durumda isimini
+ * değiştirebilecek. Güvenlik aktif olduğunda
+ * sadece belirlenen sınır arasında ise kabul
+ * edilecek ama eğer güvenlik kapalı ise, sınırı
+ * aşsa bile kırpılıp kabul edilecek
+ * 
+ * @param std::u32string& Nickname
+ * @param bool Secure
+ * 
+ * @return e_accesspolicy
+ */
+e_accesspolicy AccessPolicy::setUsername
+(
+    const std::u32string& _nickname,
+    const bool _secure
+) noexcept
+{
+    if( _nickname.empty() || _nickname.length() < MIN_LEN_NICKNAME )
+        return e_accesspolicy::err_set_nickname_len_under_limit;
+
+    else if( _secure && _nickname.length() > MAX_LEN_NICKNAME )
+        return e_accesspolicy::err_set_nickname_len_over_limit;
+
+    this->username = _nickname.substr(0, MAX_LEN_NICKNAME);
+    return this->username == _nickname ?
+        e_accesspolicy::succ_set_nickname :
+        e_accesspolicy::err_set_nickname_fail;
 }
 
 /**
@@ -246,7 +321,7 @@ e_accesspolicy AccessPolicy::canAllow(const std::string& _ipaddr) const noexcept
  * ve eşleşme olduğu durumda başarı onayı verilir aksi halde
  * hatalıdır.
  * 
- * @param u32string& Password
+ * @param std::u32string& Password
  * @return e_accesspolicy
  */
 e_accesspolicy AccessPolicy::canAuth(const std::u32string& _passwd) const noexcept
