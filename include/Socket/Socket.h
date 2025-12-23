@@ -15,7 +15,7 @@
  * Güncelleme: 16/12/2025
  * 
  * Veri gönderimi yapılırken bir yapı kullanılacak.
- * Bu yapıda ilk 256 bayt (64 u32) şifre için ayrılacak,
+ * Bu yapıda ilk 384 bayt (96 u32) şifre için ayrılacak,
  * sonraki 128 (32 u32) bayt gönderim yapanın ismi için ayrılacak,
  * ve en son gönderilen 2048 bayt (512 u32) ise en fazla 512 karakter
  * u32 içerebilen mesaj olacak ve bu gönderilen verilerin hepsi
@@ -49,8 +49,8 @@
  * 
  * Örnek: 380 bayt şifre, 70 bayt isim, 3400 bayt mesaj
  * 
- * Bu gönderilen veride ilk 256 bayt alınacak ve işlencek,
- * uyuşma olmazsa zaten elenecek. 256 bayt'dan sonra sıradaki
+ * Bu gönderilen veride ilk 384 bayt alınacak ve işlencek,
+ * uyuşma olmazsa zaten elenecek. 384 bayt'dan sonra sıradaki
  * 128 bayt alınacak ve işlenip kullanıcı adı olarak belirlenecek.
  * en son da kalan 2048 bayt ise alınıp mesaj olarak belirlenecek ve
  * bu sayede fazlalık bayt umursanmayacak. Eğer olurda aşırı fazla
@@ -77,14 +77,7 @@ using namespace algorithmpool;
     #include <windows.h>
     
     using socket_t = SOCKET;
-    using socket_port_t = uint16_t;
-    using socket_domain_t = int;
-    using socket_conn_t = int;
-    using socket_proto_t = int;
-    using socket_send_t = int;
-    using socket_recv_t = int;
-
-    using socket_addr = SOCKADDR;
+    using sockaddr_t = SOCKADDR;
 
     bool close_socket(socket_t _sock) { return ::closesocket(_sock) != SOCKET_ERROR; }
 #elif defined __PLATFORM_POSIX__
@@ -94,31 +87,24 @@ using namespace algorithmpool;
     #include <unistd.h>
 
     using socket_t = int;
-    using socket_port_t = uint16_t;
-    using socket_domain_t = int;
-    using socket_conn_t = int;
-    using socket_proto_t = int;
-    using socket_send_t = int;
-    using socket_recv_t = int;
+    using sockaddr_t = sockaddr;
 
-    using socket_addr = sockaddr;
-
-    bool close_socket(socket_t _sock)
-    {
-        ::shutdown(_sock, SHUT_RDWR);
-        return ::close(_sock) == 0;
-    }
+    bool close_socket(socket_t _sock) { return ::close(_sock) == 0; }
 #endif
 
 #include <Algorithm/AlgorithmPool.h>
 #include <Flag/Flag.h>
 #include <Tool/Utf/Utf.h>
 #include <Socket/AccessPolicy.h>
+#include <File/Logger/Logger.h>
 #include <Handler/Crash/CrashBase.h>
+#include <Socket/NetPacket.h>
 
-#include <mutex>
-#include <atomic>
 #include <iostream>
+#include <vector>
+#include <array>
+#include <atomic>
+#include <mutex>
 
 // Namespace: Core::VirtualBase
 namespace core::virbase
@@ -126,27 +112,25 @@ namespace core::virbase
     // Namespace: Socket
     namespace socket
     {
+        // Type Definition
+        using socket_port_t = uint16_t;
+        using socket_domain_t = int;
+        using socket_conn_t = int;
+        using socket_proto_t = int;
+        using socket_send_t = int;
+        using socket_recv_t = int;
+
         // Windows / DOS (Winsock)
         #if defined __PLATFORM_DOS__
-            static constexpr socket_t invalid_socket = INVALID_SOCKET;
-            static constexpr socket_port_t invalid_port = 0;
-            static constexpr int invalid_socket_err = SOCKET_ERROR;
-            static constexpr int invalid_recive = SOCKET_ERROR;
-            static constexpr int invalid_send = SOCKET_ERROR;
-            static constexpr int invalid_bind = SOCKET_ERROR;
-            static constexpr socket_t invalid_accept = INVALID_SOCKET;
-            static constexpr int invalid_listen = SOCKET_ERROR;
-            static constexpr int invalid_connect = SOCKET_ERROR;
+            static inline constexpr socket_t inv_socket = INVALID_SOCKET;
+            static inline constexpr socket_port_t inv_port = 0;
+            static inline constexpr int inv_receive = SOCKET_ERROR;
+            static inline constexpr int inv_send = SOCKET_ERROR;
         #elif defined __PLATFORM_POSIX__
-            static constexpr socket_t invalid_socket = -1;
-            static constexpr socket_port_t invalid_port = 0;
-            static constexpr int invalid_socket_err = -1;
-            static constexpr int invalid_recive = -1;
-            static constexpr int invalid_send = -1;
-            static constexpr int invalid_bind = -1;
-            static constexpr int invalid_accept = -1;
-            static constexpr int invalid_listen = -1;
-            static constexpr int invalid_connect = -1;
+            static inline constexpr socket_t inv_socket = -1;
+            static inline constexpr socket_port_t inv_port = 0;
+            static inline constexpr int inv_receive = -1;
+            static inline constexpr int inv_send = -1;
         #endif
 
         // Using:
@@ -175,14 +159,12 @@ namespace core::virbase
             err_buffer_size_under_limit,
             err_buffer_size_over_limit,
             err_set_buffer_size_fail,
-            err_set_nickname_len_under_limit,
-            err_set_nickname_len_over_limit,
-            err_set_nickname_fail,
             err_socket_close_function,
             err_send_has_no_input,
             err_invalid_utf8,
             err_send_message_convert_fail,
             err_socket_message_empty,
+            err_recv_passwd_not_correct,
 
             succ = 2000,
             succ_socket_create,
@@ -197,62 +179,105 @@ namespace core::virbase
             succ_socket_set_algorithm,
             succ_socket_set_port,
             succ_set_buffer_size,
-            succ_set_nickname,
 
             warn = 3000,
             warn_socket_type_same
         };
 
         // Limit:
-        constexpr size_t MAX_SOCKET_BUFFER_SIZE = 8192;
+        static inline constexpr size_t MAX_SOCKET_RETRY_PASSWD = 4;
 
-        constexpr size_t MIN_SOCKET_BACKLOG = 1;
-        constexpr size_t DEF_SOCKET_BACKLOG = 4;
-        constexpr size_t MAX_SOCKET_BACKLOG = 1024;
+        static inline constexpr size_t MAX_SOCKET_BUFFER_SIZE = 8192;
 
-        constexpr size_t MIN_LEN_NICKNAME = 2;
-        constexpr size_t MAX_LEN_NICKNAME = 32;
+        static inline constexpr size_t MIN_SOCKET_BACKLOG = 1;
+        static inline constexpr size_t DEF_SOCKET_BACKLOG = 4;
+        static inline constexpr size_t MAX_SOCKET_BACKLOG = 1024;
 
-        constexpr size_t MIN_SIZE_BUFFER = sizeof(char32_t);
-        constexpr size_t DEF_SIZE_BUFFER = 4096;
-        constexpr size_t MAX_SIZE_BUFFER = (uint16_t)~0;
+        static inline constexpr size_t MIN_SIZE_BUFFER = sizeof(char32_t);
+        static inline constexpr size_t DEF_SIZE_BUFFER = 4096;
+        static inline constexpr size_t MAX_SIZE_BUFFER = (uint16_t)~0;
 
         // Flag: Socket Status
-        inline constexpr flag_t flag_socket_free            { 1 << 0 };
-        inline constexpr flag_t flag_socket_created         { 1 << 1 };
-        inline constexpr flag_t flag_socket_error           { 1 << 2 };
-        inline constexpr flag_t flag_socket_open            { 1 << 3 };
+        static inline constexpr flag_t flag_socket_free { 1 << 0 };
+        static inline constexpr flag_t flag_socket_created { 1 << 1 };
+        static inline constexpr flag_t flag_socket_error { 1 << 2 };
+        static inline constexpr flag_t flag_socket_open { 1 << 3 };
 
-        // Struct: Tcp
+        // Namespace: Tcp
         namespace tcp
         {
-            static constexpr socket_domain_t domain = AF_INET;
-            static constexpr socket_conn_t type = SOCK_STREAM;
-            static constexpr socket_proto_t protocol = IPPROTO_TCP;
-        };
+            static inline constexpr socket_domain_t domain = AF_INET;
+            static inline constexpr socket_conn_t type = SOCK_STREAM;
+            static inline constexpr socket_proto_t protocol = IPPROTO_TCP;
+        }
+
+        // Function:
+        /**
+         * @brief Get IP
+         * 
+         * Sockete bağlantı sağlayan ip adresini
+         * bulmayı sağlayarak o ip adresi ile ilgili
+         * işlem yapabilmemizi sağlamasını istiyoruz
+         * 
+         * @return std::string
+         */
+        std::string getIP(const socket_t _socket) noexcept
+        {
+            sockaddr_storage addr {};
+            socklen_t len = sizeof(addr);
+
+            if( ::getpeername(_socket, reinterpret_cast<sockaddr_t*>(&addr), &len) != 0 )
+                return {};
+
+            char ipstr[INET6_ADDRSTRLEN] {};
+
+            if( addr.ss_family == AF_INET )
+            {
+                auto* s = reinterpret_cast<sockaddr_in*>(&addr);
+                ::inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof(ipstr));
+            }
+            else if( addr.ss_family == AF_INET6 )
+            {
+                auto* s = reinterpret_cast<sockaddr_in6*>(&addr);
+                ::inet_ntop(AF_INET6, &s->sin6_addr, ipstr, sizeof(ipstr));
+            }
+
+            return ipstr;
+        }
     }
 
     // Using Namespace:
     using namespace socket;
-    using namespace handler;
+
+    // Struct: UserPacket
+    typedef struct UserPacket_t
+    {
+        std::u32string username { U"" };
+        uint16_t try_passwd { 0 };
+        uint16_t same_user_count { 0 };
+    } UserPacket_t;
 
     // Class: Socket
-    template<class Algo>
-    class Socket : virtual public CrashBase
+    template<class Algo, typename _Stype>
+    class Socket : virtual public handler::CrashBase
     {
         static_assert(std::is_base_of<Algorithm, Algo>::value, "<Algo> Has To Be At The Base Of The <Algorithm> Class");
 
         private:
             Algo algo;
             Flag flag;
+            AccessPolicy policy;
 
             socket_t sock;
             std::atomic<socket_port_t> port;
 
+            Logger socklog;
+            std::atomic<bool> active_log;
+
             mutable std::mutex sock_mtx;
 
-            std::atomic<buffer_size_t> buffer_size;
-            std::u32string nickname;
+            std::atomic<buffer_size_t> buffer_size { DEF_SIZE_BUFFER };
+            std::u32string nickname { U" " };
 
             inline static std::atomic<size_t> total_socket { 0 };
 
@@ -269,14 +294,23 @@ namespace core::virbase
             (
                 Algo&& _algorithm,
                 const std::u32string& _nickname,
-                const socket_port_t _port = invalid_port,
+                const socket_port_t _port = inv_port,
+                const bool _log = false,
+                const std::u32string& _logheader = U"Socket",
+                const std::u32string& _logfilename = U"socket",
                 const buffer_size_t _buffsize = DEF_SIZE_BUFFER
             ) noexcept;
 
             ~Socket() noexcept;
 
+            inline AccessPolicy& getPolicy() noexcept;
+
             virtual inline bool hasError() const noexcept;
 
+            virtual inline void enableLog() noexcept;
+            virtual inline void disableLog() noexcept;
+            
+            virtual inline bool isLog() const noexcept;
             virtual inline bool isFree() const noexcept;
             virtual inline bool isCreate() const noexcept;
             virtual inline bool isClose() const noexcept;
@@ -292,17 +326,16 @@ namespace core::virbase
             virtual inline socket_port_t getPort() const noexcept;
             virtual e_socket setPort(const socket_port_t) noexcept;
 
-            virtual inline const std::u32string& getNickname() const noexcept;
-            virtual e_socket setNickname(const std::u32string&, const bool = true) noexcept;
-
             virtual inline Algo& getAlgorithm() noexcept;
+            virtual inline Logger& getLogger() noexcept;
 
             virtual e_socket create() noexcept;
             virtual e_socket close() noexcept;
             virtual e_socket clear() noexcept;
-            virtual e_socket send(const socket_t, const std::u32string&) noexcept;
-            virtual e_socket receive(const socket_t, std::u32string&) noexcept;
-            virtual e_socket print() noexcept;
+            
+            virtual auto send(const socket_t, NetPacket&) noexcept -> _Stype = 0;
+            virtual auto receive(const socket_t, NetPacket&) noexcept -> _Stype = 0;
+            virtual auto print() noexcept -> void;
 
             virtual void onCrash() noexcept override;
     };
@@ -318,18 +351,22 @@ namespace core::virbase
      * @param Algorithm& Şifreleme Algoritması
      * @return Socket
      */
-    template<class Algo>
-    Socket<Algo>::Socket
+    template<class Algo, typename _Stype>
+    Socket<Algo, _Stype>::Socket
     (
         Algo&& _algorithm,
         const std::u32string& _nickname,
         const socket_port_t _port,
+        const bool _log,
+        const std::u32string& _logheader,
+        const std::u32string& _logfilename,
         const buffer_size_t _buffsize
     ) noexcept
     :   algo(std::forward<Algo>(_algorithm)),
         flag(flag_socket_free),
-        sock(invalid_socket),
-        port(invalid_port),
+        sock(inv_socket),
+        port(inv_port),
+        socklog(_logheader, _logfilename),
         buffer_size(DEF_SIZE_BUFFER)
     {
         #if defined __PLATFORM_DOS__
@@ -343,9 +380,12 @@ namespace core::virbase
             }
         #endif
 
+        if( _log ) this->enableLog();
+        else this->disableLog();
+
         this->setPort(_port);
         this->setBufferSize(_buffsize);
-        this->setNickname(_nickname);
+        this->getPolicy().setUsername(_nickname);
         this->incTotalSocket();
     }
 
@@ -355,8 +395,8 @@ namespace core::virbase
      * Soket yapısını temizleyecek
      * ve bağlı kaynakları serbest bırakacak
      */
-    template<class Algo>
-    Socket<Algo>::~Socket() noexcept
+    template<class Algo, typename _Stype>
+    Socket<Algo, _Stype>::~Socket() noexcept
     {
         this->clear();
         this->decTotalSocket();
@@ -370,17 +410,69 @@ namespace core::virbase
     }
 
     /**
+     * @brief [Public] Get Policy
+     * 
+     * Erişim kontrolü durumlarına erişebilmeyi
+     * sağlamak için nesneyi referans olarak döndürür
+     * 
+     * @return AccessPolicy&
+     */
+    template<class Algo, typename _Stype>
+    AccessPolicy& Socket<Algo, _Stype>::getPolicy() noexcept
+    {
+        return this->policy;
+    }
+
+    /**
      * @brief [Public] Has Error
      * 
      * Hata olup olmadığının bilgisini döndürsün
      * 
      * @return bool
      */
-    template<class Algo>
-    bool Socket<Algo>::hasError() const noexcept
+    template<class Algo, typename _Stype>
+    bool Socket<Algo, _Stype>::hasError() const noexcept
     {
         constexpr flag_t error_flags = flag_socket_error;
         return static_cast<bool>(this->flag.get() & error_flags);
+    }
+
+    /**
+     * @brief [Public] Enable Log
+     * 
+     * Kayıt tutup tutmamamızı belirleyen durum değişkenini
+     * aktif olarak ayarlayıp kayıt tutmasını belirtiyoruz
+     */
+    template<class Algo, typename _Stype>
+    inline void Socket<Algo, _Stype>::enableLog() noexcept
+    {
+        this->active_log.store(true);
+    }
+
+    /**
+     * @brief [Public] Disable Log
+     * 
+     * Kayıt tutup tutmamamızı belirleyen durum değişkenini
+     * devre dışı olarak ayarlayıp kayıt tutmamasını
+     * belirtiyoruz
+     */
+    template<class Algo, typename _Stype>
+    inline void Socket<Algo, _Stype>::disableLog() noexcept
+    {
+        this->active_log.store(false);
+    }
+
+    /**
+     * @brief [Public] Is Log
+     * 
+     * Kayıt tutup tutmama durumunu döndürür
+     * 
+     * @return bool
+     */
+    template<class Algo, typename _Stype>
+    inline bool Socket<Algo, _Stype>::isLog() const noexcept
+    {
+        return this->active_log.load();
     }
 
     /**
@@ -390,10 +482,10 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo>
-    bool Socket<Algo>::isFree() const noexcept
+    template<class Algo, typename _Stype>
+    bool Socket<Algo, _Stype>::isFree() const noexcept
     {
-        return static_cast<bool>((this->flag.get() & flag_socket_free) && (this->getSocket() == invalid_socket));
+        return static_cast<bool>((this->flag.get() & flag_socket_free) && (this->getSocket() == inv_socket));
     }
 
     /**
@@ -403,10 +495,10 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo>
-    bool Socket<Algo>::isCreate() const noexcept
+    template<class Algo, typename _Stype>
+    bool Socket<Algo, _Stype>::isCreate() const noexcept
     {
-        return static_cast<bool>((this->flag.get() & flag_socket_created) && (this->getSocket() != invalid_socket));
+        return static_cast<bool>((this->flag.get() & flag_socket_created) && (this->getSocket() != inv_socket));
     }
 
     /**
@@ -416,8 +508,8 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo>
-    bool Socket<Algo>::isClose() const noexcept
+    template<class Algo, typename _Stype>
+    bool Socket<Algo, _Stype>::isClose() const noexcept
     {
         return !this->isCreate();
     }
@@ -431,8 +523,8 @@ namespace core::virbase
      * 
      * @return buffer_size_t
      */
-    template<class Algo>
-    buffer_size_t Socket<Algo>::getBufferSize() const noexcept
+    template<class Algo, typename _Stype>
+    buffer_size_t Socket<Algo, _Stype>::getBufferSize() const noexcept
     {
         return this->buffer_size.load();
     }
@@ -446,8 +538,8 @@ namespace core::virbase
      * @param buffer_size_t Buffer Size
      * @return e_socket
      */
-    template<class Algo>
-    e_socket Socket<Algo>::setBufferSize
+    template<class Algo, typename _Stype>
+    e_socket Socket<Algo, _Stype>::setBufferSize
     (
         const buffer_size_t _buffsize
     ) noexcept
@@ -468,8 +560,8 @@ namespace core::virbase
      * 
      * @return socket_t Socket
      */
-    template<class Algo>
-    socket_t Socket<Algo>::getSocket() const noexcept
+    template<class Algo, typename _Stype>
+    socket_t Socket<Algo, _Stype>::getSocket() const noexcept
     {
         return this->sock;
     }
@@ -482,8 +574,8 @@ namespace core::virbase
      * @param socket_t Socket
      * @return e_socket Status
      */
-    template<class Algo>
-    e_socket Socket<Algo>::setSocket
+    template<class Algo, typename _Stype>
+    e_socket Socket<Algo, _Stype>::setSocket
     (
         const socket_t _sock
     ) noexcept
@@ -493,7 +585,7 @@ namespace core::virbase
             this->sock = _sock;
         }
 
-        return (_sock != invalid_socket) ?
+        return (_sock != inv_socket) ?
             e_socket::succ_socket_set :
             e_socket::err_socket_set;
     }
@@ -506,8 +598,8 @@ namespace core::virbase
      * 
      * @return socket_port_t
      */
-    template<class Algo>
-    socket_port_t Socket<Algo>::getPort() const noexcept
+    template<class Algo, typename _Stype>
+    socket_port_t Socket<Algo, _Stype>::getPort() const noexcept
     {
         return this->port.load();
     }
@@ -521,13 +613,13 @@ namespace core::virbase
      * @param socket_port_t Socket Port
      * @return e_socket
      */
-    template<class Algo>
-    e_socket Socket<Algo>::setPort
+    template<class Algo, typename _Stype>
+    e_socket Socket<Algo, _Stype>::setPort
     (
         const socket_port_t _sockport
     ) noexcept
     {
-        if( _sockport <= invalid_port )
+        if( _sockport <= inv_port )
             return e_socket::err_socket_port_invalid;
 
         this->port.store(_sockport);
@@ -537,65 +629,29 @@ namespace core::virbase
     }
 
     /**
-     * @brief [Public] Get Nickname
-     * 
-     * Soket bağlantısını kullanan kişiye ait
-     * özel bir nickname vermesi amaçlanır ve
-     * bu kullanıcıya ait adı döndürecek
-     * 
-     * @return u32string&
-     */
-    template<class Algo>
-    const std::u32string& Socket<Algo>::getNickname() const noexcept
-    {
-        return this->nickname;
-    }
-
-    /**
-     * @brief [Public] Set Nickname
-     * 
-     * Soket bağlantısı sağlayan kullanıcıya ait
-     * özel isimi ayarlamasını sağlayacak ve bu
-     * sayede kullanıcı istediği durumda isimini
-     * değiştirebilecek. Güvenlik aktif olduğunda
-     * sadece belirlenen sınır arasında ise kabul
-     * edilecek ama eğer güvenlik kapalı ise, sınırı
-     * aşsa bile kırpılıp kabul edilecek
-     * 
-     * @param u32string& Nickname
-     * @param bool Secure
-     * @return e_socket
-     */
-    template<class Algo>
-    e_socket Socket<Algo>::setNickname
-    (
-        const std::u32string& _nickname,
-        const bool _secure
-    ) noexcept
-    {
-        if( _nickname.empty() || _nickname.length() < MIN_LEN_NICKNAME )
-            return e_socket::err_set_nickname_len_under_limit;
-
-        else if( _secure && _nickname.length() > MAX_LEN_NICKNAME )
-            return e_socket::err_set_nickname_len_over_limit;
-
-        this->nickname = _nickname.substr(0, MAX_LEN_NICKNAME);
-        return this->nickname == _nickname ?
-            e_socket::succ_set_nickname :
-            e_socket::err_set_nickname_fail;
-    }
-
-    /**
      * @brief [Public] Get Algorithm
      * 
      * Şifreleme algoritmasını döndürecek
      *
-     * @return Algo& Algorithm
+     * @return Algo&
      */
-    template<class Algo>
-    Algo& Socket<Algo>::getAlgorithm() noexcept
+    template<class Algo, typename _Stype>
+    Algo& Socket<Algo, _Stype>::getAlgorithm() noexcept
     {
         return this->algo;
+    }
+
+    /**
+     * @brief [Public] Get Logger
+     * 
+     * Kayıt nesnesini döndürecek
+     * 
+     * @return Logger&
+     */
+    template<class Algo, typename _Stype>
+    Logger& Socket<Algo, _Stype>::getLogger() noexcept
+    {
+        return this->socklog;
     }
 
     /**
@@ -604,11 +660,11 @@ namespace core::virbase
      * Soket için verilmiş olan bağlantı türüne (tcp, udp)
      * göre bağlantı oluşturmasını sağlıyoruz
      */
-    template<class Algo>
-    e_socket Socket<Algo>::create() noexcept
+    template<class Algo, typename _Stype>
+    e_socket Socket<Algo, _Stype>::create() noexcept
     {
         socket_t fd = ::socket(tcp::domain, tcp::type, tcp::protocol);
-        if(fd == invalid_socket) {
+        if(fd == inv_socket) {
             this->flag.set(flag_socket_error);
             return e_socket::err_socket_create;
         }
@@ -624,7 +680,7 @@ namespace core::virbase
             this->flag.unset(flag_socket_error);
         }
 
-        return this->sock != invalid_socket ?
+        return this->sock != inv_socket ?
             e_socket::succ_socket_create :
             e_socket::err_socket_create;
     }
@@ -637,10 +693,10 @@ namespace core::virbase
      * 
      * @return e_socket
      */
-    template<class Algo>
-    e_socket Socket<Algo>::close() noexcept
+    template<class Algo, typename _Stype>
+    e_socket Socket<Algo, _Stype>::close() noexcept
     {
-        if( this->sock == invalid_socket )
+        if( this->sock == inv_socket )
             return e_socket::err_socket_close;
 
         close_socket(this->sock);
@@ -648,7 +704,7 @@ namespace core::virbase
         {
             std::scoped_lock<std::mutex> lock(this->sock_mtx);
 
-            this->sock = invalid_socket;
+            this->sock = inv_socket;
 
             this->flag.unset(flag_socket_open);
             this->flag.unset(flag_socket_created);
@@ -656,7 +712,7 @@ namespace core::virbase
             this->flag.set(flag_socket_free);
         }
 
-        return this->sock == invalid_socket ?
+        return this->sock == inv_socket ?
             e_socket::succ_socket_close :
             e_socket::err_socket_close;
     }
@@ -670,77 +726,19 @@ namespace core::virbase
      * 
      * @return e_socket
      */
-    template<class Algo>
-    e_socket Socket<Algo>::clear() noexcept
+    template<class Algo, typename _Stype>
+    e_socket Socket<Algo, _Stype>::clear() noexcept
     {
         this->close();
 
-        this->port = invalid_port;
+        this->port = inv_port;
 
         this->flag.clear();
         this->flag.set(flag_socket_free);
 
-        return this->sock == invalid_socket ?
+        return this->sock == inv_socket ?
             e_socket::succ_socket_clear :
             e_socket::err_socket_clear;
-    }
-
-    /**
-     * @brief [Public] Send
-     * 
-     * Socketler arası iletişimde veri gönderimini sağlayacak
-     * olan send fonksiyonu gönderilmek istenen metini alır
-     * utf8 formatına çevirip bayt olarak gönderir
-     * 
-     * @param socket_t Socket
-     * @param u32string& Input
-     * @return e_socket
-     */
-    template<class Algo>
-    e_socket Socket<Algo>::send(const socket_t _socket, const std::u32string& _input) noexcept
-    {
-        if( _socket == invalid_socket )
-            return e_socket::err_socket_invalid;
-
-        if( _input.empty() )
-            return e_socket::err_send_has_no_input;
-
-        std::string umsg = utf::to_utf8(_input);
-        return ::send(_socket, umsg.data(), static_cast<int>(umsg.size()), 0) ?
-            e_socket::succ_socket_send :
-            e_socket::err_socket_send;
-    }
-
-    /**
-     * @brief [Public] Receive
-     * 
-     * Socketler arası iletişimde gönderilen veriyi almak
-     * için kullanılan recv fonksiyonundan faydalanarak
-     * gönderilen utf8 veriyi alıp işleyip utf32 formatında
-     * belirtilen çıktı değişkenine aktarır
-     * 
-     * @param socket_t Socket
-     * @param u32string& Output
-     * @return e_socket
-     */
-    template<class Algo>
-    e_socket Socket<Algo>::receive(const socket_t _socket, std::u32string& _output) noexcept
-    {
-        if( _socket == invalid_socket )
-            return e_socket::err_socket_invalid;
-
-        _output.clear();
-
-        std::vector<char> ubuffer(std::max<size_t>(MIN_SIZE_BUFFER, this->getBufferSize()));
-        int recv_bytes = ::recv(_socket, ubuffer.data(), static_cast<int>(ubuffer.size()), 0);
-
-        if( recv_bytes == 0 )
-            return e_socket::err_socket_closed;
-        else if( recv_bytes < 0 )
-            return e_socket::err_socket_recv;
-
-        _output = utf::to_utf32(std::string(ubuffer.data(), recv_bytes));
-        return e_socket::succ_socket_recv;
     }
 
     /**
@@ -749,20 +747,15 @@ namespace core::virbase
      * Socket yapısına ait bilgileri
      * konsola yazdırarak durumu
      * hakkında bilgi versin
-     * 
-     * @return e_socket
      */
-    template<class Algo>
-    e_socket Socket<Algo>::print() noexcept
+    template<class Algo, typename _Stype>
+    auto Socket<Algo, _Stype>::print() noexcept -> void
     {
         std::cout << "\n==================== TCP SOCKET ====================\n";
-        std::cout << std::setw(20) << std::left << "Socket " << " => " << (this->sock != invalid_socket ? "Valid" : "Invalid") << "\n";
-        std::cout << std::setw(20) << std::left << "Has Error " << " => " << (this->hasError() ? "yes" : "no") << "\n";
-        std::cout << std::setw(20) << std::left << "Is Created " << " => " << (this->isCreate() ? "yes" : "no") << "\n";
-        std::cout << std::setw(20) << std::left << "Is Free " << " => " << (this->isFree() ? "yes" : "no") << "\n";
-        std::cout << "======================================================\n\n";
-
-        return e_socket::succ_socket_print;
+        std::cout << std::setw(20) << std::left << "Socket " << std::right << " => " << (this->sock != inv_socket ? "Valid" : "Invalid") << "\n";
+        std::cout << std::setw(20) << std::left << "Has Error " << std::right << " => " << (this->hasError() ? "yes" : "no") << "\n";
+        std::cout << std::setw(20) << std::left << "Is Created " << std::right << " => " << (this->isCreate() ? "yes" : "no") << "\n";
+        std::cout << std::setw(20) << std::left << "Is Free " << std::right << " => " << (this->isFree() ? "yes" : "no") << "\n\n";
     }
 
     /**
@@ -771,8 +764,8 @@ namespace core::virbase
      * Çökme durumunda soket bağlantısını
      * güvenli bir şekilde kapatmayı sağlar
      */
-    template<class Algo>
-    void Socket<Algo>::onCrash() noexcept
+    template<class Algo, typename _Stype>
+    void Socket<Algo, _Stype>::onCrash() noexcept
     {
         this->close();
 
