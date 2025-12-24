@@ -63,7 +63,7 @@
  */
 
 // Include:
-#include <Platform/Platform.h>
+#include <Global.h>
 
 // Using Namespace:
 using namespace core;
@@ -120,6 +120,8 @@ namespace core::virbase
         using socket_send_t = int;
         using socket_recv_t = int;
 
+        using wait_time_t = uint16_t;
+
         // Windows / DOS (Winsock)
         #if defined __PLATFORM_DOS__
             static inline constexpr socket_t inv_socket = INVALID_SOCKET;
@@ -137,9 +139,11 @@ namespace core::virbase
         using buffer_size_t = size_t;
 
         // Enum Class: Socket Code
-        enum class e_socket : size_t
+        enum class e_socket : glo::status_t
         {
-            err = 1000,
+            unknwn = static_cast<glo::status_t>(glo::e_status_t::socket),
+
+            err = unknwn + static_cast<glo::status_t>(glo::e_status::err),
             err_has_error,
             err_socket_invalid,
             err_socket_closed,
@@ -165,8 +169,16 @@ namespace core::virbase
             err_send_message_convert_fail,
             err_socket_message_empty,
             err_recv_passwd_not_correct,
+            err_socket_timeout_under_limit,
+            err_socket_timeout_over_limit,
+            err_socket_set_timeout,
+            err_client_socket_invalid,
+            err_packet_no_data,
+            err_send_pack_over_size,
+            err_socket_send_packet,
+            err_recv_socket_closed,
 
-            succ = 2000,
+            succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_socket_create,
             succ_socket_close,
             succ_socket_clear,
@@ -179,10 +191,17 @@ namespace core::virbase
             succ_socket_set_algorithm,
             succ_socket_set_port,
             succ_set_buffer_size,
+            succ_socket_set_timeout,
 
-            warn = 3000,
-            warn_socket_type_same
+            warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn),
+            warn_socket_type_same,
+            warn_socket_timeout_value_same,
+            warn_socket_can_be_close,
+            warn_send_not_all_data
         };
+
+        constexpr bool operator==(glo::status_t _first, e_socket _second) noexcept { return _first == static_cast<glo::status_t>(_second); }
+        constexpr bool operator!=(glo::status_t _first, e_socket _second) noexcept { return _first != static_cast<glo::status_t>(_second); }
 
         // Limit:
         static inline constexpr size_t MAX_SOCKET_RETRY_PASSWD = 4;
@@ -196,6 +215,10 @@ namespace core::virbase
         static inline constexpr size_t MIN_SIZE_BUFFER = sizeof(char32_t);
         static inline constexpr size_t DEF_SIZE_BUFFER = 4096;
         static inline constexpr size_t MAX_SIZE_BUFFER = (uint16_t)~0;
+
+        static inline constexpr wait_time_t MIN_SOCKET_TIMEOUT = 1;     // saniye
+        static inline constexpr wait_time_t DEF_SOCKET_TIMEOUT = 5;     // saniye
+        static inline constexpr wait_time_t MAX_SOCKET_TIMEOUT = 30;    // saniye
 
         // Flag: Socket Status
         static inline constexpr flag_t flag_socket_free { 1 << 0 };
@@ -211,6 +234,14 @@ namespace core::virbase
             static inline constexpr socket_proto_t protocol = IPPROTO_TCP;
         }
 
+        // Struct: Data Packet
+        typedef struct datapacket_t
+        {
+            std::u32string pwd;
+            std::u32string name;
+            std::u32string msg;
+        } datapacket_t;
+
         // Function:
         /**
          * @brief Get IP
@@ -221,7 +252,10 @@ namespace core::virbase
          * 
          * @return std::string
          */
-        std::string getIP(const socket_t _socket) noexcept
+        [[maybe_unused]]
+        static std::string get_ip(
+            const socket_t _socket
+        ) noexcept
         {
             sockaddr_storage addr {};
             socklen_t len = sizeof(addr);
@@ -244,6 +278,38 @@ namespace core::virbase
 
             return ipstr;
         }
+
+        /**
+         * @brief [Static] Set Socket Timeout
+         * 
+         * Soket için bir zamanlayıcı oluşturacağız ve
+         * veri gelmemesi durumunda boş boş beklememesi için
+         * bu zamanlayıcı sayesinde beklemeyi bırakıp
+         * kalan işlemleri yapmaya devam edebileceğiz
+         * 
+         * @param socket_t Socket
+         * @param uint16_t Second
+         * 
+         * @return bool
+         */
+        [[maybe_unused]]
+        static bool set_socket_timeout(
+            socket_t _sock,
+            uint16_t _sec
+        ) noexcept
+        {
+            if( _sock == inv_socket )
+                return false;
+
+            timeval timeval {};
+            timeval.tv_sec = _sec;
+            timeval.tv_usec = 0;
+
+            ::setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, &timeval, sizeof(timeval));
+            ::setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, &timeval, sizeof(timeval));
+
+            return true;
+        }
     }
 
     // Using Namespace:
@@ -258,7 +324,7 @@ namespace core::virbase
     } UserPacket_t;
 
     // Class: Socket
-    template<class Algo, typename _Stype>
+    template<class Algo>
     class Socket : virtual public handler::CrashBase
     {
         static_assert(std::is_base_of<Algorithm, Algo>::value, "<Algo> Has To Be At The Base Of The <Algorithm> Class");
@@ -277,8 +343,8 @@ namespace core::virbase
             mutable std::mutex sock_mtx;
 
             std::atomic<buffer_size_t> buffer_size { DEF_SIZE_BUFFER };
-            std::u32string nickname { U" " };
-
+            std::atomic<wait_time_t> timeout;
+            
             inline static std::atomic<size_t> total_socket { 0 };
 
             #if defined __PLATFORM_DOS__
@@ -298,7 +364,8 @@ namespace core::virbase
                 const bool _log = false,
                 const std::u32string& _logheader = U"Socket",
                 const std::u32string& _logfilename = U"socket",
-                const buffer_size_t _buffsize = DEF_SIZE_BUFFER
+                const buffer_size_t _buffsize = DEF_SIZE_BUFFER,
+                const wait_time_t _timeoutsec = DEF_SOCKET_TIMEOUT
             ) noexcept;
 
             ~Socket() noexcept;
@@ -318,24 +385,27 @@ namespace core::virbase
             inline static size_t getTotalSocket() noexcept { return Socket::total_socket; };
 
             virtual inline buffer_size_t getBufferSize() const noexcept;
-            virtual e_socket setBufferSize(const buffer_size_t = DEF_SIZE_BUFFER) noexcept;
+            virtual glo::status_t setBufferSize(const buffer_size_t = DEF_SIZE_BUFFER) noexcept;
+
+            virtual inline wait_time_t getTimeout() const noexcept;
+            virtual glo::status_t setTimeout(const wait_time_t = DEF_SOCKET_TIMEOUT) noexcept;
 
             virtual inline socket_t getSocket() const noexcept;
-            virtual e_socket setSocket(const socket_t) noexcept;
+            virtual glo::status_t setSocket(const socket_t) noexcept;
 
             virtual inline socket_port_t getPort() const noexcept;
-            virtual e_socket setPort(const socket_port_t) noexcept;
+            virtual glo::status_t setPort(const socket_port_t) noexcept;
 
             virtual inline Algo& getAlgorithm() noexcept;
             virtual inline Logger& getLogger() noexcept;
 
-            virtual e_socket create() noexcept;
-            virtual e_socket close() noexcept;
-            virtual e_socket clear() noexcept;
+            virtual glo::status_t create() noexcept;
+            virtual glo::status_t close() noexcept;
+            virtual glo::status_t clear() noexcept;
             
-            virtual auto send(const socket_t, NetPacket&) noexcept -> _Stype = 0;
-            virtual auto receive(const socket_t, NetPacket&) noexcept -> _Stype = 0;
-            virtual auto print() noexcept -> void;
+            virtual glo::status_t send(const socket_t, datapacket_t&) noexcept;
+            virtual glo::status_t receive(const socket_t, datapacket_t&) noexcept;
+            virtual void print() noexcept;
 
             virtual void onCrash() noexcept override;
     };
@@ -351,8 +421,8 @@ namespace core::virbase
      * @param Algorithm& Şifreleme Algoritması
      * @return Socket
      */
-    template<class Algo, typename _Stype>
-    Socket<Algo, _Stype>::Socket
+    template<class Algo>
+    Socket<Algo>::Socket
     (
         Algo&& _algorithm,
         const std::u32string& _nickname,
@@ -360,14 +430,16 @@ namespace core::virbase
         const bool _log,
         const std::u32string& _logheader,
         const std::u32string& _logfilename,
-        const buffer_size_t _buffsize
+        const buffer_size_t _buffsize,
+        const wait_time_t _timeoutsec
     ) noexcept
     :   algo(std::forward<Algo>(_algorithm)),
         flag(flag_socket_free),
         sock(inv_socket),
         port(inv_port),
         socklog(_logheader, _logfilename),
-        buffer_size(DEF_SIZE_BUFFER)
+        buffer_size(DEF_SIZE_BUFFER),
+        timeout(_timeoutsec)
     {
         #if defined __PLATFORM_DOS__
             if( !Socket::wsa_started.load() && !total_socket )
@@ -395,8 +467,8 @@ namespace core::virbase
      * Soket yapısını temizleyecek
      * ve bağlı kaynakları serbest bırakacak
      */
-    template<class Algo, typename _Stype>
-    Socket<Algo, _Stype>::~Socket() noexcept
+    template<class Algo>
+    Socket<Algo>::~Socket() noexcept
     {
         this->clear();
         this->decTotalSocket();
@@ -417,8 +489,8 @@ namespace core::virbase
      * 
      * @return AccessPolicy&
      */
-    template<class Algo, typename _Stype>
-    AccessPolicy& Socket<Algo, _Stype>::getPolicy() noexcept
+    template<class Algo>
+    AccessPolicy& Socket<Algo>::getPolicy() noexcept
     {
         return this->policy;
     }
@@ -430,8 +502,8 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo, typename _Stype>
-    bool Socket<Algo, _Stype>::hasError() const noexcept
+    template<class Algo>
+    bool Socket<Algo>::hasError() const noexcept
     {
         constexpr flag_t error_flags = flag_socket_error;
         return static_cast<bool>(this->flag.get() & error_flags);
@@ -443,8 +515,8 @@ namespace core::virbase
      * Kayıt tutup tutmamamızı belirleyen durum değişkenini
      * aktif olarak ayarlayıp kayıt tutmasını belirtiyoruz
      */
-    template<class Algo, typename _Stype>
-    inline void Socket<Algo, _Stype>::enableLog() noexcept
+    template<class Algo>
+    inline void Socket<Algo>::enableLog() noexcept
     {
         this->active_log.store(true);
     }
@@ -456,8 +528,8 @@ namespace core::virbase
      * devre dışı olarak ayarlayıp kayıt tutmamasını
      * belirtiyoruz
      */
-    template<class Algo, typename _Stype>
-    inline void Socket<Algo, _Stype>::disableLog() noexcept
+    template<class Algo>
+    inline void Socket<Algo>::disableLog() noexcept
     {
         this->active_log.store(false);
     }
@@ -469,8 +541,8 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo, typename _Stype>
-    inline bool Socket<Algo, _Stype>::isLog() const noexcept
+    template<class Algo>
+    inline bool Socket<Algo>::isLog() const noexcept
     {
         return this->active_log.load();
     }
@@ -482,8 +554,8 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo, typename _Stype>
-    bool Socket<Algo, _Stype>::isFree() const noexcept
+    template<class Algo>
+    bool Socket<Algo>::isFree() const noexcept
     {
         return static_cast<bool>((this->flag.get() & flag_socket_free) && (this->getSocket() == inv_socket));
     }
@@ -495,8 +567,8 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo, typename _Stype>
-    bool Socket<Algo, _Stype>::isCreate() const noexcept
+    template<class Algo>
+    bool Socket<Algo>::isCreate() const noexcept
     {
         return static_cast<bool>((this->flag.get() & flag_socket_created) && (this->getSocket() != inv_socket));
     }
@@ -508,8 +580,8 @@ namespace core::virbase
      * 
      * @return bool
      */
-    template<class Algo, typename _Stype>
-    bool Socket<Algo, _Stype>::isClose() const noexcept
+    template<class Algo>
+    bool Socket<Algo>::isClose() const noexcept
     {
         return !this->isCreate();
     }
@@ -523,8 +595,8 @@ namespace core::virbase
      * 
      * @return buffer_size_t
      */
-    template<class Algo, typename _Stype>
-    buffer_size_t Socket<Algo, _Stype>::getBufferSize() const noexcept
+    template<class Algo>
+    buffer_size_t Socket<Algo>::getBufferSize() const noexcept
     {
         return this->buffer_size.load();
     }
@@ -536,21 +608,62 @@ namespace core::virbase
      * yeni boyut ayarı yapmayı sağlamak
      * 
      * @param buffer_size_t Buffer Size
-     * @return e_socket
+     * @return glo::status_t
      */
-    template<class Algo, typename _Stype>
-    e_socket Socket<Algo, _Stype>::setBufferSize
-    (
+    template<class Algo>
+    glo::status_t Socket<Algo>::setBufferSize(
         const buffer_size_t _buffsize
     ) noexcept
     {
-        if( _buffsize < MIN_SIZE_BUFFER ) return e_socket::err_buffer_size_under_limit;
-        else if( _buffsize > MAX_SIZE_BUFFER ) return e_socket::err_buffer_size_over_limit;
+        if( _buffsize < MIN_SIZE_BUFFER ) return glo::to_status<e_socket>(e_socket::err_buffer_size_under_limit);
+        else if( _buffsize > MAX_SIZE_BUFFER ) return glo::to_status<e_socket>(e_socket::err_buffer_size_over_limit);
 
         this->buffer_size.store(_buffsize);
         return this->buffer_size.load() == _buffsize ?
-            e_socket::succ_set_buffer_size :
-            e_socket::err_set_buffer_size_fail;
+            glo::to_status<e_socket>(e_socket::succ_set_buffer_size) :
+            glo::to_status<e_socket>(e_socket::err_set_buffer_size_fail);
+    }
+
+    /**
+     * @brief [Public] Get Timeout
+     * 
+     * Socket'den gidecek ya da gelecek veri için
+     * belirlenen zaman aşımı süresinin değerini
+     * döndürecek
+     * 
+     * @return wait_time_t
+     */
+    template<class Algo>
+    wait_time_t Socket<Algo>::getTimeout() const noexcept
+    {
+        return this->timeout.load();
+    }
+
+    /**
+     * @brief [Public] Set Timeout
+     * 
+     * Socket veri alma/gönderme zaman aşımı için
+     * gerekli olan süreyi belirlenen sınırlar
+     * içerisinde ayarlayacak, düzgün ve belirli
+     * bir süre olması için saniye cinsinden yapıyoruz
+     * 
+     * @param wait_time_t Timeout
+     * @return glo::status_t
+     */
+    template<class Algo>
+    glo::status_t Socket<Algo>::setTimeout(const wait_time_t _timeout) noexcept
+    {
+        if( _timeout < MIN_SOCKET_TIMEOUT )
+            return glo::to_status<e_socket>(e_socket::err_socket_timeout_under_limit);
+        else if( _timeout > MAX_SOCKET_TIMEOUT )
+            return glo::to_status<e_socket>(e_socket::err_socket_timeout_over_limit);
+        else if( this->timeout.load() == _timeout )
+            return glo::to_status<e_socket>(e_socket::warn_socket_timeout_value_same);
+
+        this->timeout.store(_timeout);
+        return this->timeout.load() == _timeout ?
+            glo::to_status<e_socket>(e_socket::succ_socket_set_timeout) :
+            glo::to_status<e_socket>(e_socket::err_socket_set_timeout);
     }
 
     /**
@@ -560,8 +673,8 @@ namespace core::virbase
      * 
      * @return socket_t Socket
      */
-    template<class Algo, typename _Stype>
-    socket_t Socket<Algo, _Stype>::getSocket() const noexcept
+    template<class Algo>
+    socket_t Socket<Algo>::getSocket() const noexcept
     {
         return this->sock;
     }
@@ -572,11 +685,10 @@ namespace core::virbase
      * Soket tanımlayıcısını belirleyecek
      * 
      * @param socket_t Socket
-     * @return e_socket Status
+     * @return glo::status_t Status
      */
-    template<class Algo, typename _Stype>
-    e_socket Socket<Algo, _Stype>::setSocket
-    (
+    template<class Algo>
+    glo::status_t Socket<Algo>::setSocket(
         const socket_t _sock
     ) noexcept
     {
@@ -586,8 +698,8 @@ namespace core::virbase
         }
 
         return (_sock != inv_socket) ?
-            e_socket::succ_socket_set :
-            e_socket::err_socket_set;
+            glo::to_status<e_socket>(e_socket::succ_socket_set) :
+            glo::to_status<e_socket>(e_socket::err_socket_set);
     }
 
     /**
@@ -598,8 +710,8 @@ namespace core::virbase
      * 
      * @return socket_port_t
      */
-    template<class Algo, typename _Stype>
-    socket_port_t Socket<Algo, _Stype>::getPort() const noexcept
+    template<class Algo>
+    socket_port_t Socket<Algo>::getPort() const noexcept
     {
         return this->port.load();
     }
@@ -611,21 +723,21 @@ namespace core::virbase
      * güncelleme imkanı sunabilsin
      * 
      * @param socket_port_t Socket Port
-     * @return e_socket
+     * @return glo::status_t
      */
-    template<class Algo, typename _Stype>
-    e_socket Socket<Algo, _Stype>::setPort
+    template<class Algo>
+    glo::status_t Socket<Algo>::setPort
     (
         const socket_port_t _sockport
     ) noexcept
     {
         if( _sockport <= inv_port )
-            return e_socket::err_socket_port_invalid;
+            return glo::to_status<e_socket>(e_socket::err_socket_port_invalid);
 
         this->port.store(_sockport);
         return this->port == _sockport ?
-            e_socket::succ_socket_set_port :
-            e_socket::err_socket_set_port;
+            glo::to_status<e_socket>(e_socket::succ_socket_set_port) :
+            glo::to_status<e_socket>(e_socket::err_socket_set_port);
     }
 
     /**
@@ -635,8 +747,8 @@ namespace core::virbase
      *
      * @return Algo&
      */
-    template<class Algo, typename _Stype>
-    Algo& Socket<Algo, _Stype>::getAlgorithm() noexcept
+    template<class Algo>
+    Algo& Socket<Algo>::getAlgorithm() noexcept
     {
         return this->algo;
     }
@@ -648,8 +760,8 @@ namespace core::virbase
      * 
      * @return Logger&
      */
-    template<class Algo, typename _Stype>
-    Logger& Socket<Algo, _Stype>::getLogger() noexcept
+    template<class Algo>
+    Logger& Socket<Algo>::getLogger() noexcept
     {
         return this->socklog;
     }
@@ -659,14 +771,16 @@ namespace core::virbase
      * 
      * Soket için verilmiş olan bağlantı türüne (tcp, udp)
      * göre bağlantı oluşturmasını sağlıyoruz
+     * 
+     * @return glo::status_t
      */
-    template<class Algo, typename _Stype>
-    e_socket Socket<Algo, _Stype>::create() noexcept
+    template<class Algo>
+    glo::status_t Socket<Algo>::create() noexcept
     {
         socket_t fd = ::socket(tcp::domain, tcp::type, tcp::protocol);
         if(fd == inv_socket) {
             this->flag.set(flag_socket_error);
-            return e_socket::err_socket_create;
+            return glo::to_status<e_socket>(e_socket::err_socket_invalid);
         }
 
         {
@@ -681,8 +795,8 @@ namespace core::virbase
         }
 
         return this->sock != inv_socket ?
-            e_socket::succ_socket_create :
-            e_socket::err_socket_create;
+            glo::to_status<e_socket>(e_socket::succ_socket_create) :
+            glo::to_status<e_socket>(e_socket::err_socket_create);
     }
 
     /**
@@ -691,13 +805,13 @@ namespace core::virbase
      * Socket yapısına ait bağlantıyı kontrol etsin.
      * Bağlantı yoksa hata, varsa kapatsın
      * 
-     * @return e_socket
+     * @return glo::status_t
      */
-    template<class Algo, typename _Stype>
-    e_socket Socket<Algo, _Stype>::close() noexcept
+    template<class Algo>
+    glo::status_t Socket<Algo>::close() noexcept
     {
         if( this->sock == inv_socket )
-            return e_socket::err_socket_close;
+            return glo::to_status<e_socket>(e_socket::err_socket_invalid);
 
         close_socket(this->sock);
 
@@ -713,8 +827,8 @@ namespace core::virbase
         }
 
         return this->sock == inv_socket ?
-            e_socket::succ_socket_close :
-            e_socket::err_socket_close;
+            glo::to_status<e_socket>(e_socket::succ_socket_close) :
+            glo::to_status<e_socket>(e_socket::err_socket_close);
     }
 
     /**
@@ -724,10 +838,10 @@ namespace core::virbase
      * bayrak değerlerini sıfırlayarak
      * temizleme yapsın
      * 
-     * @return e_socket
+     * @return glo::status_t
      */
-    template<class Algo, typename _Stype>
-    e_socket Socket<Algo, _Stype>::clear() noexcept
+    template<class Algo>
+    glo::status_t Socket<Algo>::clear() noexcept
     {
         this->close();
 
@@ -737,8 +851,95 @@ namespace core::virbase
         this->flag.set(flag_socket_free);
 
         return this->sock == inv_socket ?
-            e_socket::succ_socket_clear :
-            e_socket::err_socket_clear;
+            glo::to_status<e_socket>(e_socket::succ_socket_clear) :
+            glo::to_status<e_socket>(e_socket::err_socket_clear);
+    }
+
+    template<class Algo>
+    glo::status_t Socket<Algo>::send(
+        const socket_t _socket,
+        datapacket_t& _rawpacket
+    ) noexcept
+    {
+        if( _socket == inv_socket )
+            return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
+        else if( !_rawpacket.name.size() || !_rawpacket.msg.size() )
+            return glo::to_status<e_socket>(e_socket::err_packet_no_data);
+
+        const std::string ipaddr = get_ip(_socket);
+
+        std::cout << "[SEND] Password: " << utf::to_utf8(_rawpacket.pwd)
+            << "\nUsername: " << utf::to_utf8(_rawpacket.name)
+            << "\nMessage: " << utf::to_utf8(_rawpacket.msg) << "\n\n";
+
+        this->getAlgorithm().encrypt(_rawpacket.pwd);
+        this->getAlgorithm().encrypt(_rawpacket.name);
+        this->getAlgorithm().encrypt(_rawpacket.msg);
+
+        NetPacket net_datapacket(_rawpacket.pwd, _rawpacket.name, _rawpacket.msg);
+        const size_t packet_size = net_datapacket.get().size();
+
+        int send_bytes = ::send(_socket, net_datapacket.get().data(), static_cast<int>(packet_size), 0);
+
+        if( send_bytes < 0 ) return glo::to_status<e_socket>(e_socket::err_socket_send_packet);
+        else if( send_bytes == 0 ) return glo::to_status<e_socket>(e_socket::warn_socket_can_be_close);
+        else if( send_bytes < static_cast<int>(packet_size) ) return glo::to_status<e_socket>(e_socket::warn_send_not_all_data);
+
+        if( this->isLog() )
+            LOG_MSG(this->getLogger(),
+                U"Data sent to (" + utf::to_utf32(ipaddr) + U")",
+                test::e_status::information,
+                false
+            );
+
+        return send_bytes ?
+            glo::to_status<e_socket>(e_socket::succ_socket_send) :
+            glo::to_status<e_socket>(e_socket::err_socket_send);
+    }
+
+    template<class Algo>
+    glo::status_t Socket<Algo>::receive(
+        const socket_t _socket,
+        datapacket_t& _rawpacket
+    ) noexcept
+    {
+        if( _socket == inv_socket )
+            return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
+
+        const std::string ipaddr = get_ip(_socket);
+
+        NetPacket net_datapacket;
+        const size_t packet_size = net_datapacket.get().size();
+
+        int recv_bytes = ::recv(_socket, net_datapacket.get().data(), static_cast<int>(packet_size), 0);
+        if( recv_bytes < 0 ) return glo::to_status<e_socket>(e_socket::err_socket_recv);
+        else if( recv_bytes == 0 ) return glo::to_status<e_socket>(e_socket::err_recv_socket_closed);
+
+        _rawpacket.pwd = utf::to_utf32(net_datapacket.getPassword());
+        _rawpacket.name = utf::to_utf32(net_datapacket.getUsername());
+        _rawpacket.msg = utf::to_utf32(net_datapacket.getMessage());
+
+        this->getAlgorithm().decrypt(_rawpacket.pwd);
+        this->getAlgorithm().decrypt(_rawpacket.name);
+        this->getAlgorithm().decrypt(_rawpacket.msg);
+
+        std::cout << "[RECV] Password: " << utf::to_utf8(_rawpacket.pwd)
+            << "\nUsername: " << utf::to_utf8(_rawpacket.name)
+            << "\nMessage: " << utf::to_utf8(_rawpacket.msg) << "\n\n";
+
+        // if( !_rawpacket.name.size() || !_rawpacket.msg.size() )
+        //     return glo::to_status<e_socket>(e_socket::err_packet_no_data);
+
+        if( this->isLog() )
+            LOG_MSG(this->getLogger(),
+                U"Data received from (" + utf::to_utf32(ipaddr) + U")",
+                test::e_status::information,
+                false
+            );
+
+        return recv_bytes ?
+            glo::to_status<e_socket>(e_socket::succ_socket_recv) :
+            glo::to_status<e_socket>(e_socket::err_socket_recv);
     }
 
     /**
@@ -748,8 +949,8 @@ namespace core::virbase
      * konsola yazdırarak durumu
      * hakkında bilgi versin
      */
-    template<class Algo, typename _Stype>
-    auto Socket<Algo, _Stype>::print() noexcept -> void
+    template<class Algo>
+    void Socket<Algo>::print() noexcept
     {
         std::cout << "\n==================== TCP SOCKET ====================\n";
         std::cout << std::setw(20) << std::left << "Socket " << std::right << " => " << (this->sock != inv_socket ? "Valid" : "Invalid") << "\n";
@@ -764,8 +965,8 @@ namespace core::virbase
      * Çökme durumunda soket bağlantısını
      * güvenli bir şekilde kapatmayı sağlar
      */
-    template<class Algo, typename _Stype>
-    void Socket<Algo, _Stype>::onCrash() noexcept
+    template<class Algo>
+    void Socket<Algo>::onCrash() noexcept
     {
         this->close();
 
