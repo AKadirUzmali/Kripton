@@ -67,6 +67,7 @@ namespace core::socket
             warn_enable_password_same_value,
             warn_ip_already_banned,
             warn_ip_not_banned,
+            warn_new_password_cannot_be_same_with_old_password
         };
 
         // Limit:
@@ -200,13 +201,19 @@ const std::u32string& AccessPolicy::getOldPassword() const noexcept
  */
 e_accesspolicy AccessPolicy::setPassword(const std::u32string& _password) noexcept
 {
-    if( _password.empty() || _password.length() < MIN_LEN_PASSWORD ) return e_accesspolicy::err_password_len_under_limit;
-    else if( _password.length() > MAX_LEN_PASSWORD ) return e_accesspolicy::err_password_len_over_limit;
+    if( _password.empty() || _password.length() < MIN_LEN_PASSWORD )
+        return e_accesspolicy::err_password_len_under_limit;
+    else if( _password.length() > MAX_LEN_PASSWORD )
+        return e_accesspolicy::err_password_len_over_limit;
+    else if( _password == old_password )
+        return e_accesspolicy::warn_new_password_cannot_be_same_with_old_password;
 
-    std::scoped_lock<std::mutex> lock(this->mtx);
+    {
+        std::scoped_lock<std::mutex> lock(this->mtx);
 
-    this->old_password = this->password;
-    this->password = _password;
+        this->old_password = this->password;
+        this->password = _password;
+    }
 
     return this->password == _password ?
         e_accesspolicy::succ_set_password :
