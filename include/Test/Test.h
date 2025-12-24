@@ -83,7 +83,34 @@ namespace test
     #endif
 
     /**
-     * @brief Set Color
+     * @brief [Static] Get Status Type
+     * 
+     * Verilen koda göre durum kodu türünü hesaplamaya çalışacak
+     * fakat bunun için genel standartı kullanacak
+     * 
+     * hata (error) = 1000-1999
+     * başarı (success) = 2000-2999
+     * uyarı (warning) = 3000-3999
+     * bilinmeyen (unknown) = 4000-...
+     * 
+     * @param size_t Status Code
+     * @return e_status
+     */
+    [[maybe_unused]]
+    static e_status get_status_type(size_t _code) noexcept
+    {
+        if( _code >= 1000 && _code <= 1999)
+            return e_status::error;
+        else if( _code >= 2000 && _code <= 2999 )
+            return e_status::success;
+        else if( _code >= 3000 && _code <= 3999 )
+            return e_status::warning;
+
+        return e_status::unknown;
+    }
+
+    /**
+     * @brief [Static] Set Color
      * 
      * Konsol ya da terminal ekranında
      * yazılacak yazıların rengini değiştirmeyi
@@ -110,7 +137,7 @@ namespace test
     }
         
     /**
-     * @brief Reset Color
+     * @brief [Static] Reset Color
      * 
      * Konsol veya terminal ekranının yazı rengini
      * değiştirmek yerine tam aksine eski haline çevirir
@@ -129,7 +156,7 @@ namespace test
     }
 
     /**
-     * @brief Expect Equal
+     * @brief [Static] Expect Equal
      * 
      * @tparam First Value
      * @tparam Second Value
@@ -144,7 +171,7 @@ namespace test
     }
 
     /**
-     * @brief Expect Equal With Message
+     * @brief [Static] Expect Equal With Message
      * 
      * @tparam First Value
      * @tparam Second Value
@@ -166,7 +193,7 @@ namespace test
     }
 
     /**
-     * @brief Exit Equal With Message
+     * @brief [Static] Exit Equal With Message
      * 
      * @tparam First Value
      * @tparam Second Value
@@ -181,7 +208,7 @@ namespace test
     }
 
     /**
-     * @brief Message
+     * @brief [Static] Message
      * 
      * Ekrana mesaj çıktısı vermek
      * 
