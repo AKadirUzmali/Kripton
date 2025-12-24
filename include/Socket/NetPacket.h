@@ -8,6 +8,7 @@
 #include <array>
 #include <vector>
 #include <algorithm>
+#include <charconv>
 
 // Namespace: Core::Socket
 namespace core::socket
@@ -19,11 +20,23 @@ namespace core::socket
         static inline constexpr size_t SIZE_PASSWORD = 384;
         static inline constexpr size_t SIZE_USERNAME = 128;
         static inline constexpr size_t SIZE_MESSAGE = 2048;
-        static inline constexpr size_t SIZE_SOCKET_TOTAL = SIZE_PASSWORD + SIZE_USERNAME + SIZE_MESSAGE;
+
+        static inline constexpr size_t PACK_LEN_PASSWORD = 3;
+        static inline constexpr size_t PACK_LEN_USERNAME = 3;
+        static inline constexpr size_t PACK_LEN_MESSAGE = 4;
+
+        static inline constexpr size_t PACK_START_LEN_PASSWORD = 0;
+        static inline constexpr size_t PACK_START_LEN_USERNAME = PACK_START_LEN_PASSWORD + PACK_LEN_PASSWORD;
+        static inline constexpr size_t PACK_START_LEN_MESSAGE = PACK_START_LEN_USERNAME + PACK_LEN_USERNAME;
+
+        static inline constexpr size_t PACK_LEN_TOTAL = PACK_LEN_PASSWORD + PACK_LEN_USERNAME + PACK_LEN_MESSAGE;
+        static inline constexpr size_t PACK_START_LEN_TOTAL = PACK_LEN_PASSWORD + PACK_LEN_USERNAME + PACK_LEN_MESSAGE;
+        static inline constexpr size_t SIZE_SOCKET_TOTAL = PACK_START_LEN_TOTAL + SIZE_PASSWORD + SIZE_USERNAME + SIZE_MESSAGE;
+
         static inline constexpr size_t SIZE_OVER_SOCKET = SIZE_SOCKET_TOTAL + 128;
         static inline constexpr size_t SIZE_UNDER_SOCKET = SIZE_PASSWORD + SIZE_USERNAME;
 
-        static inline constexpr size_t POS_START_PASSWORD = 0;
+        static inline constexpr size_t POS_START_PASSWORD = PACK_START_LEN_TOTAL;
         static inline constexpr size_t POS_END_PASSWORD = POS_START_PASSWORD + SIZE_PASSWORD;
 
         static inline constexpr size_t POS_START_USERNAME = POS_END_PASSWORD;
@@ -38,7 +51,7 @@ namespace core::socket
     using namespace tool;
 
     // Using:
-    using packetarr_t = std::array<u_char, SIZE_SOCKET_TOTAL>;
+    using packetarr_t = std::array<char, SIZE_SOCKET_TOTAL>;
 
     // Class: NetPacket
     class NetPacket
@@ -67,6 +80,10 @@ namespace core::socket
                 const std::u32string&,
                 const std::u32string&
             );
+
+            inline size_t getLengthPassword() noexcept;
+            inline size_t getLengthUsername() noexcept;
+            inline size_t getLengthMessage() noexcept;
 
             inline std::string getPassword() noexcept;
             inline std::string getUsername() noexcept;
@@ -165,6 +182,69 @@ namespace core::socket
     }
 
     /**
+     * @brief [Public] Get Length Password
+     * 
+     * Paket ile gönderilecek şifre verisinin boyutunu
+     * paket içerisinden alıp döndürecek fakat orijinal
+     * verinin değil, paketin baş kısmına yerleştirilmiş
+     * olan veriyi alacak
+     * 
+     * @return size_t
+     */
+    size_t NetPacket::getLengthPassword() noexcept
+    {
+        const char* ptr_first = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_PASSWORD;
+        const char* ptr_last = ptr_first + PACK_LEN_PASSWORD;
+        
+        size_t len = 0;
+
+        std::from_chars(ptr_first, ptr_last, len);
+        return len;
+    }
+
+    /**
+     * @brief [Public] Get Length Username
+     * 
+     * Paket ile gönderilecek kullanıcı adı verisinin boyutunu
+     * paket içerisinden alıp döndürecek fakat orijinal
+     * verinin değil, paketin baş kısmına yerleştirilmiş
+     * olan veriyi alacak
+     * 
+     * @return size_t
+     */
+    size_t NetPacket::getLengthUsername() noexcept
+    {
+        const char* ptr_first = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_USERNAME;
+        const char* ptr_last = ptr_first + PACK_LEN_USERNAME;
+        
+        size_t len = 0;
+
+        std::from_chars(ptr_first, ptr_last, len);
+        return len;
+    }
+
+    /**
+     * @brief [Public] Get Length Message
+     * 
+     * Paket ile gönderilecek mesaj verisinin boyutunu
+     * paket içerisinden alıp döndürecek fakat orijinal
+     * verinin değil, paketin baş kısmına yerleştirilmiş
+     * olan veriyi alacak
+     * 
+     * @return size_t
+     */
+    size_t NetPacket::getLengthMessage() noexcept
+    {
+        const char* ptr_first = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_MESSAGE;
+        const char* ptr_last = ptr_first + PACK_LEN_MESSAGE;
+        
+        size_t len = 0;
+
+        std::from_chars(ptr_first, ptr_last, len);
+        return len;
+    }
+
+    /**
      * @brief [Public] Get Password
      * 
      * Packet verisi içindeki şifre için ayrılmış
@@ -174,14 +254,10 @@ namespace core::socket
      */
     std::string NetPacket::getPassword() noexcept
     {
-        const auto pwd_begin = this->packetdata.begin() + POS_START_PASSWORD;
-        const auto pwd_end = this->packetdata.begin() + POS_END_PASSWORD;
-        const auto pwd_find = std::find(pwd_begin, pwd_end, u_char{0});
+        const size_t len = this->getLengthPassword();
+        const char* data = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_PASSWORD;
 
-        return std::string(
-            reinterpret_cast<const char*>(pwd_begin),
-            reinterpret_cast<const char*>(pwd_find)
-        );
+        return std::string(data, len);
     }
 
     /**
@@ -194,14 +270,10 @@ namespace core::socket
      */
     std::string NetPacket::getUsername() noexcept
     {
-        const auto nick_begin = this->packetdata.begin() + POS_START_USERNAME;
-        const auto nick_end = this->packetdata.begin() + POS_END_USERNAME;
-        const auto nick_find = std::find(nick_begin, nick_end, u_char{0});
+        const size_t len = this->getLengthUsername();
+        const char* data = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_USERNAME;
 
-        return std::string(
-            reinterpret_cast<const char*>(nick_begin),
-            reinterpret_cast<const char*>(nick_find)
-        );
+        return std::string(data, len);
     }
 
     /**
@@ -214,14 +286,10 @@ namespace core::socket
      */
     std::string NetPacket::getMessage() noexcept
     {
-        const auto msg_begin = this->packetdata.begin() + POS_START_MESSAGE;
-        const auto msg_end = this->packetdata.begin() + POS_END_MESSAGE;
-        const auto msg_find = std::find(msg_begin, msg_end, u_char{0});
+        const size_t len = this->getLengthMessage();
+        const char* data = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_MESSAGE;
 
-        return std::string(
-            reinterpret_cast<const char*>(msg_begin),
-            reinterpret_cast<const char*>(msg_find)
-        );
+        return std::string(data, len);
     }
 
     /**
@@ -267,16 +335,36 @@ namespace core::socket
      */
     const packetarr_t& NetPacket::pack(const std::string& _input) noexcept
     {
-        std::fill(this->packetdata.begin(), this->packetdata.end(), u_char{0});
+        std::fill(this->packetdata.begin(), this->packetdata.end(), char{0});
 
         const size_t input_size = _input.size();
+
         const size_t len_passwd = std::min(input_size, SIZE_PASSWORD);
         const size_t len_username = std::min(input_size > POS_START_USERNAME ? input_size - POS_START_USERNAME : 0, SIZE_USERNAME);
         const size_t len_message = std::min(input_size > POS_START_MESSAGE ? input_size - POS_START_MESSAGE : 0, SIZE_MESSAGE);
 
-        std::copy_n(reinterpret_cast<const u_char*>(_input.data()), len_passwd, this->packetdata.begin() + POS_START_PASSWORD);
-        std::copy_n(reinterpret_cast<const u_char*>(_input.data()), len_username, this->packetdata.begin() + POS_START_USERNAME);
-        std::copy_n(reinterpret_cast<const u_char*>(_input.data()), len_message, this->packetdata.begin() + POS_START_MESSAGE);
+        std::snprintf(
+            this->packetdata.data(), 16, "%03zu%03zu%04zu",
+            len_passwd, len_username, len_message
+        );
+
+        std::copy_n(
+            _input.data() + POS_START_PASSWORD,
+            len_passwd,
+            this->packetdata.begin() + POS_START_PASSWORD
+        );
+
+        std::copy_n(
+            _input.data() + POS_START_USERNAME,
+            len_username,
+            this->packetdata.begin() + POS_START_USERNAME
+        );
+
+        std::copy_n(
+            _input.data() + POS_START_MESSAGE,
+            len_message,
+            this->packetdata.begin() + POS_START_MESSAGE
+        );
 
         return this->packetdata;
     }
@@ -317,26 +405,31 @@ namespace core::socket
         const std::string& _msg
     ) noexcept
     {
-        std::fill(this->packetdata.begin(), this->packetdata.end(), u_char{0});
+        std::fill(this->packetdata.begin(), this->packetdata.end(), char{0});
 
         const size_t len_passwd = std::min(_passwd.size(), SIZE_PASSWORD);
         const size_t len_username = std::min(_nickname.size(), SIZE_USERNAME);
         const size_t len_message = std::min(_msg.size(), SIZE_MESSAGE);
 
+        std::snprintf(
+            this->packetdata.data(), 16, "%03zu%03zu%04zu",
+            len_passwd, len_username, len_message
+        );
+
         std::copy_n(
-            reinterpret_cast<const u_char*>(_passwd.data()),
+            _passwd.data() + POS_START_PASSWORD,
             len_passwd,
             this->packetdata.begin() + POS_START_PASSWORD
         );
 
         std::copy_n(
-            reinterpret_cast<const u_char*>(_nickname.data()),
+            _nickname.data() + POS_START_USERNAME,
             len_username,
             this->packetdata.begin() + POS_START_USERNAME
         );
 
         std::copy_n(
-            reinterpret_cast<const u_char*>(_msg.data()),
+            _msg.data() + POS_START_MESSAGE,
             len_message,
             this->packetdata.begin() + POS_START_MESSAGE
         );
