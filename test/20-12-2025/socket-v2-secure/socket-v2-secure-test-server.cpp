@@ -6,6 +6,13 @@
  * Sunucu için başlatma, port ayarlama, dinleme sınırı,
  * dinleme zamanlayıcısı (ms) vb. özellikleri test edip
  * kontrol etmemizi sağlayacak bir test
+ * 
+ * Güncelleme: 24/12/2025 23:47
+ * 
+ * Veri gönderme ve alma yapılıyor ama sorun netpacket kısmında.
+ * Veri şifrelemesi ve göndermesi başarılı ama veriyi alırken yaşanan sorun
+ * veriyi bozuyor ve okunamamasını sağlıyor. Socket sınıfının receive
+ * fonksiyonu tekrardan kontrol edilip test edilmeli
  */
 
 // Include:
@@ -22,9 +29,16 @@ using namespace core::algorithmpool;
 using namespace core::socket;
 
 // Function: Net Handler
-auto NetHandler(NetPacket& _netpacket) noexcept
+auto NetHandler(const datapacket_t& _datapacket) noexcept
 {
-    std::cout << _netpacket.getUsername() << ": " << _netpacket.getMessage() << "\n";
+    std::string u8_passwd = utf::to_utf8(_datapacket.pwd);
+    std::string u8_name = utf::to_utf8(_datapacket.name);
+    std::string u8_msg = utf::to_utf8(_datapacket.msg);
+
+    std::cout << "[DATA] Password: " << u8_passwd <<
+        "\nUsername: " << u8_name <<
+        "\nMessage: " << u8_msg << "\n\n";
+
     return e_server::succ_set_running;
 }
 
@@ -72,6 +86,6 @@ int main(void)
     std::this_thread::sleep_for(std::chrono::seconds(10));
     auto fut_stop = testserver.stop();
 
-    LOG_EXPECT(logger, fut_run.get(), e_server::succ_server_run, U"Server runned");
-    LOG_EXPECT(logger, fut_stop, e_server::succ_server_close, U"Server closed");
+    LOG_EXPECT(logger, fut_run.get(), e_server::succ_server_run, utf::to_utf32("Server runned, code: " + std::to_string(static_cast<size_t>(fut_run.get()))));
+    LOG_EXPECT(logger, fut_stop, e_server::succ_server_close, utf::to_utf32("Server closed, code: " + std::to_string(static_cast<size_t>(fut_stop))));
 }

@@ -1,35 +1,13 @@
 Name: Server Test 22/12/2025
 Os: Linux
 Date: 2025-12-24
-Key: lnx-2025-12-24-01:16:31:021-Server-Test-22/12/2025
+Key: lnx-2025-12-24-23:47:42:618-Server-Test-22/12/2025
 
 [LOGGER START]
-01:16:33:244 ==> [ FAIL ] [ FILE: Server.h | LINE: 730 | FUNC: client_worker ] 127.0.0.1 ip address sent wrong password
-01:16:33:244 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] Password@123!-_üçşğ
-01:16:33:245 ==> [ TEXT ] [ FILE: Server.h | LINE: 733 | FUNC: client_worker ] Unknown problem occured
-01:16:33:245 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] (^
-mZWJmÏİŭ-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key}PA@
-01:16:33:246 ==> [ FAIL ] [ FILE: Server.h | LINE: 712 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:33:246 ==> [ FAIL ] [ FILE: Server.h | LINE: 759 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:33:820 ==> [ FAIL ] [ FILE: Server.h | LINE: 730 | FUNC: client_worker ] 127.0.0.1 ip address sent wrong password
-01:16:33:821 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] Password@123!-_üçşğ
-01:16:33:821 ==> [ TEXT ] [ FILE: Server.h | LINE: 733 | FUNC: client_worker ] Unknown problem occured
-01:16:33:822 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] (^
-mZWJmÏİŭ-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key}PA@
-01:16:33:822 ==> [ FAIL ] [ FILE: Server.h | LINE: 712 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:33:823 ==> [ FAIL ] [ FILE: Server.h | LINE: 759 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:34:211 ==> [ FAIL ] [ FILE: Server.h | LINE: 730 | FUNC: client_worker ] 127.0.0.1 ip address sent wrong password
-01:16:34:211 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] Password@123!-_üçşğ
-01:16:34:212 ==> [ TEXT ] [ FILE: Server.h | LINE: 733 | FUNC: client_worker ] Unknown problem occured
-01:16:34:212 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] (^
-mZWJmÏİŭ-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key}PA@
-01:16:34:212 ==> [ FAIL ] [ FILE: Server.h | LINE: 712 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:34:213 ==> [ FAIL ] [ FILE: Server.h | LINE: 759 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:34:637 ==> [ FAIL ] [ FILE: Server.h | LINE: 730 | FUNC: client_worker ] 127.0.0.1 ip address sent wrong password
-01:16:34:638 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] Password@123!-_üçşğ
-01:16:34:639 ==> [ TEXT ] [ FILE: Server.h | LINE: 733 | FUNC: client_worker ] Unknown problem occured
-01:16:34:639 ==> [ INFO ] [ FILE: Server.h | LINE: 391 | FUNC: send ] (^
-mZWJmÏİŭ-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key-123xor-test-key}PA@
-01:16:34:639 ==> [ FAIL ] [ FILE: Server.h | LINE: 712 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
-01:16:34:640 ==> [ FAIL ] [ FILE: Server.h | LINE: 759 | FUNC: client_worker ] 127.0.0.1 ip address not found in client list
+23:47:45:110 ==> [ INFO ] [ FILE: Socket.h | LINE: 934 | FUNC: receive ] Data received from (127.0.0.1)
+23:47:45:110 ==> [ INFO ] [ FILE: Server.h | LINE: 721 | FUNC: client_worker ] [DATA] Password: H]AESCD]23!-_üçşğ | Username: H^DDVE#ggyâ® | Message: H_A#/h@¤úŉŀ13xo1-tet-key-123
+23:47:45:111 ==> [ INFO ] [ FILE: Socket.h | LINE: 889 | FUNC: send ] Data sent to (127.0.0.1)
+23:47:45:111 ==> [ FAIL ] [ FILE: Server.h | LINE: 710 | FUNC: client_worker ] Ip Address (127.0.0.1) Status Code: 34016
+23:47:45:111 ==> [ INFO ] [ FILE: Server.h | LINE: 721 | FUNC: client_worker ] [DATA] Password:  | Username:  | Message: 
+23:47:45:111 ==> [ FAIL ] [ FILE: Server.h | LINE: 738 | FUNC: client_worker ] Ip Address (127.0.0.1) Status Code: 34015
 [LOGGER END]

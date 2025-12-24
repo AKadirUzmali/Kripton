@@ -17,7 +17,7 @@
  */
 
 // Include:
-#include <Platform/Platform.h>
+#include <Global.h>
 #include <Tool/Utf/Utf.h>
 #include <Algorithm/AlgorithmPool.h>
 #include <Socket/Socket.h>
@@ -29,6 +29,7 @@
 // Using Namespace:
 using namespace tool;
 using namespace core::algorithmpool;
+using namespace core::virbase;
 
 // main
 int main(void)
@@ -47,17 +48,26 @@ int main(void)
     #endif
 
     Xor testxor(U"xor-test-key-123");
+    const socket_port_t portaddr = 9876;
 
-    socket_t sock = ::socket(AF_INET, SOCK_STREAM, 0);
-    if( sock == inv_socket )
+    Socket<Xor> client(
+        std::forward<Xor>(testxor),
+        U"Client-tester",
+        portaddr,
+        true,
+        U"Socket Client Test",
+        utf::to_utf32("../logs/linux-client-test-24122025-" + std::to_string(portaddr) + "-log")
+    );
+
+    if( client.create() != e_socket::succ_socket_create )
         return perror("socket"), 1;
 
     sockaddr_in addr {};
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(9876);
+    addr.sin_port = htons(client.getPort());
     addr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-    if( ::connect(sock, (sockaddr*)&addr, sizeof(addr)) == inv_connect )
+    if( ::connect(client.getSocket(), (sockaddr*)&addr, sizeof(addr)) == inv_connect )
     {
         #if defined __PLATFORM_DOS__
             int err = WSAGetLastError();
@@ -67,47 +77,27 @@ int main(void)
         return perror("connect"), 2;
     }
 
-    const std::u32string pwd = U"Password@123!-_üçşğ";
-    const std::u32string nick = U"Client_Test_Name";
-    const std::u32string msg = U"Hello Server 😁, It's Client! 😌";
+    datapacket_t net_datapacket {
+        .pwd = U"Password@123!-_üçşğ",
+        .name = U"Client_Test_Name",
+        .msg = U"Hello Server 😁, It's Client! 😌"
+    };
 
-    NetPacket netpack(pwd, nick, msg);
+    e_socket cli_status = glo::to_status<e_socket>(client.send(client.getSocket(), net_datapacket));
+    if( cli_status != e_socket::succ_socket_send )
+        return perror("send"), 3;
 
-    std::u32string u32pack;
-    netpack.copy(u32pack);
-    testxor.encrypt(u32pack);
-    netpack.pack(u32pack);
+    std::cout << "[CLIENT] Password: " << utf::to_utf8(net_datapacket.pwd) <<
+        "\nUsername: " << utf::to_utf8(net_datapacket.name) <<
+        "\nMessage: " << utf::to_utf8(net_datapacket.msg) << "\n\n";
 
-    ::send(sock, netpack.get().data(), static_cast<int>(netpack.get().size()), 0);
+    cli_status = glo::to_status<e_socket>(client.receive(client.getSocket(), net_datapacket));
+    if( cli_status != e_socket::succ_socket_recv )
+        return perror("recv"), 4;
 
-    std::array<char, SIZE_SOCKET_TOTAL> buffer {};
-
-    int recv_bytes = ::recv(sock, buffer.data(), static_cast<int>(buffer.size()), 0);
-    if( recv_bytes == 0 )
-    {
-        std::cout << "[RECV] Connection closed by remote host\n";
-        close_socket(sock);
-        return 3;
-    }
-    else if( recv_bytes < 0 )
-    {
-        std::cout << "[RECV] Receive data error\n";
-        close_socket(sock);
-        return 4;
-    }
-
-    std::cout << "[RECV] Got " << recv_bytes << " bytes\n";
-    std::u32string reply = tool::utf::to_utf32(std::string(buffer.data(), static_cast<size_t>(recv_bytes)));
-    testxor.decrypt(reply);
-
-    const std::u32string u32conv = reply;
-    netpack.pack(u32conv);
-
-    std::cout << "Password: " << netpack.getPassword() << "\n"
-        << "Username: " << netpack.getUsername() << "\n"
-        << "Message: " << netpack.getMessage() << "\n";
-
-    close_socket(sock);
+    std::cout << "[CLIENT] Password: " << utf::to_utf8(net_datapacket.pwd) <<
+        "\nUsername: " << utf::to_utf8(net_datapacket.name) <<
+        "\nMessage: " << utf::to_utf8(net_datapacket.msg) << "\n\n";
 
     #if defined __PLATFORM_DOS__
         WSACleanup();
