@@ -177,6 +177,9 @@ namespace core::virbase
             err_send_pack_over_size,
             err_socket_send_packet,
             err_recv_socket_closed,
+            err_packet_corrupt,
+            err_recv_username_empty,
+            err_recv_message_empty,
 
             succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_socket_create,
@@ -861,40 +864,52 @@ namespace core::virbase
         datapacket_t& _rawpacket
     ) noexcept
     {
-        if( _socket == inv_socket )
+        if (_socket == inv_socket)
             return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
-        else if( !_rawpacket.name.size() || !_rawpacket.msg.size() )
+    
+        if (_rawpacket.name.empty() || _rawpacket.msg.empty())
             return glo::to_status<e_socket>(e_socket::err_packet_no_data);
-
+    
         const std::string ipaddr = get_ip(_socket);
-
-        std::cout << "[SEND] Password: " << utf::to_utf8(_rawpacket.pwd)
-            << "\nUsername: " << utf::to_utf8(_rawpacket.name)
-            << "\nMessage: " << utf::to_utf8(_rawpacket.msg) << "\n\n";
-
+    
         this->getAlgorithm().encrypt(_rawpacket.pwd);
         this->getAlgorithm().encrypt(_rawpacket.name);
         this->getAlgorithm().encrypt(_rawpacket.msg);
-
-        NetPacket net_datapacket(_rawpacket.pwd, _rawpacket.name, _rawpacket.msg);
-        const size_t packet_size = net_datapacket.get().size();
-
-        int send_bytes = ::send(_socket, net_datapacket.get().data(), static_cast<int>(packet_size), 0);
-
-        if( send_bytes < 0 ) return glo::to_status<e_socket>(e_socket::err_socket_send_packet);
-        else if( send_bytes == 0 ) return glo::to_status<e_socket>(e_socket::warn_socket_can_be_close);
-        else if( send_bytes < static_cast<int>(packet_size) ) return glo::to_status<e_socket>(e_socket::warn_send_not_all_data);
-
-        if( this->isLog() )
-            LOG_MSG(this->getLogger(),
+    
+        NetPacket net_packet(_rawpacket.pwd, _rawpacket.name, _rawpacket.msg);
+        const auto& buffer = net_packet.get();
+    
+        std::size_t total_sent = 0;
+        const std::size_t total_size = buffer.size();
+    
+        while (total_sent < total_size)
+        {
+            int sent = ::send(
+                _socket,
+                reinterpret_cast<const char*>(buffer.data()) + total_sent,
+                static_cast<int>(total_size - total_sent),
+                0
+            );
+        
+            if (sent < 0)
+                return glo::to_status<e_socket>(e_socket::err_socket_send_packet);
+            else if (sent == 0)
+                return glo::to_status<e_socket>(e_socket::warn_socket_can_be_close);
+        
+            total_sent += sent;
+        }
+    
+        if (this->isLog())
+        {
+            LOG_MSG(
+                this->getLogger(),
                 U"Data sent to (" + utf::to_utf32(ipaddr) + U")",
                 test::e_status::information,
                 false
             );
-
-        return send_bytes ?
-            glo::to_status<e_socket>(e_socket::succ_socket_send) :
-            glo::to_status<e_socket>(e_socket::err_socket_send);
+        }
+    
+        return glo::to_status<e_socket>(e_socket::succ_socket_send);
     }
 
     template<class Algo>
@@ -903,43 +918,70 @@ namespace core::virbase
         datapacket_t& _rawpacket
     ) noexcept
     {
-        if( _socket == inv_socket )
+        if (_socket == inv_socket)
             return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
 
-        const std::string ipaddr = get_ip(_socket);
+        constexpr std::size_t HEADER_LEN = 10;
+        char header[HEADER_LEN] {};
 
-        NetPacket net_datapacket;
-        const size_t packet_size = net_datapacket.get().size();
+        int r = ::recv(_socket, header, HEADER_LEN, MSG_WAITALL);
+        if (r <= 0)
+            return r == 0
+                ? glo::to_status<e_socket>(e_socket::err_recv_socket_closed)
+                : glo::to_status<e_socket>(e_socket::err_socket_recv);
 
-        int recv_bytes = ::recv(_socket, net_datapacket.get().data(), static_cast<int>(packet_size), 0);
-        if( recv_bytes < 0 ) return glo::to_status<e_socket>(e_socket::err_socket_recv);
-        else if( recv_bytes == 0 ) return glo::to_status<e_socket>(e_socket::err_recv_socket_closed);
+        std::size_t len_pwd = 0, len_usr = 0, len_msg = 0;
 
-        _rawpacket.pwd = utf::to_utf32(net_datapacket.getPassword());
-        _rawpacket.name = utf::to_utf32(net_datapacket.getUsername());
-        _rawpacket.msg = utf::to_utf32(net_datapacket.getMessage());
+        if (std::sscanf(header, "%03zu%03zu%04zu", &len_pwd, &len_usr, &len_msg) != 3)
+            return glo::to_status<e_socket>(e_socket::err_packet_corrupt);
+
+        const std::size_t payload_len = len_pwd + len_usr + len_msg;
+        if (payload_len == 0)
+            return glo::to_status<e_socket>(e_socket::err_packet_no_data);
+
+        std::vector<char> payload(payload_len);
+
+        r = ::recv(_socket, payload.data(), static_cast<int>(payload_len), MSG_WAITALL);
+        if (r <= 0)
+            return r == 0
+                ? glo::to_status<e_socket>(e_socket::err_recv_socket_closed)
+                : glo::to_status<e_socket>(e_socket::err_socket_recv);
+
+        std::size_t offset = 0;
+
+        std::string pwd(payload.data() + offset, len_pwd);
+        offset += len_pwd;
+
+        std::string usr(payload.data() + offset, len_usr);
+        offset += len_usr;
+
+        std::string msg(payload.data() + offset, len_msg);
+
+        _rawpacket.pwd  = utf::to_utf32(pwd);
+        _rawpacket.name = utf::to_utf32(usr);
+        _rawpacket.msg  = utf::to_utf32(msg);
 
         this->getAlgorithm().decrypt(_rawpacket.pwd);
         this->getAlgorithm().decrypt(_rawpacket.name);
         this->getAlgorithm().decrypt(_rawpacket.msg);
 
-        std::cout << "[RECV] Password: " << utf::to_utf8(_rawpacket.pwd)
-            << "\nUsername: " << utf::to_utf8(_rawpacket.name)
-            << "\nMessage: " << utf::to_utf8(_rawpacket.msg) << "\n\n";
+        if( _rawpacket.name.empty() )
+            return glo::to_status<e_socket>(e_socket::err_recv_username_empty);
+        else if( _rawpacket.msg.empty() )
+            return glo::to_status<e_socket>(e_socket::err_recv_message_empty);
 
-        // if( !_rawpacket.name.size() || !_rawpacket.msg.size() )
-        //     return glo::to_status<e_socket>(e_socket::err_packet_no_data);
-
-        if( this->isLog() )
-            LOG_MSG(this->getLogger(),
+        if ( this->isLog() )
+        {
+            const std::string ipaddr = get_ip(_socket);
+            LOG_MSG(
+                this->getLogger(),
                 U"Data received from (" + utf::to_utf32(ipaddr) + U")",
                 test::e_status::information,
                 false
             );
+        }
 
-        return recv_bytes ?
-            glo::to_status<e_socket>(e_socket::succ_socket_recv) :
-            glo::to_status<e_socket>(e_socket::err_socket_recv);
+        return glo::to_status<e_socket>(e_socket::succ_socket_recv);
     }
 
     /**
