@@ -93,6 +93,7 @@ namespace core::virbase::socket
             err_client_socket_invalid,
             err_client_send_no_data,
             err_socket_password_changed,
+            err_auth_no_data,
 
             succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_server_bind,
@@ -372,13 +373,13 @@ namespace core::virbase::socket
 
         if( findip == this->clients.end() )
             return glo::to_status<e_server>(e_server::err_socket_not_found_in_list);
-        // else if( !this->getPolicy().isBanned(ipaddr) )
-        //     return glo::to_status<e_server>(e_server::err_socket_banned);
+        else if( this->getPolicy().isBanned(ipaddr) )
+            return glo::to_status<e_server>(e_server::err_socket_banned);
 
         e_socket send_status = glo::to_status<e_socket>(Socket<Algo>::send(_socket, _rawpacket));
         return send_status == e_socket::succ_socket_send ?
             glo::to_status<e_server>(e_server::succ_server_send) :
-            glo::to_status<e_server>(e_server::err_server_send);
+            glo::to_status<e_socket>(send_status);
     }
 
     /**
@@ -408,36 +409,36 @@ namespace core::virbase::socket
 
         if( findip == this->clients.end() )
             return glo::to_status<e_server>(e_server::err_socket_not_found_in_list);
-        // else if( !this->getPolicy().isBanned(ipaddr) )
-        //     return glo::to_status<e_server>(e_server::err_socket_banned);
+        else if( this->getPolicy().isBanned(ipaddr) )
+            return glo::to_status<e_server>(e_server::err_socket_banned);
 
         e_socket recv_status = glo::to_status<e_socket>(Socket<Algo>::receive(_socket, _netpack));
         if( recv_status != e_socket::succ_socket_recv )
-            return glo::to_status<e_server>(e_server::err_server_recv);
+            return glo::to_status<e_socket>(recv_status);
+        else if( !this->getPolicy().isEnablePassword() )
+            return glo::to_status<e_server>(e_server::succ_server_recv);
 
         switch( this->getPolicy().canAuth(_netpack.pwd) )
         {
-            case e_accesspolicy::succ_auto_auth:
             case e_accesspolicy::succ_auth_with_passwd:
-                break;
+                return glo::to_status<e_server>(e_server::succ_server_recv);
             default:
+                if( _netpack.pwd.empty() && _netpack.name.empty() && _netpack.msg.empty() )
+                    return glo::to_status<e_server>(e_server::err_auth_no_data);
+
                 this->clients[ipaddr].try_passwd++;
 
                 if(this->clients[ipaddr].try_passwd == static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
                     return glo::to_status<e_server>(e_server::err_socket_banned);
                 else if( this->clients[ipaddr].try_passwd > static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
                     return glo::to_status<e_server>(e_server::err_socket_potential_attacker);
-
-                if( _netpack.pwd == this->getPolicy().getOldPassword() )
-                {
-                    this->clients[ipaddr].try_passwd++;
+                else if( _netpack.pwd == this->getPolicy().getOldPassword() )
                     return glo::to_status<e_server>(e_server::err_socket_password_changed);
-                }
 
                 return glo::to_status<e_server>(e_server::warn_recv_wrong_password);
         }
 
-        return glo::to_status<e_server>(e_server::succ_server_recv);
+        return glo::to_status<e_server>(e_server::err_recv_server);
     }
 
     /**
@@ -674,45 +675,72 @@ namespace core::virbase::socket
 
         while( this->isRunning() )
         {
-            if( this->getPolicy().isBanned(_ip) && this->isLog() )
+            if( this->getPolicy().isBanned(_ip) )
             {
-                LOG_MSG(this->getLogger(), 
-                    utf::to_utf32(_ip + " ip address banned"),
-                    test::e_status::warning,
-                    false
-                );
+                if( this->isLog() )
+                    LOG_MSG(this->getLogger(), 
+                        utf::to_utf32(_ip + " ip address banned"),
+                        test::e_status::warning,
+                        false
+                    );
 
                 break;
             }
-            else if( std::chrono::steady_clock::now() - last_activity > std::chrono::seconds(this->getTimeout()) && this->isLog() )
+            else if( std::chrono::steady_clock::now() - last_activity > std::chrono::seconds(this->getTimeout()) )
             {
-                LOG_MSG(this->getLogger(), 
-                    utf::to_utf32(_ip + " idle timeout over limit (" + std::to_string(this->getTimeout()) + ")"),
-                    test::e_status::warning,
-                    false
-                );
+                if( this->isLog() )
+                    LOG_MSG(this->getLogger(), 
+                        utf::to_utf32(_ip + " idle timeout over limit (" + std::to_string(this->getTimeout()) + ")"),
+                        test::e_status::warning,
+                        false
+                    );
 
                 break;
             }
 
             datapacket_t net_datapacket;
-
             e_server status_client = glo::to_status<e_server>(this->receive(_soc, net_datapacket));
             if( status_client != e_server::succ_server_recv && !this->isLog() )
                 break;
+
+            if( net_datapacket.name.empty() || net_datapacket.msg.empty() )
+                goto end_of_socket;
 
             switch( status_client )
             {
                 case e_server::succ_server_recv:
                     last_activity = std::chrono::steady_clock::now();
                     break;
-                default:
+                case e_server::err_socket_banned:
+                    this->getPolicy().ban(_ip);
+
                     LOG_MSG(
                         this->getLogger(),
-                        utf::to_utf32("Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                        utf::to_utf32("Ip Address (" + _ip + ") Banned | Status Code: " + std::to_string(static_cast<size_t>(status_client))),
                         test::e_status::error,
                         false
                     );
+                    goto end_of_socket;
+
+                case e_server::err_socket_potential_attacker:
+                    this->getPolicy().ban(_ip);
+
+                    LOG_MSG(
+                        this->getLogger(),
+                        utf::to_utf32("Ip Address (" + _ip + ") Is Potential Attacker | Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                        test::e_status::error,
+                        false
+                    );
+                    goto end_of_socket;
+
+                default:
+                    LOG_MSG(
+                        this->getLogger(),
+                        utf::to_utf32("Data Couldn't Receive From Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                        test::e_status::error,
+                        false
+                    );
+                    goto end_of_socket;
             }
 
             if( this->handler )
@@ -737,7 +765,7 @@ namespace core::virbase::socket
 
                     LOG_MSG(
                         this->getLogger(),
-                        utf::to_utf32("Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                        utf::to_utf32("Data Couldn't Send To Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
                         test::e_status::error,
                         false
                     );
