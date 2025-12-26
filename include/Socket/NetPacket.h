@@ -10,13 +10,15 @@
 #include <algorithm>
 #include <charconv>
 
-// Namespace: Core::Socket
-namespace core::socket
+// Namespace: Core::Virbase::Socket
+namespace core::virbase::socket
 {
     // Namespace: Net Packet
     namespace netpacket
     {
         // Limit:
+        static inline constexpr size_t SIZE_HEADER = 10;
+
         static inline constexpr size_t SIZE_PASSWORD = 384;
         static inline constexpr size_t SIZE_USERNAME = 128;
         static inline constexpr size_t SIZE_MESSAGE = 2048;
@@ -50,416 +52,166 @@ namespace core::socket
     using namespace netpacket;
     using namespace tool;
 
-    // Using:
-    using packetarr_t = std::array<char, SIZE_SOCKET_TOTAL>;
-
     // Class: NetPacket
     class NetPacket
     {
         static_assert(POS_START_PASSWORD + SIZE_PASSWORD <= SIZE_SOCKET_TOTAL);
         static_assert(POS_START_USERNAME + SIZE_USERNAME <= SIZE_SOCKET_TOTAL);
-        static_assert(POS_START_MESSAGE  + SIZE_MESSAGE  <= SIZE_SOCKET_TOTAL);
+        static_assert(POS_START_MESSAGE + SIZE_MESSAGE <= SIZE_SOCKET_TOTAL);
 
         private:
-            packetarr_t packetdata {};
+            std::string password;
+            std::string username;
+            std::string message;
 
-        public:
-            NetPacket() = default;
-            
-            explicit NetPacket(const std::string&);
-            explicit NetPacket(const std::u32string&);
+            std::vector<std::byte> buffer;
 
-            explicit NetPacket(
-                const std::string&,
-                const std::string&,
-                const std::string&
-            );
-
-            explicit NetPacket(
-                const std::u32string&,
-                const std::u32string&,
-                const std::u32string&
-            );
-
-            inline size_t getLengthPassword() noexcept;
-            inline size_t getLengthUsername() noexcept;
-            inline size_t getLengthMessage() noexcept;
-
-            inline std::string getPassword() noexcept;
-            inline std::string getUsername() noexcept;
-            inline std::string getMessage() noexcept;
-
-            inline packetarr_t& get() noexcept;
-
-            void copy(std::u32string&) noexcept;
-
-            const packetarr_t& pack(const std::string&) noexcept;
-            const packetarr_t& pack(const std::u32string&) noexcept;
-
-            const packetarr_t& pack(
-                const std::string&,
-                const std::string&,
-                const std::string&
+            static inline void append_bytes(
+                std::vector<std::byte>& _out,
+                const char* _data,
+                std::size_t _len
             ) noexcept;
 
-            const packetarr_t& pack(
-                const std::u32string&,
-                const std::u32string&,
-                const std::u32string&
+        public:
+            NetPacket(
+                const std::string& _u8_pwd,
+                const std::string& _u8_usrname,
+                const std::string& _u8_msg
+            );
+
+            NetPacket(
+                const std::u32string& _u32_pwd,
+                const std::u32string& _u32_usrname,
+                const std::u32string& _u32_msg
+            );
+
+            bool empty() const noexcept;
+
+            inline const std::vector<std::byte>& get() const noexcept;
+
+            inline const std::string& getPassword() const noexcept;
+            inline const std::string& getUsername() const noexcept;
+            inline const std::string& getMessage() const noexcept;
+
+            const std::vector<std::byte>& pack(
+                const std::string& _u8_pwd,
+                const std::string& _u8_usrname,
+                const std::string& _u8_msg
+            ) noexcept;
+
+            const std::vector<std::byte>& pack(
+                const std::u32string& _u32_pwd,
+                const std::u32string& _u32_usrname,
+                const std::u32string& _u32_msg
             ) noexcept;
     };
 
-    /**
-     * @brief [Public] Constructor
-     * 
-     * Şifre, Kullanıcı Adı ve Mesaj verilerini
-     * tek parçada olarak içeren UTF-8 string nesnesini
-     * alıp netpacket sınıfına uygun olan veriye
-     * çevirip kaydedecek
-     * 
-     * @param std::string& Input
-     */
-    NetPacket::NetPacket(const std::string& _input)
-    {
-        this->pack(_input);
-    }
-
-    /**
-     * @brief [Public] Constructor
-     * 
-     * Şifre, Kullanıcı Adı ve Mesaj verilerini
-     * tek parçada olarak içeren UTF-32 u32string
-     * nesnesini alıp netpacket sınıfına uygun olan
-     * veriye çevirip kaydedecek
-     * 
-     * @param std::u32string& Input
-     */
-    NetPacket::NetPacket(const std::u32string& _input)
-    {
-        this->pack(_input);
-    }
-
-    /**
-     * @brief [Public] Constructor
-     * 
-     * Şifre, kullanıcı adı ve mesaj verilerini
-     * tek parçada olarak içeren UTF-8 string nesnesini
-     * alıp netpacket sınıfına uygun olan veriye
-     * çevirip kaydedecek
-     * 
-     * @param std::string& Password
-     * @param std::string& Nickname
-     * @param std::string& Message
-     */
-    NetPacket::NetPacket(
-        const std::string& _passwd,
-        const std::string& _nickname,
-        const std::string& _msg
-    )
-    {
-        this->pack(_passwd, _nickname, _msg);
-    }
-
-    /**
-     * @brief [Public] Constructor
-     * 
-     * Sınıfın ana yapıcısı UTF-32 türündeki veriyi
-     * herhangi bir işlem yapmadan direk pack fonksiyonu
-     * ile utf-32 olarak işleme alabilecek, kod yazımında
-     * kolaylık olması için tasarlandı
-     * 
-     * @param std::u32string& Password
-     * @param std::u32string& Nickname
-     * @param std::u32string& Message
-     */
-    NetPacket::NetPacket(
-        const std::u32string& _passwd,
-        const std::u32string& _nickname,
-        const std::u32string& _msg
-    )
-    {
-        this->pack(_passwd, _nickname, _msg);
-    }
-
-    /**
-     * @brief [Public] Get Length Password
-     * 
-     * Paket ile gönderilecek şifre verisinin boyutunu
-     * paket içerisinden alıp döndürecek fakat orijinal
-     * verinin değil, paketin baş kısmına yerleştirilmiş
-     * olan veriyi alacak
-     * 
-     * @return size_t
-     */
-    size_t NetPacket::getLengthPassword() noexcept
-    {
-        const char* ptr_first = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_PASSWORD;
-        const char* ptr_last = ptr_first + PACK_LEN_PASSWORD;
-        
-        size_t len = 0;
-
-        std::from_chars(ptr_first, ptr_last, len);
-        return len;
-    }
-
-    /**
-     * @brief [Public] Get Length Username
-     * 
-     * Paket ile gönderilecek kullanıcı adı verisinin boyutunu
-     * paket içerisinden alıp döndürecek fakat orijinal
-     * verinin değil, paketin baş kısmına yerleştirilmiş
-     * olan veriyi alacak
-     * 
-     * @return size_t
-     */
-    size_t NetPacket::getLengthUsername() noexcept
-    {
-        const char* ptr_first = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_USERNAME;
-        const char* ptr_last = ptr_first + PACK_LEN_USERNAME;
-        
-        size_t len = 0;
-
-        std::from_chars(ptr_first, ptr_last, len);
-        return len;
-    }
-
-    /**
-     * @brief [Public] Get Length Message
-     * 
-     * Paket ile gönderilecek mesaj verisinin boyutunu
-     * paket içerisinden alıp döndürecek fakat orijinal
-     * verinin değil, paketin baş kısmına yerleştirilmiş
-     * olan veriyi alacak
-     * 
-     * @return size_t
-     */
-    size_t NetPacket::getLengthMessage() noexcept
-    {
-        const char* ptr_first = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_MESSAGE;
-        const char* ptr_last = ptr_first + PACK_LEN_MESSAGE;
-        
-        size_t len = 0;
-
-        std::from_chars(ptr_first, ptr_last, len);
-        return len;
-    }
-
-    /**
-     * @brief [Public] Get Password
-     * 
-     * Packet verisi içindeki şifre için ayrılmış
-     * alandaki veriyi alıp döndürecek
-     * 
-     * @return std::string
-     */
-    std::string NetPacket::getPassword() noexcept
-    {
-        const size_t len = this->getLengthPassword();
-        const char* data = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_PASSWORD;
-
-        return std::string(data, len);
-    }
-
-    /**
-     * @brief [Public] Get Username
-     * 
-     * Packet verisi içindeki kullanıcı adı için ayrılmış
-     * alandaki veriyi alıp döndürecek
-     * 
-     * @return std::string
-     */
-    std::string NetPacket::getUsername() noexcept
-    {
-        const size_t len = this->getLengthUsername();
-        const char* data = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_USERNAME;
-
-        return std::string(data, len);
-    }
-
-    /**
-     * @brief [Public] Get Message
-     * 
-     * Packet verisi içindeki mesaj için ayrılmış
-     * alandaki veriyi alıp döndürecek
-     * 
-     * @return std::string
-     */
-    std::string NetPacket::getMessage() noexcept
-    {
-        const size_t len = this->getLengthMessage();
-        const char* data = reinterpret_cast<const char*>(this->packetdata.data()) + PACK_START_LEN_MESSAGE;
-
-        return std::string(data, len);
-    }
-
-    /**
-     * @brief [Public] Get
-     * 
-     * Sınıfa ait şifre, kullanıcı adı ve mesaj verilerini
-     * bir array<byte> nesnesi olarak döndürecek fakat bu
-     * bellekte fazlaca boyut kaplaması demek, bunun için
-     * sınıf içinde oluşturulmuş vektör nesnesini döndürecek
-     * bu sayede bellekten tasaruf edilmiş olacak
-     * 
-     * @return packetarr_t&
-     */
-    packetarr_t& NetPacket::get() noexcept
-    {
-        return this->packetdata;
-    }
-
-    /**
-     * @brief [Public] Copy
-     * 
-     * packet verisini string veriye çevirir ve bu veriyi
-     * belirtilmiş utf-32 değişkene kopyalar
-     * 
-     * @param std::u32string& Output
-    */
-    void NetPacket::copy(std::u32string& _output) noexcept
-    {
-        std::string u8data(reinterpret_cast<const char*>(this->packetdata.data()), SIZE_SOCKET_TOTAL);
-        _output = utf::to_utf32(u8data);
-    }
-
-    /**
-     * @brief [Public] Pack
-     * 
-     * Şifre, Kullanıcı Adı ve Mesaj verilerini
-     * tek parçada olarak içeren UTF-8 string nesnesini
-     * alıp netpacket sınıfına uygun olan veriye
-     * çevirip kaydedecek
-     * 
-     * @param std::string& Input
-     * @return const packetarr_t&
-     */
-    const packetarr_t& NetPacket::pack(const std::string& _input) noexcept
-    {
-        std::fill(this->packetdata.begin(), this->packetdata.end(), char{0});
-
-        const size_t input_size = _input.size();
-
-        const size_t len_passwd = std::min(input_size, SIZE_PASSWORD);
-        const size_t len_username = std::min(input_size > POS_START_USERNAME ? input_size - POS_START_USERNAME : 0, SIZE_USERNAME);
-        const size_t len_message = std::min(input_size > POS_START_MESSAGE ? input_size - POS_START_MESSAGE : 0, SIZE_MESSAGE);
-
-        std::snprintf(
-            this->packetdata.data(), 16, "%03zu%03zu%04zu",
-            len_passwd, len_username, len_message
-        );
-
-        std::copy_n(
-            _input.data() + POS_START_PASSWORD,
-            len_passwd,
-            this->packetdata.begin() + POS_START_PASSWORD
-        );
-
-        std::copy_n(
-            _input.data() + POS_START_USERNAME,
-            len_username,
-            this->packetdata.begin() + POS_START_USERNAME
-        );
-
-        std::copy_n(
-            _input.data() + POS_START_MESSAGE,
-            len_message,
-            this->packetdata.begin() + POS_START_MESSAGE
-        );
-
-        return this->packetdata;
-    }
-
-    /**
-     * @brief [Public] Pack
-     * 
-     * Şifre, Kullanıcı Adı ve Mesaj verilerini
-     * tek parçada olarak içeren UTF-32 u32string
-     * nesnesini alıp netpacket sınıfına uygun olan
-     * veriye çevirip kaydedecek
-     * 
-     * @param std::u32string& Input
-     * @return const packetarr_t&
-     */
-    const packetarr_t& NetPacket::pack(const std::u32string& _input) noexcept
-    {
-        std::string u8_input = utf::to_utf8(_input);
-        return this->pack(u8_input);
-    }
-
-    /**
-     * @brief [Public] Pack
-     * 
-     * Şifre, Kullanıcı Adı ve Mesaj verilerini
-     * string referans olarak alıp netpacket sınıfına
-     * uygun olan veriye çevirip kaydedecek
-     * 
-     * @param std::string& Password
-     * @param std::string& Nickname
-     * @param std::string& Message
-     * 
-     * @return const packetarr_t&
-     */
-    const packetarr_t& NetPacket::pack(
-        const std::string& _passwd,
-        const std::string& _nickname,
-        const std::string& _msg
+    void NetPacket::append_bytes(
+        std::vector<std::byte>& _out,
+        const char* _data,
+        std::size_t _len
     ) noexcept
     {
-        std::fill(this->packetdata.begin(), this->packetdata.end(), char{0});
-
-        const size_t len_passwd = std::min(_passwd.size(), SIZE_PASSWORD);
-        const size_t len_username = std::min(_nickname.size(), SIZE_USERNAME);
-        const size_t len_message = std::min(_msg.size(), SIZE_MESSAGE);
-
-        std::snprintf(
-            this->packetdata.data(), 16, "%03zu%03zu%04zu",
-            len_passwd, len_username, len_message
-        );
-
-        std::copy_n(
-            _passwd.data() + POS_START_PASSWORD,
-            len_passwd,
-            this->packetdata.begin() + POS_START_PASSWORD
-        );
-
-        std::copy_n(
-            _nickname.data() + POS_START_USERNAME,
-            len_username,
-            this->packetdata.begin() + POS_START_USERNAME
-        );
-
-        std::copy_n(
-            _msg.data() + POS_START_MESSAGE,
-            len_message,
-            this->packetdata.begin() + POS_START_MESSAGE
-        );
-
-        return this->packetdata;
+        const std::byte* b = reinterpret_cast<const std::byte*>(_data);
+        _out.insert(_out.end(), b, b + _len);
     }
 
-    /**
-     * @brief [Public] Pack
-     * 
-     * Şifre, Kullanıcı Adı ve Mesaj verilerini
-     * u32string referans olarak alıp netpacket sınıfına
-     * uygun olan veriye çevirip sonra paketleyip kaydedecek
-     * 
-     * @param std::u32string& Password
-     * @param std::u32string& Nickname
-     * @param std::u32string& Message
-     * 
-     * @return const packetarr_t&
-     */
-    const packetarr_t& NetPacket::pack(
-        const std::u32string& _passwd,
-        const std::u32string& _nickname,
-        const std::u32string& _msg
+    NetPacket::NetPacket(
+        const std::string& _u8_pwd,
+        const std::string& _u8_usrname,
+        const std::string& _u8_msg
+    )
+    {
+        this->pack(_u8_pwd, _u8_usrname, _u8_msg);
+    }
+
+    NetPacket::NetPacket(
+        const std::u32string& _u32_pwd,
+        const std::u32string& _u32_usrname,
+        const std::u32string& _u32_msg
+    )
+    {
+        this->pack(_u32_pwd, _u32_usrname, _u32_msg);
+    }
+
+    bool NetPacket::empty(
+    ) const noexcept
+    {
+        return this->username.empty() || this->message.empty();
+    }
+
+    const std::vector<std::byte>& NetPacket::get(
+    ) const noexcept
+    {
+        return this->buffer;
+    }
+
+    const std::string& NetPacket::getPassword(
+    ) const noexcept
+    {
+        return this->password;
+    }
+
+    const std::string& NetPacket::getUsername(
+    ) const noexcept
+    {
+        return this->username;
+    }
+
+    const std::string& NetPacket::getMessage(
+    ) const noexcept
+    {
+        return this->message;
+    }
+
+    const std::vector<std::byte>& NetPacket::pack(
+        const std::string& _u8_pwd,
+        const std::string& _u8_usrname,
+        const std::string& _u8_msg
     ) noexcept
     {
-        const std::string tmp_passwd = utf::to_utf8(_passwd);
-        const std::string tmp_nickname = utf::to_utf8(_nickname);
-        const std::string tmp_msg = utf::to_utf8(_msg);
-        
-        return this->pack(tmp_passwd, tmp_nickname, tmp_msg);
+        this->password.clear();
+        this->username.clear();
+        this->message.clear();
+        this->buffer.clear();
+
+        if( _u8_usrname.empty() || _u8_msg.empty() )
+            return this->buffer;
+
+        char header[SIZE_HEADER + 1] {};
+
+        std::snprintf(
+            header,
+            sizeof(header),
+            "%03zu%03zu%04zu",
+            _u8_pwd.size(),
+            _u8_usrname.size(),
+            _u8_msg.size()
+        );
+
+        append_bytes(this->buffer, header, SIZE_HEADER);
+
+        append_bytes(this->buffer, _u8_pwd.data(), _u8_pwd.size());
+        append_bytes(this->buffer, _u8_usrname.data(), _u8_usrname.size());
+        append_bytes(this->buffer, _u8_msg.data(), _u8_msg.size());
+
+        this->password = _u8_pwd;
+        this->username = _u8_usrname;
+        this->message = _u8_msg;
+
+        return this->buffer;
+    }
+
+    const std::vector<std::byte>& NetPacket::pack(
+        const std::u32string& _u32_pwd,
+        const std::u32string& _u32_usrname,
+        const std::u32string& _u32_msg
+    ) noexcept
+    {
+        return this->pack(
+            utf::to_utf8(_u32_pwd),
+            utf::to_utf8(_u32_usrname),
+            utf::to_utf8(_u32_msg)
+        );
     }
 }
