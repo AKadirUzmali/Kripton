@@ -47,7 +47,7 @@ int main(void)
         constexpr int inv_connect = -1;
     #endif
 
-    Xor testxor(U"xor-test-key-123");
+    Xor testxor(U"xor-test-key-123c");
     const socket_port_t portaddr = 9876;
 
     Socket<Xor> client(
@@ -87,9 +87,23 @@ int main(void)
     if( cli_status != e_socket::succ_socket_send )
         return perror("send"), 3;
 
+    cli_status = glo::to_status<e_socket>(client.receive(client.getSocket(), net_datapacket));
+    if( cli_status != e_socket::succ_socket_recv )
+        return perror("recv"), 4;
+
     std::cout << "[CLIENT] Password: " << utf::to_utf8(net_datapacket.pwd) <<
         "\nUsername: " << utf::to_utf8(net_datapacket.name) <<
         "\nMessage: " << utf::to_utf8(net_datapacket.msg) << "\n\n";
+
+    LOG_EXPECT(client.getLogger(), client.getAlgorithm().setKey(U"xor-test-key-123"), algorithm::e_algorithm::succ_set_key, U"Algorithm key changed");
+
+    net_datapacket.pwd = U"Password@123!-_üçşğ";
+    net_datapacket.name = U"Client_Test_Name";
+    net_datapacket.msg = U"Hello Server 😁, It's Client! 😌";
+    
+    cli_status = glo::to_status<e_socket>(client.send(client.getSocket(), net_datapacket));
+    if( cli_status != e_socket::succ_socket_send )
+        return perror("send"), 3;
 
     cli_status = glo::to_status<e_socket>(client.receive(client.getSocket(), net_datapacket));
     if( cli_status != e_socket::succ_socket_recv )

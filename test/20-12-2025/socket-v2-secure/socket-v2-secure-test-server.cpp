@@ -13,6 +13,20 @@
  * Veri şifrelemesi ve göndermesi başarılı ama veriyi alırken yaşanan sorun
  * veriyi bozuyor ve okunamamasını sağlıyor. Socket sınıfının receive
  * fonksiyonu tekrardan kontrol edilip test edilmeli
+ * 
+ * Güncelleme: 27/12/2025 02:44
+ * 
+ * Veri gönderme ve alma kısımı başarılı ve şifre
+ * kontrolü kısımı da başarılı. Tek başarısız olan sunucunun
+ * istemciyi engellemesi kısmı. Engelleme yapmak yerine
+ * şifre yanlış hatası (36006) hatası dönüyor ama ip adresi
+ * tekrar veri göndermeyi deneyebiliyor, bunun önüne geçilmeli
+ * 
+ * Güncelleme 2: 27/12/2025 02:56
+ * 
+ * Client test de şifreleme anahtarını güncellememe rağmen hala veriyi
+ * kabul etmiyor ve hatalı şifre mesajı veriyor, sanırım bir şeyler hala
+ * eski veriyi deniyor
  */
 
 // Include:
@@ -26,7 +40,7 @@
 
 // Using Namespace:
 using namespace core::algorithmpool;
-using namespace core::socket;
+using namespace core::virbase::socket;
 
 // Function: Net Handler
 auto NetHandler(const datapacket_t& _datapacket) noexcept
@@ -73,6 +87,14 @@ int main(void)
     LOG_MSG(logger, U"Printing Server Socket informations...", test::e_status::information, true);
 
     testserver.print();
+
+    LOG_EXPECT(logger, testserver.getPolicy().isEnablePassword(), false, U"Password require is disabled");
+    LOG_EXPECT(logger, testserver.getPolicy().enablePassword(true), e_accesspolicy::succ_enable_password, U"Password require is enabled");
+
+    if( !testserver.getPolicy().isEnablePassword() ) {
+        LOG_MSG(logger, U"Password reqiure is not enable, server closing...", test::e_status::information, true);
+        std::exit(EXIT_FAILURE);
+    }
 
     LOG_EXPECT(logger, testserver.getPolicy().ban("127.0.0.1"), e_accesspolicy::succ_ip_addr_banned, U"Ip address banned");
     LOG_EXPECT(logger, testserver.getPolicy().canAllow("127.0.0.1"), e_accesspolicy::err_not_allow_ip, U"Ip address not allowing");

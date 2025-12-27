@@ -1,13 +1,13 @@
 Name: Server Test 22/12/2025
 Os: Linux
-Date: 2025-12-24
-Key: lnx-2025-12-24-23:47:42:618-Server-Test-22/12/2025
+Date: 2025-12-27
+Key: lnx-2025-12-27-02:54:01:801-Server-Test-22/12/2025
 
 [LOGGER START]
-23:47:45:110 ==> [ INFO ] [ FILE: Socket.h | LINE: 934 | FUNC: receive ] Data received from (127.0.0.1)
-23:47:45:110 ==> [ INFO ] [ FILE: Server.h | LINE: 721 | FUNC: client_worker ] [DATA] Password: H]AESCD]23!-_üçşğ | Username: H^DDVE#ggyâ® | Message: H_A#/h@¤úŉŀ13xo1-tet-key-123
-23:47:45:111 ==> [ INFO ] [ FILE: Socket.h | LINE: 889 | FUNC: send ] Data sent to (127.0.0.1)
-23:47:45:111 ==> [ FAIL ] [ FILE: Server.h | LINE: 710 | FUNC: client_worker ] Ip Address (127.0.0.1) Status Code: 34016
-23:47:45:111 ==> [ INFO ] [ FILE: Server.h | LINE: 721 | FUNC: client_worker ] [DATA] Password:  | Username:  | Message: 
-23:47:45:111 ==> [ FAIL ] [ FILE: Server.h | LINE: 738 | FUNC: client_worker ] Ip Address (127.0.0.1) Status Code: 34015
+02:54:05:464 ==> [ INFO ] [ FILE: Socket.h | LINE: 976 | FUNC: receive ] Data received from (127.0.0.1)
+02:54:05:464 ==> [ FAIL ] [ FILE: Server.h | LINE: 737 | FUNC: client_worker ] Data Couldn't Receive From Ip Address (127.0.0.1) Status Code: 36006
+02:54:06:239 ==> [ INFO ] [ FILE: Socket.h | LINE: 976 | FUNC: receive ] Data received from (127.0.0.1)
+02:54:06:239 ==> [ FAIL ] [ FILE: Server.h | LINE: 737 | FUNC: client_worker ] Data Couldn't Receive From Ip Address (127.0.0.1) Status Code: 36006
+02:54:07:007 ==> [ INFO ] [ FILE: Socket.h | LINE: 976 | FUNC: receive ] Data received from (127.0.0.1)
+02:54:07:007 ==> [ FAIL ] [ FILE: Server.h | LINE: 737 | FUNC: client_worker ] Data Couldn't Receive From Ip Address (127.0.0.1) Status Code: 36006
 [LOGGER END]

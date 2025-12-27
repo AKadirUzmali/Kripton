@@ -1,17 +1,19 @@
 Name: Server Socket
 Os: Linux
-Date: 2025-12-24
-Key: lnx-2025-12-24-23:47:42:618-Server-Socket
+Date: 2025-12-27
+Key: lnx-2025-12-27-02:54:01:800-Server-Socket
 
 [LOGGER START]
-23:47:42:618 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 62 | FUNC: main ] Server Password Setted
-23:47:42:618 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 63 | FUNC: main ] Password@123!-_üçşğ
-23:47:42:618 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 65 | FUNC: main ] Server has no error
-23:47:42:618 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 66 | FUNC: main ] Printing Server Socket informations...
-23:47:42:618 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 70 | FUNC: main ] Ip address banned
-23:47:42:618 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 71 | FUNC: main ] Ip address not allowing
-23:47:44:618 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 74 | FUNC: main ] Ip address ban removed
-23:47:44:619 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 76 | FUNC: main ] Running Server Socket for 10 seconds...
-23:47:54:619 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 82 | FUNC: main ] Server runned, code: 35004
-23:47:54:619 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 83 | FUNC: main ] Server closed, code: 35007
+02:54:01:801 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 77 | FUNC: main ] Server Password Setted
+02:54:01:801 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 78 | FUNC: main ] Password@123!-_üçşğ
+02:54:01:801 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 80 | FUNC: main ] Server has no error
+02:54:01:801 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 81 | FUNC: main ] Printing Server Socket informations...
+02:54:01:801 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 85 | FUNC: main ] Password require is disabled
+02:54:01:801 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 86 | FUNC: main ] Password require is enabled
+02:54:01:801 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 93 | FUNC: main ] Ip address banned
+02:54:01:802 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 94 | FUNC: main ] Ip address not allowing
+02:54:03:802 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 97 | FUNC: main ] Ip address ban removed
+02:54:03:802 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 99 | FUNC: main ] Running Server Socket for 10 seconds...
+02:54:13:802 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 105 | FUNC: main ] Server runned, code: 35004
+02:54:13:802 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 106 | FUNC: main ] Server closed, code: 35007
 [LOGGER END]
