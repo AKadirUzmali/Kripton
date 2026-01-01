@@ -82,7 +82,7 @@ namespace core::virbase::socket
         static inline constexpr max_conn_t MAX_CONNECTION = 8192;
 
         static inline constexpr max_conn_t MIN_SAME_IP_COUNT = 1;
-        static inline constexpr max_conn_t DEF_SAME_IP_COUNT = 2;
+        static inline constexpr max_conn_t DEF_SAME_IP_COUNT = MIN_SAME_IP_COUNT;
         static inline constexpr max_conn_t MAX_SAME_IP_COUNT = 2;
 
         static inline constexpr size_t MIN_LEN_PASSWORD = 4;
@@ -304,7 +304,7 @@ namespace core::virbase::socket
      */
     max_conn_t AccessPolicy::getMaxConnection() const noexcept
     {
-        return this->max_connection;
+        return this->max_connection.load();
     }
 
     /**
