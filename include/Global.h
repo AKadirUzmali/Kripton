@@ -38,7 +38,8 @@ namespace glo
         crypto = 20000,
         socket = 30000,
         server = socket + static_cast<status_t>(e_status::_end),
-        client = server + static_cast<status_t>(e_status::_end)
+        client = server + static_cast<status_t>(e_status::_end),
+        policy = 40000
     };
 
     // Operator:
