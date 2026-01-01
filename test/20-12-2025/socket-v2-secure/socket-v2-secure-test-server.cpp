@@ -65,29 +65,35 @@ int main(void)
         SetConsoleCP(CP_UTF8);
     #endif
 
-    Logger logger(U"Server Socket", U"../logs/server_socket");
+    const std::u32string logpath = utf::to_utf32("../logs/" + utf::to_lower(platform::name()) + "/");
+
+    Logger logger(U"Server Socket", logpath + U"server_socket");
     ThreadPool tpool;
 
     const socket_port_t portaddr = 9876;
 
-    Server<Xor> testserver(
-        Xor(U"xor-test-key-123"),
+    using CryptT = Xor;
+    CryptT crypto(U"sxor-test-key-123s");
+
+    Server<CryptT> testserver(
+        crypto,
         tpool,
         NetHandler,
         portaddr,
         false, true,
         U"Server Test 22/12/2025",
-        utf::to_utf32("../logs/linux-server-test-22122025-" + std::to_string(portaddr) + "-log")
+        logpath + utf::to_utf32(utf::to_lower(platform::name()) + "-server-test-22122025-" + std::to_string(portaddr) + "-log")
     );
 
     LOG_EXPECT(logger, testserver.getPolicy().setPassword(U"Password@123!-_üçşğ"), e_accesspolicy::succ_set_password, U"Server Password Setted");
     LOG_MSG(logger, testserver.getPolicy().getPassword(), test::e_status::information, true);
+    LOG_EXPECT(logger, testserver.getPolicy().setPassword(U"Password@123!-_üçşğ_test"), e_accesspolicy::succ_set_password, U"Server New Password Setted");
+
+    LOG_MSG(logger, U"Server Algorithm Key: " + testserver.getAlgorithm().getKey(), test::e_status::information, true);
+    LOG_EXPECT(logger, testserver.getAlgorithm().setKey(U"xor-test-key-123"), e_algorithm::succ_set_key, U"Server Algorithm Key Changed");
+    LOG_MSG(logger, U"Server Algorithm Key After Set: " + testserver.getAlgorithm().getKey(), test::e_status::information, true);
 
     LOG_EXPECT(logger, testserver.hasError(), false, U"Server has no error");
-    LOG_MSG(logger, U"Printing Server Socket informations...", test::e_status::information, true);
-
-    testserver.print();
-
     LOG_EXPECT(logger, testserver.getPolicy().isEnablePassword(), false, U"Password require is disabled");
     LOG_EXPECT(logger, testserver.getPolicy().enablePassword(true), e_accesspolicy::succ_enable_password, U"Password require is enabled");
 
@@ -102,10 +108,10 @@ int main(void)
     std::this_thread::sleep_for(std::chrono::seconds(2));
     LOG_EXPECT(logger, testserver.getPolicy().unban("127.0.0.1"), e_accesspolicy::succ_ip_addr_ban_removed, U"Ip address ban removed");
 
-    LOG_MSG(logger, U"Running Server Socket for 10 seconds...", test::e_status::information, true);
+    LOG_MSG(logger, U"Running Server Socket for 30 seconds...", test::e_status::information, true);
     auto fut_run = testserver.run();
 
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    std::this_thread::sleep_for(std::chrono::seconds(30));
     auto fut_stop = testserver.stop();
 
     LOG_EXPECT(logger, fut_run.get(), e_server::succ_server_run, utf::to_utf32("Server runned, code: " + std::to_string(static_cast<size_t>(fut_run.get()))));
