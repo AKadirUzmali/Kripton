@@ -17,6 +17,7 @@
 #include <fstream>
 #include <mutex>
 
+#include <Global.h>
 #include <Tool/Utf/Utf.h>
 
 // Using Namespace:
@@ -127,7 +128,9 @@ namespace core
         // Enum Class: File Code
         enum class e_file : size_t
         {
-            err = 1000,
+            unknwn = static_cast<glo::status_t>(glo::e_status_t::file),
+
+            err = unknwn + static_cast<glo::status_t>(glo::e_status::err),
             err_not_opened,
             err_not_closed,
             err_no_status,
@@ -159,7 +162,7 @@ namespace core
             err_already_has_file,
             err_not_created,
 
-            succ = 2000,
+            succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_opened,
             succ_closed,
             succ_no_error,
@@ -182,7 +185,7 @@ namespace core
             succ_print,
             succ_create,
 
-            warn = 3000,
+            warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn),
             warn_still_open,
             warn_already_close,
         };
