@@ -14,6 +14,7 @@
 #include <cstdint>
 #include <string>
 
+#include <Global.h>
 #include <Flag/Flag.h>
 
 // Namespace: Core::VirtualBase
@@ -25,7 +26,9 @@ namespace core::virbase
         // Enum Class: Algorithm Code
         enum class e_algorithm : size_t
         {
-            err = 1000,
+            unknwn = static_cast<glo::status_t>(glo::e_status_t::crypto),
+
+            err = unknwn + static_cast<glo::status_t>(glo::e_status::err),
             err_key_length_invalid,
             err_name_length_invalid,
             err_flag_notchanged,
@@ -34,7 +37,7 @@ namespace core::virbase
             err_flag_invalid_name,
             err_flag_invalid_key,
 
-            succ = 2000,
+            succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_flag_default,
             succ_flag_changed,
             succ_set_key,
@@ -42,7 +45,7 @@ namespace core::virbase
             succ_flag_valid_name,
             succ_flag_valid_key,
 
-            warn = 3000
+            warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn)
         };
 
         // Flag: Algorithm Status
@@ -307,14 +310,12 @@ e_algorithm Algorithm::setKey(const std::u32string& _key) noexcept
         return e_algorithm::err_key_length_invalid;
 
     // anahtarı kopyalayıp değiştirsin
-    this->key = std::move(_key);
+    this->key = _key;
 
     // eğer hata varsa düzeltsin
     this->flag.set(flag_algo_valid_key);
-
-    return (this->key == _key && this->key.length() == _key.length()) ?
-        e_algorithm::succ_set_key :
-        e_algorithm::err_set_key_fail;
+    
+    return e_algorithm::succ_set_key;
 }
 
 /**
