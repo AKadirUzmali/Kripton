@@ -62,7 +62,9 @@ namespace test
         static inline constexpr color color_reset      = color_white;
         static inline constexpr color color_pass       = color_green;
         static inline constexpr color color_fail       = color_red;
+        static inline constexpr color color_warn       = color_yellow;
         static inline constexpr color color_info       = color_blue;
+        static inline constexpr color color_text       = color_reset;
     // Color: Linux & Unix
     #elif defined(__linux__) || defined(__unix__) || defined(__unix)
         using color = std::string_view;
@@ -79,7 +81,9 @@ namespace test
         static inline constexpr color color_reset      = "\033[0m";
         static inline constexpr color color_pass       = color_green;
         static inline constexpr color color_fail       = color_red;
+        static inline constexpr color color_warn       = color_yellow;
         static inline constexpr color color_info       = color_blue;
+        static inline constexpr color color_text       = color_reset;
     #endif
 
     /**
