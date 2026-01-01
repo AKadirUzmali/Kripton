@@ -1,0 +1,35 @@
+Name: Server Test 22/12/2025
+Os: Windows
+Date: 2026-01-02
+Key: win-2026-01-02-00:02:59:345-Server-Test-22/12/2025
+
+[LOGGER START]
+00:03:03:241 ==> [ INFO ] [ FILE: Server.h | LINE: 686 | FUNC: loop ] New Client Connected: 127.0.0.1 | Current Connections: 1
+00:03:03:241 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:03:242 ==> [ INFO ] [ FILE: Server.h | LINE: 802 | FUNC: client_worker ] [DATA] Password: Password@123!-_üçşğ_test | Username: Client_Test_Name | Message: Hello Server 😁, It's Client! 😌 | From Ip: 127.0.0.1 | Saved Username: Client_Test_Name | Same User Count: 0 | Try Passwd Count: 0
+00:03:03:242 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:03:244 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:03:244 ==> [ TEXT ] [ FILE: Server.h | LINE: 456 | FUNC: receive ] Client (127.0.0.1) sent wrong password attempt #1
+00:03:03:245 ==> [ FAIL ] [ FILE: Server.h | LINE: 790 | FUNC: client_worker ] Ip Address (127.0.0.1) | Status Code: 34024
+00:03:03:755 ==> [ INFO ] [ FILE: Server.h | LINE: 686 | FUNC: loop ] New Client Connected: 127.0.0.1 | Current Connections: 1
+00:03:03:755 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:03:757 ==> [ INFO ] [ FILE: Server.h | LINE: 802 | FUNC: client_worker ] [DATA] Password: Password@123!-_üçşğ_test | Username: Client_Test_Name | Message: Hello Server 😁, It's Client! 😌 | From Ip: 127.0.0.1 | Saved Username: Client_Test_Name | Same User Count: 0 | Try Passwd Count: 0
+00:03:03:757 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:03:758 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:03:758 ==> [ TEXT ] [ FILE: Server.h | LINE: 456 | FUNC: receive ] Client (127.0.0.1) sent wrong password attempt #1
+00:03:03:758 ==> [ FAIL ] [ FILE: Server.h | LINE: 790 | FUNC: client_worker ] Ip Address (127.0.0.1) | Status Code: 34024
+00:03:16:892 ==> [ INFO ] [ FILE: Server.h | LINE: 686 | FUNC: loop ] New Client Connected: 127.0.0.1 | Current Connections: 1
+00:03:16:892 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:16:893 ==> [ INFO ] [ FILE: Server.h | LINE: 802 | FUNC: client_worker ] [DATA] Password: Password@123!-_üçşğ_test | Username: Client_Test_Name | Message: Hello Server 😁, It's Client! 😌 | From Ip: 127.0.0.1 | Saved Username: Client_Test_Name | Same User Count: 0 | Try Passwd Count: 0
+00:03:16:893 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:16:894 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:16:895 ==> [ TEXT ] [ FILE: Server.h | LINE: 456 | FUNC: receive ] Client (127.0.0.1) sent wrong password attempt #1
+00:03:16:895 ==> [ FAIL ] [ FILE: Server.h | LINE: 790 | FUNC: client_worker ] Ip Address (127.0.0.1) | Status Code: 34024
+00:03:17:267 ==> [ INFO ] [ FILE: Server.h | LINE: 686 | FUNC: loop ] New Client Connected: 127.0.0.1 | Current Connections: 1
+00:03:17:267 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:17:268 ==> [ INFO ] [ FILE: Server.h | LINE: 802 | FUNC: client_worker ] [DATA] Password: Password@123!-_üçşğ_test | Username: Client_Test_Name | Message: Hello Server 😁, It's Client! 😌 | From Ip: 127.0.0.1 | Saved Username: Client_Test_Name | Same User Count: 0 | Try Passwd Count: 0
+00:03:17:269 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:17:270 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:17:270 ==> [ TEXT ] [ FILE: Server.h | LINE: 456 | FUNC: receive ] Client (127.0.0.1) sent wrong password attempt #1
+00:03:17:270 ==> [ FAIL ] [ FILE: Server.h | LINE: 790 | FUNC: client_worker ] Ip Address (127.0.0.1) | Status Code: 34024
+[LOGGER END]
