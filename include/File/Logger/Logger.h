@@ -25,6 +25,7 @@
  */
 
 // Include:
+#include <Global.h>
 #include <File/File.h>
 #include <Tool/Utf/Utf.h>
 #include <Platform/Platform.h>
@@ -52,7 +53,9 @@ namespace subcore
         // Enum Class: e_log
         enum class e_log : int
         {
-            err = 1000,
+            unknwn = static_cast<glo::status_t>(glo::e_status_t::logger),
+
+            err = unknwn + static_cast<glo::status_t>(glo::e_status::err),
             err_log_not_opened,
             err_not_set_key,
             err_name_empty,
@@ -66,21 +69,23 @@ namespace subcore
             err_log_add_fail,
             err_log_add_other,
 
-            succ = 2000,
+            succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_logged,
             succ_set_key,
             succ_set_name,
             succ_set_path,
             succ_end,
 
-            warn = 3000,
+            warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn),
             warn_log_already_exists
         };
 
         // Static Constexpr
         static inline constexpr size_t code_pass = 0;
         static inline constexpr size_t code_fail = 1;
-        static inline constexpr size_t code_other = 2;
+        static inline constexpr size_t code_warn = 2;
+        static inline constexpr size_t code_info = 3;
+        static inline constexpr size_t code_etc = 4;
 
         // Function: Short Path
         [[maybe_unused]]
@@ -132,11 +137,15 @@ namespace subcore
             std::string key;
             std::u32string name;
 
-            std::array<std::atomic<size_t>, 3> tests {{
+            std::array<std::atomic<size_t>, code_etc + 1> tests {{
+                ATOMIC_VAR_INIT(0),
+                ATOMIC_VAR_INIT(0),
                 ATOMIC_VAR_INIT(0),
                 ATOMIC_VAR_INIT(0),
                 ATOMIC_VAR_INIT(0)
             }};
+
+            std::atomic<size_t> total_test { ATOMIC_VAR_INIT(0) };
 
             e_log setKey() noexcept;
             e_log setName(const std::u32string&) noexcept;
@@ -215,6 +224,7 @@ Logger::Logger(
  */
 Logger::~Logger() noexcept
 {
+    this->print_test_result();
     this->end();
 }
 
@@ -335,11 +345,17 @@ bool Logger::inc(test::e_status _status) noexcept
         case test::e_status::error:
             this->tests.at(logger::code_fail)++;
             break;
+        case test::e_status::warning:
+            this->tests.at(logger::code_warn)++;
+            break;
         case test::e_status::information:
+            this->tests.at(logger::code_info)++;
+            break;
         default:
-            this->tests.at(logger::code_other)++;
+            this->tests.at(logger::code_etc)++;
     }
 
+    this->total_test++;
     return true;
 }
 
@@ -388,7 +404,7 @@ e_log Logger::log(_Ltype _first, _Rtype _second, const std::u32string& _logtext)
         return e_log::err_log_not_opened;
 
     bool status = test::expect_eq(_first, _second, utf::to_utf8(_logtext));
-    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + (status ? U"[ PASS ] " : U"[ FAIL ] ") + _logtext + U"\n");
+    this->write(utf::to_utf32(platform::current_time() + " ==> " + (status ? "[ PASS ] " : "[ FAIL ] ")) + _logtext + U"\n");
 
     return e_log::succ_logged;
 }
@@ -511,7 +527,11 @@ void Logger::print_test_result() noexcept
 {
     test::reset_color();
     std::cout << "\n==================== LOGGER ====================\n";
-    std::cout << std::setw(20) << std::left << "Total Test: " << this->tests.at(logger::code_pass).load() + this->tests.at(logger::code_fail).load() << "\n";
+
+    std::cout << std::setw(20) << std::left << "File Name: " << utf::to_utf8(this->name) << "\n";
+    std::cout << std::setw(20) << std::left << "File Key: " << this->key << "\n\n";
+    
+    std::cout << std::setw(20) << std::left << "Total Test: " << this->total_test.load() << "\n";
 
     test::set_color(test::color_pass);
     std::cout << std::setw(20) << std::left << "Pass: " << this->tests.at(logger::code_pass).load() << "\n";
@@ -519,11 +539,16 @@ void Logger::print_test_result() noexcept
     test::set_color(test::color_fail);
     std::cout << std::setw(20) << std::left << "Fail: " << this->tests.at(logger::code_fail).load() << "\n";
 
+    test::set_color(test::color_warn);
+    std::cout << std::setw(20) << std::left << "Warn: " << this->tests.at(logger::code_warn).load() << "\n";
+
     test::set_color(test::color_info);
-    std::cout << std::setw(20) << std::left << "Other: " << this->tests.at(logger::code_other).load() << "\n";
+    std::cout << std::setw(20) << std::left << "Info: " << this->tests.at(logger::code_info).load() << "\n";
+
+    test::set_color(test::color_text);
+    std::cout << std::setw(20) << std::left << "Text: " << this->tests.at(logger::code_etc).load() << "\n";
 
     test::reset_color();
-    std::cout << "\n================================================\n";
 }
 
 /**
