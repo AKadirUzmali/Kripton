@@ -304,12 +304,22 @@ namespace core::virbase
             if( _sock == inv_socket )
                 return false;
 
-            timeval timeval {};
-            timeval.tv_sec = _sec;
-            timeval.tv_usec = 0;
+            #ifdef __PLATFORM_POSIX__
+                timeval timeval {};
+                timeval.tv_sec = static_cast<time_t>(_sec);
+                timeval.tv_usec = 0;
 
-            ::setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, &timeval, sizeof(timeval));
-            ::setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, &timeval, sizeof(timeval));
+                ::setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, &timeval, sizeof(timeval));
+                ::setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, &timeval, sizeof(timeval));
+            #elif defined(__PLATFORM_DOS__)
+                DWORD timeout_ms = static_cast<DWORD>(_sec) * 1000;
+
+                if( ::setsockopt(_sock, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeout_ms), sizeof(timeout_ms)) != 0 )
+                    return false;
+
+                if( ::setsockopt(_sock, SOL_SOCKET, SO_SNDTIMEO, reinterpret_cast<const char*>(&timeout_ms), sizeof(timeout_ms)) != 0 )
+                    return false;
+            #endif
 
             return true;
         }
@@ -326,6 +336,14 @@ namespace core::virbase
         uint16_t same_user_count { 0 };
     } UserPacket_t;
 
+    // Struct: SocketCtx
+    typedef struct SocketCtx_t
+    {
+        socket_t sock;
+        std::string ip;
+        UserPacket_t user;
+    } SocketCtx_t;
+
     // Class: Socket
     template<class Algo>
     class Socket : virtual public handler::CrashBase
@@ -333,7 +351,7 @@ namespace core::virbase
         static_assert(std::is_base_of<Algorithm, Algo>::value, "<Algo> Has To Be At The Base Of The <Algorithm> Class");
 
         private:
-            Algo algo;
+            Algo& algo;
             Flag flag;
             AccessPolicy policy;
 
@@ -361,7 +379,7 @@ namespace core::virbase
         public:
             explicit Socket
             (
-                Algo&& _algorithm,
+                Algo& _algorithm,
                 const std::u32string& _nickname,
                 const socket_port_t _port = inv_port,
                 const bool _log = false,
@@ -427,7 +445,7 @@ namespace core::virbase
     template<class Algo>
     Socket<Algo>::Socket
     (
-        Algo&& _algorithm,
+        Algo& _algorithm,
         const std::u32string& _nickname,
         const socket_port_t _port,
         const bool _log,
@@ -436,7 +454,8 @@ namespace core::virbase
         const buffer_size_t _buffsize,
         const wait_time_t _timeoutsec
     ) noexcept
-    :   algo(std::forward<Algo>(_algorithm)),
+    :
+        algo(_algorithm),
         flag(flag_socket_free),
         sock(inv_socket),
         port(inv_port),
@@ -445,7 +464,7 @@ namespace core::virbase
         timeout(_timeoutsec)
     {
         #if defined __PLATFORM_DOS__
-            if( !Socket::wsa_started.load() && !total_socket )
+            if( !Socket::wsa_started.load() && !total_socket && ::WSAGetLastError() != WSANOTINITIALISED )
             {
                 WSAData wsadata;
                 if( ::WSAStartup(MAKEWORD(2,2), &wsadata) != 0 )
@@ -891,10 +910,8 @@ namespace core::virbase
                 0
             );
         
-            if (sent < 0)
-                return glo::to_status<e_socket>(e_socket::err_socket_send_packet);
-            else if (sent == 0)
-                return glo::to_status<e_socket>(e_socket::warn_socket_can_be_close);
+            if (sent < 0) return glo::to_status<e_socket>(e_socket::err_socket_send_packet);
+            else if (sent == 0) return glo::to_status<e_socket>(e_socket::warn_socket_can_be_close);
         
             total_sent += sent;
         }
@@ -921,18 +938,16 @@ namespace core::virbase
         if (_socket == inv_socket)
             return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
 
-        constexpr std::size_t HEADER_LEN = 10;
+        constexpr uint16_t HEADER_LEN = 10;
         char header[HEADER_LEN] {};
 
         int r = ::recv(_socket, header, HEADER_LEN, MSG_WAITALL);
-        if (r <= 0)
-            return r == 0
-                ? glo::to_status<e_socket>(e_socket::err_recv_socket_closed)
-                : glo::to_status<e_socket>(e_socket::err_socket_recv);
+        if (r <= 0) return glo::to_status<e_socket>(e_socket::err_socket_recv);
+        else if( r == 0 ) return glo::to_status<e_socket>(e_socket::err_recv_socket_closed);
 
-        std::size_t len_pwd = 0, len_usr = 0, len_msg = 0;
+        uint16_t len_pwd = 0, len_usr = 0, len_msg = 0;
 
-        if (std::sscanf(header, "%03zu%03zu%04zu", &len_pwd, &len_usr, &len_msg) != 3)
+        if (std::sscanf(header, "%03hu%03hu%04hu", &len_pwd, &len_usr, &len_msg) != 3)
             return glo::to_status<e_socket>(e_socket::err_packet_corrupt);
 
         const std::size_t payload_len = len_pwd + len_usr + len_msg;
@@ -942,10 +957,8 @@ namespace core::virbase
         std::vector<char> payload(payload_len);
 
         r = ::recv(_socket, payload.data(), static_cast<int>(payload_len), MSG_WAITALL);
-        if (r <= 0)
-            return r == 0
-                ? glo::to_status<e_socket>(e_socket::err_recv_socket_closed)
-                : glo::to_status<e_socket>(e_socket::err_socket_recv);
+        if (r <= 0) return glo::to_status<e_socket>(e_socket::err_socket_recv);
+        else if( r == 0 ) return glo::to_status<e_socket>(e_socket::err_recv_socket_closed);
 
         std::size_t offset = 0;
 
