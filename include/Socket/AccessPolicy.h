@@ -36,7 +36,9 @@ namespace core::virbase::socket
         // Enum Class: Access Policy Code
         enum class e_accesspolicy
         {
-            err = 1000,
+            unknwn = static_cast<glo::status_t>(glo::e_status_t::policy),
+
+            err = unknwn + static_cast<glo::status_t>(glo::e_status::err),
             err_enable_password,
             err_max_conn_under_limit,
             err_max_conn_over_limit,
@@ -51,8 +53,11 @@ namespace core::virbase::socket
             err_set_nickname_len_under_limit,
             err_set_nickname_len_over_limit,
             err_set_nickname_fail,
+            err_max_same_ip_under_limit,
+            err_max_same_ip_over_limit,
+            err_set_max_same_ip,
 
-            succ = 2000,
+            succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_enable_password,
             succ_set_max_conn,
             succ_set_password,
@@ -62,8 +67,9 @@ namespace core::virbase::socket
             succ_ip_addr_banned,
             succ_ip_addr_ban_removed,
             succ_set_nickname,
+            succ_set_max_same_ip,
 
-            warn = 3000,
+            warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn),
             warn_enable_password_same_value,
             warn_ip_already_banned,
             warn_ip_not_banned,
@@ -74,6 +80,10 @@ namespace core::virbase::socket
         static inline constexpr max_conn_t MIN_CONNECTION = 1;
         static inline constexpr max_conn_t DEF_CONNECTION = 1024;
         static inline constexpr max_conn_t MAX_CONNECTION = 8192;
+
+        static inline constexpr max_conn_t MIN_SAME_IP_COUNT = 1;
+        static inline constexpr max_conn_t DEF_SAME_IP_COUNT = 2;
+        static inline constexpr max_conn_t MAX_SAME_IP_COUNT = 2;
 
         static inline constexpr size_t MIN_LEN_PASSWORD = 4;
         static inline constexpr size_t MAX_LEN_PASSWORD = 128;
@@ -94,7 +104,8 @@ namespace core::virbase::socket
             std::u32string old_password {};
             std::u32string username {};
 
-            std::atomic<max_conn_t> max_connection { DEF_CONNECTION };
+            std::atomic<max_conn_t> max_connection { ATOMIC_VAR_INIT(DEF_CONNECTION) };
+            std::atomic<max_conn_t> max_same_ip { ATOMIC_VAR_INIT(DEF_SAME_IP_COUNT) };
             std::unordered_set<std::string> banned_ip_list;
 
             mutable std::mutex mtx;
@@ -117,6 +128,9 @@ namespace core::virbase::socket
 
             inline max_conn_t getMaxConnection() const noexcept;
             e_accesspolicy setMaxConnection(const max_conn_t = DEF_CONNECTION) noexcept;
+
+            inline max_conn_t getMaxSameIp() const noexcept;
+            e_accesspolicy setMaxSameIp(const max_conn_t = DEF_SAME_IP_COUNT) noexcept;
 
             e_accesspolicy canAllow(const std::string&) const noexcept;
             e_accesspolicy canAuth(const std::u32string&) const noexcept;
@@ -309,11 +323,46 @@ namespace core::virbase::socket
         else if( _max_connection > MAX_CONNECTION )
             return e_accesspolicy::err_max_conn_over_limit;
 
-        this->max_connection = _max_connection;
+        this->max_connection.store(_max_connection);
 
-        return this->max_connection == _max_connection ?
+        return this->max_connection.load() == _max_connection ?
             e_accesspolicy::succ_set_max_conn :
             e_accesspolicy::err_set_max_conn;
+    }
+
+    /**
+     * @brief [Public] Get Max Same Ip
+     * 
+     * En fazla aynı ip adresinden bağlantı yapabilme miktarını döndürecek
+     * 
+     * @return max_conn_t
+     */
+    inline max_conn_t AccessPolicy::getMaxSameIp() const noexcept
+    {
+        return this->max_same_ip.load();
+    }
+
+    /**
+     * @brief [Public] Set Max Same Ip
+     * 
+     * En fazla aynı ip adresinden bağlantı yapabilme sınırını belirleyecek
+     * ve en düşük ile en yüksek arasında olmasını sağlayacak
+     * 
+     * @param max_conn_t Max Same Ip
+     * @return e_accesspolicy
+     */
+    e_accesspolicy AccessPolicy::setMaxSameIp(const max_conn_t _max_same_ip ) noexcept
+    {
+        if( _max_same_ip < MIN_SAME_IP_COUNT )
+            return e_accesspolicy::err_max_same_ip_under_limit;
+        else if( _max_same_ip > MAX_SAME_IP_COUNT )
+            return e_accesspolicy::err_max_same_ip_over_limit;
+
+        this->max_same_ip.store(_max_same_ip);
+
+        return this->max_same_ip.load() == _max_same_ip ?
+            e_accesspolicy::succ_set_max_same_ip :
+            e_accesspolicy::err_set_max_same_ip;
     }
 
     /**
