@@ -140,7 +140,7 @@ namespace core::virbase::socket
             std::atomic<bool> running { false };
             std::atomic<wait_time_t> wait_us { DEF_WAIT_TIME };
 
-            std::unordered_map<std::string, UserPacket_t> clients;
+            std::unordered_map<socket_t, SocketCtx_t> clients;
 
             std::mutex mtx;
             work_handler handler {};
@@ -158,7 +158,7 @@ namespace core::virbase::socket
 
         public:
             explicit Server(
-                Algo&& _algorithm,
+                Algo& _algorithm,
                 ThreadPool& _tpool,
                 work_handler _handler,
                 const socket_port_t _port,
@@ -205,7 +205,7 @@ namespace core::virbase::socket
      */
     template<class Algo>
     Server<Algo>::Server(
-        Algo&& _algorithm,
+        Algo& _algorithm,
         ThreadPool& _tpool,
         work_handler _handler,
         const socket_port_t _port,
@@ -218,7 +218,7 @@ namespace core::virbase::socket
         const wait_time_t _wait_time
     )
     : Socket<Algo>(
-        std::forward<Algo>(_algorithm),
+        _algorithm,
         DEF_NICKNAME,
         _port,
         _log,
@@ -369,7 +369,7 @@ namespace core::virbase::socket
             return glo::to_status<e_server>(e_server::err_client_socket_invalid);
 
         const std::string ipaddr = get_ip(_socket);
-        const auto findip = this->clients.find(ipaddr);
+        const auto findip = this->clients.find(_socket);
 
         if( findip == this->clients.end() )
             return glo::to_status<e_server>(e_server::err_socket_not_found_in_list);
@@ -405,17 +405,39 @@ namespace core::virbase::socket
             return glo::to_status<e_server>(e_server::err_client_socket_invalid);
 
         const std::string ipaddr = get_ip(_socket);
-        const auto findip = this->clients.find(ipaddr);
 
-        if( findip == this->clients.end() )
-            return glo::to_status<e_server>(e_server::err_socket_not_found_in_list);
-        else if( this->getPolicy().isBanned(ipaddr) )
-            return glo::to_status<e_server>(e_server::err_socket_banned);
+        {
+            std::scoped_lock<std::mutex> lock(this->mtx);
+
+            auto client_it = this->clients.find(_socket);
+            if( client_it == this->clients.end() )
+                return glo::to_status<e_server>(e_server::err_socket_not_found_in_list);
+
+            if( this->getPolicy().isBanned(ipaddr) )
+                return glo::to_status<e_server>(e_server::err_socket_banned);
+        }
 
         e_socket recv_status = glo::to_status<e_socket>(Socket<Algo>::receive(_socket, _netpack));
         if( recv_status != e_socket::succ_socket_recv )
             return glo::to_status<e_socket>(recv_status);
-        else if( !this->getPolicy().isEnablePassword() )
+
+        {
+            std::scoped_lock<std::mutex> lock(this->mtx);
+
+            if( this->clients[_socket].user.username.empty() || this->clients[_socket].user.username != _netpack.name ) {
+                this->clients[_socket].user.username = _netpack.name;
+
+                for( auto& client_it : this->clients ) {
+                    if( client_it.second.ip == ipaddr )
+                        continue;
+
+                    if( client_it.second.user.username == this->clients[_socket].user.username )
+                        ++client_it.second.user.same_user_count;
+                }
+            }
+        }
+
+        if( !this->getPolicy().isEnablePassword() )
             return glo::to_status<e_server>(e_server::succ_server_recv);
 
         switch( this->getPolicy().canAuth(_netpack.pwd) )
@@ -426,15 +448,26 @@ namespace core::virbase::socket
                 if( _netpack.pwd.empty() && _netpack.name.empty() && _netpack.msg.empty() )
                     return glo::to_status<e_server>(e_server::err_auth_no_data);
 
-                this->clients[ipaddr].try_passwd++;
+                {
+                    std::scoped_lock<std::mutex> lock(this->mtx);
 
-                if(this->clients[ipaddr].try_passwd == static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
-                    return glo::to_status<e_server>(e_server::err_socket_banned);
-                else if( this->clients[ipaddr].try_passwd > static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
-                    return glo::to_status<e_server>(e_server::err_socket_potential_attacker);
-                else if( _netpack.pwd == this->getPolicy().getOldPassword() )
-                    return glo::to_status<e_server>(e_server::err_socket_password_changed);
+                    ++this->clients[_socket].user.try_passwd;
 
+                    if( this->isLog() ) LOG_MSG(this->getLogger(),
+                        U"Client (" + utf::to_utf32(ipaddr) + U") sent wrong password attempt #" +
+                        utf::to_utf32(std::to_string(this->clients[_socket].user.try_passwd)),
+                        test::e_status::warning,
+                        true
+                    );
+
+                    if( this->clients[_socket].user.try_passwd == static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
+                        return glo::to_status<e_server>(e_server::err_socket_banned);
+                    else if( this->clients[_socket].user.try_passwd > static_cast<uint16_t>(MAX_SOCKET_RETRY_PASSWD) )
+                        return glo::to_status<e_server>(e_server::err_socket_potential_attacker);
+                    else if( _netpack.pwd == this->getPolicy().getOldPassword() )
+                        return glo::to_status<e_server>(e_server::err_socket_password_changed);
+                }
+            
                 return glo::to_status<e_server>(e_server::warn_recv_wrong_password);
         }
 
@@ -473,9 +506,10 @@ namespace core::virbase::socket
     template<class Algo>
     e_server Server<Algo>::listen() noexcept
     {
-        int backlog = static_cast<int>(this->getPolicy().getMaxConnection());
-        if( backlog < static_cast<int>(MIN_CONNECTION) )
-            backlog = static_cast<int>(DEF_CONNECTION);
+        int backlog = this->getPolicy().getMaxConnection();
+
+        if( this->getPolicy().getMaxConnection() < MIN_CONNECTION ) backlog = MIN_CONNECTION;
+        else if( this->getPolicy().getMaxConnection() > MAX_CONNECTION ) backlog = MAX_CONNECTION;
 
         return ::listen(this->getSocket(), backlog) == 0 ?
             e_server::succ_server_listen :
@@ -535,7 +569,7 @@ namespace core::virbase::socket
         }
 
         auto fut = std::async(std::launch::async, [this] {
-            this->tpool.enqueue([this]{ this->loop(); });
+            std::thread([this]{ this->loop(); }).detach();
 
             this->status.store(e_server::succ_server_run);
             this->setPromise(this->status.load());
@@ -609,34 +643,52 @@ namespace core::virbase::socket
             socklen_t servlen = sizeof(servaddr);
             socket_t servaccpt = ::accept(this->getSocket(), reinterpret_cast<sockaddr*>(&servaddr), &servlen);
 
-            if( servaccpt == inv_accept )
+            if( servaccpt == static_cast<decltype(servaccpt)>(inv_accept) )
                 continue;
 
-            std::string ipaddr = inet_ntoa(servaddr.sin_addr);
+            std::string ipaddr = get_ip(servaccpt);
             if( this->getPolicy().isBanned(ipaddr) ) {
                 close_socket(servaccpt);
+
+                if( this->isLog() ) LOG_MSG(
+                    this->getLogger(),
+                    utf::to_utf32("Ip Address (" + ipaddr + ") Is Already Banned"),
+                    test::e_status::error,
+                    false
+                );
                 continue;
             }
 
             {
                 std::scoped_lock<std::mutex> lock(this->mtx);
 
+                size_t count_same_ip = 0;
+                size_t count_accept = this->clients.count(servaccpt);
+
+                for( const auto& [sock, ctx] : this->clients ) {
+                    if( ctx.ip == ipaddr )
+                        ++count_same_ip;
+                }
+
+                if( count_same_ip > this->getPolicy().getMaxSameIp() || count_accept > this->getPolicy().getMaxSameIp() )
+                {
+                    close_socket(servaccpt);
+                    continue;
+                }
+
                 if( this->clients.size() >= this->getPolicy().getMaxConnection() ) {
                     close_socket(servaccpt);
                     continue;
                 }
 
-                this->clients[ipaddr].try_passwd = 0;
-                this->clients[ipaddr].username = this->getPolicy().getUsername();
-                this->clients[ipaddr].same_user_count = 0;
+                this->clients.emplace(servaccpt, SocketCtx_t{ .sock = servaccpt, .ip = ipaddr, {} });
 
-                for( auto& [ip, datapack] : this->clients ) {
-                    if( ipaddr == ip )
-                        continue;
-
-                    if( this->clients[ipaddr].username == datapack.username )
-                        this->clients[ipaddr].same_user_count++;
-                }
+                if( this->isLog() ) LOG_MSG(this->getLogger(),
+                    U"New Client Connected: " + utf::to_utf32(ipaddr) + U" | Current Connections: " +
+                    utf::to_utf32(std::to_string(this->clients.size())),
+                    test::e_status::information,
+                    false
+                );
             }
 
             this->tpool.enqueue([this, servaccpt, ipaddr] {
@@ -677,68 +729,69 @@ namespace core::virbase::socket
         {
             if( this->getPolicy().isBanned(_ip) )
             {
-                if( this->isLog() )
-                    LOG_MSG(this->getLogger(), 
-                        utf::to_utf32(_ip + " ip address banned"),
-                        test::e_status::warning,
-                        false
-                    );
-
+                if( this->isLog() ) LOG_MSG(this->getLogger(), 
+                    utf::to_utf32(_ip + " ip address banned"),
+                    test::e_status::warning,
+                    false
+                );
                 break;
             }
-            else if( std::chrono::steady_clock::now() - last_activity > std::chrono::seconds(this->getTimeout()) )
-            {
-                if( this->isLog() )
-                    LOG_MSG(this->getLogger(), 
-                        utf::to_utf32(_ip + " idle timeout over limit (" + std::to_string(this->getTimeout()) + ")"),
-                        test::e_status::warning,
-                        false
-                    );
 
+            if( std::chrono::steady_clock::now() - last_activity > std::chrono::seconds(this->getTimeout()) )
+            {
+                if( this->isLog() ) LOG_MSG(this->getLogger(), 
+                    utf::to_utf32(_ip + " idle timeout over limit (" + std::to_string(this->getTimeout()) + ")"),
+                    test::e_status::warning,
+                    false
+                );
                 break;
             }
 
             datapacket_t net_datapacket;
             e_server status_client = glo::to_status<e_server>(this->receive(_soc, net_datapacket));
-            if( status_client != e_server::succ_server_recv && !this->isLog() )
-                break;
-
-            if( net_datapacket.name.empty() || net_datapacket.msg.empty() )
-                goto end_of_socket;
 
             switch( status_client )
             {
                 case e_server::succ_server_recv:
                     last_activity = std::chrono::steady_clock::now();
                     break;
-                case e_server::err_socket_banned:
-                    this->getPolicy().ban(_ip);
-
-                    LOG_MSG(
+                case e_server::warn_recv_wrong_password:
+                    if( this->isLog() ) LOG_MSG(
                         this->getLogger(),
-                        utf::to_utf32("Ip Address (" + _ip + ") Banned | Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                        utf::to_utf32("Data Couldn't Receive From Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
                         test::e_status::error,
                         false
                     );
+                    continue;
+
+                case e_server::err_socket_banned:
+                    this->getPolicy().ban(_ip);
+
+                    if( this->isLog() ) LOG_MSG(
+                            this->getLogger(),
+                            utf::to_utf32("Ip Address (" + _ip + ") Banned | Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                            test::e_status::error,
+                            false
+                        );
                     goto end_of_socket;
 
                 case e_server::err_socket_potential_attacker:
                     this->getPolicy().ban(_ip);
 
-                    LOG_MSG(
+                    if( this->isLog() ) LOG_MSG(
                         this->getLogger(),
                         utf::to_utf32("Ip Address (" + _ip + ") Is Potential Attacker | Status Code: " + std::to_string(static_cast<size_t>(status_client))),
                         test::e_status::error,
                         false
                     );
                     goto end_of_socket;
-
+                
                 default:
-                    LOG_MSG(
+                    if( this->isLog() ) LOG_MSG(
                         this->getLogger(),
-                        utf::to_utf32("Data Couldn't Receive From Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
+                        utf::to_utf32("Ip Address (" + _ip + ") | Status Code: " + std::to_string(static_cast<size_t>(status_client))),
                         test::e_status::error,
-                        false
+                        true
                     );
                     goto end_of_socket;
             }
@@ -746,9 +799,11 @@ namespace core::virbase::socket
             if( this->handler )
                 this->handler(net_datapacket);
 
-            LOG_MSG(
-                this->getLogger(),
-                U"[DATA] Password: " + net_datapacket.pwd + U" | Username: " + net_datapacket.name + U" | Message: " + net_datapacket.msg,
+            if( this->isLog() ) LOG_MSG(this->getLogger(),
+                U"[DATA] Password: " + net_datapacket.pwd + U" | Username: " + net_datapacket.name + U" | Message: " + net_datapacket.msg +
+                U" | From Ip: " + utf::to_utf32(_ip) + U" | Saved Username: " + this->clients[_soc].user.username +
+                U" | Same User Count: " + utf::to_utf32(std::to_string(this->clients[_soc].user.same_user_count)) +
+                U" | Try Passwd Count: " + utf::to_utf32(std::to_string(this->clients[_soc].user.try_passwd)),
                 test::e_status::information,
                 false
             );
@@ -760,10 +815,7 @@ namespace core::virbase::socket
                     last_activity = std::chrono::steady_clock::now();
                     break;
                 default:
-                    if( !this->isLog() )
-                        goto end_of_socket;
-
-                    LOG_MSG(
+                    if( this->isLog() ) LOG_MSG(
                         this->getLogger(),
                         utf::to_utf32("Data Couldn't Send To Ip Address (" + _ip + ") Status Code: " + std::to_string(static_cast<size_t>(status_client))),
                         test::e_status::error,
@@ -774,13 +826,12 @@ namespace core::virbase::socket
             }
         }
 
-        // goto end of socket
         end_of_socket:
             close_socket(_soc);
 
         {
-            std::scoped_lock<std::mutex> lock(this->mtx);
-            this->clients.erase(_ip);
+            std::scoped_lock lock(this->mtx);
+            this->clients.erase(_soc);
         }
     }
 
