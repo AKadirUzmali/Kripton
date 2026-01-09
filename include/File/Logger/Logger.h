@@ -87,7 +87,15 @@ namespace subcore
         static inline constexpr size_t code_info = 3;
         static inline constexpr size_t code_etc = 4;
 
-        // Function: Short Path
+        /**
+         * @brief [Static] Short Path
+         * 
+         * Dosyanın uzunca değil de kısa halini seçen
+         * kısaltıcı bir fonksiyon
+         * 
+         * @param char* Path
+         * @return u32string
+         */
         [[maybe_unused]]
         static std::u32string short_path(const char* _path) noexcept
         {
@@ -123,6 +131,13 @@ namespace subcore
                 second, \
                 msg, \
                 srcinfo_t{ short_path(__FILE__), __LINE__, __func__ } \
+            )
+
+        #define LOG_ASSERT(logger, first, second, msg) \
+            (logger).log( \
+                first, \
+                second, \
+                msg \
             )
     }
 
@@ -176,6 +191,13 @@ namespace subcore
                 const srcinfo_t&
             ) noexcept;
 
+            template<typename _Ltype, typename _Rtype>
+            void log_assert(
+                _Ltype, _Rtype,
+                const std::u32string&,
+                const srcinfo_t&
+            ) noexcept;
+
             virtual e_log log(
                 const std::u32string&,
                 const srcinfo_t&,
@@ -205,7 +227,8 @@ using namespace logger;
  * 
  * @param u32string Logfilepath
  */
-Logger::Logger(
+Logger::Logger
+(
     const std::u32string& _logname,
     const std::u32string& _logpath
 ) noexcept
@@ -398,7 +421,12 @@ const inline std::u32string& Logger::getName() const noexcept
  * @return e_logger
  */
 template<typename _Ltype, typename _Rtype>
-e_log Logger::log(_Ltype _first, _Rtype _second, const std::u32string& _logtext) noexcept
+e_log Logger::log
+(
+    _Ltype _first,
+    _Rtype _second,
+    const std::u32string& _logtext
+) noexcept
 {
     if( !this->isOpen() )
         return e_log::err_log_not_opened;
@@ -407,6 +435,54 @@ e_log Logger::log(_Ltype _first, _Rtype _second, const std::u32string& _logtext)
     this->write(utf::to_utf32(platform::current_time() + " ==> " + (status ? "[ PASS ] " : "[ FAIL ] ")) + _logtext + U"\n");
 
     return e_log::succ_logged;
+}
+
+/**
+ * @brief [Public] Log Assert
+ * 
+ * Log dosyayı oluşturulduktan sonra
+ * verilen kayıt işlemlerini dosyaya kaydetmemizi
+ * sağlayacak olan kayıt fonksiyonu ve kayıt
+ * öncesinden bilgilendirme amaçlı test çıktısını
+ * verecektir. Eğer değerler bir birine eşit değil ise
+ * programı sonlandıracaktır
+ * 
+ * @tparam _Ltype First
+ * @tparam _Rtype Second
+ * @param string Log Text
+ * @param srcinfo_t Log Source
+ */
+template<typename _Ltype, typename _Rtype>
+void Logger::log_assert
+(
+    _Ltype _first,
+    _Rtype _second,
+    const std::u32string& _logtext,
+    const srcinfo_t& _logsrc
+) noexcept
+{
+    if( !this->isOpen() )
+        return;
+
+    bool status = test::expect_eq(_first, _second, utf::to_utf8(_logtext));
+
+    const std::u32string& msg =
+        U"[ FILE: " + _logsrc.file +
+        utf::to_utf32(
+            " | LINE: " + std::to_string(_logsrc.line) +
+            " | FUNC: " + std::string(_logsrc.func) + 
+            " ] "
+        ) + _logtext;
+
+    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + U"[ ASRT ]" + msg + U"\n");
+
+    if( !status )
+    {
+        this->print_test_result();
+        this->end();
+    
+        std::exit(EXIT_FAILURE);
+    }
 }
 
 /**
@@ -427,7 +503,8 @@ e_log Logger::log(_Ltype _first, _Rtype _second, const std::u32string& _logtext)
  * @return e_logger
  */
 template<typename _Ltype, typename _Rtype>
-e_log Logger::log(
+e_log Logger::log
+(
     _Ltype _first,
     _Rtype _second,
     const std::u32string& _logtext,
@@ -565,5 +642,5 @@ void Logger::onCrash() noexcept
         false
     );
     
-    this->finish();
+    this->end();
 }
