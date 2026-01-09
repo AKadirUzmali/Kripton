@@ -1,0 +1,21 @@
+Name: Server Test 22/12/2025
+Os: Linux
+Date: 2026-01-09
+Key: lnx-2026-01-09-07:57:34:852-Server-Test-22/12/2025
+
+[LOGGER START]
+07:57:36:893 ==> [ INFO ] [ FILE: Server.h | LINE: 686 | FUNC: loop ] New Client Connected: 127.0.0.1 | Current Connections: 1
+07:57:36:893 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+07:57:36:893 ==> [ INFO ] [ FILE: Server.h | LINE: 802 | FUNC: client_worker ] [DATA] Password: Password@123!-_üçşğ_test | Username: Client_Test_Name | Message: Hello Server 😁, It's Client! 😌 | From Ip: 127.0.0.1 | Saved Username: Client_Test_Name | Same User Count: 0 | Try Passwd Count: 0
+07:57:36:893 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+07:57:36:893 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+07:57:36:893 ==> [ TEXT ] [ FILE: Server.h | LINE: 456 | FUNC: receive ] Client (127.0.0.1) sent wrong password attempt #1
+07:57:36:893 ==> [ FAIL ] [ FILE: Server.h | LINE: 790 | FUNC: client_worker ] Ip Address (127.0.0.1) | Status Code: 34024
+07:57:43:515 ==> [ INFO ] [ FILE: Server.h | LINE: 686 | FUNC: loop ] New Client Connected: 127.0.0.1 | Current Connections: 1
+07:57:43:515 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+07:57:43:516 ==> [ INFO ] [ FILE: Server.h | LINE: 802 | FUNC: client_worker ] [DATA] Password: Password@123!-_üçşğ_test | Username: Client_Test_Name | Message: Hello Server 😁, It's Client! 😌 | From Ip: 127.0.0.1 | Saved Username: Client_Test_Name | Same User Count: 0 | Try Passwd Count: 0
+07:57:43:516 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+07:57:43:516 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+07:57:43:516 ==> [ TEXT ] [ FILE: Server.h | LINE: 456 | FUNC: receive ] Client (127.0.0.1) sent wrong password attempt #1
+07:57:43:516 ==> [ FAIL ] [ FILE: Server.h | LINE: 790 | FUNC: client_worker ] Ip Address (127.0.0.1) | Status Code: 34024
+[LOGGER END]
