@@ -19,11 +19,8 @@
 // Namespace: Test
 namespace test
 {
-    // Text: Passed | Failed
-    using status = bool;
-
-    static inline constexpr status fail = false;
-    static inline constexpr status pass = true;
+    static inline constexpr bool fail = false;
+    static inline constexpr bool pass = true;
 
     static inline const std::string text_fail = "[ FAIL ]";
     static inline const std::string text_pass = "[ PASS ]";
