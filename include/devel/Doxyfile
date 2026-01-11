@@ -1,0 +1,77 @@
+#-----------------------------------------------------------
+# Proje bilgileri
+#-----------------------------------------------------------
+PROJECT_NAME           = "Kripton"
+PROJECT_BRIEF          = "Kripton Developer Trace / Log / Test System"
+PROJECT_NUMBER         = "0.1.0-dev"
+
+OUTPUT_DIRECTORY       = docs
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+#-----------------------------------------------------------
+# Girdi
+#-----------------------------------------------------------
+INPUT                  = \
+    include \
+    src \
+    docs
+
+FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.md
+RECURSIVE              = YES
+
+USE_MDFILE_AS_MAINPAGE = docs/Overview.md
+
+#-----------------------------------------------------------
+# Dil / ayrıştırma
+#-----------------------------------------------------------
+OPTIMIZE_OUTPUT_FOR_C  = YES
+OPTIMIZE_OUTPUT_FOR_CPLUSPLUS = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_MACROS         = YES
+
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+
+# Geliştirici makroları
+PREDEFINED             = \
+    __DEVELOPER__=1 \
+    TRACE_SCOPE(x)= \
+    TRACE_FUNC()= \
+    LOG(x)= \
+    LOG_MSG(x,y)= \
+    EXPECT_MSG(x,y)= \
+    ASSERT_MSG(x,y)=
+
+#-----------------------------------------------------------
+# Diyagramlar
+#-----------------------------------------------------------
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+# Mermaid
+MARKDOWN_SUPPORT       = YES
+MARKDOWN_ID_STYLE      = GITHUB
+ENABLE_PREPROCESSING   = YES
+
+#-----------------------------------------------------------
+# HTML çıktı
+#-----------------------------------------------------------
+HTML_OUTPUT            = html
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+
+HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_FILES       =
+
+#-----------------------------------------------------------
+# Uyarılar
+#-----------------------------------------------------------
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
