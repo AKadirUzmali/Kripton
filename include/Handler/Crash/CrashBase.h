@@ -48,7 +48,6 @@ namespace core::handler
 
         public:
             virtual ~CrashBase() noexcept;
-            virtual void onCrash() noexcept {}
 
             static inline int getSignal() noexcept;
 
@@ -62,6 +61,9 @@ namespace core::handler
             static void ensureInit() noexcept;
             static void installHandlers() noexcept;
             static void onSignal(int) noexcept;
+
+        public:
+            virtual void onCrash() noexcept {}
     };
 
     /**
@@ -136,7 +138,7 @@ namespace core::handler
     [[maybe_unused]]
     void CrashBase::runCrashHandlers() noexcept
     {
-        std::scoped_lock<std::mutex> lock(s_list_mutex);
+        std::scoped_lock lock(s_list_mutex);
         for( auto it = s_instances.rbegin(); it != s_instances.rend(); ++it )
         {
             if( *it )
@@ -190,7 +192,7 @@ namespace core::handler
     void CrashBase::onSignal(int signal) noexcept
     {
         {
-            std::scoped_lock<std::mutex> lock(s_list_mutex);
+            std::scoped_lock lock(s_list_mutex);
             signal_code = signal;
         }
 

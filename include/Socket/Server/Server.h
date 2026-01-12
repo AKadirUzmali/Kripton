@@ -22,7 +22,7 @@
  */
 
 // Include:
-#include <Tool/Utf/Utf.h>
+#include <Global.h>
 #include <Socket/Socket.h>
 #include <Socket/AccessPolicy.h>
 #include <ThreadPool/ThreadPool.h>
@@ -32,12 +32,9 @@
 #include <mutex>
 #include <unordered_map>
 #include <string>
-#include <string_view>
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include <vector>
-#include <array>
 #include <future>
 #include <functional>
 
@@ -55,11 +52,6 @@ namespace core::virbase::socket
             static inline constexpr int inv_accept = -1;
             static inline constexpr int inv_bind = -1;
         #endif
-        
-        // Limit:
-        static constexpr wait_time_t MIN_WAIT_TIME = 0; // ms
-        static constexpr wait_time_t DEF_WAIT_TIME = 100; // ms
-        static constexpr wait_time_t MAX_WAIT_TIME = 1000; // ms
 
         // String
         static const std::u32string DEF_NICKNAME = U"Server";
@@ -80,7 +72,7 @@ namespace core::virbase::socket
             err_set_wait_time_fail,
             err_set_running_failed,
             err_server_already_running,
-            err_server_close_fail,
+            err_server_stop_fail,
             err_socket_not_found_in_list,
             err_socket_banned,
             err_server_send,
@@ -94,6 +86,11 @@ namespace core::virbase::socket
             err_client_send_no_data,
             err_socket_password_changed,
             err_auth_no_data,
+            err_socket_invalid_for_delete,
+            err_client_delete,
+            err_thread_create,
+            err_server_running_status,
+            err_server_wakeup_pipe,
 
             succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_server_bind,
@@ -102,9 +99,10 @@ namespace core::virbase::socket
             succ_server_run,
             succ_set_wait_time,
             succ_set_running,
-            succ_server_close,
+            succ_server_stop,
             succ_server_send,
             succ_server_recv,
+            succ_client_delete,
 
             warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn),
             warn_no_status,
@@ -128,28 +126,27 @@ namespace core::virbase::socket
     class Server final : public Socket<Algo>
     {
         public:
-            using work_handler = std::function<e_server(const datapacket_t&)>;
+            using work_handler = std::function<void(
+                Server<Algo>&,
+                const datapacket_t,
+                const socket_t,
+                const SocketCtx_t
+            )>;
 
         private:
             ThreadPool& tpool;
 
-            mutable std::shared_future<e_server> frun {};
-
-            std::atomic<e_server> status { e_server::warn_no_status };
-
-            std::atomic<bool> running { false };
-            std::atomic<wait_time_t> wait_us { DEF_WAIT_TIME };
+            std::thread worker;
+            std::atomic<bool> running { ATOMIC_VAR_INIT(false) };
 
             std::unordered_map<socket_t, SocketCtx_t> clients;
 
             std::mutex mtx;
-            work_handler handler {};
+            work_handler handler;
 
-            std::shared_ptr<std::promise<e_server>> internal_promise;
+            int wakeup_pipe[2] { -1, -1 };
 
         private:
-            void setPromise(e_server) noexcept;
-
             void loop() noexcept;
             void client_worker(socket_t, const std::string&) noexcept;
 
@@ -157,34 +154,39 @@ namespace core::virbase::socket
             e_server listen() noexcept;
 
         public:
-            explicit Server(
+            explicit Server
+            (
                 Algo& _algorithm,
                 ThreadPool& _tpool,
                 work_handler _handler,
                 const socket_port_t _port,
-                const bool _passwd_require,
-                const bool _log,
-                const std::u32string& _logheader,
-                const std::u32string& _logfilename,
+                const std::u32string& _username = DEF_NICKNAME,
+                const ipv_t _tcp_ip_type = ipv_t::dual,
+                const bool _passwd_require = true,
+                const bool _log = false,
+                const std::u32string& _logheader = U"Server Log",
+                const std::u32string& _logfilename = U"server_log",
                 const size_t _buffsize = DEF_SIZE_BUFFER,
                 const max_conn_t _max_conn = DEF_CONNECTION,
-                const wait_time_t _wait_time = DEF_WAIT_TIME
+                const wait_time_t _wait_time = DEF_WAIT_TIME,
+                const wait_time_t _timeout = DEF_SOCKET_TIMEOUT
             );
             
             ~Server();
 
             inline bool isRunning() const noexcept;
-            inline e_server getStatus() const noexcept;
 
-            inline wait_time_t getWaitTime() const noexcept;
-            e_server setWaitTime(const wait_time_t _wait = DEF_WAIT_TIME, const bool _secure = true) noexcept;
+            inline std::unordered_map<socket_t, SocketCtx_t>& getClients() noexcept;
+            inline const std::unordered_map<socket_t, SocketCtx_t>& getClients() const noexcept;
 
-            inline void setHandler(work_handler _handler) noexcept;
+            void setHandler(work_handler& _handler) noexcept;
+
+            e_server deleteClient(const socket_t) noexcept;
 
             virtual glo::status_t send(const socket_t, datapacket_t&) noexcept override;
             virtual glo::status_t receive(const socket_t, datapacket_t&) noexcept override;
 
-            std::shared_future<e_server> run() noexcept;
+            e_server run() noexcept;
             e_server stop() noexcept;
 
             virtual void onCrash() noexcept override;
@@ -198,10 +200,19 @@ namespace core::virbase::socket
      * limiti ile de belirlenen kullanıcı sayısını aşmayacak şekilde
      * olacak ve parola koruması da ayarlanabilir şekilde ama başlangıçta kapalı.
      * 
-     * @tparam Algo&& Algorithm
+     * @param Algo& Algorithm
      * @param ThreadPool& Thread Pool
-     * @param size_t Max Connection
-     * @param bool Secure Password
+     * @param work_handler Work Handler
+     * @param socket_port_t Socket Port
+     * @param u32string& Username
+     * @param ipv_t Socket Tcp Ip Type (v4, v6)
+     * @param bool Is Password Require
+     * @param bool Is Logging Active
+     * @param u32string& Log File Header
+     * @param u32string& Log File Name
+     * @param buffer_size_t Buffer Size
+     * @param wait_time_t Wait Time For Loop
+     * @param wait_time_t Socket Timeout
      */
     template<class Algo>
     Server<Algo>::Server(
@@ -209,30 +220,33 @@ namespace core::virbase::socket
         ThreadPool& _tpool,
         work_handler _handler,
         const socket_port_t _port,
+        const std::u32string& _username,
+        const ipv_t _tcp_ip_type,
         const bool _passwd_require,
         const bool _log,
         const std::u32string& _logheader,
         const std::u32string& _logfilename,
         const size_t _buffsize,
         const max_conn_t _max_conn,
-        const wait_time_t _wait_time
+        const wait_time_t _wait_time,
+        const wait_time_t _timeout
     )
     : Socket<Algo>(
         _algorithm,
-        DEF_NICKNAME,
+        _username,
         _port,
+        _tcp_ip_type,
         _log,
         _logheader,
         _logfilename,
-        _buffsize),
+        _buffsize,
+        _wait_time,
+        _timeout),
       tpool(_tpool)
     {
         this->getPolicy().enablePassword(_passwd_require);
         this->getPolicy().setMaxConnection(_max_conn);
         this->setHandler(_handler);
-
-        if( this->setWaitTime(_wait_time) != e_server::succ_set_wait_time )
-            this->setWaitTime(DEF_WAIT_TIME);
     }
 
     /**
@@ -250,25 +264,6 @@ namespace core::virbase::socket
     }
 
     /**
-     * @brief [Private] Set Promise
-     * 
-     * Yanıt döndürmeyi söz vermeye ayarlıyoruz
-     * 
-     * @param e_server Value
-     */
-    template<class Algo>
-    void Server<Algo>::setPromise(e_server _value) noexcept
-    {
-        auto prom = this->internal_promise;
-        if( !prom )
-            return;
-
-        try {
-            prom->set_value(_value);
-        } catch( ... ) {}
-    }
-
-    /**
      * @brief [Public] Is Running
      * 
      * Sunucunun çalışıp çalımadığının bilgisini döndürür
@@ -282,55 +277,60 @@ namespace core::virbase::socket
     }
 
     /**
-     * @brief [Public] Get Status
+     * @brief [Public] Get Clients
      * 
-     * Sunucuya ait durum kodunu döndürür
+     * Tüm istemcilerin tutulduğu listeyi
+     * referans olarak döndürmeyi sağlar. İstendiği
+     * durumda istenilen istemci ile iletişim kurabilmeyi
+     * sağlamak için yapıldı
      * 
-     * @return e_server
+     * @return unordered_map<socket_t, SocketCtx_t>&
      */
     template<class Algo>
-    e_server Server<Algo>::getStatus() const noexcept
+    std::unordered_map<socket_t, SocketCtx_t>& Server<Algo>::getClients() noexcept
     {
-        return this->status.load();
+        return this->clients;
     }
 
     /**
-     * @brief [Public] Get Wait Time
+     * @brief [Public] Get Clients
      * 
-     * Her veri alımı arası bir gecikme süresi bulunur.
-     * Bu süreyi değer olarak döndürüyoruz
+     * Tüm istemcilerin tutulduğu listeyi
+     * referans olarak döndürmeyi sağlar. İstendiği
+     * durumda istenilen istemcinin okunabilmesi ama
+     * değerin değiştirilememesi için yapıldı
      * 
-     * @return wait_time_t
+     * @return const unordered_map<socket_t, SocketCtx_t>&
      */
     template<class Algo>
-    wait_time_t Server<Algo>::getWaitTime() const noexcept
+    const std::unordered_map<socket_t, SocketCtx_t>& Server<Algo>::getClients() const noexcept
     {
-        return this->wait_us.load();
+        return this->clients;
     }
 
     /**
-     * @brief [Public] Set Wait Time
+     * @brief [Public] Delete Client
      * 
-     * Veri alımları arasında oluşabilecek süre gecikmesini
-     * belirleyecek ama kontrol altında yapacak bunu ve
-     * eğer kontrol devre dışı bırakılmış ise, sınırsız süre
-     * belirlenebilir fakat bu pek tavsiye edilmez
+     * İstemciyi belirtilmiş sokete göre listede
+     * arayacak ve bulunması durumunda silecek
+     * ve toplam soket sayısında eksilme yapacak
      * 
-     * @param wait_time_t Wait Time
-     * @param bool Secure
-     * 
+     * @param socket_t Socket
      * @return e_server
      */
     template<class Algo>
-    e_server Server<Algo>::setWaitTime(const wait_time_t _wait, const bool _secure) noexcept
+    e_server Server<Algo>::deleteClient
+    (
+        const socket_t _soc
+    ) noexcept
     {
-        if( _wait < MIN_WAIT_TIME ) return e_server::err_wait_time_under_limit;
-        else if( _secure && _wait > MAX_WAIT_TIME ) return e_server::err_wait_time_over_limit;
+        if( !is_socket_valid(_soc) )
+            return e_server::err_socket_invalid_for_delete;
 
-        this->wait_us.store(_wait);
-        return this->wait_us.load() == _wait ?
-            e_server::succ_set_wait_time :
-            e_server::err_set_wait_time_fail;
+        std::scoped_lock<std::mutex> lock(this->mtx);
+        return this->clients.erase(_soc) ?
+            e_server::succ_client_delete :
+            e_server::err_client_delete;
     }
 
     /**
@@ -339,10 +339,10 @@ namespace core::virbase::socket
      * Çalışma işlevini gerçekleştirecek yapıyı
      * atayacak.
      * 
-     * @param work_handler Handler
+     * @param work_handler& Handler
      */
     template<class Algo>
-    void Server<Algo>::setHandler(work_handler _handler) noexcept
+    void Server<Algo>::setHandler(work_handler& _handler) noexcept
     {
         this->handler = std::move(_handler);
     }
@@ -365,7 +365,7 @@ namespace core::virbase::socket
         datapacket_t& _rawpacket
     ) noexcept
     {
-        if( _socket == inv_socket )
+        if( !is_socket_valid(_socket) )
             return glo::to_status<e_server>(e_server::err_client_socket_invalid);
 
         const std::string ipaddr = get_ip(_socket);
@@ -401,7 +401,7 @@ namespace core::virbase::socket
         datapacket_t& _netpack
     ) noexcept
     {
-        if( _socket == inv_socket )
+        if( !is_socket_valid(_socket) )
             return glo::to_status<e_server>(e_server::err_client_socket_invalid);
 
         const std::string ipaddr = get_ip(_socket);
@@ -485,12 +485,31 @@ namespace core::virbase::socket
     template<class Algo>
     e_server Server<Algo>::bind() noexcept
     {
-        sockaddr_in addr {};
-        addr.sin_family = AF_INET;
-        addr.sin_addr.s_addr = INADDR_ANY;
-        addr.sin_port = htons(this->getPort());
+        sockaddr* addr = nullptr;
+        socklen_t len_addr = 0;
 
-        int result = ::bind(this->getSocket(), (sockaddr*)&addr, sizeof(addr));
+        if( this->getIpv() == ipv_t::ipv4 )
+        {
+            sockaddr_in addrv4 {};
+            addrv4.sin_family = AF_INET;
+            addrv4.sin_addr.s_addr = INADDR_ANY;
+            addrv4.sin_port = htons(this->getPort());
+
+            addr = reinterpret_cast<sockaddr*>(&addrv4);
+            len_addr = sizeof(addrv4);
+        }
+        else
+        {
+            sockaddr_in6 addrv6 {};
+            addrv6.sin6_family = AF_INET6;
+            addrv6.sin6_port = htons(this->getPort());
+            addrv6.sin6_addr = in6addr_any;
+
+            addr = reinterpret_cast<sockaddr*>(&addrv6);
+            len_addr = sizeof(addrv6);
+        }
+
+        int result = ::bind(this->getSocket(), addr, len_addr);
         return result != inv_bind ?
             e_server::succ_server_bind :
             e_server::err_server_bind_fail;
@@ -523,61 +542,41 @@ namespace core::virbase::socket
      * Gerekli kontrolü yaptıktan sonra sunucu
      * döngü halinde çalışır
      * 
-     * @return shared_future<e_server>&
+     * @return e_server
     */
     template<class Algo>
-    std::shared_future<e_server> Server<Algo>::run() noexcept
+    e_server Server<Algo>::run() noexcept
     {
         if( this->isRunning() )
-        {
-            this->status.store(e_server::err_server_already_running);
-            return this->frun;
-        }
-
-        this->running.store(true);
-        this->internal_promise = std::make_shared<std::promise<e_server>>();
-
-        try {
-            this->frun = this->internal_promise->get_future().share();
-        } catch( ... ) {
-            this->status.store(e_server::err_set_running_failed);
-
-            std::promise<e_server> tmprom;
-            tmprom.set_value(this->status.load());
-            return tmprom.get_future().share();
-        }
+            return e_server::err_server_already_running;
 
         if( this->create() != e_socket::succ_socket_create )
-        {
-            this->status.store(e_server::err_server_not_created);
-            this->setPromise(this->status.load());
-            return this->frun;
-        }
+            return e_server::err_server_not_created;
 
         if( this->bind() != e_server::succ_server_bind )
-        {
-            this->status.store(e_server::err_server_bind_fail);
-            this->setPromise(this->status.load());
-            return this->frun;
-        }
+            return e_server::err_server_bind_fail;
 
         if( this->listen() != e_server::succ_server_listen )
+            return e_server::err_server_listen_fail;
+
+        if( ::pipe(this->wakeup_pipe) != 0 )
+            return e_server::err_server_wakeup_pipe;
+
+        this->running.store(true);
+
+        try
         {
-            this->status.store(e_server::err_server_listen_fail);
-            this->setPromise(this->status.load());
-            return this->frun;
+            this->worker = std::thread([this]{
+                this->loop();
+            });
+        }
+        catch (...)
+        {
+            this->running.store(false);
+            return e_server::err_thread_create;
         }
 
-        auto fut = std::async(std::launch::async, [this] {
-            std::thread([this]{ this->loop(); }).detach();
-
-            this->status.store(e_server::succ_server_run);
-            this->setPromise(this->status.load());
-
-            return this->frun;
-        });
-
-        return this->frun;
+        return e_server::succ_server_run;
     }
 
     /**
@@ -592,28 +591,32 @@ namespace core::virbase::socket
     template<class Algo>
     e_server Server<Algo>::stop() noexcept
     {
-        this->running.store(false);
-        
-        socket_t socketdata = this->getSocket();
+        if( !this->running.exchange(false) )
+            return e_server::err_server_running_status;
 
-        if( socketdata != inv_socket )
-        {
-            #if defined __PLATFORM_DOS__
-                ::shutdown(socketdata, SD_BOTH);
-                ::closesocket(socketdata);
-            #else
-                ::shutdown(socketdata, SHUT_RDWR);
-                ::close(socketdata);
-            #endif
-        }
+        uint8_t sig = 1;
+        ::write(this->wakeup_pipe[1], &sig, sizeof(sig));
 
-        this->status.store(this->isClose() ?
-            e_server::succ_server_close :
-            e_server::err_server_close_fail);
+        if( this->worker.joinable() )
+            this->worker.join();
 
-        this->setPromise(this->status.load());
+        close_socket(this->wakeup_pipe[0]);
+        close_socket(this->wakeup_pipe[1]);
 
-        return this->status.load();
+        this->wakeup_pipe[0] = -1;
+        this->wakeup_pipe[1] = -1;
+
+        const socket_t srv_socket = this->getSocket();
+        #if defined __PLATFORM_DOS__
+            ::shutdown(srv_socket, SD_BOTH);
+            ::closesocket(srv_socket);
+        #else
+            ::shutdown(srv_socket, SHUT_RDWR);
+            ::close(srv_socket);
+        #endif
+
+        this->setSocket(inv_socket);
+        return e_server::succ_server_stop;
     }
 
     /**
@@ -630,69 +633,65 @@ namespace core::virbase::socket
     template<class Algo>
     void Server<Algo>::loop() noexcept
     {
-        const wait_time_t client_timeout = static_cast<wait_time_t>(std::max<size_t>(MIN_WAIT_TIME, this->wait_us.load()));
-        
-        while( this->isRunning() )
+        const socket_t listen_fd = this->getSocket();
+        if( !is_socket_valid(listen_fd) )
+            return;
+
+        pollfd pfds[2];
+
+        pfds[0].fd = listen_fd;
+        pfds[0].events = POLL_IN;
+
+        pfds[1].fd = this->wakeup_pipe[0];
+        pfds[1].events = POLL_IN;
+
+        const int wait_timeout = static_cast<int>(this->getWaitTime());
+
+        while( this->running.load() )
         {
-            std::this_thread::sleep_for(std::chrono::microseconds(client_timeout));
-
-            if( this->getSocket() == inv_socket )
-                break;
-
-            sockaddr_in servaddr {};
-            socklen_t servlen = sizeof(servaddr);
-            socket_t servaccpt = ::accept(this->getSocket(), reinterpret_cast<sockaddr*>(&servaddr), &servlen);
-
-            if( servaccpt == static_cast<decltype(servaccpt)>(inv_accept) )
+            int pret = ::poll(pfds, 2, wait_timeout);
+            if( pret <= 0 )
                 continue;
 
-            std::string ipaddr = get_ip(servaccpt);
-            if( this->getPolicy().isBanned(ipaddr) ) {
-                close_socket(servaccpt);
-
-                if( this->isLog() ) LOG_MSG(
-                    this->getLogger(),
-                    utf::to_utf32("Ip Address (" + ipaddr + ") Is Already Banned"),
-                    test::e_status::error,
-                    false
-                );
+            if( !(pfds[1].revents & POLL_IN) )
                 continue;
-            }
+
+            if( !(pfds[0].revents & POLL_IN) )
+                continue;
+
+            sockaddr_storage socstrage {};
+            socklen_t slen = sizeof(socstrage);
+            socklen_t cli_soc = ::accept(listen_fd, reinterpret_cast<sockaddr*>(&socstrage), &slen);
+
+            if( !is_socket_valid(cli_soc) )
+                continue;
+
+            const std::string ipaddr = get_ip(cli_soc);
 
             {
-                std::scoped_lock<std::mutex> lock(this->mtx);
+                std::scoped_lock lock(this->mtx);
 
                 size_t count_same_ip = 0;
-                size_t count_accept = this->clients.count(servaccpt);
-
                 for( const auto& [sock, ctx] : this->clients ) {
                     if( ctx.ip == ipaddr )
                         ++count_same_ip;
                 }
 
-                if( count_same_ip > this->getPolicy().getMaxSameIp() || count_accept > this->getPolicy().getMaxSameIp() )
+                if( count_same_ip > this->getPolicy().getMaxSameIp() ||
+                    this->clients.size() >= this->getPolicy().getMaxConnection() )
                 {
-                    close_socket(servaccpt);
+                    close_socket(cli_soc);
                     continue;
                 }
 
-                if( this->clients.size() >= this->getPolicy().getMaxConnection() ) {
-                    close_socket(servaccpt);
-                    continue;
-                }
-
-                this->clients.emplace(servaccpt, SocketCtx_t{ .sock = servaccpt, .ip = ipaddr, {} });
-
-                if( this->isLog() ) LOG_MSG(this->getLogger(),
-                    U"New Client Connected: " + utf::to_utf32(ipaddr) + U" | Current Connections: " +
-                    utf::to_utf32(std::to_string(this->clients.size())),
-                    test::e_status::information,
-                    false
+                this->clients.emplace(
+                    cli_soc,
+                    SocketCtx_t{ .ip = ipaddr, UserPacket_t{} }
                 );
             }
 
-            this->tpool.enqueue([this, servaccpt, ipaddr] {
-                this->client_worker(servaccpt, ipaddr);
+            this->tpool.enqueue([this, cli_soc, ipaddr]{
+                this->client_worker(cli_soc, ipaddr);
             });
         }
     }
@@ -755,6 +754,7 @@ namespace core::virbase::socket
                 case e_server::succ_server_recv:
                     last_activity = std::chrono::steady_clock::now();
                     break;
+
                 case e_server::warn_recv_wrong_password:
                     if( this->isLog() ) LOG_MSG(
                         this->getLogger(),
@@ -762,7 +762,7 @@ namespace core::virbase::socket
                         test::e_status::error,
                         false
                     );
-                    continue;
+                    break;
 
                 case e_server::err_socket_banned:
                     this->getPolicy().ban(_ip);
@@ -773,6 +773,7 @@ namespace core::virbase::socket
                             test::e_status::error,
                             false
                         );
+
                     goto end_of_socket;
 
                 case e_server::err_socket_potential_attacker:
@@ -784,6 +785,7 @@ namespace core::virbase::socket
                         test::e_status::error,
                         false
                     );
+
                     goto end_of_socket;
                 
                 default:
@@ -793,20 +795,26 @@ namespace core::virbase::socket
                         test::e_status::error,
                         true
                     );
+
                     goto end_of_socket;
             }
 
-            if( this->handler )
-                this->handler(net_datapacket);
+            if( status_client != e_server::succ_server_recv )
+                continue;
 
-            if( this->isLog() ) LOG_MSG(this->getLogger(),
-                U"[DATA] Password: " + net_datapacket.pwd + U" | Username: " + net_datapacket.name + U" | Message: " + net_datapacket.msg +
-                U" | From Ip: " + utf::to_utf32(_ip) + U" | Saved Username: " + this->clients[_soc].user.username +
-                U" | Same User Count: " + utf::to_utf32(std::to_string(this->clients[_soc].user.same_user_count)) +
-                U" | Try Passwd Count: " + utf::to_utf32(std::to_string(this->clients[_soc].user.try_passwd)),
-                test::e_status::information,
-                false
-            );
+            SocketCtx_t curr_client;
+            {
+                std::scoped_lock lock(this->mtx);
+
+                auto client_it = this->clients.find(_soc);
+                if( client_it == this->clients.end() )
+                    goto end_of_socket;
+
+                curr_client = client_it->second;
+            }
+
+            if( this->handler )
+                this->handler(*this, net_datapacket, _soc, curr_client);
 
             status_client = glo::to_status<e_server>(this->send(_soc, net_datapacket));
             switch( status_client )
@@ -827,12 +835,10 @@ namespace core::virbase::socket
         }
 
         end_of_socket:
+            this->running.store(false);
             close_socket(_soc);
 
-        {
-            std::scoped_lock lock(this->mtx);
-            this->clients.erase(_soc);
-        }
+        this->deleteClient(_soc);
     }
 
     /**
@@ -844,7 +850,7 @@ namespace core::virbase::socket
     template<class Algo>
     void Server<Algo>::onCrash() noexcept
     {
+        Socket<Algo>::onCrash();
         this->stop();
-        this->close();
     }
 }

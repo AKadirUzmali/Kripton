@@ -1,4 +1,5 @@
 // Abdulkadir U. - 15/11/2025
+// Abdulkadir U. - 12/01/2026
 #pragma once
 
 /**
@@ -13,11 +14,25 @@
 #include <sstream>
 #include <codecvt>
 #include <locale>
-#include <vector>
 
-// Namespace: Tool::Utf
-namespace tool::utf
+// Namespace:
+namespace tools::utf
 {
+    // Function Define:
+    std::string to_utf8(const std::u32string&) noexcept;
+    std::u32string to_utf32(const std::string&) noexcept;
+
+    std::string to_lower(const std::string&) noexcept;
+    std::u32string to_lower(const std::u32string&) noexcept;
+
+    std::string to_upper(const std::string&) noexcept;
+    std::u32string to_upper(const std::u32string&) noexcept;
+
+    std::string to_visible(const std::u32string&) noexcept;
+
+    bool cmp_utf8(const std::string&, const std::string&) noexcept;
+    bool cmp_utf32(const std::u32string&, const std::u32string&) noexcept;
+
     /**
      * @brief [Static] To UTF-8
      * 
@@ -27,12 +42,14 @@ namespace tool::utf
      * @return string
      */
     [[maybe_unused]]
-    static std::string to_utf8(const std::u32string& _text) noexcept
+    std::string to_utf8(
+        const std::u32string& text
+    ) noexcept
     {
         std::string out;
-        out.reserve(_text.size() * sizeof(char32_t));
+        out.reserve(text.size() * sizeof(char32_t));
 
-        for (char32_t c32 : _text)
+        for (char32_t c32 : text)
         {
             if (c32 <= 0x7F)
                 out.push_back(static_cast<unsigned char>(c32));
@@ -68,17 +85,19 @@ namespace tool::utf
      * @return u32string
      */
     [[maybe_unused]]
-    static std::u32string to_utf32(const std::string& _text) noexcept
+    std::u32string to_utf32(
+        const std::string& text
+    ) noexcept
     {
         std::u32string out;
-        out.reserve(_text.size());
+        out.reserve(text.size());
 
         size_t i = 0;
-        const size_t n = _text.size();
+        const size_t n = text.size();
 
         while (i < n)
         {
-            unsigned char c = _text[i];
+            unsigned char c = text[i];
 
             // 1 byte: 0xxxxxxx
             if (c < 0x80)
@@ -93,7 +112,7 @@ namespace tool::utf
             {
                 if (i + 1 >= n) break;
 
-                unsigned char c1 = _text[i + 1];
+                unsigned char c1 = text[i + 1];
                 if ((c1 >> 6) != 0x2) break;
 
                 char32_t code =
@@ -110,8 +129,8 @@ namespace tool::utf
             {
                 if (i + 2 >= n) break;
 
-                unsigned char c1 = _text[i + 1];
-                unsigned char c2 = _text[i + 2];
+                unsigned char c1 = text[i + 1];
+                unsigned char c2 = text[i + 2];
                 if ((c1 >> 6) != 0x2 || (c2 >> 6) != 0x2) break;
 
                 char32_t code =
@@ -129,9 +148,9 @@ namespace tool::utf
             {
                 if (i + 3 >= n) break;
 
-                unsigned char c1 = _text[i + 1];
-                unsigned char c2 = _text[i + 2];
-                unsigned char c3 = _text[i + 3];
+                unsigned char c1 = text[i + 1];
+                unsigned char c2 = text[i + 2];
+                unsigned char c3 = text[i + 3];
                 if ((c1 >> 6) != 0x2 || (c2 >> 6) != 0x2 || (c3 >> 6) != 0x2) break;
 
                 char32_t code =
@@ -154,6 +173,29 @@ namespace tool::utf
     /**
      * @brief [Static] To Lower
      * 
+     * 1 bayt (8 bit) karakter kümesindeki karakterleri
+     * küçük harfe çevirmek için var
+     * 
+     * @param string& Text
+     * @return string&
+     */
+    [[maybe_unused]]
+    std::string to_lower(
+        const std::string& text
+    ) noexcept
+    {
+        std::string result;
+        for (auto ch : text)
+        {
+            if (ch >= 'A' && ch <= 'Z') result += ch + ('a' - 'A');
+            else result += ch;
+        }
+        return result;
+    }
+
+    /**
+     * @brief [Static] To Lower
+     * 
      * 4 bayt (32 bit) karakter kümesindeki karakterleri
      * küçük harfe çevirmek için var
      * 
@@ -161,7 +203,9 @@ namespace tool::utf
      * @return ustring32&
      */
     [[maybe_unused]]
-    static std::u32string to_lower(const std::u32string& text) noexcept
+    std::u32string to_lower(
+        const std::u32string& text
+    ) noexcept
     {
         std::u32string result;
         for (auto ch : text) {
@@ -174,23 +218,28 @@ namespace tool::utf
     }
 
     /**
-     * @brief [Static] To Lower
+     * @brief [Static] To Upper
      * 
      * 1 bayt (8 bit) karakter kümesindeki karakterleri
-     * küçük harfe çevirmek için var
+     * büyük harfe çevirmek için var
      * 
      * @param string& Text
      * @return string&
      */
     [[maybe_unused]]
-    static std::string to_lower(const std::string& text) noexcept
+    std::string to_upper(
+        const std::string& text
+    ) noexcept
     {
         std::string result;
-        for (auto ch : text)
+        result.reserve(text.size());
+    
+        for (auto c : text)
         {
-            if (ch >= 'A' && ch <= 'Z') result += ch + ('a' - 'A');
-            else result += ch;
+            if (c >= 'a' && c <= 'z') result.push_back(c - 32);
+            else result.push_back(c);
         }
+    
         return result;
     }
 
@@ -204,7 +253,9 @@ namespace tool::utf
      * @return string&
      */
     [[maybe_unused]]
-    std::u32string to_upper(const std::u32string& text) noexcept
+    std::u32string to_upper(
+        const std::u32string& text
+    ) noexcept
     {
         std::u32string result;
         result.reserve(text.size());
@@ -215,30 +266,6 @@ namespace tool::utf
             else result.push_back(c);
         }
 
-        return result;
-    }
-
-    /**
-     * @brief [Static] To Upper
-     * 
-     * 1 bayt (8 bit) karakter kümesindeki karakterleri
-     * büyük harfe çevirmek için var
-     * 
-     * @param string& Text
-     * @return string&
-     */
-    [[maybe_unused]]
-    std::string to_upper(const std::string& text) noexcept
-    {
-        std::string result;
-        result.reserve(text.size());
-    
-        for (auto c : text)
-        {
-            if (c >= 'a' && c <= 'z') result.push_back(c - 32);
-            else result.push_back(c);
-        }
-    
         return result;
     }
 
@@ -254,19 +281,21 @@ namespace tool::utf
      * @return string
      */
     [[maybe_unused]]
-    static std::string to_visible(const std::u32string& text) noexcept
+    std::string to_visible(
+        const std::u32string& text
+    ) noexcept
     {
-        std::string tmp__result;
+        std::string result;
         for (auto ch : text) {
             if (ch >= 32 && ch <= 126) // ASCII
-                tmp__result += static_cast<unsigned char>(ch);
+                result += static_cast<unsigned char>(ch);
             else {
-                std::stringstream tmp__ss;
-                tmp__ss << "\\x" << std::hex << static_cast<int>(ch);
-                tmp__result += tmp__ss.str();
+                std::ostringstream oss;
+                oss << "\\x" << std::hex << static_cast<int>(ch);
+                result += oss.str();
             }
         }
-        return tmp__result;
+        return result;
     }
 
     /**
@@ -285,13 +314,16 @@ namespace tool::utf
      * @return bool
      */
     [[maybe_unused]]
-    static bool cmp_utf8(const std::string& _first, const std::string& _second) noexcept
+    bool cmp_utf8(
+        const std::string& first,
+        const std::string& second
+    ) noexcept
     {
-        if( _first.size() != _second.size() )
+        if( first.size() != second.size() )
             return false;
 
-        for( size_t counter = 0; counter < _first.size(); ++counter )
-            if( _first.at(counter) ^ _second.at(counter)) return false;
+        for( size_t counter = 0; counter < first.size(); ++counter )
+            if( first.at(counter) ^ second.at(counter)) return false;
 
         return true;
     }
@@ -312,13 +344,16 @@ namespace tool::utf
      * @return bool
      */
     [[maybe_unused]]
-    static bool cmp_utf32(const std::u32string& _first, const std::u32string& _second) noexcept
+    bool cmp_utf32(
+        const std::u32string& first,
+        const std::u32string& second
+    ) noexcept
     {
-        if( _first.size() != _second.size() )
+        if( first.size() != second.size() )
             return false;
 
-        for( size_t counter = 0; counter < _first.size(); ++counter )
-            if( _first[counter] ^ _second[counter]) return false;
+        for( size_t counter = 0; counter < first.size(); ++counter )
+            if( first[counter] ^ second[counter]) return false;
 
         return true;
     }

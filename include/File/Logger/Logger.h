@@ -134,10 +134,11 @@ namespace subcore
             )
 
         #define LOG_ASSERT(logger, first, second, msg) \
-            (logger).log( \
+            (logger).log_assert( \
                 first, \
                 second, \
-                msg \
+                msg, \
+                srcinfo_t{ short_path(__FILE__), __LINE__, __func__ } \
             )
     }
 
@@ -418,6 +419,7 @@ const inline std::u32string& Logger::getName() const noexcept
  * @tparam _Ltype First
  * @tparam _Rtype Second
  * @param string Log Text
+ * 
  * @return e_logger
  */
 template<typename _Ltype, typename _Rtype>
@@ -433,6 +435,7 @@ e_log Logger::log
 
     bool status = test::expect_eq(_first, _second, utf::to_utf8(_logtext));
     this->write(utf::to_utf32(platform::current_time() + " ==> " + (status ? "[ PASS ] " : "[ FAIL ] ")) + _logtext + U"\n");
+    this->inc(status ? test::e_status::success : test::e_status::error);
 
     return e_log::succ_logged;
 }
@@ -464,8 +467,6 @@ void Logger::log_assert
     if( !this->isOpen() )
         return;
 
-    bool status = test::expect_eq(_first, _second, utf::to_utf8(_logtext));
-
     const std::u32string& msg =
         U"[ FILE: " + _logsrc.file +
         utf::to_utf32(
@@ -474,7 +475,9 @@ void Logger::log_assert
             " ] "
         ) + _logtext;
 
-    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + U"[ ASRT ]" + msg + U"\n");
+    bool status = test::expect_eq(_first, _second, utf::to_utf8(msg));
+    this->write(utf::to_utf32(platform::current_time()) + U" ==> " + U"[ ASRT ] " + msg + U"\n");
+    this->inc(status ? test::e_status::success : test::e_status::error);
 
     if( !status )
     {

@@ -65,10 +65,6 @@
 // Include:
 #include <Global.h>
 
-// Using Namespace:
-using namespace core;
-using namespace algorithmpool;
-
 // Os Support:
 #if defined __PLATFORM_DOS__
     #include <winsock2.h>
@@ -81,10 +77,14 @@ using namespace algorithmpool;
 
     bool close_socket(socket_t _sock) { return ::closesocket(_sock) != SOCKET_ERROR; }
 #elif defined __PLATFORM_POSIX__
+    #include <sys/types.h>
     #include <sys/socket.h>
     #include <arpa/inet.h>
     #include <netinet/in.h>
     #include <unistd.h>
+    #include <netdb.h>
+    #include <poll.h>
+    #include <errno.h>
 
     using socket_t = int;
     using sockaddr_t = sockaddr;
@@ -92,9 +92,9 @@ using namespace algorithmpool;
     bool close_socket(socket_t _sock) { return ::close(_sock) == 0; }
 #endif
 
+#include <Global.h>
 #include <Algorithm/AlgorithmPool.h>
 #include <Flag/Flag.h>
-#include <Tool/Utf/Utf.h>
 #include <Socket/AccessPolicy.h>
 #include <File/Logger/Logger.h>
 #include <Handler/Crash/CrashBase.h>
@@ -122,6 +122,8 @@ namespace core::virbase
 
         using wait_time_t = uint16_t;
 
+        using buffer_size_t = size_t;
+
         // Windows / DOS (Winsock)
         #if defined __PLATFORM_DOS__
             static inline constexpr socket_t inv_socket = INVALID_SOCKET;
@@ -135,8 +137,10 @@ namespace core::virbase
             static inline constexpr int inv_send = -1;
         #endif
 
-        // Using:
-        using buffer_size_t = size_t;
+        // Limit:
+        static inline constexpr wait_time_t MIN_WAIT_TIME = 0; // microsec
+        static inline constexpr wait_time_t DEF_WAIT_TIME = 100; // microsec
+        static inline constexpr wait_time_t MAX_WAIT_TIME = 1000; // microsec
 
         // Enum Class: Socket Code
         enum class e_socket : glo::status_t
@@ -180,6 +184,10 @@ namespace core::virbase
             err_packet_corrupt,
             err_recv_username_empty,
             err_recv_message_empty,
+            err_wait_time_under_limit,
+            err_wait_time_over_limit,
+            err_set_wait_time_fail,
+            err_set_ipv_fail,
 
             succ = unknwn + static_cast<glo::status_t>(glo::e_status::succ),
             succ_socket_create,
@@ -195,12 +203,15 @@ namespace core::virbase
             succ_socket_set_port,
             succ_set_buffer_size,
             succ_socket_set_timeout,
+            succ_set_wait_time,
+            succ_set_ipv,
 
             warn = unknwn + static_cast<glo::status_t>(glo::e_status::warn),
             warn_socket_type_same,
             warn_socket_timeout_value_same,
             warn_socket_can_be_close,
-            warn_send_not_all_data
+            warn_send_not_all_data,
+            warn_ipv_cannot_be_same
         };
 
         constexpr bool operator==(glo::status_t _first, e_socket _second) noexcept { return _first == static_cast<glo::status_t>(_second); }
@@ -229,12 +240,32 @@ namespace core::virbase
         static inline constexpr flag_t flag_socket_error { 1 << 2 };
         static inline constexpr flag_t flag_socket_open { 1 << 3 };
 
+        // Enum Class: Tcp Type
+        enum class ipv_t : uint8_t
+        {
+            ipv4,
+            ipv6,
+            dual
+        };
+
         // Namespace: Tcp
         namespace tcp
         {
-            static inline constexpr socket_domain_t domain = AF_INET;
-            static inline constexpr socket_conn_t type = SOCK_STREAM;
-            static inline constexpr socket_proto_t protocol = IPPROTO_TCP;
+            // Namespace: Ipv4
+            namespace ipv4
+            {
+                static inline constexpr socket_domain_t domain = AF_INET;
+                static inline constexpr socket_conn_t type = SOCK_STREAM;
+                static inline constexpr socket_proto_t protocol = IPPROTO_TCP;
+            }
+
+            // Namespace: Ipv6
+            namespace ipv6
+            {
+                static inline constexpr socket_domain_t domain = AF_INET6;
+                static inline constexpr socket_conn_t type = SOCK_STREAM;
+                static inline constexpr socket_proto_t protocol = IPPROTO_TCP;
+            }
         }
 
         // Struct: Data Packet
@@ -245,15 +276,54 @@ namespace core::virbase
             std::u32string msg;
         } datapacket_t;
 
-        // Function:
+        // Struct: UserPacket
+        typedef struct UserPacket_t
+        {
+            std::u32string username { U"" };
+            uint16_t try_passwd { 0 };
+            uint16_t same_user_count { 0 };
+        } UserPacket_t;
+
+        // Struct: SocketCtx
+        typedef struct SocketCtx_t
+        {
+            std::string ip;
+            UserPacket_t user;
+        } SocketCtx_t;
+
+        // Function Pre Definition:
+        [[maybe_unused]] static inline bool is_socket_valid(const socket_t) noexcept;
+        [[maybe_unused]] static std::string get_ip(const socket_t) noexcept;
+        [[maybe_unused]] static std::string extract_ip(const sockaddr_storage&) noexcept;
+        [[maybe_unused]] static bool set_socket_timeout(socket_t, uint16_t) noexcept;
+
         /**
-         * @brief Get IP
+         * @brief [Static] Is Socket Valid
+         * 
+         * Soketin geçerli olup olmadığını basit bir şekilde
+         * kontrol etmesini sağlayarak kodun okunabilirliğini
+         * ve yazım hatalarını önlemeye çalışıyoruz
+         * 
+         * @param socket_t Socket
+         * @return bool
+         */
+        [[maybe_unused]]
+        static inline bool is_socket_valid
+        (
+            const socket_t _soc
+        ) noexcept
+        {
+            return _soc != inv_socket;
+        }
+
+        /**
+         * @brief [Static] Get IP
          * 
          * Sockete bağlantı sağlayan ip adresini
          * bulmayı sağlayarak o ip adresi ile ilgili
          * işlem yapabilmemizi sağlamasını istiyoruz
          * 
-         * @return std::string
+         * @return string
          */
         [[maybe_unused]]
         static std::string get_ip(
@@ -263,23 +333,59 @@ namespace core::virbase
             sockaddr_storage addr {};
             socklen_t len = sizeof(addr);
 
-            if( ::getpeername(_socket, reinterpret_cast<sockaddr_t*>(&addr), &len) != 0 )
+            if (::getpeername(_socket, reinterpret_cast<sockaddr*>(&addr), &len) != 0)
                 return {};
 
             char ipstr[INET6_ADDRSTRLEN] {};
 
-            if( addr.ss_family == AF_INET )
+            if (addr.ss_family == AF_INET)
             {
                 auto* s = reinterpret_cast<sockaddr_in*>(&addr);
-                ::inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof(ipstr));
+                inet_ntop(AF_INET, &s->sin_addr, ipstr, sizeof(ipstr));
             }
-            else if( addr.ss_family == AF_INET6 )
+            else if (addr.ss_family == AF_INET6)
             {
                 auto* s = reinterpret_cast<sockaddr_in6*>(&addr);
-                ::inet_ntop(AF_INET6, &s->sin6_addr, ipstr, sizeof(ipstr));
+                inet_ntop(AF_INET6, &s->sin6_addr, ipstr, sizeof(ipstr));
+            }
+        
+            return ipstr;
+        }
+
+        /**
+         * @brief [Static] Extract Ip
+         * 
+         * Ip adresinin türüne göre (v4, v6) alıp
+         * okunabilir bir şekilde çevirip döndürecek
+         * 
+         * @param sockaddr_storage& Socket Storage
+         */
+        [[maybe_unused]]
+        static std::string extract_ip
+        (
+            const sockaddr_storage& _sockstrage
+        ) noexcept
+        {
+            char buffer[INET6_ADDRSTRLEN] {};
+
+            switch( _sockstrage.ss_family )
+            {
+                case tcp::ipv4::domain:
+                {
+                    const sockaddr_in* addrptrv4 = reinterpret_cast<const sockaddr_in*>(&_sockstrage);
+                    inet_ntop(tcp::ipv4::domain, &addrptrv4->sin_addr, buffer, sizeof(buffer));
+                    break;
+                }
+
+                case tcp::ipv6::domain:
+                default:
+                {
+                    const sockaddr_in6* addrptrv6 = reinterpret_cast<const sockaddr_in6*>(&_sockstrage);
+                    inet_ntop(tcp::ipv6::domain, &addrptrv6->sin6_addr, buffer, sizeof(buffer));
+                }
             }
 
-            return ipstr;
+            return buffer;
         }
 
         /**
@@ -301,7 +407,7 @@ namespace core::virbase
             uint16_t _sec
         ) noexcept
         {
-            if( _sock == inv_socket )
+            if( !is_socket_valid(_sock) )
                 return false;
 
             #ifdef __PLATFORM_POSIX__
@@ -328,22 +434,6 @@ namespace core::virbase
     // Using Namespace:
     using namespace socket;
 
-    // Struct: UserPacket
-    typedef struct UserPacket_t
-    {
-        std::u32string username { U"" };
-        uint16_t try_passwd { 0 };
-        uint16_t same_user_count { 0 };
-    } UserPacket_t;
-
-    // Struct: SocketCtx
-    typedef struct SocketCtx_t
-    {
-        socket_t sock;
-        std::string ip;
-        UserPacket_t user;
-    } SocketCtx_t;
-
     // Class: Socket
     template<class Algo>
     class Socket : virtual public handler::CrashBase
@@ -355,16 +445,18 @@ namespace core::virbase
             Flag flag;
             AccessPolicy policy;
 
-            socket_t sock;
-            std::atomic<socket_port_t> port;
+            socket_t sock { inv_socket };
+            ipv_t ipv { ipv_t::dual };
+            std::atomic<socket_port_t> port { ATOMIC_VAR_INIT(0) };
 
             Logger socklog;
             std::atomic<bool> active_log;
 
             mutable std::mutex sock_mtx;
 
-            std::atomic<buffer_size_t> buffer_size { DEF_SIZE_BUFFER };
-            std::atomic<wait_time_t> timeout;
+            std::atomic<buffer_size_t> buffer_size { ATOMIC_VAR_INIT(DEF_SIZE_BUFFER) };
+            std::atomic<wait_time_t> wait_us { ATOMIC_VAR_INIT(DEF_WAIT_TIME) };
+            std::atomic<wait_time_t> timeout { ATOMIC_VAR_INIT(DEF_SOCKET_TIMEOUT) };
             
             inline static std::atomic<size_t> total_socket { 0 };
 
@@ -376,16 +468,24 @@ namespace core::virbase
             inline static void incTotalSocket() noexcept { ++total_socket; }
             inline static void decTotalSocket() noexcept { if( total_socket ) --total_socket; };
 
+        private:
+            virtual e_socket setIpv(const ipv_t _tcp_version) noexcept;
+            virtual glo::status_t setPort(const socket_port_t) noexcept;
+            virtual glo::status_t setBufferSize(const buffer_size_t = DEF_SIZE_BUFFER) noexcept;
+            virtual glo::status_t setTimeout(const wait_time_t = DEF_SOCKET_TIMEOUT) noexcept;
+
         public:
             explicit Socket
             (
                 Algo& _algorithm,
                 const std::u32string& _nickname,
                 const socket_port_t _port = inv_port,
+                const ipv_t _ipver = ipv_t::dual,
                 const bool _log = false,
                 const std::u32string& _logheader = U"Socket",
                 const std::u32string& _logfilename = U"socket",
                 const buffer_size_t _buffsize = DEF_SIZE_BUFFER,
+                const wait_time_t _wait_time = DEF_WAIT_TIME,
                 const wait_time_t _timeoutsec = DEF_SOCKET_TIMEOUT
             ) noexcept;
 
@@ -405,17 +505,19 @@ namespace core::virbase
 
             inline static size_t getTotalSocket() noexcept { return Socket::total_socket; };
 
+            virtual inline ipv_t getIpv() const noexcept;
+
+            virtual inline wait_time_t getWaitTime() const noexcept;
+            virtual e_socket setWaitTime(const wait_time_t _wait, const bool _secure = true) noexcept;
+
             virtual inline buffer_size_t getBufferSize() const noexcept;
-            virtual glo::status_t setBufferSize(const buffer_size_t = DEF_SIZE_BUFFER) noexcept;
 
             virtual inline wait_time_t getTimeout() const noexcept;
-            virtual glo::status_t setTimeout(const wait_time_t = DEF_SOCKET_TIMEOUT) noexcept;
 
             virtual inline socket_t getSocket() const noexcept;
             virtual glo::status_t setSocket(const socket_t) noexcept;
 
             virtual inline socket_port_t getPort() const noexcept;
-            virtual glo::status_t setPort(const socket_port_t) noexcept;
 
             virtual inline Algo& getAlgorithm() noexcept;
             virtual inline Logger& getLogger() noexcept;
@@ -439,8 +541,16 @@ namespace core::virbase
      * alarak güvenli iletişim için
      * gerekli altyapıyı hazırlayacak
      * 
-     * @param Algorithm& Şifreleme Algoritması
-     * @return Socket
+     * @param Algo& Algorithm
+     * @param u32string& Username
+     * @param socket_port_t Socket Port
+     * @param ipv_t Tcp Ip Version
+     * @param bool Is Logging Active
+     * @param u32string& Log File Header
+     * @param u32string& Log File Name
+     * @param buffer_size_t Buffer Size
+     * @param wait_time_t Wait Time For Loop
+     * @param wait_time_t Socket Timeout
      */
     template<class Algo>
     Socket<Algo>::Socket
@@ -448,16 +558,19 @@ namespace core::virbase
         Algo& _algorithm,
         const std::u32string& _nickname,
         const socket_port_t _port,
+        const ipv_t _ipver,
         const bool _log,
         const std::u32string& _logheader,
         const std::u32string& _logfilename,
         const buffer_size_t _buffsize,
+        const wait_time_t _wait_time,
         const wait_time_t _timeoutsec
     ) noexcept
     :
         algo(_algorithm),
         flag(flag_socket_free),
         sock(inv_socket),
+        ipv(ipv_t::dual),
         port(inv_port),
         socklog(_logheader, _logfilename),
         buffer_size(DEF_SIZE_BUFFER),
@@ -477,10 +590,14 @@ namespace core::virbase
         if( _log ) this->enableLog();
         else this->disableLog();
 
+        this->setIpv(_ipver);
         this->setPort(_port);
         this->setBufferSize(_buffsize);
         this->getPolicy().setUsername(_nickname);
         this->incTotalSocket();
+
+        if( this->setWaitTime(_wait_time) != e_socket::succ_set_wait_time )
+            this->setWaitTime(DEF_WAIT_TIME);
     }
 
     /**
@@ -579,7 +696,7 @@ namespace core::virbase
     template<class Algo>
     bool Socket<Algo>::isFree() const noexcept
     {
-        return static_cast<bool>((this->flag.get() & flag_socket_free) && (this->getSocket() == inv_socket));
+        return static_cast<bool>( (this->flag.get() & flag_socket_free) && ( !is_socket_valid(this->getSocket()) ));
     }
 
     /**
@@ -592,7 +709,7 @@ namespace core::virbase
     template<class Algo>
     bool Socket<Algo>::isCreate() const noexcept
     {
-        return static_cast<bool>((this->flag.get() & flag_socket_created) && (this->getSocket() != inv_socket));
+        return static_cast<bool>( (this->flag.get() & flag_socket_created) && ( is_socket_valid(this->getSocket()) ));
     }
 
     /**
@@ -606,6 +723,82 @@ namespace core::virbase
     bool Socket<Algo>::isClose() const noexcept
     {
         return !this->isCreate();
+    }
+
+    /**
+     * @brief [Public] Get Ip Version
+     * 
+     * Ip bağlantı türünün v4 mü yoksa v6
+     * mı olduğu bilgisini döndürür
+     * 
+     * @return ipv_t
+     */
+    template<class Algo>
+    ipv_t Socket<Algo>::getIpv() const noexcept
+    {
+        return this->ipv;
+    }
+
+    /**
+     * @brief [Private] Set Ip Version
+     * 
+     * Ip adresi bağlantı sürümünü seçmeyi
+     * sağlayıp kayıt eden fonksiyondur
+     * 
+     * @return e_socket
+     */
+    template<class Algo>
+    e_socket Socket<Algo>::setIpv
+    (
+        const ipv_t _tcp_version
+    ) noexcept
+    {
+        if( this->ipv == _tcp_version )
+            return e_socket::warn_ipv_cannot_be_same;
+
+        this->ipv = _tcp_version;
+        return this->ipv == _tcp_version ?
+            e_socket::succ_set_ipv :
+            e_socket::err_set_ipv_fail;
+    }
+
+    /**
+     * @brief [Public] Get Wait Time
+     * 
+     * Her veri alımı arası bir gecikme süresi bulunur.
+     * Bu süreyi değer olarak döndürüyoruz
+     * 
+     * @return wait_time_t
+     */
+    template<class Algo>
+    wait_time_t Socket<Algo>::getWaitTime() const noexcept
+    {
+        return this->wait_us.load();
+    }
+
+    /**
+     * @brief [Public] Set Wait Time
+     * 
+     * Veri alımları arasında oluşabilecek süre gecikmesini
+     * belirleyecek ama kontrol altında yapacak bunu ve
+     * eğer kontrol devre dışı bırakılmış ise, sınırsız süre
+     * belirlenebilir fakat bu pek tavsiye edilmez
+     * 
+     * @param wait_time_t Wait Time
+     * @param bool Secure
+     * 
+     * @return e_socket
+     */
+    template<class Algo>
+    e_socket Socket<Algo>::setWaitTime(const wait_time_t _wait, const bool _secure) noexcept
+    {
+        if( _wait < MIN_WAIT_TIME ) return e_socket::err_wait_time_under_limit;
+        else if( _secure && _wait > MAX_WAIT_TIME ) return e_socket::err_wait_time_over_limit;
+
+        this->wait_us.store(_wait);
+        return this->wait_us.load() == _wait ?
+            e_socket::succ_set_wait_time :
+            e_socket::err_set_wait_time_fail;
     }
 
     /**
@@ -714,12 +907,10 @@ namespace core::virbase
         const socket_t _sock
     ) noexcept
     {
-        {
-            std::scoped_lock<std::mutex> lock(this->sock_mtx);
-            this->sock = _sock;
-        }
+        std::scoped_lock lock(this->sock_mtx);
+        this->sock = _sock;
 
-        return (_sock != inv_socket) ?
+        return ( this->sock == _sock ) ?
             glo::to_status<e_socket>(e_socket::succ_socket_set) :
             glo::to_status<e_socket>(e_socket::err_socket_set);
     }
@@ -739,7 +930,7 @@ namespace core::virbase
     }
 
     /**
-     * @brief [Public] Set Port
+     * @brief [Private] Set Port
      * 
      * Soketin port numarası geçersiz olmadığı sürece
      * güncelleme imkanı sunabilsin
@@ -799,16 +990,49 @@ namespace core::virbase
     template<class Algo>
     glo::status_t Socket<Algo>::create() noexcept
     {
-        socket_t fd = ::socket(tcp::domain, tcp::type, tcp::protocol);
-        if(fd == inv_socket) {
+        socket_domain_t sock_domain;
+        socket_conn_t sock_type;
+        socket_proto_t sock_proto;
+
+        switch( this->ipv )
+        {
+            case ipv_t::ipv4:
+                sock_domain = tcp::ipv4::domain;
+                sock_type   = tcp::ipv4::type;
+                sock_proto  = tcp::ipv4::protocol;
+                break;
+
+            case ipv_t::ipv6:
+            case ipv_t::dual:
+            default:
+                sock_domain = tcp::ipv6::domain;
+                sock_type   = tcp::ipv6::type;
+                sock_proto  = tcp::ipv6::protocol;                
+                break;
+        }
+
+        socket_t fd = ::socket(sock_domain, sock_type, sock_proto);
+        if( !is_socket_valid(fd) ) {
             this->flag.set(flag_socket_error);
             return glo::to_status<e_socket>(e_socket::err_socket_invalid);
         }
 
-        {
-            std::scoped_lock<std::mutex> lock(this->sock_mtx);
+        this->setSocket(fd);
 
-            this->sock = fd;
+        {
+            std::scoped_lock lock(this->sock_mtx);
+
+            if( this->getIpv() == ipv_t::dual )
+            {
+                int off = 0;
+                ::setsockopt(
+                    this->getSocket(),
+                    IPPROTO_IPV6,
+                    IPV6_V6ONLY,
+                    reinterpret_cast<const char*>(&off),
+                    sizeof(off)
+                );
+            }
 
             this->flag.set(flag_socket_created);
             this->flag.set(flag_socket_open);
@@ -816,7 +1040,7 @@ namespace core::virbase
             this->flag.unset(flag_socket_error);
         }
 
-        return this->sock != inv_socket ?
+        return is_socket_valid(this->getSocket()) ?
             glo::to_status<e_socket>(e_socket::succ_socket_create) :
             glo::to_status<e_socket>(e_socket::err_socket_create);
     }
@@ -832,15 +1056,15 @@ namespace core::virbase
     template<class Algo>
     glo::status_t Socket<Algo>::close() noexcept
     {
-        if( this->sock == inv_socket )
+        if( !is_socket_valid(this->getSocket()) )
             return glo::to_status<e_socket>(e_socket::err_socket_invalid);
 
-        close_socket(this->sock);
+        close_socket(this->getSocket());
 
         {
             std::scoped_lock<std::mutex> lock(this->sock_mtx);
 
-            this->sock = inv_socket;
+            this->setSocket(inv_socket);
 
             this->flag.unset(flag_socket_open);
             this->flag.unset(flag_socket_created);
@@ -848,7 +1072,7 @@ namespace core::virbase
             this->flag.set(flag_socket_free);
         }
 
-        return this->sock == inv_socket ?
+        return !is_socket_valid(this->getSocket()) ?
             glo::to_status<e_socket>(e_socket::succ_socket_close) :
             glo::to_status<e_socket>(e_socket::err_socket_close);
     }
@@ -872,7 +1096,7 @@ namespace core::virbase
         this->flag.clear();
         this->flag.set(flag_socket_free);
 
-        return this->sock == inv_socket ?
+        return !is_socket_valid(this->getSocket()) ?
             glo::to_status<e_socket>(e_socket::succ_socket_clear) :
             glo::to_status<e_socket>(e_socket::err_socket_clear);
     }
@@ -883,10 +1107,10 @@ namespace core::virbase
         datapacket_t& _rawpacket
     ) noexcept
     {
-        if (_socket == inv_socket)
+        if ( !is_socket_valid(_socket) )
             return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
     
-        if (_rawpacket.name.empty() || _rawpacket.msg.empty())
+        if ( _rawpacket.name.empty() || _rawpacket.msg.empty() )
             return glo::to_status<e_socket>(e_socket::err_packet_no_data);
     
         const std::string ipaddr = get_ip(_socket);
@@ -901,7 +1125,7 @@ namespace core::virbase
         std::size_t total_sent = 0;
         const std::size_t total_size = buffer.size();
     
-        while (total_sent < total_size)
+        while ( total_sent < total_size )
         {
             int sent = ::send(
                 _socket,
@@ -935,7 +1159,7 @@ namespace core::virbase
         datapacket_t& _rawpacket
     ) noexcept
     {
-        if (_socket == inv_socket)
+        if ( !is_socket_valid(_socket) )
             return glo::to_status<e_socket>(e_socket::err_client_socket_invalid);
 
         constexpr uint16_t HEADER_LEN = 10;
@@ -1008,7 +1232,7 @@ namespace core::virbase
     void Socket<Algo>::print() noexcept
     {
         std::cout << "\n==================== TCP SOCKET ====================\n";
-        std::cout << std::setw(20) << std::left << "Socket " << std::right << " => " << (this->sock != inv_socket ? "Valid" : "Invalid") << "\n";
+        std::cout << std::setw(20) << std::left << "Socket " << std::right << " => " << (is_socket_valid(this->getSocket()) ? "Valid" : "Invalid") << "\n";
         std::cout << std::setw(20) << std::left << "Has Error " << std::right << " => " << (this->hasError() ? "yes" : "no") << "\n";
         std::cout << std::setw(20) << std::left << "Is Created " << std::right << " => " << (this->isCreate() ? "yes" : "no") << "\n";
         std::cout << std::setw(20) << std::left << "Is Free " << std::right << " => " << (this->isFree() ? "yes" : "no") << "\n\n";
@@ -1023,6 +1247,7 @@ namespace core::virbase
     template<class Algo>
     void Socket<Algo>::onCrash() noexcept
     {
+        this->getLogger().onCrash();
         this->close();
 
         #if defined __PLATFORM_DOS__
