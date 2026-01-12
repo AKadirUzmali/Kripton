@@ -40,10 +40,10 @@ namespace tools::console
         inline constexpr color color_purple     = 5;
         inline constexpr color color_turquoise  = 3;
         inline constexpr color color_white      = 7;
+	inline constexpr color color_reset	= color_white;
     #elif __PLATFORM_POSIX__
         using color = std::string_view;
 
-        inline constexpr color color_reset      = "\033[0m";
         inline constexpr color color_black      = "\033[30m";
         inline constexpr color color_red        = "\033[31m";
         inline constexpr color color_green      = "\033[32m";
@@ -52,6 +52,7 @@ namespace tools::console
         inline constexpr color color_purple     = "\033[35m";
         inline constexpr color color_turquoise  = "\033[36m";
         inline constexpr color color_white      = "\033[37m";
+	inline constexpr color color_reset	= "\033[0m";
     #endif
 
     inline constexpr std::array<color, dev::level::size_levels>
