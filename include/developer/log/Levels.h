@@ -39,7 +39,7 @@ namespace dev::level
 
     // Array:
     const std::array<std::string, size_levels>
-    levels = { "FAIL", "PASS", "WARN", "INFO", "TEST", "NULL" };
+    levels = { "Fail", "Pass", "Warn", "Info", "Test", "Null" };
 
     // Array:
     const std::array<std::string, size_levels>
