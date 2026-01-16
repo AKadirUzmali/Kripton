@@ -21,7 +21,7 @@
 #include <tools/Platform.h>
 #include <developer/log/Levels.h>
 
-#if __PLATFORM_WINDOWS__
+#if __OS_WINDOWS__
     #include <windows.h>
 #endif
 
@@ -29,7 +29,7 @@
 namespace tools::console
 {
     // Define:
-    #if __PLATFORM_WINDOWS__
+    #if __OS_WINDOWS__
         using color = int;
 
         inline constexpr color color_black      = 0;
@@ -41,7 +41,7 @@ namespace tools::console
         inline constexpr color color_turquoise  = 3;
         inline constexpr color color_white      = 7;
 	inline constexpr color color_reset	= color_white;
-    #elif __PLATFORM_POSIX__
+    #elif __OS_POSIX__
         using color = std::string_view;
 
         inline constexpr color color_black      = "\033[30m";
@@ -75,7 +75,7 @@ namespace tools::console
     inline void enable_utf8_console(
     ) noexcept
     {
-        #if __PLATFORM_WINDOWS__
+        #if __OS_WINDOWS__
             static std::atomic<bool> is_console_utf8 { false };
             bool expected = false;
 
@@ -119,11 +119,11 @@ namespace tools::console
         color console_color
     ) noexcept
     {
-        #if __PLATFORM_WINDOWS__
+        #if __OS_WINDOWS__
             static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
             FlushConsoleInputBuffer(hConsole);
             SetConsoleTextAttribute(hConsole, console_color);
-        #elif __PLATFORM_POSIX__
+        #elif __OS_POSIX__
             std::cout << console_color << std::flush;
         #endif
     }
