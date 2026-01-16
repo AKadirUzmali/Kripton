@@ -19,37 +19,75 @@
 // Namespace:
 namespace dev::trace
 {
-    // Struct:
-    struct Scope
+    // Using Namespace:
+    using namespace dev::level;
+    using namespace dev::source;
+    using namespace dev::log;
+    using namespace dev::output::console;
+
+    // Class:
+    template<class LoggerT>
+    class Scope final
     {
-        std::string name;
-        time_point  start;
+        private:
+            LoggerT& logger;
+            std::string_view name;
+            time_point start {};
+            Source src;
 
-        explicit Scope(const std::string& n)
-            : name(n)
-        {
-            if constexpr (dev::config::trace)
-                start = clock::now();
-        }
-
-        ~Scope()
-        {
-            if constexpr (dev::config::trace) {
-                const auto end = clock::now();
-                const auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-
-                dev::log::Logger::write(
-                    dev::level::Level::Info, name + " : " + std::to_string(dur.count()) + " us");
-            }
-        }
+        public:
+            explicit Scope(LoggerT& log, std::string_view outname, const Source source);
+            ~Scope();
     };
+
+    /**
+     * @brief Scope
+     */
+    template<class LoggerT>
+    Scope<LoggerT>::Scope
+    (
+        LoggerT& log,
+        std::string_view outname,
+        const Source source
+    ) : logger(log), name(outname), src(source)
+    {
+        if constexpr (dev::config::trace) {
+            start = clock::now();
+        }
+    }
+
+    /**
+     * @brief ~Scope
+     */
+    template<class LoggerT>
+    Scope<LoggerT>::~Scope()
+    {
+        if constexpr (dev::config::trace) {
+            const auto end = clock::now();
+            const auto dur = std::chrono::duration_cast<std::chrono::microseconds>(end -start);
+
+            std::string text;
+
+            text.reserve(this->name.size() + 32);
+            text.append(name);
+            text.append(": ");
+            text.append(std::to_string(dur.count()));
+            text.append(" us");
+
+            this->logger.write(Level::Info, std::string_view{text}, this->src);
+        }
+    }
 }
 
 // Define:
 #if __DEVELOPER__
-    #define TRACE_SCOPE(name) dev::trace::Scope _dev_scope_##__LINE__{ name }
-    #define TRACE_FUNC(name)  TRACE_SCOPE(__func__)
+    #define TRACE_SCOPE(logger, name) dev::trace::Scope<std::decay_t<decltype(logger)>> \
+        _dev_scope_##__LINE__{ logger, \
+            name, \
+            dev::source::Source{__FILE__, __func__, __LINE__} \
+        }
+    #define TRACE_FUNC(logger, name)  TRACE_SCOPE(logger, __func__)
 #else
-    #define TRACE_SCOPE(name) ((void)0)
-    #define TRACE_FUNC(name)  ((void)0)
+    #define TRACE_SCOPE(logger, name) (sizeof(logger))
+    #define TRACE_FUNC(logger, name)  (sizeof(logger))
 #endif
