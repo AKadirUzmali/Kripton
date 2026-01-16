@@ -3,102 +3,178 @@
 #pragma once
 
 /**
- * Platform
+ * Os
  *
- * Platform yani işletim sistemine göre
+ * Os yani işletim sistemine göre
  * işlem yapabilmemi kolaylaştıracak bir yapı
  * 
+ * UNIX -> BSD
+ * UNIX-LIKE -> LINUX
+ * DOS -> WINDOWS
+ * 
  * POSIX -> BSD/LINUX
- * DOS   -> WINDOWS
  */
 
 // Define:
 #if defined(_WIN32) || defined(_WIN64)
-    #define __PLATFORM_DOS__ 1
-    #define __PLATFORM_WINDOWS__ 1
+    #define __PFM_DOS__ 1
+    #define __OS_WINDOWS__ 1
 
-    #define __PLATFORM_POSIX__ 0
-    #define __PLATFORM_LINUX__ 0
-    #define __PLATFORM_BSD__  0
+    #define __PFM_UNIX__ 0
+    #define __PFM_UNIX_LIKE__ 0
+    #define __PFM_DOS__ 1
+
+    #define __OS_POSIX__ 0
+    #define __OS_LINUX__ 0
+    #define __OS_BSD__  0
 
     #ifndef WIN32_LEAN_AND_MEAN
         #define WIN32_LEAN_AND_MEAN
     #endif
 #elif defined(__linux__)
-    #define __PLATFORM_DOS__ 0
-    #define __PLATFORM_WINDOWS__ 0
+    #define __PFM_DOS__ 0
+    #define __OS_WINDOWS__ 0
 
-    #define __PLATFORM_POSIX__ 1
-    #define __PLATFORM_LINUX__ 1
-    #define __PLATFORM_BSD__  0
+    #define __PFM_UNIX__ 0
+    #define __PFM_UNIX_LIKE__ 1
+    #define __PFM_DOS__ 0
+
+    #define __OS_POSIX__ 1
+    #define __OS_LINUX__ 1
+    #define __OS_BSD__  0
 #elif defined(__FreeBSD__) || defined(__unix__)
-    #define __PLATFORM_DOS__ 0
-    #define __PLATFORM_WINDOWS__ 0
+    #define __PFM_DOS__ 0
+    #define __OS_WINDOWS__ 0
 
-    #define __PLATFORM_POSIX__ 1
-    #define __PLATFORM_LINUX__ 0
-    #define __PLATFORM_BSD__  1
+    #define __PFM_UNIX__ 1
+    #define __PFM_UNIX_LIKE__ 0
+    #define __PFM_DOS__ 0
+
+    #define __OS_POSIX__ 1
+    #define __OS_LINUX__ 0
+    #define __OS_BSD__  1
 #else
-    #error "[ERROR] PLATFORM: BSD/LINUX/WINDOWS"
+    #error "[ERROR] Platform: UNIX/UNIX-LIKE/DOS"
+    #error "[ERROR] Os: BSD/LINUX/WINDOWS"
 #endif
 
 // Include:
 #include <cstdint>
 #include <string_view>
-#include <sstream>
-#include <iomanip>
-#include <chrono>
 
 // Namespace:
 namespace tools::os
 {
     // Operating System:
-    inline constexpr bool os_posix = __PLATFORM_POSIX__;
-    inline constexpr bool os_dos = __PLATFORM_DOS__;
-    inline constexpr bool os_bsd = __PLATFORM_BSD__;
-    inline constexpr bool os_windows = __PLATFORM_WINDOWS__;
-    inline constexpr bool os_linux = __PLATFORM_LINUX__;
+    inline constexpr bool pfm_unix = __PFM_UNIX__;
+    inline constexpr bool pfm_unix_like = __PFM_UNIX_LIKE__;
+    inline constexpr bool pfm_dos = __PFM_DOS__;
+
+    inline constexpr bool os_posix = __OS_POSIX__;
+    inline constexpr bool os_bsd = __OS_BSD__;
+    inline constexpr bool os_windows = __OS_WINDOWS__;
+    inline constexpr bool os_linux = __OS_LINUX__;
 
     // Enum:
     enum class Platform : uint8_t {
+        Unknown = 0,
+        Unix,
+        Unix_Like,
+        Dos
+    };
+
+    // Enum:
+    enum class Os : uint8_t {
         Unknown = 0,
         Bsd,
         Linux,
         Windows
     };
 
-    // Function Define:
-    inline constexpr Platform current() noexcept;
-    inline constexpr std::string_view current_name() noexcept;
+    // String:
+    inline constexpr std::string_view name_unknown = "Unknown";
 
-    inline std::string current_date();
-    inline std::string current_time();
-    inline std::string current_timestamp();
+    inline constexpr std::string_view name_unix = "Unix";
+    inline constexpr std::string_view name_unix_like = "Unix-Like";
+    inline constexpr std::string_view name_dos = "Dos";
+
+    inline constexpr std::string_view name_bsd = "Bsd";
+    inline constexpr std::string_view name_linux = "Linux";
+    inline constexpr std::string_view name_windows = "Windows";
+
+    // Function Define:
+    inline constexpr Platform current_pfm() noexcept;
+    inline constexpr Os current_os() noexcept;
+
+    inline constexpr std::string_view current_pfm_name() noexcept;
+    inline constexpr std::string_view current_os_name() noexcept;
 
     /**
-     * @brief Current
+     * @brief Current Platform
      * 
-     * Derleme zamanında işletim sistemi tespiti
-     * Bu sayede işletim sistemi hakkında düzgün
-     * ve kullanışlı bir bilgiye sahip olacağız
+     * Derleme zamanında işletim sisteminin bağlı
+     * olduğu aileyi tespit etmek için kullanılır
      * 
      * @return Platform
      */
     [[maybe_unused]]
-    inline constexpr Platform current() noexcept
+    inline constexpr Platform current_pfm() noexcept
     {
-        if constexpr (os_windows)
-            return Platform::Windows;
+        if constexpr (os_bsd)
+            return Platform::Unix;
         else if constexpr (os_linux)
-            return Platform::Linux;
-        else if constexpr (os_bsd)
-            return Platform::Bsd;
+            return Platform::Unix_Like;
+        else if constexpr (os_windows)
+            return Platform::Dos;
         
         return Platform::Unknown;
     }
 
     /**
-     * @brief Current Name
+     * @brief Current Operating System
+     * 
+     * Derleme zamanında işletim sistemi tespiti
+     * Bu sayede işletim sistemi hakkında düzgün
+     * ve kullanışlı bir bilgiye sahip olacağız
+     * 
+     * @return Os
+     */
+    [[maybe_unused]]
+    inline constexpr Os current_os() noexcept
+    {
+        if constexpr (os_windows)
+            return Os::Windows;
+        else if constexpr (os_linux)
+            return Os::Linux;
+        else if constexpr (os_bsd)
+            return Os::Bsd;
+        
+        return Os::Unknown;
+    }
+
+    /**
+     * @brief Current Platform Name
+     * 
+     * İşletim sisteminin bağlı olduğu platformun
+     * adını insan okunabilir halde olması için
+     * döndürüyoruz
+     * 
+     * @return string_view
+     */
+    inline constexpr std::string_view current_pfm_name() noexcept
+    {
+        if constexpr (pfm_unix)
+            return name_unix;
+        else if constexpr (pfm_unix_like)
+            return name_unix_like;
+        else if constexpr (pfm_dos)
+            return name_dos;
+
+        return name_unknown;
+    }
+
+    /**
+     * @brief Current Operating System Name
      * 
      * İşletim sisteminin insan okunabilir hali
      * fakat bunu derleme zamanında yaparak
@@ -107,139 +183,25 @@ namespace tools::os
      * @return string_view
      */
     [[maybe_unused]]
-    inline constexpr std::string_view current_name() noexcept
+    inline constexpr std::string_view current_os_name() noexcept
     {
         if constexpr (os_windows)
-            return "windows";
+            return name_windows;
         else if constexpr (os_linux)
-            return "linux";
+            return name_linux;
         else if constexpr (os_bsd)
-            return "bsd";
+            return name_bsd;
         
-        return "unknown";
+        return name_unknown;
     }
 
-    /**
-     * @brief Current Date
-     * 
-     * Sistemin o an bulunduğu tarihi
-     * gün-ay-yıl olarak alabilmeyi sağlar.
-     * Bu sayede kayıt işlemlerinin
-     * ne zaman yapıldığı bilgisini okumayı sağlar
-     * 
-     * @return string
-     */
-    [[maybe_unused]]
-    inline std::string current_date()
-    {
-        const auto now = std::chrono::system_clock::now();
-        const auto time = std::chrono::system_clock::to_time_t(now);
-
-        std::tm tm {};
-
-        #if __PLATFORM_POSIX__
-            localtime_r(&time, &tm);
-        #elif __PLATFORM_DOS__
-            localtime_s(&tm, &time);
-        #else
-            tm = *std::localtime(&time);
-        #endif
-
-        char buffer[11]; // YYYY-MM-DD + '\0'
-        std::strftime(buffer, sizeof(buffer), "%Y-%m-%d", &tm);
-
-        return std::string(buffer);
-    }
-
-    /**
-     * @brief Current Time
-     * 
-     * Sistemin o an bulunduğu zamanı
-     * almayı sağlamak için gereklidir.
-     * Kayıt işlemlerinde yapılan işlem zamanını
-     * belirtmede işe yarar
-     * 
-     * @return string
-     */
-    [[maybe_unused]]
-    inline std::string current_time()
-    {
-        auto now = std::chrono::system_clock::now();
-        auto time = std::chrono::system_clock::to_time_t(now);
-        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
-
-        std::tm tm {};
-
-        #if __PLATFORM_POSIX__
-            localtime_r(&time, &tm);
-        #elif __PLATFORM_DOS__
-            localtime_s(&tm, &time);
-        #else
-            tm = *std::localtime(&time);
-        #endif
-
-        char buffer[16]; // HH:MM:SS:MMM + '\0'
-
-        std::snprintf(
-            buffer, sizeof(buffer),
-            "%02d:%02d:%02d:%03lld",
-            tm.tm_hour,
-            tm.tm_min,
-            tm.tm_sec,
-            static_cast<long long>(ms.count())
-        );
-
-        return std::string(buffer);
-    }
-
-    /**
-     * @brief Current Time Stamp
-     * 
-     * Sistemin o an bulunduğu gün-ay-yıl ve zamanı
-     * almayı sağlamak için gereklidir.
-     * Kayıt işlemlerinde yapılan işlem zamanını
-     * belirtmede işe yarar
-     * 
-     * @return string
-     */
-    [[maybe_unused]]
-    inline std::string current_timestamp()
-    {
-        auto now = std::chrono::system_clock::now();
-        auto time = std::chrono::system_clock::to_time_t(now);
-        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()) % 1000;
-
-        std::tm tm {};
-
-        #if __PLATFORM_POSIX__
-            localtime_r(&time, &tm);
-        #elif __PLATFORM_DOS__
-            localtime_s(&tm, &time);
-        #else
-            tm = *std::localtime(&time);
-        #endif
-
-        char buffer[32]; // YYYY-MM-DD + HH:MM:SS:MMM + '\0'
-
-        std::snprintf(
-            buffer, sizeof(buffer),
-            "%04d-%02d-%02d %02d:%02d:%02d.%03lld",
-            tm.tm_year + 1900,
-            tm.tm_mon + 1,
-            tm.tm_mday,
-            tm.tm_hour,
-            tm.tm_min,
-            tm.tm_sec,
-            static_cast<long long>(ms.count())
-        );
-
-        return std::string(buffer);
-    }
-
-    // Platform:
-    inline constexpr bool is_posix()    noexcept { return os_posix; }
-    inline constexpr bool is_dos()      noexcept { return os_dos; }
-    inline constexpr bool is_bsd()      noexcept { return os_bsd;  }
-    inline constexpr bool is_linux()    noexcept { return os_linux; }
-    inline constexpr bool is_windows()  noexcept { return os_windows; }
+    // Is Function:
+    inline constexpr bool is_pfm_unix()      noexcept { return pfm_unix; }
+    inline constexpr bool is_pfm_unix_like() noexcept { return pfm_unix_like; }
+    inline constexpr bool is_pfm_dos()       noexcept { return pfm_dos; }
+    
+    inline constexpr bool is_os_posix()     noexcept { return os_posix; }
+    inline constexpr bool is_os_bsd()       noexcept { return os_bsd;  }
+    inline constexpr bool is_os_linux()     noexcept { return os_linux; }
+    inline constexpr bool is_os_windows()   noexcept { return os_windows; }
 }
