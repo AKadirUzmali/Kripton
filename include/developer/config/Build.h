@@ -10,7 +10,7 @@
 
 // Define:
 #ifndef __DEVELOPER__
-    #if defined(NDEBUG) || defined(__DEVEL__) || defined(__DEBUG__)
+    #if defined(__DEVEL__) || defined(__DEBUG__)
         #define __DEVELOPER__ 1
     #else
         #define __DEVELOPER__ 0
