@@ -14,45 +14,46 @@
 #include <developer/log/Logger.h>
 #include <developer/test/Expect.h>
 #include <developer/test/Assert.h>
+#include <developer/log/Logger.h>
 
 // Define:
 #if defined(__DEVELOPER__) && __DEVELOPER__
-    #define LOG(msg) \
-        dev::log::Logger::write(dev::level::Level::Info, \
+    #define LOG(logger, msg) \
+        logger.write(dev::level::Level::Info, \
             msg, \
             dev::source::Source{__FILE__, __func__, __LINE__})
 
-    #define LOG_MSG(type, msg) \
-        dev::log::Logger::write(static_cast<dev::level::Level>(type), \
+    #define LOG_MSG(logger, type, msg) \
+        logger.write(static_cast<dev::level::Level>(type), \
         msg, \
         dev::source::Source{__FILE__, __func__, __LINE__})
 
-    #define EXPECT_MSG(result, msg) \
+    #define EXPECT_MSG(logger, result, msg) \
         do { \
-            dev::log::Logger::write(result ? \
+            logger.write(result ? \
                 dev::level::Level::Succ : dev::level::Level::Err, \
                 msg, \
                 dev::source::Source{__FILE__, __func__, __LINE__} \
             ); \
         } while(0)
 
-    #define ASSERT_MSG(result, msg) \
+    #define ASSERT_MSG(logger, result, msg) \
         do { \
             if( !result ) { \
-                dev::log::Logger::write(dev::level::Level::Err, \
+                logger.write(dev::level::Level::Err, \
                     msg, \
                     dev::source::Source{__FILE__, __func__, __LINE__}); \
                 dev::test::kill(); \
             } else { \
-                dev::log::Logger::write(dev::level::Level::Succ, \
+                logger.write(dev::level::Level::Succ, \
                     msg, \
                     dev::source::Source{__FILE__, __func__, __LINE__}); \
             } \
         } while(0)
 #else
-    #define LOG(msg) ((void)sizeof(msg))
-    #define LOG_MSG(type, msg) ((void)sizeof(type))
+    #define LOG(logger, msg) ((void)sizeof(logger))
+    #define LOG_MSG(logger, type, msg) ((void)sizeof(logger))
 
-    #define EXPECT_MSG(result, msg) ((void)sizeof(result))
-    #define ASSERT_MSG(result, msg) ((void)sizeof(result))
+    #define EXPECT_MSG(logger, result, msg) ((void)sizeof(logger))
+    #define ASSERT_MSG(logger, result, msg) ((void)sizeof(logger))
 #endif
