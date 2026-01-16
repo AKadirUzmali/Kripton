@@ -11,7 +11,16 @@
 // Include:
 #define __DEVEL__
 #include <developer/Developer.h>
-#include <kits/ToolKit.h>
+
+// Using Namespace:
+using namespace dev::level;
+using namespace dev::log;
+using namespace dev::output::file;
+using namespace dev::output::console;
+
+// Static:
+static std::string filename = "11-01-2026-developer-" + tools::utf::to_lower(std::string(tools::os::current_os_name()));
+static Logger<FileOut, ConsoleOut> testlog("logs/" + filename, filename + "-console");
 
 /**
  * @brief Even or Odd (Tek ya da Çift)
@@ -22,9 +31,9 @@
  */
 static bool isEven(const int value) noexcept
 {
-    TRACE_SCOPE("is_even");
-    LOG("is_even çalıştırıldı");
-    EXPECT_MSG(value % 2 == 0, "Sayi bir çift sayi");
+    TRACE_SCOPE(testlog, "is_even");
+    LOG(testlog, "is_even çalıştırıldı");
+    EXPECT_MSG(testlog, value % 2 == 0, "Sayi bir çift sayi");
 
     return value % 2 == 0;
 }
@@ -34,19 +43,19 @@ int main(void)
 {
     tools::console::enable_utf8_console();
 
-    TRACE_FUNC();
-    LOG("Developer test sistemi başlatıldı");
+    // TRACE_FUNC();
+    LOG(testlog, "Developer test sistemi başlatıldı");
 
     int a = 23;
     int b = 21;
 
-    if( isEven(a) ) LOG_MSG(dev::level::Level::Info, "A sayısı bir çift sayıdır");
-    else LOG_MSG(dev::level::Level::Warn, "A sayısı bir çift sayı değildir");
+    if( isEven(a) ) LOG_MSG(testlog, Level::Info, "A sayısı bir çift sayıdır");
+    else LOG_MSG(testlog, Level::Warn, "A sayısı bir çift sayı değildir");
 
-    ASSERT_MSG(!isEven(b), "B sayısı bir tek sayıdır");
+    ASSERT_MSG(testlog, !isEven(b), "B sayısı bir tek sayıdır");
 
-    LOG("Test sonuçları çıktısı veriliyor...");
-    dev::log::Logger::print();
+    LOG(testlog, "Test sonuçları çıktısı veriliyor...");
+    testlog.print();
 
     // ASSERT_MSG(isEven(b), "B sayisi bir cift sayidir");
 

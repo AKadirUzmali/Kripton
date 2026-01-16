@@ -1,0 +1,44 @@
+================================================================================================================
+Path                : logs/11-01-2026-developer-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-01-16 21:05:10:397
+================================================================================================================
+[Info] [2026-01-16 21:05:10:397|test.cpp:main:47] Developer test sistemi başlatıldı
+[Info] [2026-01-16 21:05:10:397|test.cpp:isEven:35] is_even çalıştırıldı
+[Fail] [2026-01-16 21:05:10:397|test.cpp:isEven:36] Sayi bir çift sayi
+[Info] [2026-01-16 21:05:10:397|test.cpp:isEven:34] is_even: 20 us
+[Warn] [2026-01-16 21:05:10:397|test.cpp:main:53] A sayısı bir çift sayı değildir
+[Info] [2026-01-16 21:05:10:397|test.cpp:isEven:35] is_even çalıştırıldı
+[Fail] [2026-01-16 21:05:10:397|test.cpp:isEven:36] Sayi bir çift sayi
+[Info] [2026-01-16 21:05:10:397|test.cpp:isEven:34] is_even: 27 us
+[Pass] [2026-01-16 21:05:10:397|test.cpp:main:55] B sayısı bir tek sayıdır
+[Info] [2026-01-16 21:05:10:397|test.cpp:main:57] Test sonuçları çıktısı veriliyor...
+[Logger] Error: 2
+[Logger] Success: 1
+[Logger] Warning: 1
+[Logger] Information: 6
+[Logger] Debug: 0
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/11-01-2026-developer-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-01-16 21:05:10:835
+================================================================================================================
+[Info] [2026-01-16 21:05:10:835|test.cpp:main:47] Developer test sistemi başlatıldı
+[Info] [2026-01-16 21:05:10:836|test.cpp:isEven:35] is_even çalıştırıldı
+[Fail] [2026-01-16 21:05:10:836|test.cpp:isEven:36] Sayi bir çift sayi
+[Info] [2026-01-16 21:05:10:836|test.cpp:isEven:34] is_even: 38 us
+[Warn] [2026-01-16 21:05:10:836|test.cpp:main:53] A sayısı bir çift sayı değildir
+[Info] [2026-01-16 21:05:10:836|test.cpp:isEven:35] is_even çalıştırıldı
+[Fail] [2026-01-16 21:05:10:836|test.cpp:isEven:36] Sayi bir çift sayi
+[Info] [2026-01-16 21:05:10:836|test.cpp:isEven:34] is_even: 24 us
+[Pass] [2026-01-16 21:05:10:836|test.cpp:main:55] B sayısı bir tek sayıdır
+[Info] [2026-01-16 21:05:10:836|test.cpp:main:57] Test sonuçları çıktısı veriliyor...
+[Logger] Error: 2
+[Logger] Success: 1
+[Logger] Warning: 1
+[Logger] Information: 6
+[Logger] Debug: 0
+[Logger] Null: 0
