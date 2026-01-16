@@ -11,8 +11,7 @@
  */
 
 // Include:
-#include <iostream>
-#include <string>
+#include <string_view>
 
 #include <kits/ToolKit.h>
 #include <developer/log/Levels.h>
@@ -20,78 +19,89 @@
 // Namespace:
 namespace dev::output
 {
+    // Class:
+    class Output
+    {
+        public:
+            static inline std::string getTitle(
+                std::string_view title
+            ) noexcept;
+
+        private:
+            std::string_view name;
+
+        public:
+            explicit Output(std::string_view outname);
+
+        public:
+            virtual void write(
+                dev::level::Level lvl,
+                std::string_view msg
+            ) noexcept = 0;
+
+            virtual void write(
+                std::string_view title,
+                std::string_view msg
+            ) noexcept = 0;
+
+            virtual void write(
+                std::string_view msg
+            ) noexcept = 0;
+
+            inline constexpr std::string_view getName() const noexcept;
+    };
+
     /**
-     * @brief Output Title
+     * @brief Output
      * 
-     * Lambda ifadelerden faydalanarak basit bir şekilde
-     * başlık ayarlayan ve bunu çıktı veren bir ifade
-     * Okunurluğu arttırmak için yapıldı
+     * Belirtilen isim ile çıktı vericiyi
+     * oluşturmasını sağlıyoruz
      * 
-     * @param string& Title
+     * @param string_view Name
+     */
+    Output::Output
+    (
+        std::string_view outname
+    ) :name(outname)
+    {}
+
+    /**
+     * @brief Get Title
+     * 
+     * Verilen başlığı belirtilen standarta göre
+     * geri döndürecek
+     * 
+     * @note Output: [title]
+     * 
+     * @param string_view Title
      * @return string
      */
-    auto output_title = [](const std::string& title){
-        return std::string("[ " + title + " ] ");
-    };
-
-    // Struct:
-    struct Console
+    std::string Output::getTitle
+    (
+        std::string_view title
+    ) noexcept
     {
-        /**
-         * @brief Write
-         * 
-         * Duruma göre çıktı verecek ve bu sayede
-         * ne olduğunun anlaşılması daha rahat olacak
-         * 
-         * @note Durumda çıktı verilecek çünkü ne olduğunu anlamalıyız
-         * 
-         * @param Level Status
-         * @param string_view Message
-         */
-        inline static void write(
-            dev::level::Level lvl,
-            const std::string& msg
-        ) noexcept
-        {
-            const size_t arr_size = dev::level::to_index(lvl);
-            arr_size < dev::level::tests.size() ? ++dev::level::tests[arr_size] : ++dev::level::tests[dev::level::to_index(dev::level::Level::Null)];
+        std::string out;
+        
+        out.reserve(title.size() + 3);
+        out.push_back('[');
+        out.append(title);
+        out.push_back(']');
 
-            tools::console::set_color(tools::console::get_color(dev::level::to_index(lvl)));
-            std::cout << output_title(level::to_string(lvl)) << msg << '\n';
-            tools::console::reset_color();
-        }
+        return out;
+    }
 
-        /**
-         * @brief Write
-         * 
-         * Çıktı verecek ve bu sayede
-         * ne olduğunun anlaşılması daha rahat olacak
-         * 
-         * @param string& Message
-         */
-        inline static void write(
-            const std::string& title,
-            const std::string& msg
-        ) noexcept
-        {
-            tools::console::reset_color();
-            std::cout << output_title(title) << msg << '\n';
-        }
-
-        /**
-         * @brief Write
-         * 
-         * Çıktı verecek ve bu sayede
-         * ne olduğunun anlaşılması daha rahat olacak
-         * 
-         * @param string& Message
-         */
-        inline static void write(
-            const std::string& msg
-        ) noexcept
-        {
-            tools::console::reset_color();
-            std::cout << msg << '\n';
-        }
-    };
+    /**
+     * @brief Get Name
+     * 
+     * Çıktı yöntemi için verilmiş isimi getirsin
+     * ve bu isim istenirse konsol ekranı için ya da
+     * dosya adı veya diğer şeyler içinde kullanılabilir
+     * 
+     * @return const string_view
+     */
+    constexpr std::string_view Output::getName() const noexcept
+    {
+        return this->name;
+    }
 }
