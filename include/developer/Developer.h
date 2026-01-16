@@ -25,7 +25,6 @@
 #include <developer/core/Source.h>
 
 #include <developer/log/Levels.h>
-#include <developer/log/Output.h>
 #include <developer/log/Logger.h>
 #include <developer/log/Macros.h>
 
@@ -34,3 +33,6 @@
 
 #include <developer/test/Expect.h>
 #include <developer/test/Assert.h>
+
+#include <kits/ToolKit.h>
+#include <kits/OutputKit.h>
