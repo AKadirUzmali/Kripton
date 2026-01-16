@@ -3,7 +3,7 @@
 #pragma once
 
 /**
- * ToolKit
+ * Tool Kit
  * 
  * Tüm dosyalarda kullanma ihtiyacı doğabilecek
  * şeyler için gerekli olan sınıf, araç sınıfı
@@ -14,6 +14,8 @@
 #include <tools/Utf.h>
 #include <tools/Status.h>
 #include <tools/Console.h>
+#include <tools/Flag.h>
+#include <tools/Time.h>
 
 // Namespace:
 namespace kits::toolkit
