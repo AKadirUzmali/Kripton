@@ -52,7 +52,7 @@ namespace dev::version
     // Enum:
     enum class build_t : uint8_t
     {
-        Dev,
+        Dev = 0,
         Alpha,
         Beta,
         Debug,
