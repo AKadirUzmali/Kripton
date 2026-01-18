@@ -15,6 +15,7 @@
 #include <string>
 #include <mutex>
 
+#include <developer/config/Version.h>
 #include <developer/log/Output.h>
 
 // Namespace:
@@ -22,11 +23,13 @@ namespace dev::output::console
 {
     // Using Namespace:
     using namespace dev::level;
+    using namespace dev::version;
 
     // Class:
     class ConsoleOut : public virtual Output
     {
         private:
+            static inline Version ver { 1, 0, 0, dev::version::build_t::Dev };
             inline static std::mutex mtx {};
 
         private:
@@ -81,6 +84,12 @@ namespace dev::output::console
         tools::console::reset_color();
 
         std::cout << "================================================================================================================\n";
+        std::cout << std::setw(title_size) << std::left << "Version" << ": " << this->ver.strVersion() << '\n';
+
+        if (this->ver.getBuildType() != dev::version::build_t::Release) {
+            std::cout << std::setw(title_size) << std::left << "Build" << ": " << this->ver.strBuildType() << '\n';
+        }
+
         std::cout << std::setw(title_size) << std::left << "Name" << ": " << this->getName().data() << '\n';
         std::cout << std::setw(title_size) << std::left << "Platform" << ": " << tools::os::current_pfm_name() << '\n';
         std::cout << std::setw(title_size) << std::left << "Operating System" << ": " << tools::os::current_os_name() << '\n';
