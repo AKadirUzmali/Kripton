@@ -1,0 +1,11 @@
+================================================================================================================
+Version             : v1.0.0
+Build               : Dev
+Path                : logs/18-01-2026-output-version-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-01-19 00:02:02:157
+================================================================================================================
+[Info] [2026-01-19 00:02:02:158|output-version-test.cpp:main:30] Test version: v1.0.0
+[Info] [2026-01-19 00:02:02:158|output-version-test.cpp:main:31] Test build type: Debug
+[Info] [2026-01-19 00:02:02:158|output-version-test.cpp:main:29] main: 45 us
