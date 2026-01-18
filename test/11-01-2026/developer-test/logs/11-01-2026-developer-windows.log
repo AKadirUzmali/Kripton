@@ -1,0 +1,22 @@
+================================================================================================================
+Path                : logs/11-01-2026-developer-windows
+Platform            : Dos
+Operating System    : Windows
+Timestamp           : 2026-01-16 22:24:09:221
+================================================================================================================
+[Info] [2026-01-16 22:24:09:225|test.cpp:main:47] Developer test sistemi başlatıldı
+[Info] [2026-01-16 22:24:09:226|test.cpp:isEven:35] is_even çalıştırıldı
+[Fail] [2026-01-16 22:24:09:226|test.cpp:isEven:36] Sayi bir çift sayi
+[Info] [2026-01-16 22:24:09:227|test.cpp:isEven:34] is_even: 452 us
+[Warn] [2026-01-16 22:24:09:227|test.cpp:main:53] A sayısı bir çift sayı değildir
+[Info] [2026-01-16 22:24:09:227|test.cpp:isEven:35] is_even çalıştırıldı
+[Fail] [2026-01-16 22:24:09:228|test.cpp:isEven:36] Sayi bir çift sayi
+[Info] [2026-01-16 22:24:09:228|test.cpp:isEven:34] is_even: 1034 us
+[Pass] [2026-01-16 22:24:09:229|test.cpp:main:55] B sayısı bir tek sayıdır
+[Info] [2026-01-16 22:24:09:229|test.cpp:main:57] Test sonuçları çıktısı veriliyor...
+[Logger] Error: 2
+[Logger] Success: 1
+[Logger] Warning: 1
+[Logger] Information: 6
+[Logger] Debug: 0
+[Logger] Null: 0
