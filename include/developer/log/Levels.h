@@ -54,7 +54,7 @@ namespace dev::level
     inline constexpr size_t to_index(Level) noexcept;
 
     inline const std::string& to_string(Level) noexcept;
-    inline const std::string& to_string(size_t) noexcept;
+    inline const std::string& to_string(const size_t) noexcept;
 
     /**
      * @brief Get Valid Index
@@ -86,7 +86,7 @@ namespace dev::level
         Level lvl
     ) noexcept
     {
-        return static_cast<size_t>(static_cast<std::underlying_type_t<Level>>(lvl));
+        return static_cast<size_t>(lvl);
     }
 
     /**
@@ -105,8 +105,9 @@ namespace dev::level
         Level lvl
     ) noexcept
     {
-        const size_t arr_size = to_index(lvl);
-        return arr_size < levels.size() ? levels[arr_size] : levels[to_index(Level::Null)];
+        const size_t arr_size = to_index(lvl) > levels.size() ?
+            to_index(Level::Null) : to_index(lvl);
+        return levels.at(arr_size);
     }
 
     /**
@@ -122,9 +123,11 @@ namespace dev::level
      * @return const string&
      */
     inline const std::string& to_string(
-        size_t index
+        const size_t index
     ) noexcept
     {
-        return index < names.size() ? names[index] : names[to_index(Level::Null)];
+        const size_t arr_size = index > names.size() ?
+            to_index(Level::Null) : index;
+        return names.at(arr_size);
     }
 }
