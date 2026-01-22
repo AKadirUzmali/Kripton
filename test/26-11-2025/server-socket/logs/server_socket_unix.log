@@ -1,16 +1,16 @@
 Name: Server Socket
 Os: Unix
-Date: 2025-12-13
-Key: unx-2025-12-13-06:43:09:219-Server-Socket
+Date: 2025-12-16
+Key: unx-2025-12-16-15:06:44:240-Server-Socket
 
 [LOGGER START]
-06:43:09:219 ==> [ PASS ] Server has no error
-06:43:09:220 ==> [ INFO ] Printing Server Socket informations...
-06:43:09:220 ==> [ PASS ] Server Socket informations printed
-06:43:09:220 ==> [ PASS ] Ip address banned
-06:43:09:220 ==> [ PASS ] Ip address not allowing
-06:43:11:224 ==> [ PASS ] Ip address ban removed
-06:43:11:224 ==> [ INFO ] Running Server Socket for 10 seconds...
-06:43:21:680 ==> [ PASS ] Server runned
-06:43:21:680 ==> [ PASS ] Server closed
+15:06:44:251 ==> [ PASS ] Server has no error
+15:06:44:251 ==> [ INFO ] Printing Server Socket informations...
+15:06:44:251 ==> [ PASS ] Server Socket informations printed
+15:06:44:251 ==> [ PASS ] Ip address banned
+15:06:44:251 ==> [ PASS ] Ip address not allowing
+15:06:46:256 ==> [ PASS ] Ip address ban removed
+15:06:46:256 ==> [ INFO ] Running Server Socket for 10 seconds...
+15:06:56:371 ==> [ PASS ] Server runned
+15:06:56:371 ==> [ PASS ] Server closed
 [LOGGER END]

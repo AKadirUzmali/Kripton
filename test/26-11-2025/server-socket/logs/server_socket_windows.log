@@ -1,16 +1,16 @@
 Name: Server Socket
 Os: Windows
-Date: 2025-12-13
-Key: win-2025-12-13-03:53:41:345-Server-Socket
+Date: 2025-12-16
+Key: win-2025-12-16-12:12:25:511-Server-Socket
 
 [LOGGER START]
-03:53:41:347 ==> [ PASS ] Server has no error
-03:53:41:347 ==> [ INFO ] Printing Server Socket informations...
-03:53:41:351 ==> [ PASS ] Server Socket informations printed
-03:53:41:352 ==> [ PASS ] Ip address banned
-03:53:41:352 ==> [ PASS ] Ip address not allowing
-03:53:43:357 ==> [ PASS ] Ip address ban removed
-03:53:43:357 ==> [ INFO ] Running Server Socket for 10 seconds...
-03:53:53:362 ==> [ PASS ] Server runned
-03:53:53:362 ==> [ PASS ] Server closed
+12:12:25:512 ==> [ PASS ] Server has no error
+12:12:25:512 ==> [ INFO ] Printing Server Socket informations...
+12:12:25:518 ==> [ PASS ] Server Socket informations printed
+12:12:25:519 ==> [ PASS ] Ip address banned
+12:12:25:521 ==> [ PASS ] Ip address not allowing
+12:12:27:518 ==> [ PASS ] Ip address ban removed
+12:12:27:518 ==> [ INFO ] Running Server Socket for 10 seconds...
+12:12:37:569 ==> [ PASS ] Server runned
+12:12:37:570 ==> [ PASS ] Server closed
 [LOGGER END]

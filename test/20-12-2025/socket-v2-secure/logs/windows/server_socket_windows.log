@@ -1,0 +1,22 @@
+Name: Server Socket
+Os: Windows
+Date: 2026-01-02
+Key: win-2026-01-02-00:02:59:344-Server-Socket
+
+[LOGGER START]
+00:02:59:346 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 88 | FUNC: main ] Server Password Setted
+00:02:59:347 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 89 | FUNC: main ] Password@123!-_üçşğ
+00:02:59:347 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 90 | FUNC: main ] Server New Password Setted
+00:02:59:348 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 92 | FUNC: main ] Server Algorithm Key: sxor-test-key-123s
+00:02:59:349 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 93 | FUNC: main ] Server Algorithm Key Changed
+00:02:59:349 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 94 | FUNC: main ] Server Algorithm Key After Set: xor-test-key-123
+00:02:59:350 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 96 | FUNC: main ] Server has no error
+00:02:59:350 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 97 | FUNC: main ] Password require is disabled
+00:02:59:351 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 98 | FUNC: main ] Password require is enabled
+00:02:59:351 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 105 | FUNC: main ] Ip address banned
+00:02:59:352 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 106 | FUNC: main ] Ip address not allowing
+00:03:01:354 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 109 | FUNC: main ] Ip address ban removed
+00:03:01:354 ==> [ INFO ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 111 | FUNC: main ] Running Server Socket for 30 seconds...
+00:03:31:364 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 117 | FUNC: main ] Server runned, code: 35004
+00:03:31:364 ==> [ PASS ] [ FILE: socket-v2-secure-test-server.cpp | LINE: 118 | FUNC: main ] Server closed, code: 35007
+[LOGGER END]

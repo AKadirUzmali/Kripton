@@ -1,0 +1,119 @@
+// Abdulkadir U. - 26/11/2025
+
+/**
+ * Server Socket (Sunucu Soketi)
+ * 
+ * Sunucu için başlatma, port ayarlama, dinleme sınırı,
+ * dinleme zamanlayıcısı (ms) vb. özellikleri test edip
+ * kontrol etmemizi sağlayacak bir test
+ * 
+ * Güncelleme: 24/12/2025 23:47
+ * 
+ * Veri gönderme ve alma yapılıyor ama sorun netpacket kısmında.
+ * Veri şifrelemesi ve göndermesi başarılı ama veriyi alırken yaşanan sorun
+ * veriyi bozuyor ve okunamamasını sağlıyor. Socket sınıfının receive
+ * fonksiyonu tekrardan kontrol edilip test edilmeli
+ * 
+ * Güncelleme: 27/12/2025 02:44
+ * 
+ * Veri gönderme ve alma kısımı başarılı ve şifre
+ * kontrolü kısımı da başarılı. Tek başarısız olan sunucunun
+ * istemciyi engellemesi kısmı. Engelleme yapmak yerine
+ * şifre yanlış hatası (36006) hatası dönüyor ama ip adresi
+ * tekrar veri göndermeyi deneyebiliyor, bunun önüne geçilmeli
+ * 
+ * Güncelleme 2: 27/12/2025 02:56
+ * 
+ * Client test de şifreleme anahtarını güncellememe rağmen hala veriyi
+ * kabul etmiyor ve hatalı şifre mesajı veriyor, sanırım bir şeyler hala
+ * eski veriyi deniyor
+ */
+
+// Include:
+#include <Algorithm/AlgorithmPool.h>
+#include <ThreadPool/ThreadPool.h>
+#include <Socket/Server/Server.h>
+
+#include <File/Logger/Logger.h>
+#include <Tool/Utf/Utf.h>
+#include <Test/Test.h>
+
+// Using Namespace:
+using namespace core::algorithmpool;
+using namespace core::virbase::socket;
+
+// Function: Net Handler
+auto NetHandler(const datapacket_t& _datapacket) noexcept
+{
+    std::string u8_passwd = utf::to_utf8(_datapacket.pwd);
+    std::string u8_name = utf::to_utf8(_datapacket.name);
+    std::string u8_msg = utf::to_utf8(_datapacket.msg);
+
+    std::cout << "[DATA] Password: " << u8_passwd <<
+        "\nUsername: " << u8_name <<
+        "\nMessage: " << u8_msg << "\n\n";
+
+    return e_server::succ_set_running;
+}
+
+// main
+int main(void)
+{
+    // Windows UTF-8
+    #if defined __PLATFORM_DOS__
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
+    #endif
+
+    const std::u32string logpath = utf::to_utf32("../logs/" + utf::to_lower(platform::name()) + "/");
+
+    Logger logger(U"Server Socket", logpath + U"server_socket");
+    ThreadPool tpool;
+
+    const socket_port_t portaddr = 9876;
+
+    using CryptT = Xor;
+    CryptT crypto(U"sxor-test-key-123s");
+
+    Server<CryptT> testserver(
+        crypto,
+        tpool,
+        NetHandler,
+        portaddr,
+        false, true,
+        U"Server Test 22/12/2025",
+        logpath + utf::to_utf32(utf::to_lower(platform::name()) + "-server-test-22122025-" + std::to_string(portaddr) + "-log")
+    );
+
+    LOG_EXPECT(logger, testserver.getPolicy().setPassword(U"Password@123!-_üçşğ"), e_accesspolicy::succ_set_password, U"Server Password Setted");
+    LOG_MSG(logger, testserver.getPolicy().getPassword(), test::e_status::information, true);
+    LOG_EXPECT(logger, testserver.getPolicy().setPassword(U"Password@123!-_üçşğ_test"), e_accesspolicy::succ_set_password, U"Server New Password Setted");
+
+    LOG_MSG(logger, U"Server Algorithm Key: " + testserver.getAlgorithm().getKey(), test::e_status::information, true);
+    LOG_EXPECT(logger, testserver.getAlgorithm().setKey(U"xor-test-key-123"), e_algorithm::succ_set_key, U"Server Algorithm Key Changed");
+    LOG_MSG(logger, U"Server Algorithm Key After Set: " + testserver.getAlgorithm().getKey(), test::e_status::information, true);
+
+    LOG_EXPECT(logger, testserver.hasError(), false, U"Server has no error");
+    LOG_EXPECT(logger, testserver.getPolicy().isEnablePassword(), false, U"Password require is disabled");
+    LOG_EXPECT(logger, testserver.getPolicy().enablePassword(true), e_accesspolicy::succ_enable_password, U"Password require is enabled");
+
+    if( !testserver.getPolicy().isEnablePassword() ) {
+        LOG_MSG(logger, U"Password reqiure is not enable, server closing...", test::e_status::information, true);
+        std::exit(EXIT_FAILURE);
+    }
+
+    LOG_EXPECT(logger, testserver.getPolicy().ban("127.0.0.1"), e_accesspolicy::succ_ip_addr_banned, U"Ip address banned");
+    LOG_EXPECT(logger, testserver.getPolicy().canAllow("127.0.0.1"), e_accesspolicy::err_not_allow_ip, U"Ip address not allowing");
+
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    LOG_EXPECT(logger, testserver.getPolicy().unban("127.0.0.1"), e_accesspolicy::succ_ip_addr_ban_removed, U"Ip address ban removed");
+
+    LOG_MSG(logger, U"Running Server Socket for 30 seconds...", test::e_status::information, true);
+    auto fut_run = testserver.run();
+
+    std::this_thread::sleep_for(std::chrono::seconds(30));
+    auto fut_stop = testserver.stop();
+
+    LOG_EXPECT(logger, fut_run.get(), e_server::succ_server_run, utf::to_utf32("Server runned, code: " + std::to_string(static_cast<size_t>(fut_run.get()))));
+    LOG_EXPECT(logger, fut_stop, e_server::succ_server_close, utf::to_utf32("Server closed, code: " + std::to_string(static_cast<size_t>(fut_stop))));
+}

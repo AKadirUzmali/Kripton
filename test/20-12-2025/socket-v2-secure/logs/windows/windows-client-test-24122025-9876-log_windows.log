@@ -1,0 +1,17 @@
+Name: Socket Client Test
+Os: Windows
+Date: 2026-01-02
+Key: win-2026-01-02-00:03:17:262-Socket-Client-Test
+
+[LOGGER START]
+00:03:17:264 ==> [ INFO ] [ FILE: socket-v2-secure-test-client.cpp | LINE: 69 | FUNC: main ] Client Algorithm Key: cxor-test-key-123c
+00:03:17:266 ==> [ PASS ] [ FILE: socket-v2-secure-test-client.cpp | LINE: 70 | FUNC: main ] Client Algorithm Key Changed
+00:03:17:266 ==> [ INFO ] [ FILE: socket-v2-secure-test-client.cpp | LINE: 71 | FUNC: main ] Client Algorithm Key After Set: xor-test-key-123
+00:03:17:267 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:17:269 ==> [ INFO ] [ FILE: Socket.h | LINE: 989 | FUNC: receive ] Data received from (127.0.0.1)
+00:03:17:270 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:17:271 ==> [ FAIL ] [ FILE: socket-v2-secure-test-client.cpp | LINE: 117 | FUNC: main ] Failed to receive data from server | Code: 30010
+00:03:17:272 ==> [ INFO ] [ FILE: Socket.h | LINE: 921 | FUNC: send ] Data sent to (127.0.0.1)
+00:03:17:272 ==> [ FAIL ] [ FILE: socket-v2-secure-test-client.cpp | LINE: 129 | FUNC: main ] Failed to receive data from server | Code: 30010
+00:03:17:272 ==> [ FAIL ] [ FILE: socket-v2-secure-test-client.cpp | LINE: 141 | FUNC: main ] Client Data Recive Failed
+[LOGGER END]

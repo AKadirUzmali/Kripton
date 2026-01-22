@@ -1,0 +1,11 @@
+================================================================================================================
+Version             : v1.0.0
+Build               : Dev
+Path                : logs/18-01-2026-output-version-windows
+Platform            : Dos
+Operating System    : Windows
+Timestamp           : 2026-01-18 21:15:54:768
+================================================================================================================
+[Info] [2026-01-18 21:15:54:775|output-version-test.cpp:main:30] Test version: v1.0.0
+[Info] [2026-01-18 21:15:54:776|output-version-test.cpp:main:31] Test build type: Debug
+[Info] [2026-01-18 21:15:54:776|output-version-test.cpp:main:29] main: 1057 us
