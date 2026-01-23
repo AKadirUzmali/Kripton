@@ -2,12 +2,11 @@
 #pragma once
 
 /**
- * Hash (Karma)
+ * Hash Kit (Karma Seti)
  * 
  * Verileri karmaşıklaştırarak şifrelemeyi sağlayan
  * temel yapı
  */
 
 // Include
-#include <tools/hash/bvn.hpp>
 #include <tools/hash/vch.hpp>

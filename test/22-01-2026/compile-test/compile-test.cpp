@@ -29,15 +29,17 @@
 #include <core/status.hpp>
 #include <core/version.hpp>
 
+#define __BUILD_TYPE__ build_t::Debug
+#include <core/buildtype.hpp>
+
 #include <tools/charset/utf.hpp>
 #include <tools/console/color.hpp>
-#include <tools/hash/hash.hpp>
-#include <tools/hash/bvn.hpp>
 #include <tools/hash/vch.hpp>
 #include <tools/time/time.hpp>
 
 #include <kits/toolkit.hpp>
 #include <kits/outputkit.hpp>
+#include <kits/hashkit.hpp>
 
 #include <dev/config/build.hpp>
 #include <dev/config/config.hpp>
@@ -55,6 +57,8 @@
 
 // Using Namespace
 using namespace core::platform;
+using namespace core::buildtype;
+using namespace core::version;
 using namespace dev::log;
 using namespace dev::output::console;
 using namespace dev::output::file;
@@ -62,7 +66,8 @@ using namespace tools::charset;
 using namespace tools::hash::vch;
 
 // Static
-static constexpr Vch verhash("compile-test|main|log|developer", 22012026);
+static inline constexpr Version ver(0, 5, 0);
+static inline constexpr Vch verhash("compile-test|main|log|developer|buildtype|version=debug|last-test", 23012026);
 static std::string filename = "18-01-2026-output-version-" + utf::to_lower(std::string(current_os_name()));
 static Logger<FileOut, ConsoleOut> testlog("logs/" + filename, filename + "-console");
 
@@ -71,6 +76,7 @@ int main(void)
 {
     TRACE_SCOPE(testlog, "main");
     LOG(testlog, verhash.c_str());
+    LOG(testlog, ss_buildtype.c_str());
 
     return 0;
 }

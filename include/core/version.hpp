@@ -20,38 +20,33 @@
 namespace core::version
 {
     // Struct
-    struct version_t
+    struct Version
     {
         private:
             std::uint16_t m_major;
             std::uint16_t m_minor;
-            std::uint32_t m_patch : 31;
-            bool m_compatible  : 1;
+            std::uint32_t m_patch;
 
         public:
-            constexpr explicit version_t(
+            constexpr explicit Version(
                 const std::uint16_t ar_major,
                 const std::uint16_t ar_minor,
-                const std::uint32_t ar_patch,
-                const bool ar_compatible
+                const std::uint32_t ar_patch
             ) noexcept
-            : m_major(ar_major), m_minor(ar_minor), m_patch(ar_patch), m_compatible(ar_compatible)
+            : m_major(ar_major), m_minor(ar_minor), m_patch(ar_patch)
             {}
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool operator==(const version_t& other) const noexcept
+            constexpr bool operator==(const Version& other) const noexcept
             {
-                if( m_major != other.m_major ) return false;
-                if( m_minor != other.m_minor ) return false;
-                if( m_patch != other.m_patch ) return false;
-
-                if( m_compatible )
-                    return m_compatible == other.m_compatible;
-                return true;
+                return
+                    this->m_major == other.m_major &&
+                    this->m_minor == other.m_minor &&
+                    this->m_patch == other.m_patch;
             }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool operator!=(const version_t& other) const noexcept 
+            constexpr bool operator!=(const Version& other) const noexcept 
             { return !(*this == other); }
     };
 }
