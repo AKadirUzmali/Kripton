@@ -48,11 +48,11 @@ namespace dev::level
     static constexpr std::size_t ss_size_names = sizeof(ss_names) / sizeof(ss_names[0]);
     static constexpr std::size_t ss_size_tests = ss_size_levels;
 
-    // Array:
+    // Array
     static std::atomic<std::size_t> ss_tests[ss_size_tests] =
     { 0, 0, 0, 0, 0, 0 };
 
-    // Function Define:
+    // Function Define
     inline constexpr size_t get_valid_index(const size_t) noexcept;
     inline constexpr size_t to_index(const level_t) noexcept;
 
