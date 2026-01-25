@@ -25,3 +25,6 @@ namespace dev::source
         std::size_t m_line;
     };
 }
+
+// Define
+#define GET_SOURCE dev::source::Source{__FILE__, __func__, __LINE__}
