@@ -20,7 +20,6 @@
 
 // Include
 #include <cstdlib>
-#include <dev/test/expect.hpp>
 
 // Namespace
 namespace dev::test
@@ -52,9 +51,7 @@ namespace dev::test
     template<typename L, typename R>
     inline void assert_eq(const L& l, const R& r)
     {
-        if constexpr (dev::config::test) {
-            if( l != r ) { kill(); }
-            else { (void)l; (void)r; }
-        }
+        if( l != r )
+            kill();
     }
 }

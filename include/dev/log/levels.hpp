@@ -38,26 +38,26 @@ namespace dev::level
     };
 
     // Array
-    static constexpr const char* const ss_levels[] =
+    [[maybe_unused]] static constexpr const char* const ss_levels[] =
     { "Fail", "Pass", "Warn", "Info", "Test", "Null" };
 
-    static constexpr const char* const ss_names[] =
+    [[maybe_unused]] static constexpr const char* const ss_names[] =
     { "Error", "Success", "Warning", "Information", "Debug", "Null" };
 
-    static constexpr std::size_t ss_size_levels = sizeof(ss_levels) / sizeof(ss_levels[0]);
-    static constexpr std::size_t ss_size_names = sizeof(ss_names) / sizeof(ss_names[0]);
-    static constexpr std::size_t ss_size_tests = ss_size_levels;
+    [[maybe_unused]] static constexpr std::size_t ss_size_levels = sizeof(ss_levels) / sizeof(ss_levels[0]);
+    [[maybe_unused]] static constexpr std::size_t ss_size_names = sizeof(ss_names) / sizeof(ss_names[0]);
+    [[maybe_unused]] static constexpr std::size_t ss_size_tests = ss_size_levels;
 
     // Array
-    static std::atomic<std::size_t> ss_tests[ss_size_tests] =
+    [[maybe_unused]] static std::atomic<std::size_t> ss_tests[ss_size_tests] =
     { 0, 0, 0, 0, 0, 0 };
 
     // Function Define
-    inline constexpr size_t get_valid_index(const size_t) noexcept;
-    inline constexpr size_t to_index(const level_t) noexcept;
+    [[maybe_unused]] inline constexpr size_t get_valid_index(const size_t) noexcept;
+    [[maybe_unused]] inline constexpr size_t to_index(const level_t) noexcept;
 
-    inline constexpr const char* to_string(const level_t) noexcept;
-    inline constexpr const char* to_string(const size_t) noexcept;
+    [[maybe_unused]] inline constexpr const char* to_string(const level_t) noexcept;
+    [[maybe_unused]] inline constexpr const char* to_string(const size_t) noexcept;
 
     /**
      * @brief Get Valid Index
@@ -70,6 +70,7 @@ namespace dev::level
      * @param size_t Index
      * @return size_t
      */
+    [[maybe_unused]]
     inline constexpr size_t get_valid_index(
         const size_t ar_index
     ) noexcept
@@ -85,6 +86,7 @@ namespace dev::level
      * @param level_t Status
      * @return size_t
      */
+    [[maybe_unused]]
     inline constexpr size_t to_index(
         level_t ar_lvl
     ) noexcept
@@ -104,6 +106,7 @@ namespace dev::level
      * @param level_t Status
      * @return const char*
      */
+    [[maybe_unused]]
     inline constexpr const char* to_string(level_t ar_lvl) noexcept
     {
         return ss_levels[get_valid_index(to_index(ar_lvl))];
@@ -121,6 +124,7 @@ namespace dev::level
      * @param size_t Index
      * @return const char*
      */
+    [[maybe_unused]]
     inline constexpr const char* to_string(
         const size_t index
     ) noexcept

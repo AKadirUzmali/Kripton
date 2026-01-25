@@ -13,7 +13,6 @@
 #include <cstring>
 #include <string>
 
-#include <dev/config/config.hpp>
 #include <dev/trace/timeline.hpp>
 #include <dev/log/levels.hpp>
 #include <dev/log/logger.hpp>
@@ -71,12 +70,9 @@ namespace dev::trace
     :   m_logger(ar_logger),
         m_name(ar_name),
         m_name_len(std::strlen(this->m_name)),
+        m_start(clock::now()),
         m_src(ar_src)
-    {
-        if constexpr (dev::config::trace) {
-            this->m_start = clock::now();
-        }
-    }
+    {}
 
     /**
      * @brief ~Scope
@@ -90,54 +86,39 @@ namespace dev::trace
     template<class LoggerT>
     Scope<LoggerT>::~Scope()
     {
-        if constexpr (dev::config::trace) {
-            static constexpr std::size_t ss_max_name_len = 64;
-            static constexpr std::size_t ss_buffer_size = ss_max_name_len + 32;
+        static constexpr std::size_t ss_max_name_len = 64;
+        static constexpr std::size_t ss_buffer_size = ss_max_name_len + 32;
 
-            const auto tm_end = clock::now();
-            const auto tm_dur =
-                std::chrono::duration_cast<std::chrono::microseconds>(tm_end - this->m_start);
+        const auto tm_end = clock::now();
+        const auto tm_dur =
+            std::chrono::duration_cast<std::chrono::microseconds>(tm_end - this->m_start);
 
-            char tm_buffer[ss_buffer_size];
+        char tm_buffer[ss_buffer_size];
 
-            const std::size_t tm_name_len = (this->m_name_len < ss_max_name_len) ?
-                this->m_name_len : ss_max_name_len;
+        const std::size_t tm_name_len = (this->m_name_len < ss_max_name_len) ?
+            this->m_name_len : ss_max_name_len;
 
-            const int tm_len = std::snprintf(
-                tm_buffer,
-                sizeof(tm_buffer),
-                "%.*s: %lld us",
-                static_cast<int>(tm_name_len),
-                this->m_name,
-                static_cast<long long>(tm_dur.count())
-            );
+        const int tm_len = std::snprintf(
+            tm_buffer,
+            sizeof(tm_buffer),
+            "%.*s: %lld us",
+            static_cast<int>(tm_name_len),
+            this->m_name,
+            static_cast<long long>(tm_dur.count())
+        );
 
-            if( tm_len < 1 )
-                return;
+        if( tm_len < 1 )
+            return;
 
-            const std::size_t tm_out_len =
-                (static_cast<std::size_t>(tm_len) < sizeof(tm_buffer))
-                    ? static_cast<std::size_t>(tm_len)
-                    : sizeof(tm_buffer) - 1;
+        const std::size_t tm_out_len =
+            (static_cast<std::size_t>(tm_len) < sizeof(tm_buffer))
+                ? static_cast<std::size_t>(tm_len)
+                : sizeof(tm_buffer) - 1;
 
-            this->m_logger.write(
-                level_t::Info,
-                std::string_view{ tm_buffer, tm_out_len },
-                m_src
-            );
-        }
+        this->m_logger.write(
+            level_t::Info,
+            std::string_view{ tm_buffer, tm_out_len },
+            m_src
+        );
     }
 }
-
-// Define:
-#if __DEVELOPER__
-    #define TRACE_SCOPE(ar_logger, ar_name) dev::trace::Scope<std::decay_t<decltype(ar_logger)>> \
-        _dev_scope_##__LINE__{ ar_logger, \
-            ar_name, \
-            dev::source::Source{__FILE__, __func__, __LINE__} \
-        }
-    #define TRACE_FUNC(ar_logger, ar_name)  TRACE_SCOPE(ar_logger, __func__)
-#else
-    #define TRACE_SCOPE(ar_logger, ar_name) ((void)0)
-    #define TRACE_FUNC(ar_logger, ar_name)  ((void)0)
-#endif

@@ -18,14 +18,10 @@
  */
 
 // Include
-#include <dev/config/build.hpp>
-#include <dev/config/config.hpp>
-
 #include <dev/core/source.hpp>
 
 #include <dev/log/levels.hpp>
 #include <dev/log/logger.hpp>
-#include <dev/log/macros.hpp>
 
 #include <dev/trace/timeline.hpp>
 #include <dev/trace/trace.hpp>
