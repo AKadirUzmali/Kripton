@@ -30,15 +30,15 @@ namespace tools::console::color
     // Enum
     enum class color_t : std::uint8_t
     {
-        Reset = 0,
-        Black,
-        Red,
+        Red = 0,
         Green,
         Yellow,
         Blue,
         Purple,
+        Black,
         Turquoise,
-        White
+        White,
+        Reset
     };
 
     #if __OS_WINDOWS__
@@ -83,12 +83,15 @@ namespace tools::console::color
     // Array
     inline constexpr color_t console_colors[] =
     {
-        color_t::Reset,
         color_t::Red,
         color_t::Green,
         color_t::Yellow,
         color_t::Blue,
-        color_t::Purple
+        color_t::Purple,
+        color_t::Black,
+        color_t::Turquoise,
+        color_t::White,
+        color_t::Reset
     };
     inline constexpr std::size_t size_console_colors = sizeof(console_colors) / sizeof(console_colors[0]);
 
@@ -110,10 +113,11 @@ namespace tools::console::color
     {
         #if __OS_WINDOWS__
             static std::atomic<bool> is_console_utf8 { false };
-            bool expected = false;
 
-            if( !is_console_utf8.compare_exchange_strong(expected, true) )
+            if( is_console_utf8.load(std::memory_order_relaxed))
                 return;
+                
+            is_console_utf8.store(true);
 
             SetConsoleOutputCP(CP_UTF8);
             SetConsoleCP(CP_UTF8);
