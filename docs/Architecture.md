@@ -51,14 +51,14 @@ Proje, **katmanlı ve modüler** bir mimari yaklaşım benimser. Temel hedefler:
 
 ```text
 +-------------------+
-|     Developer     |------|
+|     Developer     |-------
 +-------------------+      |
           |                |
           |                |
           |                |
-+-------------------+      |
-|       Core        |------|------------>
-+-------------------+      |
++-------------------+      |        +------------------------+
+|       Core        |------|------> |   Executable Program   |
++-------------------+      |        +------------------------+
           |                |
           |                |
           |                |
@@ -107,11 +107,6 @@ Desteklenen platformlar:
 - Windows (G++)
 - Linux (G++)
 - FreeBSD (G++)
-
-```bash
-cmake -S . -B build
-cmake --build build
-```
 
 ---
 
