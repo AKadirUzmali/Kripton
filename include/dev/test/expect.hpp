@@ -8,9 +8,6 @@
  * göre sonuç dönerek test aşamasını kolaylaştırır
  */
 
-// Include
-#include <dev/config/config.hpp>
-
 // Namespace
 namespace dev::test
 {
@@ -32,9 +29,6 @@ namespace dev::test
     template<typename L, typename R>
     inline bool expect_eq(const L& l, const R& r)
     {
-        if constexpr (dev::config::test)
-            return l == r;
-        else
-            return true;
+        return l == r;
     }
 }
