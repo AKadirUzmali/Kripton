@@ -1,9 +1,4 @@
 # Geliştirici (Developer)
-
-Bu dökümanda ise projenin **geliştirici** işlemleri hakkında bilgilendirme yapılacaktır.
-
----
-
 ## Amaç ve Kapsam
 
 Bu dokümanın amacı:
