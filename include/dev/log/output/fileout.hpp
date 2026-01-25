@@ -20,7 +20,6 @@
 
 #include <dev/log/output.hpp>
 #include <core/platform.hpp>
-#include <core/crash.hpp>
 
 // Namespace
 namespace dev::output::file
