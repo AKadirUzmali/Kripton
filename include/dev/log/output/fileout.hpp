@@ -20,12 +20,14 @@
 
 #include <dev/log/output.hpp>
 #include <core/platform.hpp>
+#include <core/crash.hpp>
 
 // Namespace
 namespace dev::output::file
 {
     // Using Namespace
     using namespace dev::level;
+    using namespace core::crash;
 
     // Class
     class FileOut : public virtual Output
