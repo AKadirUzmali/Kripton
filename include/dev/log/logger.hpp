@@ -15,8 +15,9 @@
 #include <type_traits>
 #include <tuple>
 
+#include <core/crash.hpp>
+
 #include <dev/core/source.hpp>
-#include <dev/config/config.hpp>
 #include <dev/log/levels.hpp>
 #include <dev/log/output.hpp>
 
@@ -26,11 +27,6 @@
 // Namespace
 namespace dev::log
 {
-    // Using Namespace
-    using namespace dev::output;
-    using namespace dev::level;
-    using namespace dev::source;
-
     /**
      * @brief Output isimlerini indeks bazlı olarak seçer
      *
@@ -92,9 +88,15 @@ namespace dev::log
             return std::get<sizeof...(Names) - 1>(ar_rest);
     }
 
-    // Class:
+    // Using Namespace
+    using namespace dev::output;
+    using namespace dev::level;
+    using namespace dev::source;
+    using namespace core::crash;
+
+    // Class
     template<class... Outs>
-    class Logger final
+    class Logger final : public virtual CrashHandler
     {
         static_assert((std::is_base_of<Output, Outs>::value && ...), "All Logger Outputs Must Derive From Output");
 
@@ -125,6 +127,8 @@ namespace dev::log
             ) noexcept;
 
             void print() noexcept;
+
+            virtual void crashed() noexcept override;
     };
 
     /**
@@ -161,27 +165,25 @@ namespace dev::log
         const Source ar_src
     ) noexcept
     {
-        if constexpr (dev::config::logger) {
-            std::string tm_text;
-            tm_text.reserve(256);
+        std::string tm_text;
+        tm_text.reserve(256);
 
-            tm_text.push_back('[');
-            tm_text.append(tools::time::current_timestamp());
-            tm_text.push_back('|');
-            tm_text.append(ar_src.m_file);
-            tm_text.push_back(':');
-            tm_text.append(ar_src.m_func);
-            tm_text.push_back(':');
-            tm_text.append(std::to_string(ar_src.m_line));
-            tm_text.append("] ");
-            tm_text.append(ar_msg);
+        tm_text.push_back('[');
+        tm_text.append(tools::time::current_timestamp());
+        tm_text.push_back('|');
+        tm_text.append(ar_src.m_file);
+        tm_text.push_back(':');
+        tm_text.append(ar_src.m_func);
+        tm_text.push_back(':');
+        tm_text.append(std::to_string(ar_src.m_line));
+        tm_text.append("] ");
+        tm_text.append(ar_msg);
 
-            std::apply([&](auto&... out) {
-                (out.write(ar_lvl, std::string_view{tm_text}), ...);
-            }, this->m_outs);
+        std::apply([&](auto&... out) {
+            (out.write(ar_lvl, std::string_view{tm_text}), ...);
+        }, this->m_outs);
 
-            ++ss_tests[get_valid_index(to_index(ar_lvl))];
-        }
+        ++ss_tests[get_valid_index(to_index(ar_lvl))];
     }
 
     /**
@@ -193,26 +195,34 @@ namespace dev::log
     template<class... Outs>
     void Logger<Outs...>::print() noexcept
     {
-        if constexpr (dev::config::logger) {
-            std::string tm_result;
-            tm_result.reserve(64);
+        std::string tm_result;
+        tm_result.reserve(64);
 
-            for(size_t tm_count = 0; tm_count < ss_size_tests; ++tm_count)
-            {
-                const auto tm_idx = get_valid_index(tm_count);
-                if( !tm_count )
-                    break;
-                
-                tm_result.clear();
+        for(size_t tm_count = 0; tm_count < ss_size_tests; ++tm_count)
+        {
+            const auto tm_idx = get_valid_index(tm_count);
+            
+            tm_result.clear();
 
-                tm_result.append(level::to_string(tm_count));
-                tm_result.append(": ");
-                tm_result.append(std::to_string(ss_tests[get_valid_index(tm_idx)].load()));
+            tm_result.append(level::to_string(tm_count));
+            tm_result.append(": ");
+            tm_result.append(std::to_string(ss_tests[get_valid_index(tm_idx)].load()));
 
-                std::apply([&](auto&... out){
-                    (out.write("Logger", std::string_view{tm_result}), ...);
-                }, this->m_outs);
-            }
+            std::apply([&](auto&... out){
+                (out.write("Logger", std::string_view{tm_result}), ...);
+            }, this->m_outs);
         }
+    }
+
+    /**
+     * @brief Crashed
+     * 
+     * Program çökme sorunlarında çalışacak
+     */
+    template<class... Outs>
+    void Logger<Outs...>::crashed() noexcept
+    {
+        this->write(level_t::Err, std::string_view{"Crash Code: " + std::to_string(get_signal())}, source::Source{"logger.hpp", __func__, __LINE__});
+        this->print();
     }
 }
