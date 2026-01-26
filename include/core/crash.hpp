@@ -61,7 +61,7 @@ namespace core::crash
             CrashHandler(const CrashHandler&) = delete;
             CrashHandler& operator=(const CrashHandler&) = delete;
 
-            virtual ~CrashHandler() noexcept;
+            ~CrashHandler() noexcept;
 
             [[nodiscard]] static inline bool is_signal() noexcept;
             [[nodiscard]] static inline int get_signal() noexcept;
