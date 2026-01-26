@@ -96,33 +96,9 @@ namespace tools::console::color
     inline constexpr std::size_t size_console_colors = sizeof(console_colors) / sizeof(console_colors[0]);
 
     // Function Define
-    [[maybe_unused]] inline void enable_utf8_console() noexcept;
     [[maybe_unused]] [[nodiscard]] inline color_t get_console_color(size_t ar_index) noexcept;
     [[maybe_unused]] inline void set_color(color_t ar_console_color) noexcept;
     [[maybe_unused]] inline void reset_color() noexcept;
-
-    /**
-     * @brief Enable Utf-8 Console
-     * 
-     * Windows ortamlar için konsol komut ekranı
-     * utf-8 olmayabiliyor ve biz bunu bu alternatif
-     * yöntem ile etkinleştiriyoruz
-     */
-    [[maybe_unused]]
-    inline void enable_utf8_console() noexcept
-    {
-        #if __OS_WINDOWS__
-            static std::atomic<bool> is_console_utf8 { false };
-
-            if( is_console_utf8.load(std::memory_order_relaxed))
-                return;
-                
-            is_console_utf8.store(true);
-
-            SetConsoleOutputCP(CP_UTF8);
-            SetConsoleCP(CP_UTF8);
-        #endif
-    }
 
     /**
      * @brief Get Console Color
