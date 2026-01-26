@@ -25,9 +25,29 @@ namespace dev::trace
     using namespace dev::source;
     using namespace dev::log;
     using namespace dev::output::console;
+    using namespace dev::trace::timeline;
+
+    // Template
+    template<typename T>
+    struct duration_suffix;
+
+    template<>
+    struct duration_suffix<std::chrono::microseconds> { static constexpr const char* const ss_str = "us"; };
+
+    template<>
+    struct duration_suffix<std::chrono::milliseconds> { static constexpr const char* const ss_str = "ms"; };
+
+    template<>
+    struct duration_suffix<std::chrono::seconds> { static constexpr const char* const ss_str = "sec"; };
+
+    template<>
+    struct duration_suffix<std::chrono::minutes> { static constexpr const char* const ss_str = "min"; };
+
+    template<>
+    struct duration_suffix<std::chrono::hours> { static constexpr const char* const ss_str = "hr"; };
 
     // Class
-    template<class LoggerT>
+    template<class LoggerT, class DurationT = std::chrono::milliseconds>
     class Scope final
     {
         private:
@@ -61,8 +81,8 @@ namespace dev::trace
      * @param char* Name
      * @param Source Source
      */
-    template<class LoggerT>
-    Scope<LoggerT>::Scope(
+    template<class LoggerT, class DurationT>
+    Scope<LoggerT, DurationT>::Scope(
         LoggerT& ar_logger,
         const char* const ar_name,
         const Source ar_src
@@ -83,15 +103,15 @@ namespace dev::trace
      * 
      * @note Sadece geliştirici modu için tasarlanmıştır
      */
-    template<class LoggerT>
-    Scope<LoggerT>::~Scope()
+    template<class LoggerT, class DurationT>
+    Scope<LoggerT, DurationT>::~Scope()
     {
         static constexpr std::size_t ss_max_name_len = 64;
         static constexpr std::size_t ss_buffer_size = ss_max_name_len + 32;
 
         const auto tm_end = clock::now();
         const auto tm_dur =
-            std::chrono::duration_cast<std::chrono::microseconds>(tm_end - this->m_start);
+            std::chrono::duration_cast<DurationT>(tm_end - this->m_start);
 
         char tm_buffer[ss_buffer_size];
 
@@ -101,10 +121,11 @@ namespace dev::trace
         const int tm_len = std::snprintf(
             tm_buffer,
             sizeof(tm_buffer),
-            "%.*s: %lld us",
+            "%.*s: %lld %s",
             static_cast<int>(tm_name_len),
             this->m_name,
-            static_cast<long long>(tm_dur.count())
+            static_cast<long long>(tm_dur.count()),
+            duration_suffix<DurationT>::ss_str
         );
 
         if( tm_len < 1 )
