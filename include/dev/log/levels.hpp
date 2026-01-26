@@ -34,15 +34,15 @@ namespace dev::level
         Warn,
         Info,
         Debug,
-        Null
+        Text
     };
 
     // Array
     [[maybe_unused]] static constexpr const char* const ss_levels[] =
-    { "Fail", "Pass", "Warn", "Info", "Test", "Null" };
+    { "Fail", "Pass", "Warn", "Info", "Test", "Text" };
 
     [[maybe_unused]] static constexpr const char* const ss_names[] =
-    { "Error", "Success", "Warning", "Information", "Debug", "Null" };
+    { "Error", "Success", "Warning", "Information", "Debug", "Text" };
 
     [[maybe_unused]] static constexpr std::size_t ss_size_levels = sizeof(ss_levels) / sizeof(ss_levels[0]);
     [[maybe_unused]] static constexpr std::size_t ss_size_names = sizeof(ss_names) / sizeof(ss_names[0]);
