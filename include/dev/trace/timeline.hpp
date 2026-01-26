@@ -13,7 +13,7 @@
 #include <chrono>
 
 // Namespace
-namespace dev::trace
+namespace dev::trace::timeline
 {
     using clock = std::chrono::steady_clock;
     using time_point = clock::time_point;
