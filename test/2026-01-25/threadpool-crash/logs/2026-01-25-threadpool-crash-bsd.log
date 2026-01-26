@@ -1,0 +1,88 @@
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-01-26 05:56:27:350
+================================================================================================================
+[Fail] [2026-01-26 05:56:27:360|logger.hpp:crashed:225] Crash Code: 6
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-01-26 05:56:45:734
+================================================================================================================
+[Info] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:main:62] main: 113 us
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 0x3e603224b808
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 0x3e6032250008
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 0x3e6032250808
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 0x3e603224f008
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 0x3e603224f808
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 0x3e6032251808
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 0x3e6032252008
+[Warn] [2026-01-26 05:56:45:735|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 0x3e6032251008
+[Fail] [2026-01-26 05:56:47:005|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-01-26 05:57:29:310
+================================================================================================================
+[Info] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:main:62] main: 150 us
+[Warn] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 0x1fba16c4b808
+[Warn] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 0x1fba16c52008
+[Warn] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 0x1fba16c51808
+[Warn] [2026-01-26 05:57:29:310|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 0x1fba16c51008
+[Warn] [2026-01-26 05:57:29:311|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 0x1fba16c50808
+[Warn] [2026-01-26 05:57:29:311|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 0x1fba16c4f808
+[Warn] [2026-01-26 05:57:29:311|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 0x1fba16c4f008
+[Warn] [2026-01-26 05:57:29:311|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 0x1fba16c50008
+[Fail] [2026-01-26 05:58:02:763|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-01-26 05:58:18:373
+================================================================================================================
+[Info] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:main:62] main: 140 us
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 0x1ee76ac4b808
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 0x1ee76ac51008
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 0x1ee76ac4f808
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 0x1ee76ac52008
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 0x1ee76ac50808
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 0x1ee76ac4f008
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 0x1ee76ac51808
+[Warn] [2026-01-26 05:58:18:373|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 0x1ee76ac50008
+[Fail] [2026-01-26 05:58:19:355|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
