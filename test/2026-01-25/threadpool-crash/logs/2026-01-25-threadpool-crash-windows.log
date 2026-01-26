@@ -1,0 +1,93 @@
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-01-25 22:32:26:008
+================================================================================================================
+[Info] [2026-01-25 22:32:26:014|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-25 22:32:26:015|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-25 22:32:26:015|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:main:62] main: 1980 us
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 6
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 2
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 3
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 5
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 4
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 9
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 8
+[Warn] [2026-01-25 22:32:26:016|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 7
+[Fail] [2026-01-25 22:32:27:588|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-01-25 22:32:33:014
+================================================================================================================
+[Info] [2026-01-25 22:32:33:019|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-25 22:32:33:020|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:main:62] main: 2142 us
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 9
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 3
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 2
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 5
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 4
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 6
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 7
+[Warn] [2026-01-25 22:32:33:021|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 8
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-01-25 22:32:46:647
+================================================================================================================
+[Info] [2026-01-25 22:32:46:653|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-25 22:32:46:654|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:main:62] main: 2206 us
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 6
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 5
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 4
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 7
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 9
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 2
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 8
+[Warn] [2026-01-25 22:32:46:655|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 3
+[Fail] [2026-01-25 22:32:49:283|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-01-25 22:33:05:462
+================================================================================================================
+[Info] [2026-01-25 22:33:05:467|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-25 22:33:05:468|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-25 22:33:05:468|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 8
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 6
+[Info] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:main:62] main: 2169 us
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 5
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 7
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 9
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 3
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 2
+[Warn] [2026-01-25 22:33:05:469|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 4
+[Fail] [2026-01-25 22:33:06:747|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0

@@ -14,7 +14,7 @@
  * ne yapacağını görmek amaçlı bunu test ediyoruz
  * 
  * Derleme:
- *  Bsd     :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra threadpool-crash-test.cpp -o bsd/threadpool-crash-test.bsd
+ *  Bsd     :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra threadpool-crash-test.cpp -pthread -o bsd/threadpool-crash-test.bsd
  *  Linux   :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra threadpool-crash-test.cpp -o linux/threadpool-crash-test.linux
  *  Windows :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra threadpool-crash-test.cpp -o windows/threadpool-crash-test.exe
  */
@@ -50,9 +50,9 @@ using namespace pool::threadpool;
 
 // Static
 static inline constexpr Version ss_ver(0, 5, 2);
-static inline constexpr Vch ss_verhash("20260125|test|threadpool-crash|debug|patch|last-test-and-patch", 202601252119);
+static inline constexpr Vch ss_verhash("20260125|test|threadpool-crash|debug|patch|last-test-and-patch|windows-patch", 202601252119);
 
-static std::string ss_filename = std::string(current_date()) + "-threadpool-crash-" + utf::to_lower(std::string(current_os_name()));
+static std::string ss_filename = "2026-01-25-threadpool-crash-" + utf::to_lower(std::string(current_os_name()));
 static Logger<FileOut, ConsoleOut> ss_testlog("logs/" + ss_filename, ss_filename + "-console");
 static ThreadPool ss_tpool;
 

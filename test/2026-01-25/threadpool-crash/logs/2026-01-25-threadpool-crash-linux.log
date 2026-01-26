@@ -369,3 +369,53 @@ Timestamp           : 2026-01-25 21:28:10:567
 [Logger] Information: 3
 [Logger] Debug: 1
 [Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-01-26 03:02:13:889
+================================================================================================================
+[Info] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:main:62] main: 119 us
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 140086297536192
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 140086289143488
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 140086280750784
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 140086263965376
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 140086255572672
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 140086272358080
+[Warn] [2026-01-26 03:02:13:890|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 140086247179968
+[Warn] [2026-01-26 03:02:13:891|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 140086238787264
+[Fail] [2026-01-26 03:02:15:028|logger.hpp:crashed:225] Crash Code: 2
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
+================================================================================================================
+Path                : logs/2026-01-25-threadpool-crash-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-01-26 03:02:37:961
+================================================================================================================
+[Info] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:main:64] ddf5189e39b8788921c719846639bf43c2e099def6a435c206995c50ce0fc663
+[Test] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:main:65] Debug
+[Info] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:main:66] Thread Count: 8
+[Info] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:main:62] main: 106 us
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  5 is running on thread 140461309269696
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  0 is running on thread 140461292484288
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  3 is running on thread 140461300876992
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  1 is running on thread 140461317662400
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  2 is running on thread 140461275698880
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  4 is running on thread 140461267306176
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  6 is running on thread 140461284091584
+[Warn] [2026-01-26 03:02:37:962|threadpool-crash-test.cpp:operator():75] Task  7 is running on thread 140461258913472
+[Fail] [2026-01-26 03:02:52:297|logger.hpp:crashed:225] Crash Code: 15
+[Logger] Error: 1
+[Logger] Success: 0
+[Logger] Warning: 8
+[Logger] Information: 3
+[Logger] Debug: 1
+[Logger] Null: 0
