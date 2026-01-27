@@ -9,5 +9,6 @@
 #include <core/buildtype.hpp>
 
 #include <tools/time/time.hpp>
+#include <tools/console/console.hpp>
 #include <tools/console/color.hpp>
 #include <tools/charset/utf.hpp>

@@ -66,7 +66,7 @@ namespace core::crash
             [[nodiscard]] static inline bool is_signal() noexcept;
             [[nodiscard]] static inline int get_signal() noexcept;
 
-        public:
+        protected:
             virtual void crashed() noexcept {};
     };
 

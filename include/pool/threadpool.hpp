@@ -52,11 +52,12 @@ namespace pool::threadpool
             [[nodiscard]] inline std::size_t get_thread_count() const noexcept;
 
             void enqueue(std::function<void()> ar_func) noexcept;
+            void stop() noexcept;
 
         private:
             void shutdown() noexcept;
 
-        public:
+        protected:
             virtual void crashed() noexcept override;
     };
 
@@ -201,6 +202,16 @@ namespace pool::threadpool
      * sonlanmasını sağlar
      */
     void ThreadPool::crashed() noexcept
+    {
+        this->shutdown();
+    }
+
+    /**
+     * @brief Stop
+     * 
+     * İşlem havuzunu durdurarak sonlandırır
+     */
+    void ThreadPool::stop() noexcept
     {
         this->shutdown();
     }

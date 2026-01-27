@@ -128,6 +128,7 @@ namespace dev::log
 
             void print() noexcept;
 
+        protected:
             virtual void crashed() noexcept override;
     };
 
