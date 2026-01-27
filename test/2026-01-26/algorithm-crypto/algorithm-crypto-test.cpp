@@ -64,12 +64,20 @@ static Crypto<Xor> ss_cipher("test-cipher", U"key-2026-cipher-0126");
  * test etmek için değer :)
  * 
  * Not: Test sonrası metin orijinali gibi duruyor.
- *      Kendi yazdığım kodumu tebrik ediyorum, beni g*t etti xD
- *      Saatlerce durmadan çalışınca haliyle kayış kopuyo :)
+ *   Kendi yazdığım kodumu tebrik ediyorum, beni g*t etti xD
+ *   Saatlerce durmadan çalışınca haliyle kayış kopuyo :)
  * 
  * Not 2: Fonksiyon performans açısından berbat evet ama amaç test olduğu
- * için herhangi bir şekilde performans üzerine durulmadı. Tek amaç, daha
- * iyi bir çıktı sağlamaktı.
+ *   için herhangi bir şekilde performans üzerine durulmadı. Tek amaç, daha
+ *   iyi bir çıktı sağlamaktı.
+ * 
+ * Not 3: Yeni bir şey öğrendim. Aslında düşüncem doğruymuş ve bilmediiğim şey ise
+ *   şuymuş: Xor ile şifreleme yapıldığı için ve metin ekstra bir alan kaplamadığı
+ *   için (şifreleme sonrası) aynı alan üzerinde işlem yapıyormuş ve işlemler
+ *   Xor sebebiyle çakışsa bile sorun çıkarmamış bu yüzden aslında şansa önlenmiş
+ *   ve ilk düşüncem doğruymuş. Yeni bir şey daha öğrenmiş ve bilgimin de aslında
+ *   ne kadar doğru olduğunu da farklı bir yoldan görmüş oldum.
+ *   Evet g*t olmadık xD sadece tuhaf bir durum sonucu öyle sandık :) ahahaha
  * 
  * @param uint16_t Count
  * @tparam Crypto<Algo>& Crypto
