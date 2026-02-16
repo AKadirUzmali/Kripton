@@ -11,31 +11,113 @@
 
 // Include
 #include <cstdint>
+#include <type_traits>
 
 // Namespace
 namespace core::status
 {
     // Enum
-    enum class status_kind : std::uint8_t
+    enum class status_t : std::uint8_t
     {
         none = 0,
-        ok,
         err,
-        info,
-        warn
+        ok,
+        warn,
+        info
     };
-    
-    // Struct
-    struct status_t
+
+    // Enum
+    enum class domain_t : std::uint8_t
     {
-        status_kind kind { status_kind::none };
-        std::uint8_t domain { 0 };
-        std::uint16_t code { 0 };
-    
-        [[maybe_unused]] [[nodiscard]] constexpr bool none()   const noexcept { return kind == status_kind::none; }
-        [[maybe_unused]] [[nodiscard]] constexpr bool ok()     const noexcept { return kind == status_kind::ok; }
-        [[maybe_unused]] [[nodiscard]] constexpr bool err()    const noexcept { return kind == status_kind::err; }
-        [[maybe_unused]] [[nodiscard]] constexpr bool warn()   const noexcept { return kind == status_kind::warn; }
-        [[maybe_unused]] [[nodiscard]] constexpr bool info()   const noexcept { return kind == status_kind::info; }
+        none = 0,
+        socket,
+        server,
+        client
     };
+
+    /**
+     * @brief To Underlying
+     * 
+     * Enum veriyi otomatik olarak tamsayı
+     * türüne dönüştürmeyi sağlar
+     * 
+     * @param E Enum
+     * @return auto
+     */
+    template<typename E>
+    constexpr auto to_underlying(
+        E ar_e
+    ) noexcept
+    {
+        return static_cast<std::underlying_type_t<E>>(ar_e);
+    }
+
+    // Struct
+    struct Status
+    {
+        private:
+            status_t m_status;
+            domain_t m_domain;
+            uint16_t m_code;
+
+        public:
+            constexpr Status(
+                const status_t ar_status,
+                const domain_t ar_domain,
+                const uint16_t ar_code
+            ) noexcept;
+
+            constexpr inline status_t get_status() const noexcept { return m_status; }
+            constexpr inline domain_t get_domain() const noexcept { return m_domain; }
+            constexpr inline uint16_t get_code() const noexcept { return m_code; }
+
+            constexpr bool is_none()   const noexcept { return this->m_status == status_t::none; }
+            constexpr bool is_err()    const noexcept { return this->m_status == status_t::err; }
+            constexpr bool is_ok()     const noexcept { return this->m_status == status_t::ok; }
+            constexpr bool is_warn()   const noexcept { return this->m_status == status_t::warn; }
+            constexpr bool is_info()   const noexcept { return this->m_status == status_t::info; }
+
+            static constexpr Status ok(domain_t ar_domain = domain_t::none, uint16_t ar_code = 0) { return Status{ status_t::ok, ar_domain, ar_code }; }
+            static constexpr Status err(domain_t ar_domain = domain_t::none, uint16_t ar_code = 0) { return Status{ status_t::err, ar_domain, ar_code }; }
+            static constexpr Status warn(domain_t ar_domain = domain_t::none, uint16_t ar_code = 0) { return Status{ status_t::warn, ar_domain, ar_code }; }
+            static constexpr Status info(domain_t ar_domain = domain_t::none, uint16_t ar_code = 0) { return Status{ status_t::info, ar_domain, ar_code }; }
+
+            constexpr bool operator==(const Status& ar_other) noexcept;
+            constexpr bool operator!=(const Status& ar_other) noexcept;
+
+            constexpr Status operator()(const status_t ar_status, const domain_t ar_domain, const uint16_t ar_code) noexcept;
+    };
+
+    constexpr Status::Status(
+        const status_t ar_status,
+        const domain_t ar_domain,
+        const uint16_t ar_code
+    ) noexcept
+    : m_status(ar_status), m_domain(ar_domain), m_code(ar_code)
+    {}
+
+    constexpr bool Status::operator==(
+        const Status& ar_other
+    ) noexcept
+    {
+        return this->m_status == ar_other.m_status &&
+            this->m_domain == ar_other.m_domain &&
+            this->m_code == ar_other.m_code;
+    }
+
+    constexpr bool Status::operator!=(
+        const Status& ar_other
+    ) noexcept
+    {
+        return !(*this == ar_other);
+    }
+
+    constexpr Status Status::operator()(
+        const status_t ar_status,
+        const domain_t ar_domain,
+        const uint16_t ar_code
+    ) noexcept
+    {
+        return Status{ ar_status, ar_domain, ar_code };
+    }
 }
