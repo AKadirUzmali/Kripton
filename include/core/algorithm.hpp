@@ -50,7 +50,7 @@ namespace core::algorithm
         public:
             explicit Algorithm(
                 const std::string& ar_name,
-                const std::u32string& ar_key
+                const std::string& ar_key
             );
 
             virtual bool has_error() const noexcept;
@@ -88,13 +88,11 @@ namespace core::algorithm
      */
     Algorithm::Algorithm(
         const std::string& ar_name,
-        const std::u32string& ar_key
+        const std::string& ar_key
     )
     {
-        if( !this->set_name(ar_name) || !this->set_key(utf::to_utf8(ar_key)) ) {
-            this->clear();
-            std::terminate();
-        }
+        this->set_name(ar_name);
+        this->set_key(ar_key);
     }
 
     /**
@@ -259,7 +257,7 @@ namespace core::algorithm
         const std::string& ar_name
     ) noexcept
     {
-        const unsigned int tm_size_name = ar_name.size() * sizeof(char32_t);
+        const unsigned int tm_size_name = ar_name.size() * sizeof(char);
         return tm_size_name >= MIN_LEN_NAME && tm_size_name <= MAX_LEN_NAME;
     }
 
@@ -277,7 +275,7 @@ namespace core::algorithm
         const std::string& ar_key
     ) noexcept
     {
-        const unsigned int tm_size_key = ar_key.size() * sizeof(char32_t);
+        const unsigned int tm_size_key = ar_key.size();
         return tm_size_key >= MIN_LEN_KEY && tm_size_key <= MAX_LEN_KEY;
     }
 }

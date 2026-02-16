@@ -39,7 +39,7 @@ namespace dev::level
 
     // Array
     [[maybe_unused]] static constexpr const char* const ss_levels[] =
-    { "Fail", "Pass", "Warn", "Info", "Test", "Text" };
+    { "Fail", "Pass", "Warn", "Info", "Debug", "Text" };
 
     [[maybe_unused]] static constexpr const char* const ss_names[] =
     { "Error", "Success", "Warning", "Information", "Debug", "Text" };
@@ -47,10 +47,6 @@ namespace dev::level
     [[maybe_unused]] static constexpr std::size_t ss_size_levels = sizeof(ss_levels) / sizeof(ss_levels[0]);
     [[maybe_unused]] static constexpr std::size_t ss_size_names = sizeof(ss_names) / sizeof(ss_names[0]);
     [[maybe_unused]] static constexpr std::size_t ss_size_tests = ss_size_levels;
-
-    // Array
-    [[maybe_unused]] static std::atomic<std::size_t> ss_tests[ss_size_tests] =
-    { 0, 0, 0, 0, 0, 0 };
 
     // Function Define
     [[maybe_unused]] inline constexpr size_t get_valid_index(const size_t) noexcept;

@@ -15,27 +15,29 @@
 // Include
 #include <cstdint>
 #include <cstddef>
+#include <array>
 
 // Namespace
 namespace tools::hash::vch
 {
     // Struct
+    template<uint8_t HashSizeT>
     struct Vch
     {
-        static constexpr std::size_t ss_hash_size = 4;
-        static constexpr std::size_t ss_hex_arr_size = 64;
-
-        static constexpr const std::uint64_t ss_seed[ss_hash_size] =
-        {
-            0xab23c60890abfe23ULL,
-            0xec0f26987abb54d1ULL,
-            0x3021bdfe925676abULL,
-            0x8c234feabcdf2560ULL
-        };
-
         private:
-            std::uint64_t m_hash[ss_hash_size] {};
-            char m_hexlist[ss_hex_arr_size + 1] {};
+            static constexpr uint8_t ss_hash_size = 4;
+            static constexpr const uint32_t ss_seed[ss_hash_size] =
+            {
+                0xab23c608UL,
+                0xec0f2698UL,
+                0x3021bdfeUL,
+                0x8c234feeUL
+            };
+
+            static constexpr uint8_t ss_hex_arr_size = (HashSizeT) % (sizeof(uint32_t) * 8);
+
+            std::array<uint32_t, ss_hash_size> m_hash {};
+            std::array<char, ss_hex_arr_size + 1> m_hexlist {};
 
             static constexpr char s_hexmap[16] =
             {
@@ -44,56 +46,39 @@ namespace tools::hash::vch
             };
 
         private:
-            template<std::size_t N>
+            template<uint32_t N>
             constexpr void absorb(const char (&ar_str)[N]) noexcept;
 
-            [[maybe_unused]] constexpr void mix(const std::uint64_t ar_value) noexcept;
-            [[maybe_unused]] constexpr void make() noexcept;
+            constexpr void mix(const uint32_t ar_value) noexcept;
+            constexpr void make() noexcept;
 
         public:
-            template<std::size_t N>
+            template<uint32_t N>
             constexpr explicit Vch(
                 const char(&ar_contract)[N],
-                std::size_t ar_epoch = 0
+                uint32_t ar_epoch = 0
             ) noexcept
             {
-                for(std::size_t tm_count = 0; tm_count < ss_hash_size; ++tm_count)
-                    this->m_hash[tm_count] = ss_seed[tm_count];
+                for(uint32_t tm_count = 0; tm_count < this->m_hash.size(); ++tm_count)
+                    this->m_hash.at(tm_count) = ss_seed[tm_count];
 
                 this->absorb(ar_contract);
                 this->mix(ar_epoch);
                 this->make();
             }
 
-            template<std::size_t N>
-            constexpr explicit Vch(
-                const char(&ar_contract)[N],
-                const std::uint64_t (&ar_seed)[ss_hash_size],
-                std::size_t ar_epoch = 0
-            ) noexcept
-            {
-                for(std::size_t tm_count = 0; tm_count < ss_hash_size; ++tm_count)
-                    this->m_hash[tm_count] = ar_seed[tm_count];
-
-                this->absorb(ar_contract);
-                this->mix(ar_epoch);
-                this->make();
-            }
-
-            [[maybe_unused]] [[nodiscard]]
             constexpr bool operator==(const Vch& other) const noexcept
             {
-                for(std::size_t tm_count = 0; tm_count < ss_hash_size; ++tm_count)
-                    if(this->m_hash[tm_count] != other.m_hash[tm_count])
+                for(uint32_t tm_count = 0; tm_count < this->m_hash.size(); ++tm_count)
+                    if(this->m_hash.at(tm_count) != other.m_hash.at(tm_count))
                         return false;
                 return true;
             }
 
-            [[maybe_unused]] [[nodiscard]]
             constexpr bool operator!=(const Vch& other) const noexcept
             { return !(*this == other); }
 
-            [[maybe_unused]] [[nodiscard]] constexpr const char* c_str() const noexcept;
+            constexpr const char* c_str() const noexcept;
     };
 
     /**
@@ -105,12 +90,13 @@ namespace tools::hash::vch
      * 
      * @param char[N] Text
      */
-    template<std::size_t N>
-    constexpr void Vch::absorb(
+    template<uint8_t HashSizeT>
+    template<uint32_t N>
+    constexpr void Vch<HashSizeT>::absorb(
         const char (&ar_str)[N]
     ) noexcept
     {
-        for(std::size_t tm_count = 0; tm_count < N - 1; ++tm_count)
+        for(uint32_t tm_count = 0; tm_count < N - 1; ++tm_count)
             this->mix(static_cast<std::uint8_t>(ar_str[tm_count]));
     }
 
@@ -122,24 +108,24 @@ namespace tools::hash::vch
      * çarpıyoruz daha benzersiz olması için. Sırasıyla işlemleri yaptıktan
      * sonra yeni karışım olmuş oluyor
      * 
-     * @param uint64_t Value
+     * @param uint32_t Value
      */
-    [[maybe_unused]]
-    constexpr void Vch::mix(
-        const std::uint64_t ar_value
+    template<uint8_t HashSizeT>
+    constexpr void Vch<HashSizeT>::mix(
+        const uint32_t ar_value
     ) noexcept
     {
-        this->m_hash[0] ^= ar_value + (this->m_hash[3] << 6) + (this->m_hash[1] >> 2);
-        this->m_hash[1] ^= this->m_hash[0] * 0x2004abd2304cedffULL;
-        this->m_hash[2] ^= this->m_hash[1] + (this->m_hash[0] << 4);
-        this->m_hash[3] ^= this->m_hash[2] ^ (ar_value >> 3);
+        this->m_hash.at(0) ^= ar_value + (this->m_hash.at(3) << 6) + (this->m_hash.at(1) >> 2);
+        this->m_hash.at(1) ^= this->m_hash.at(0) * 0x2004abd2304cedffULL;
+        this->m_hash.at(2) ^= this->m_hash.at(1) + (this->m_hash.at(0) << 4);
+        this->m_hash.at(3) ^= this->m_hash.at(2) ^ (ar_value >> 3);
     }
 
     /**
      * @brief Make
      *
      * Bu fonksiyon, m_hash dizisinde tutulan her bir sabit genişlikli
-     * (uint64_t) hash parçasını sırayla işler ve her parçayı
+     * (uint32_t) hash parçasını sırayla işler ve her parçayı
      * hexadecimal karakterlere dönüştürerek m_hexlist dizisine yazar.
      *
      * Dış döngü, hash durumunu oluşturan her 64-bit bloğu sırayla alır.
@@ -161,19 +147,19 @@ namespace tools::hash::vch
      *  - Deterministiktir (aynı hash → aynı çıktı)
      *  - Sadece temsil (encoding) yapar, ek karmaşıklık eklemez
      */
-    [[maybe_unused]]
-    constexpr void Vch::make() noexcept
+    template<uint8_t HashSizeT>
+    constexpr void Vch<HashSizeT>::make() noexcept
     {
-        std::size_t tm_idx = 0;
+        uint32_t tm_idx = 0;
         
-        for(std::size_t tm_count = 0; tm_count < ss_hash_size; ++tm_count) {
-            std::uint64_t tm_value = this->m_hash[tm_count];
+        for(uint32_t tm_count = 0; tm_count < ss_hash_size; ++tm_count) {
+            uint32_t tm_value = this->m_hash.at(tm_count);
 
             for(int tm_by = ss_hex_arr_size - 4; tm_by >= 0; tm_by -= ss_hash_size)
-                this->m_hexlist[tm_idx++] = this->s_hexmap[(tm_value >> tm_by) & 0xF];
+                this->m_hexlist.at(tm_idx++) = this->s_hexmap[(tm_value >> tm_by) & 0xF];
         }
 
-        this->m_hexlist[ss_hex_arr_size] = '\0';
+        this->m_hexlist.at(ss_hex_arr_size) = '\0';
     }
 
     /**
@@ -185,9 +171,9 @@ namespace tools::hash::vch
      * 
      * @return const char*
      */
-    [[maybe_unused]] [[nodiscard]]
-    constexpr const char* Vch::c_str() const noexcept
+    template<uint8_t HashSizeT>
+    constexpr const char* Vch<HashSizeT>::c_str() const noexcept
     {
-        return this->m_hexlist;
+        return this->m_hexlist.data();
     }
 }
