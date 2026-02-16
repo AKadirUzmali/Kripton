@@ -17,6 +17,7 @@
 #include <string>
 #include <mutex>
 
+#include <core/crash.hpp>
 #include <dev/log/output.hpp>
 #include <kits/toolkit.hpp>
 
@@ -24,20 +25,19 @@
 namespace dev::output::console
 {
     // Using Namespace
+    using namespace core::crash;
     using namespace dev::level;
     using namespace tools::console;
 
     // Class
-    class ConsoleOut : public virtual Output
+    class ConsoleOut : public virtual Output, protected virtual CrashHandler
     {
         private:
-            inline static std::mutex m_mtx {};
-
-        private:
-            void init_info() noexcept;
+            inline static std::mutex s_mtx {};
 
         public:
-            explicit ConsoleOut(std::string_view ar_outname);
+            ConsoleOut(std::string_view ar_outname);
+            virtual ~ConsoleOut() = default;
 
             virtual void write(
                 level_t ar_lvl,
@@ -52,6 +52,11 @@ namespace dev::output::console
             virtual void write(
                 std::string_view ar_msg
             ) noexcept override;
+
+            virtual void print() noexcept override;
+
+        protected:
+            virtual void crashed() noexcept override;
     };
 
     /**
@@ -65,22 +70,20 @@ namespace dev::output::console
     ConsoleOut::ConsoleOut
     (
         std::string_view ar_outname
-    ) :Output(ar_outname)
-    {
-        this->init_info();
-    }
+    ) : Output(ar_outname)
+    {}
 
     /**
-     * @brief Init Info
+     * @brief Print
      * 
      * Konsol işlemi başladığı gibi bilgilendirmeyi dosyaya
      * kayıt edecek işlem
      */
-    void ConsoleOut::init_info() noexcept
+    void ConsoleOut::print() noexcept
     {
         constexpr size_t tm_title_size = 20;
 
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(s_mtx);
 
         color::reset_color();
 
@@ -108,7 +111,7 @@ namespace dev::output::console
         std::string_view ar_msg
     ) noexcept
     {
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(s_mtx);
 
         color::set_color(static_cast<color::color_t>(ar_lvl));
         std::cout << Output::getTitle(to_string(ar_lvl)) << ' ' << ar_msg << '\n';
@@ -131,7 +134,7 @@ namespace dev::output::console
         std::string_view ar_msg
     ) noexcept
     {
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(s_mtx);
         std::cout << Output::getTitle(ar_title) << ' ' << ar_msg << '\n';
     }
 
@@ -150,7 +153,19 @@ namespace dev::output::console
         std::string_view ar_msg
     ) noexcept
     {
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(s_mtx);
         std::cout << ar_msg << '\n';
+    }
+
+    /**
+     * @brief Crashed
+     * 
+     * Program çökme ya da kapanma sorunları durumunda
+     * kayıt alıp konsolu güvenli şekilde kapatacak
+     */
+    void ConsoleOut::crashed() noexcept
+    {
+        this->write(level_t::Err, "Crash Code: " + std::to_string(CrashHandler::get_signal()));
+        color::reset_color();
     }
 }
