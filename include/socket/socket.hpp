@@ -173,7 +173,7 @@ namespace netsocket
         UserPacket m_user;
     };
 
-    #if __OS_WINDOWS
+    #if __OS_WINDOWS__
         static constexpr socket_t ss_inv_socket = INVALID_SOCKET;
         static constexpr socket_port_t ss_inv_port = 0;
         static constexpr int ss_inv_receive = SOCKET_ERROR;
@@ -212,6 +212,7 @@ namespace netsocket
 
     // Flag
     static constexpr flag::flag_t _FLAG_SOCKET_LOGGER = { 1 << 0 };
+    static constexpr flag::flag_t _FLAG_SOCKET_WSAERR = { 1 << 1 };
 
     // Version Hash
     static constexpr uint8_t ss_hash_hex_size = 16;
@@ -231,6 +232,7 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_port(const socket_port_t ar_port) noexcept;
     [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_ipv(const ipv_t ar_ipv) noexcept;
 
+    [[maybe_unused]] static bool shutdown_socket(const socket_t ar_sock) noexcept;
     [[maybe_unused]] static bool close_socket(const socket_t ar_sock) noexcept;
     [[maybe_unused]] [[nodiscard]] static std::string_view get_ip(const socket_t ar_sock) noexcept;
 
@@ -260,7 +262,7 @@ namespace netsocket
             inline static std::atomic<uint32_t> s_total_sock { 0 };
 
             #if __OS_WINDOWS__
-                inline std::atomic<bool> s_wsa_init { false };
+                inline static std::atomic<bool> s_wsa_init { false };
             #endif
 
             inline static void inc_total_socket() noexcept { ++s_total_sock; };
@@ -353,11 +355,11 @@ namespace netsocket
         this->set_ipv(ar_ipv);
 
         #if __OS_WINDOWS__
-            if( !s_wsa_init.load(std::memory_order_relaxed) && ::WSAGetLastError() != WSAONINITALISED )
+            if( !s_wsa_init.load(std::memory_order_relaxed) && ::WSAGetLastError() != WSANOTINITIALISED )
             {
                 WSAData tm_wsadata;
                 if( ::WSAStartup(MAKEWORD(2,2), &tm_wsadata) != 0 )
-                    this->m_flag.set(_FLAG_SOCKET_ERR);
+                    this->m_flag.set(_FLAG_SOCKET_WSAERR);
 
                 s_wsa_init.store(true);
             }
@@ -982,6 +984,33 @@ namespace netsocket
     }
 
     /**
+     * @brief Shutdown Socket
+     * 
+     * İşletim sistemi türüne göre farklı olan soket sonlandırma
+     * işlemini yapar. Geçersiz soket kontrolü sonrası
+     * soketi sonlandırır
+     * 
+     * @param socket_t Socket
+     * @return bool
+     */
+    [[maybe_unused]]
+    bool shutdown_socket(
+        const socket_t ar_sock
+    ) noexcept
+    {
+        if( !is_valid_socket(ar_sock) )
+            return false;
+
+        #if __OS_WINDOWS__
+            ::shutdown(ar_sock, SD_BOTH);
+        #elif __OS_POSIX__
+            ::shutdown(ar_sock, SHUT_RDWR);
+        #endif
+
+	return true;
+    }
+
+    /**
      * @brief Close Socket
      * 
      * İşletim sistemi türüne göre farklı olan soket kapatma
@@ -1101,8 +1130,8 @@ namespace netsocket
 
         if( std::strncmp(tm_hash, ss_ver_hash.c_str(), sizeof(tm_hash)) != 0 )
         {
-            ::shutdown(ar_sock, SHUT_RDWR);
-            close_socket(ar_sock);
+	    shutdown_socket(ar_sock);
+	    close_socket(ar_sock);
 
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_hash_not_match));
         }
