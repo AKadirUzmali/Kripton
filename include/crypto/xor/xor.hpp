@@ -29,7 +29,7 @@ namespace crypto::stream
         public:
             explicit Xor(
                 const std::string& ar_name,
-                const std::u32string& ar_key
+                const std::string& ar_key
             );
 
             bool encrypt(std::string& ar_text) noexcept override;
@@ -48,7 +48,7 @@ namespace crypto::stream
      */
     Xor::Xor(
         const std::string& ar_name,
-        const std::u32string& ar_key
+        const std::string& ar_key
     )
     : Algorithm(ar_name, ar_key)
     {}
