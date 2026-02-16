@@ -1,0 +1,21 @@
+[Info] [2026-02-16 23:02:28:383|socket-compile-test.cpp:main:66] d2a49a3244ea6556
+[Debug] [2026-02-16 23:02:28:384|socket-compile-test.cpp:main:67] Debug
+[Info] [2026-02-16 23:02:28:384|socket-compile-test.cpp:main:68] Algorithm Name: test-cipher-socket
+[Info] [2026-02-16 23:02:28:385|socket-compile-test.cpp:main:69] Algorithm Key: key-2026-cipher-socket-0209
+[Info] [2026-02-16 23:02:28:385|socket-compile-test.cpp:main:70] Total Socket Count: 1
+[Info] [2026-02-16 23:02:28:386|socket-compile-test.cpp:main:71] Port: 9999
+[Info] [2026-02-16 23:02:28:386|socket-compile-test.cpp:main:72] Socket Username: netsocket-cipher
+[Info] [2026-02-16 23:02:28:387|socket-compile-test.cpp:main:76] Socket Password: new-pwd-2026-netsocket
+[Info] [2026-02-16 23:02:28:388|socket-compile-test.cpp:main:77] Socket Old Password: pwd-test-0209
+================================================================================================================
+Path                : logs/2026-02-16-algorithm-crypto-socket-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-02-16 23:02:28:388
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 0
+[Logger] Warning: 0
+[Logger] Information: 8
+[Logger] Debug: 1
+[Logger] Text: 0

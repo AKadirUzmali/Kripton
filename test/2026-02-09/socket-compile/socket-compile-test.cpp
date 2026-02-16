@@ -11,7 +11,7 @@
  * Derleme:
  *  Bsd     :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra socket-compile-test.cpp -pthread -o bsd/socket-compile-test.bsd
  *  Linux   :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra socket-compile-test.cpp -o linux/socket-compile-test.linux
- *  Windows :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra socket-compile-test.cpp -o windows/socket-compile-test.exe
+ *  Windows :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra socket-compile-test.cpp -o windows/socket-compile-test.exe -lws2_32
  */
 
 // Include

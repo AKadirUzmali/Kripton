@@ -10,3 +10,15 @@ Timestamp           : 2026-02-16 22:27:08:200
 [Logger] Information: 0
 [Logger] Debug: 0
 [Logger] Text: 0
+================================================================================================================
+Path                : logs/socket-test-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-16 23:08:07:574
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 0
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
