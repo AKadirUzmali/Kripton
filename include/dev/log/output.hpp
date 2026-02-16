@@ -32,10 +32,11 @@ namespace dev::output
             ) noexcept;
 
         private:
-            std::string_view m_name;
+            std::string m_name;
 
         public:
             explicit Output(std::string_view ar_outname);
+            virtual ~Output() = default;
 
         public:
             virtual void write(
@@ -52,7 +53,9 @@ namespace dev::output
                 std::string_view ar_msg
             ) noexcept = 0;
 
-            inline constexpr const char* getName() const noexcept;
+            virtual void print() noexcept = 0;
+
+            inline const char* getName() const noexcept;
     };
 
     /**
@@ -103,7 +106,7 @@ namespace dev::output
      * 
      * @return const char*
      */
-    constexpr const char* Output::getName() const noexcept
+    const char* Output::getName() const noexcept
     {
         return this->m_name.data();
     }
