@@ -12,12 +12,14 @@
  */
 
 // Include
+#include <cstdint>
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <mutex>
 #include <fstream>
 
+#include <core/crash.hpp>
 #include <dev/log/output.hpp>
 #include <core/platform.hpp>
 
@@ -25,23 +27,26 @@
 namespace dev::output::file
 {
     // Using Namespace
-    using namespace dev::level;
     using namespace core::crash;
+    using namespace dev::level;
+
+    // Using
+    using file_len_t = std::uint8_t;
+
+    // Limit
+    static constexpr file_len_t _MIN_LEN_FILEPATH = 3;
+    static constexpr file_len_t _MAX_LEN_FILEPATH = ((file_len_t)~0) - 1;
 
     // Class
-    class FileOut : public virtual Output
+    class FileOut : public virtual Output, protected virtual CrashHandler
     {
         private:
-            static inline std::mutex m_mtx {};
-
-        private:
+            std::mutex m_mtx {};
             std::ofstream m_file;
 
-        private:
-            void init_info() noexcept;
-
         public:
-            explicit FileOut(std::string_view ar_outname);
+            FileOut(std::string_view ar_outname);
+            virtual ~FileOut() = default;
 
             virtual void write(
                 level_t ar_lvl,
@@ -56,6 +61,11 @@ namespace dev::output::file
             virtual void write(
                 std::string_view ar_msg
             ) noexcept override;
+
+            virtual void print() noexcept override;
+
+        protected:
+            virtual void crashed() noexcept override;
     };
 
     /**
@@ -69,22 +79,23 @@ namespace dev::output::file
     inline FileOut::FileOut
     (
         std::string_view ar_outname
-    ) :Output(ar_outname), m_file(std::string(ar_outname) + ".log", std::ios::app)
+    )
+    :   Output(ar_outname)
     {
-        this->init_info();
+        this->m_file.open(std::string(ar_outname).substr(0, _MAX_LEN_FILEPATH - 4) + ".log", std::ios::out | std::ios::app);
     }
 
     /**
-     * @brief Init Info
+     * @brief Print
      * 
      * Dosya işlemi başladığı gibi bilgilendirmeyi dosyaya
      * kayıt edecek işlem
      */
-    void FileOut::init_info() noexcept
+    void FileOut::print() noexcept
     {
         constexpr size_t tm_title_size = 20;
 
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(this->m_mtx);
 
         this->m_file << "================================================================================================================\n";
         this->m_file << std::setw(tm_title_size) << std::left << "Path" << ": " << this->getName() << '\n';
@@ -113,7 +124,7 @@ namespace dev::output::file
         std::string_view ar_msg
     ) noexcept
     {
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(this->m_mtx);
         if( !this->m_file.is_open() )
             return;
 
@@ -137,7 +148,7 @@ namespace dev::output::file
         std::string_view ar_msg
     ) noexcept
     {
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(this->m_mtx);
         if( !this->m_file.is_open() )
             return;
 
@@ -160,11 +171,26 @@ namespace dev::output::file
         std::string_view ar_msg
     ) noexcept
     {
-        std::scoped_lock lock(m_mtx);
+        std::scoped_lock lock(this->m_mtx);
         if( !this->m_file.is_open() )
             return;
 
         this->m_file << ar_msg << '\n';
         this->m_file.flush();
+    }
+
+    /**
+     * @brief Crashed
+     * 
+     * Program çökme ya da kapanma sorunları durumunda
+     * kayıt alıp dosyayı güvenli şekilde kapatacak
+     */
+    void FileOut::crashed() noexcept
+    {
+        if( !this->m_file.is_open() )
+            return;
+
+        this->write(level_t::Err, "Crash Code: " + std::to_string(CrashHandler::get_signal()));
+        this->m_file.close();
     }
 }
