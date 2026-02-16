@@ -1130,8 +1130,8 @@ namespace netsocket
 
         if( std::strncmp(tm_hash, ss_ver_hash.c_str(), sizeof(tm_hash)) != 0 )
         {
-	    shutdown_socket(ar_sock);
-	    close_socket(ar_sock);
+	        shutdown_socket(ar_sock);
+	        close_socket(ar_sock);
 
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_hash_not_match));
         }
