@@ -13,57 +13,54 @@
 
 // Include
 #include <cstdint>
-#include <type_traits>
 
 // Namespace
 namespace core::flag
 {
+    // Using
+    using flag_t = std::uint32_t;
+
     // Struct
-    template<typename I>
     struct Flag
     {
-        static_assert(std::is_integral<I>::value, "Flag<I>: <I> must be an integral type");
-        static_assert(sizeof(I) >= sizeof(std::uint8_t) && sizeof(I) <= sizeof(std::uint64_t), "Flag<I>: <I> must be between uint8_t and uint64_t");
-        static_assert(!std::is_same<I, bool>::value, "Flag<I>: <bool> is not allowed");
-
         private:
-            I m_value {};
+            flag_t m_value {};
 
         public:
-            constexpr explicit Flag(const I ar_value) noexcept
+            constexpr explicit Flag(const flag_t ar_value = 0) noexcept
             : m_value(ar_value)
             {}
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr Flag operator|(const I ar_value) const noexcept
+            constexpr flag_t operator|(const flag_t ar_value) const noexcept
             { return m_value | ar_value; }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr Flag operator|=(const I ar_value) noexcept
-            { m_value |= ar_value; return *this; }
+            constexpr flag_t operator|=(const flag_t ar_value) noexcept
+            { m_value |= ar_value; return m_value; }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool operator&(const I ar_value) const noexcept
-            { return m_value & m_value; }
+            constexpr bool operator&(const flag_t ar_value) const noexcept
+            { return m_value & ar_value; }
 
             [[maybe_unused]]
-            constexpr void set(const I ar_value) noexcept
+            constexpr void set(const flag_t ar_value) noexcept
             { m_value = ar_value; }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr I get() const noexcept
+            constexpr flag_t get() const noexcept
             { return m_value; }
 
             [[maybe_unused]]
-            constexpr void add(const I ar_value) noexcept
+            constexpr void add(const flag_t ar_value) noexcept
             { m_value |= ar_value; }
 
             [[maybe_unused]]
-            constexpr void unset(const I ar_value) noexcept
+            constexpr void unset(const flag_t ar_value) noexcept
             { m_value &= ~ar_value; }
 
             [[maybe_unused]]
-            constexpr void change(const I ar_remove, const I ar_add) noexcept
+            constexpr void change(const flag_t ar_remove, const flag_t ar_add) noexcept
             { m_value = (m_value & ~ar_remove) | ar_add; }
 
             [[maybe_unused]]
