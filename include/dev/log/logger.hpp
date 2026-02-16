@@ -12,10 +12,9 @@
 
 // Include
 #include <string>
-#include <type_traits>
-#include <tuple>
-
-#include <core/crash.hpp>
+#include <string_view>
+#include <vector>
+#include <memory>
 
 #include <dev/core/source.hpp>
 #include <dev/log/levels.hpp>
@@ -27,142 +26,81 @@
 // Namespace
 namespace dev::log
 {
-    /**
-     * @brief Output isimlerini indeks bazlı olarak seçer
-     *
-     * Logger birden fazla Output (FileOut, ConsoleOut, vb.) içerebilir.
-     * Her Output için bir isim (string_view) verilmesi mümkündür fakat:
-     *
-     *  - Tek isim verilebilir
-     *  - Output sayısından az isim verilebilir
-     *  - Output sayısından fazla isim verilebilir
-     *
-     * Bu fonksiyon, Output indeksine (I) göre hangi ismin kullanılacağını
-     * compile-time (if constexpr) olarak belirler.
-     *
-     * Seçim kuralları:
-     *
-     *  1) I == 0 ise:
-     *     - Her zaman `first` kullanılır.
-     *
-     *  2) I > 0 ve yeterli sayıda ek isim varsa:
-     *     - `rest` tuple içinden (I - 1). eleman alınır.
-     *
-     *  3) I > 0 fakat yeterli isim yoksa:
-     *     - `rest` içindeki son isim tekrar kullanılır.
-     *
-     * Bu sayede:
-     *  - Fazla isim verilmesi sorun olmaz
-     *  - Az isim verilmesi sorun olmaz
-     *  - Runtime kontrol veya branch oluşmaz
-     *
-     * @tparam I
-     * Output’un indeksidir (0 → ilk Output, 1 → ikinci Output, ...)
-     *
-     * @tparam Names
-     * Ek isimlerin türleri (genellikle std::string_view)
-     *
-     * @param first
-     * İlk Output için kullanılacak isim
-     *
-     * @param rest
-     * Diğer Output’lar için verilen ek isimleri içeren tuple
-     * 
-     * @note Fonksiyonun kullanım amacı ve ihtiyacı Abdulkadir U. tarafından belirlenmiştir
-     * @note Fonksiyonun tasarımı ChatGPT tarafından yapılmıştır
-     *
-     * @return std::string_view
-     * Seçilen Output ismi
-     */
-    template<std::size_t I, typename... Names>
-    static std::string_view pick_name(
-        std::string_view ar_first,
-        const std::tuple<Names...>& ar_rest
-    ) noexcept
-    {
-        if constexpr (I == 0)
-            return ar_first;
-        else if constexpr (I - 1 < sizeof...(Names))
-            return std::get<I - 1>(ar_rest);
-        else
-            return std::get<sizeof...(Names) - 1>(ar_rest);
-    }
-
     // Using Namespace
     using namespace dev::output;
     using namespace dev::level;
     using namespace dev::source;
-    using namespace core::crash;
 
     // Class
-    template<class... Outs>
-    class Logger final : public virtual CrashHandler
+    template<class... OutputC>
+    class Logger final
     {
-        static_assert((std::is_base_of<Output, Outs>::value && ...), "All Logger Outputs Must Derive From Output");
+        private:
+            std::vector<std::unique_ptr<Output>> m_outputs;
+            std::atomic<std::size_t> m_tests[ss_size_tests] = { 0, 0, 0, 0, 0, 0 };
 
         private:
-            std::tuple<Outs...> m_outs;
+            template<class T>
+            void add_output(std::string_view ar_name) {
+                this->m_outputs.emplace_back(std::make_unique<T>(ar_name));
+            }
 
-        private:
-            template<std::size_t... I, typename... Names>
-            static std::tuple<Outs...> make_outs(
-                std::index_sequence<I...>,
-                std::string_view ar_first,
-                const std::tuple<Names...>& ar_rest
-            )
+            template<class T, class... ResT>
+            void create_outputs(const std::vector<std::string_view>& ar_names, size_t ar_index = 0)
             {
-                return std::tuple<Outs...>{
-                    Outs(pick_name<I>(ar_first, ar_rest))...
-                };
+                std::string_view tm_name = ar_index < ar_names.size() ?
+                    ar_names[ar_index] : ar_names.back();
+
+                this->add_output<T>(tm_name);
+
+                if constexpr (sizeof...(ResT) > 0)
+                    this->create_outputs<ResT...>(ar_names, ar_index + 1);
             }
 
         public:
-            template<typename... Names>
-            explicit Logger(std::string_view ar_firstname, Names... ar_rest);
+            template<typename... NameT>
+            explicit Logger(std::string_view ar_firstname, NameT&&... ar_rest);
 
-            void write(
-                level_t ar_lvl,
-                std::string_view ar_msg,
-                const Source ar_src
-            ) noexcept;
-
+            void write(const level_t ar_lvl, const std::string_view ar_msg, const Source ar_src) noexcept;
             void print() noexcept;
-
-        protected:
-            virtual void crashed() noexcept override;
     };
 
     /**
      * @brief Logger
      * 
-     * Belirtilen isim ile çıktı verici sınıfı
-     * kullanarak oluşturmasını sağlıyoruz
+     * Belirtilen tür ve isimler ile kayıt nesneleri
+     * oluşturarak daha rahat ve okunabilir ve geliştirilebilir
+     * bir kayıt sistemi oluşturur
      * 
-     * @param string_view Name
+     * @param string_view Firstname
+     * @tparam NameT&&... Rest
      */
-    template<class... Outs>
-    template<typename... Names>
-    Logger<Outs...>::Logger
-    (
+    template<class... OutputC>
+    template<typename... NameT>
+    Logger<OutputC...>::Logger(
         std::string_view ar_firstname,
-        Names... ar_rest
-    ) : m_outs(this->make_outs(std::index_sequence_for<Outs...>{}, ar_firstname, std::tuple<Names...>{ar_rest...}))
-    {}
+        NameT&&... ar_rest
+    )
+    {
+        static_assert(sizeof...(OutputC) > 0 );
+
+        std::vector<std::string_view> tm_names = { ar_firstname, std::forward<NameT>(ar_rest)... };
+        this->create_outputs<OutputC...>(tm_names);
+    }
 
     /**
      * @brief Write
      * 
-     * Normal çıktı işleminin aynısı fakat
-     * bunu daha okunabilir yapmayı amaçlamak
+     * Dosyaya verilen türe göre çıktı vermeyi sağlar
      * 
-     * @param level_t Status
+     * @param level_t Level
      * @param string_view Message
      * @param Source Src
      */
-    template<class... Outs>
-    void Logger<Outs...>::write(
-        level_t ar_lvl,
-        std::string_view ar_msg,
+    template<class... OutputC>
+    void Logger<OutputC...>::write(
+        const level_t ar_lvl,
+        const std::string_view ar_msg,
         const Source ar_src
     ) noexcept
     {
@@ -180,50 +118,37 @@ namespace dev::log
         tm_text.append("] ");
         tm_text.append(ar_msg);
 
-        std::apply([&](auto&... out) {
-            (out.write(ar_lvl, std::string_view{tm_text}), ...);
-        }, this->m_outs);
+        for(auto& tm_out : this->m_outputs)
+            tm_out->write(ar_lvl, tm_text);
 
-        ++ss_tests[get_valid_index(to_index(ar_lvl))];
+        ++this->m_tests[get_valid_index(to_index(ar_lvl))];
     }
 
     /**
      * @brief Print
      * 
-     * Yapılan testlerin sonucunu bildirmek
-     * amaçlı çıktı vermesini sağlamak
+     * Dosya hakkında bilgi çıktısı verecek
      */
-    template<class... Outs>
-    void Logger<Outs...>::print() noexcept
+    template<class... OutputC>
+    void Logger<OutputC...>::print() noexcept
     {
-        std::string tm_result;
-        tm_result.reserve(64);
+        std::string tm_text;
+        tm_text.reserve(64);
 
-        for(size_t tm_count = 0; tm_count < ss_size_tests; ++tm_count)
-        {
+        for(auto& tm_out : this->m_outputs)
+            tm_out->print();
+
+        for(size_t tm_count = 0; tm_count < ss_size_tests; ++tm_count) {
             const auto tm_idx = get_valid_index(tm_count);
-            
-            tm_result.clear();
 
-            tm_result.append(level::to_string(tm_count));
-            tm_result.append(": ");
-            tm_result.append(std::to_string(ss_tests[get_valid_index(tm_idx)].load()));
+            tm_text.clear();
 
-            std::apply([&](auto&... out){
-                (out.write("Logger", std::string_view{tm_result}), ...);
-            }, this->m_outs);
+            tm_text.append(level::to_string(tm_count));
+            tm_text.append(": ");
+            tm_text.append(std::to_string(this->m_tests[get_valid_index(tm_idx)].load(std::memory_order_relaxed)));
+
+            for(auto& tm_out : this->m_outputs)
+                tm_out->write("Logger", tm_text);
         }
-    }
-
-    /**
-     * @brief Crashed
-     * 
-     * Program çökme sorunlarında çalışacak
-     */
-    template<class... Outs>
-    void Logger<Outs...>::crashed() noexcept
-    {
-        this->write(level_t::Err, std::string_view{"Crash Code: " + std::to_string(get_signal())}, source::Source{"logger.hpp", __func__, __LINE__});
-        this->print();
     }
 }
