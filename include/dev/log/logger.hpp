@@ -15,6 +15,7 @@
 #include <string_view>
 #include <vector>
 #include <memory>
+#include <filesystem>
 
 #include <dev/core/source.hpp>
 #include <dev/log/levels.hpp>
@@ -110,7 +111,7 @@ namespace dev::log
         tm_text.push_back('[');
         tm_text.append(tools::time::current_timestamp());
         tm_text.push_back('|');
-        tm_text.append(ar_src.m_file);
+        tm_text.append(std::filesystem::path(ar_src.m_file).filename().string());
         tm_text.push_back(':');
         tm_text.append(ar_src.m_func);
         tm_text.push_back(':');
