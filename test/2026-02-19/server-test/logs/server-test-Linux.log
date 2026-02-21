@@ -1,0 +1,196 @@
+[Pass] [2026-02-20 03:27:23:256|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:27:23:256|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:27:23:256
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-20 03:34:13:344|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:34:13:344|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:34:13:344
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-20 03:34:25:257|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:34:25:257|server-test.cpp:main:127] Total Thread Count: 8
+[Fail] Crash Code: 2
+[Pass] [2026-02-20 03:35:06:830|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:35:06:830|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:35:06:830
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Info] [2026-02-20 03:35:06:830|server-test.cpp:operator():131] Thread 3 Enqueued
+[Pass] [2026-02-20 03:35:54:139|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:35:54:139|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:35:54:139
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Info] [2026-02-20 03:35:54:139|server-test.cpp:operator():131] Thread 0 Enqueued
+[Pass] [2026-02-20 03:37:31:075|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:37:31:076|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:37:31:076
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-20 03:39:47:809|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:39:47:809|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:39:47:809
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-20 03:45:19:688|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-20 03:45:19:688|server-test.cpp:main:127] Total Thread Count: 8
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:45:19:688
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 1
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:33:27:282|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 16:33:27:291|server-test.cpp:main:127] Total Thread Count: 8
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 16:36:23:959|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 16:36:23:959|server-test.cpp:main:127] Total Thread Count: 8
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 16:47:17:723|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 16:47:17:723|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 16:48:45:601|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 16:48:45:601|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 16:50:15:870|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 16:50:15:870|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 16:57:18:190|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 16:57:18:190|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 17:05:09:020|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 17:05:09:020|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 17:06:27:819|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 17:06:27:819|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 17:10:14:310|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 17:10:14:310|server-test.cpp:main:127] Total Thread Count: 8
+[Pass] [2026-02-21 17:18:39:659|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 17:18:39:659|server-test.cpp:main:127] Total Thread Count: 8
+[Fail] Crash Code: 15
+[Pass] [2026-02-21 17:24:11:784|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 17:24:11:784|server-test.cpp:main:127] Total Thread Count: 8
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:34:35:121|server-test.cpp:main:123] Server Succesfully Initalized
+[Info] [2026-02-21 17:34:35:121|server-test.cpp:main:127] Total Thread Count: 8
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:41:49:088|server-test.cpp:main:121] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:42:31:864|server-test.cpp:main:121] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:44:22:823|server-test.cpp:main:121] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:48:47:106|server-test.cpp:main:121] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:52:12:491|server-test.cpp:main:121] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 18:35:47:325|server-test.cpp:main:123] Server Succesfully Initalized
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 18:35:47:325
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 18:37:22:875|server-test.cpp:main:123] Server Succesfully Initalized
+================================================================================================================
+Path                : logs/server-test-Linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 18:37:22:875
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 18:38:16:600|server-test.cpp:main:123] Server Succesfully Initalized
+[Pass] [2026-02-21 20:16:35:895|server-test.cpp:main:123] Server Succesfully Initalized
+[Pass] [2026-02-21 20:22:06:229|server-test.cpp:main:129] Server Succesfully Initalized
+[Pass] [2026-02-21 20:28:59:564|server-test.cpp:main:126] Server Succesfully Initalized
+[Pass] [2026-02-21 20:29:30:732|server-test.cpp:main:126] Server Succesfully Initalized
+[Pass] [2026-02-21 20:35:09:716|server-test.cpp:main:126] Server Succesfully Initalized
+[Pass] [2026-02-21 20:48:32:840|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 20:48:36:788|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 20:51:38:583|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 20:55:13:003|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:00:18:500|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:00:58:155|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:01:58:396|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:02:12:695|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:03:36:870|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:04:17:992|server-test.cpp:main:124] Server Succesfully Initalized
+[Pass] [2026-02-21 21:05:15:439|server-test.cpp:main:124] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 21:05:41:831|server-test.cpp:main:124] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 21:06:14:589|server-test.cpp:main:124] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 21:06:45:470|server-test.cpp:main:124] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 21:52:41:457|server-test.cpp:main:124] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 21:54:23:482|server-test.cpp:main:123] Server Succesfully Initalized
+[Fail] Crash Code: 2
