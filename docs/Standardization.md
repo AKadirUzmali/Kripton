@@ -21,6 +21,7 @@ Bu dökümanın amacı:
 - Normal değişkenler için **vv_**
 - Kod içinde oluşturulan sabit değişkenler için **ss_**
 - Geçici değişkenler için **tm_**
+- Küresel kullanım değişkenler için **gg_**
 
 ---
 
