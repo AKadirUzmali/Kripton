@@ -28,14 +28,26 @@
 // Namespace
 namespace core::crash
 {
+    // Static
+    static constexpr uint32_t SigNone = 0;
+    static constexpr uint32_t SigSegFault = 1 << 0;
+    static constexpr uint32_t SigAbort = 1 << 1;
+    static constexpr uint32_t SigFloating = 1 << 2;
+    static constexpr uint32_t SigIllegal = 1 << 3;
+    static constexpr uint32_t SigTerminate = 1 << 4;
+    static constexpr uint32_t SigInterrupt = 1 << 5;
+
+    // Signal
+    #ifndef __SIGNAL_DETECT__
+        #define __SIGNAL_DETECT__ SigNone
+    #endif
+
     // Class
     class CrashHandler
     {
         private:
-            static constexpr int ss_signal_list[] =
-            { SIGSEGV, SIGABRT, SIGFPE, SIGILL, SIGTERM, SIGINT };
-
-            static constexpr uint16_t ss_size_signals = sizeof(ss_signal_list) / sizeof(ss_signal_list[0]);
+            static constexpr int s_signals[] = { SIGSEGV, SIGABRT, SIGFPE, SIGILL, SIGTERM, SIGINT };
+            static constexpr uint8_t s_size_signals = sizeof(s_signals) / sizeof(s_signals[0]);
 
             static inline std::vector<CrashHandler*> s_instances {};
             static inline std::mutex s_list_mtx {};
@@ -44,15 +56,15 @@ namespace core::crash
             static inline std::atomic<bool> s_initialized { false };
 
         private:
-            static void init() noexcept;
-
             static void install_handlers() noexcept;
-            static void run_handlers() noexcept;
 
             static void register_instance(CrashHandler* ar_handler) noexcept;
             static void unregister_instance(CrashHandler* ar_handler) noexcept;
 
             static void signal_handler(int ar_signal) noexcept;
+
+            static void init() noexcept;
+            static void dispatch() noexcept;
 
         protected:
             CrashHandler() noexcept;
@@ -61,7 +73,7 @@ namespace core::crash
             CrashHandler(const CrashHandler&) = delete;
             CrashHandler& operator=(const CrashHandler&) = delete;
 
-            ~CrashHandler() noexcept;
+            virtual ~CrashHandler() noexcept;
 
             [[nodiscard]] static inline bool is_signal() noexcept;
             [[nodiscard]] static inline int get_signal() noexcept;
@@ -80,8 +92,8 @@ namespace core::crash
      */
     CrashHandler::CrashHandler() noexcept
     {
-        init();
         register_instance(this);
+        init();
     }
 
     /**
@@ -92,6 +104,7 @@ namespace core::crash
     CrashHandler::~CrashHandler() noexcept
     {
         unregister_instance(this);
+        // dispatch();
     }
 
     /**
@@ -105,7 +118,7 @@ namespace core::crash
     [[nodiscard]]
     bool CrashHandler::is_signal() noexcept
     {
-        return s_signal_code.load(std::memory_order_relaxed) != 0;
+        return s_signal_code.load(std::memory_order_acquire) != 0;
     }
 
     /**
@@ -118,7 +131,7 @@ namespace core::crash
     [[nodiscard]]
     int CrashHandler::get_signal() noexcept
     {
-        return s_signal_code.load(std::memory_order_relaxed);
+        return s_signal_code.load(std::memory_order_acquire);
     }
 
     /**
@@ -145,8 +158,14 @@ namespace core::crash
      */
     void CrashHandler::install_handlers() noexcept
     {
-        for(int tm_sig : ss_signal_list) {
-            std::signal(tm_sig, signal_handler);
+        static_assert(s_size_signals <= 32);
+
+        const uint32_t tm_sigs = static_cast<uint32_t>(__SIGNAL_DETECT__);
+
+        for(uint8_t tm_count = 0; tm_count < s_size_signals; ++tm_count)
+        {
+            if( tm_sigs & (1u << tm_count) )
+                std::signal(s_signals[tm_count], signal_handler);
         }
     }
 
@@ -162,9 +181,7 @@ namespace core::crash
      * 
      * @param CrashHandler* Handler
      */
-    void CrashHandler::register_instance(
-        CrashHandler* ar_handler
-    ) noexcept
+    void CrashHandler::register_instance(CrashHandler* ar_handler) noexcept
     {
         if( !ar_handler )
             return;
@@ -189,39 +206,17 @@ namespace core::crash
      * 
      * @param CrashHandler* Handler
      */
-    void CrashHandler::unregister_instance(
-        CrashHandler* ar_handler
-    ) noexcept
+    void CrashHandler::unregister_instance(CrashHandler* ar_handler) noexcept
     {
         if( !ar_handler )
             return;
 
         std::scoped_lock tm_lock(s_list_mtx);
 
-        if( std::find(s_instances.begin(), s_instances.end(), ar_handler) == s_instances.end() )
-            return;
-
         s_instances.erase(
             std::remove(s_instances.begin(), s_instances.end(), ar_handler),
             s_instances.end()
         );
-    }
-
-    /**
-     * @brief Run Handlers
-     * 
-     * Bir vektör ile çökme yakalayıcıları listesi tutar.
-     * Listenin başlangıç elemanı kilit mekanizması sayesinde
-     * alınır. Liste bitene kadar döngü ile işaretçi yoksa eğer
-     * sonraki tura geçer ama işaretçi varsa işlemleri yapar.
-     * Hata oluşması durumunda çalışması gerekecek fonksiyon çalışır.
-     */
-    void CrashHandler::run_handlers() noexcept
-    {
-        for(CrashHandler* tm_handle : s_instances) {
-            if( tm_handle )
-                tm_handle->crashed();
-        }
     }
 
     /**
@@ -235,11 +230,26 @@ namespace core::crash
      * 
      * @param int Signal
      */
-    void CrashHandler::signal_handler(
-        int ar_signal
-    ) noexcept
+    void CrashHandler::signal_handler(int ar_signal) noexcept
     {
-        s_signal_code.store(ar_signal, std::memory_order_relaxed);
-        run_handlers();
+        s_signal_code.store(ar_signal, std::memory_order_release);
+        dispatch();
+    }
+
+    /**
+     * @brief Disptach
+     * 
+     * İşlemlerin çökme durumundaki halini çağırır
+     */
+    void CrashHandler::dispatch() noexcept
+    {
+        if( !is_signal() )
+            return;
+
+        std::scoped_lock tm_lock(s_list_mtx);
+
+        for(CrashHandler* tm_handler : s_instances) {
+            if( tm_handler ) tm_handler->crashed();
+        }
     }
 }

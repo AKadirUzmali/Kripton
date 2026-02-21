@@ -1,0 +1,381 @@
+[Pass] [2026-02-20 03:27:25:638|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-20 03:27:25:638|client-test.cpp:main:101] 20003
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:27:25:638
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-20 03:27:34:605|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-20 03:27:34:605|client-test.cpp:main:101] 20003
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:27:34:605
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-20 03:27:40:597|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-20 03:27:40:597|client-test.cpp:main:101] 20003
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-20 03:27:40:597
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:33:50:206|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 16:33:50:213|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 16:33:50:213
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:36:26:285|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 16:36:26:286|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 16:36:26:286
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:47:19:899|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 16:47:19:901|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 16:47:19:901
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:48:48:992|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 16:48:48:994|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 16:48:48:994
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:50:17:605|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-21 16:50:17:605|client-test.cpp:main:101] 20006
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 16:50:17:605
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 16:57:20:173|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:05:10:924|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:05:10:925|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:05:10:925
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:06:30:586|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-21 17:06:30:586|client-test.cpp:main:101] 20010
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:06:30:586
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:10:15:979|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-21 17:10:15:980|client-test.cpp:main:101] 20010
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:10:15:980
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:18:44:009|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:18:44:010|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:18:44:010
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:24:13:559|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:24:13:560|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:24:13:560
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:34:37:012|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:34:37:012|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:34:37:012
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:41:50:807|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:41:50:808|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:41:50:808
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:42:32:897|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:42:32:897|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:42:32:897
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:44:26:789|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:44:26:790|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:44:26:790
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:48:48:498|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:48:48:498|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:48:48:498
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 17:52:13:860|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 17:52:13:860|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 17:52:13:860
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 18:35:50:012|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 18:37:26:562|client-test.cpp:main:93] New Client Name: Client2026
+[Fail] [2026-02-21 18:37:53:067|client-test.cpp:main:101] 20006
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 18:37:53:067
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 18:38:17:944|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 18:38:17:946|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 18:38:17:946
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 20:16:37:299|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 20:16:37:300|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 20:16:37:300
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 20:22:08:317|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 20:22:08:318|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 20:22:08:318
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 20:29:02:004|client-test.cpp:main:93] New Client Name: Client2026
+[Pass] [2026-02-21 20:29:02:004|client-test.cpp:main:101] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 20:29:02:004
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 21:06:16:815|client-test.cpp:main:94] New Client Name: Client2026
+[Pass] [2026-02-21 21:06:16:815|client-test.cpp:main:102] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 21:06:16:815
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 21:06:48:013|client-test.cpp:main:94] New Client Name: Client2026
+[Pass] [2026-02-21 21:06:48:013|client-test.cpp:main:102] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 21:06:48:013
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-02-21 21:54:25:486|client-test.cpp:main:94] New Client Name: Client2026
+[Pass] [2026-02-21 21:54:25:487|client-test.cpp:main:102] 20007
+================================================================================================================
+Path                : logs/client-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-02-21 21:54:25:487
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0

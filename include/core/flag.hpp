@@ -43,6 +43,10 @@ namespace core::flag
             constexpr bool operator&(const flag_t ar_value) const noexcept
             { return m_value & ar_value; }
 
+            [[maybe_unused]] [[nodiscard]]
+            constexpr bool has(const flag_t ar_value) const noexcept
+            { return (m_value & ar_value) != 0; }
+
             [[maybe_unused]]
             constexpr void set(const flag_t ar_value) noexcept
             { m_value = ar_value; }

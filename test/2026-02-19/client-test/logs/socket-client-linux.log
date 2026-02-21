@@ -1,0 +1,223 @@
+[Fail] [2026-02-20 03:27:25:638|client-test.cpp:client_session:149] 127.0.0.1 connect failed
+[Fail] [2026-02-20 03:27:34:605|client-test.cpp:client_session:149] 127.0.0.1 connect failed
+[Fail] [2026-02-20 03:27:40:597|client-test.cpp:client_session:149] 127.0.0.1 connect failed
+[Pass] [2026-02-21 16:33:50:206|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 16:33:50:207|client-test.cpp:client_session:166] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 16:33:50:207|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:33:50:207|client-test.cpp:client_session:186] 127.0.0.1 Sent
+[Info] [2026-02-21 16:33:50:208|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:33:50:208|client-test.cpp:client_session:199] Password: pwd@server!test
+[Text] [2026-02-21 16:33:50:208|client-test.cpp:client_session:200] Username: Client2026
+[Text] [2026-02-21 16:33:50:208|client-test.cpp:client_session:201] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-21 16:33:50:208|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:33:50:208|client-test.cpp:client_session:186] 127.0.0.1 Sent
+[Info] [2026-02-21 16:33:50:209|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:33:50:209|client-test.cpp:client_session:199] Password: pwd@server!test
+[Text] [2026-02-21 16:33:50:209|client-test.cpp:client_session:200] Username: Client2026
+[Text] [2026-02-21 16:33:50:209|client-test.cpp:client_session:201] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-21 16:33:50:209|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:33:50:209|client-test.cpp:client_session:186] 127.0.0.1 Sent
+[Info] [2026-02-21 16:33:50:210|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:33:50:210|client-test.cpp:client_session:199] Password: pwd@server!test
+[Text] [2026-02-21 16:33:50:210|client-test.cpp:client_session:200] Username: Client2026
+[Text] [2026-02-21 16:33:50:211|client-test.cpp:client_session:201] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-21 16:33:50:211|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:33:50:211|client-test.cpp:client_session:186] 127.0.0.1 Sent
+[Info] [2026-02-21 16:33:50:212|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:33:50:212|client-test.cpp:client_session:199] Password: pwd@server!test
+[Text] [2026-02-21 16:33:50:212|client-test.cpp:client_session:200] Username: Client2026
+[Text] [2026-02-21 16:33:50:212|client-test.cpp:client_session:201] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-21 16:33:50:212|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:33:50:212|client-test.cpp:client_session:186] 127.0.0.1 Sent
+[Info] [2026-02-21 16:33:50:213|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:33:50:213|client-test.cpp:client_session:199] Password: pwd@server!test
+[Text] [2026-02-21 16:33:50:213|client-test.cpp:client_session:200] Username: Client2026
+[Text] [2026-02-21 16:33:50:213|client-test.cpp:client_session:201] Message: Hello Server, It's Client! 😀
+[Pass] [2026-02-21 16:36:26:285|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 16:36:26:285|client-test.cpp:client_session:166] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 16:36:26:285|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:36:26:285|client-test.cpp:client_session:184] 127.0.0.1 Sent
+[Info] [2026-02-21 16:36:26:286|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:36:26:286|client-test.cpp:client_session:197] Password: pwd@server!test
+[Text] [2026-02-21 16:36:26:286|client-test.cpp:client_session:198] Username: Client2026
+[Text] [2026-02-21 16:36:26:286|client-test.cpp:client_session:199] Message: Hello Server, It's Client! 😀
+[Pass] [2026-02-21 16:47:19:900|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 16:47:19:900|client-test.cpp:client_session:166] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 16:47:19:900|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:47:19:900|client-test.cpp:client_session:184] 127.0.0.1 Sent
+[Info] [2026-02-21 16:47:19:901|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:47:19:901|client-test.cpp:client_session:197] Password: pwd@server!test
+[Text] [2026-02-21 16:47:19:901|client-test.cpp:client_session:198] Username: Client2026
+[Text] [2026-02-21 16:47:19:901|client-test.cpp:client_session:199] Message: Hello Server, It's Client! 😀
+[Pass] [2026-02-21 16:48:48:992|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 16:48:48:992|client-test.cpp:client_session:166] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 16:48:48:992|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:48:48:992|client-test.cpp:client_session:184] 127.0.0.1 Sent
+[Info] [2026-02-21 16:48:48:994|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 16:48:48:994|client-test.cpp:client_session:197] Password: pwd@server!test
+[Text] [2026-02-21 16:48:48:994|client-test.cpp:client_session:198] Username: Client2026
+[Text] [2026-02-21 16:48:48:994|client-test.cpp:client_session:199] Message: Hello Server, It's Client! 😀
+[Pass] [2026-02-21 16:50:17:605|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 16:50:17:605|client-test.cpp:client_session:166] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 16:50:17:605|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 16:50:17:605|client-test.cpp:client_session:184] 127.0.0.1 Sent
+[Fail] [2026-02-21 16:50:17:605|client-test.cpp:client_session:189] Data couldn't receive from 
+[Pass] [2026-02-21 16:57:20:173|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Fail] [2026-02-21 16:57:40:343|../../../include/socket/socket.hpp:crashed:971] Crash Code: 2
+[Fail] Crash Code: 2
+[Pass] [2026-02-21 17:05:10:924|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:05:10:924|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:05:10:924|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 17:05:10:924|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:05:10:925|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 17:05:10:925|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:05:10:925|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:05:10:925|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Pass] [2026-02-21 17:06:30:586|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Fail] [2026-02-21 17:06:30:586|client-test.cpp:client_session:170] 127.0.0.1 handshake recv failed | code: 13
+[Pass] [2026-02-21 17:10:15:980|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Fail] [2026-02-21 17:10:15:980|client-test.cpp:client_session:170] 127.0.0.1 handshake recv failed | code: 15
+[Pass] [2026-02-21 17:18:44:010|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:18:44:010|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:18:44:010|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 17:18:44:010|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:18:44:010|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 17:18:44:010|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:18:44:010|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:18:44:010|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Pass] [2026-02-21 17:24:13:559|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:24:13:559|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:24:13:559|../../../include/socket/socket.hpp:send:879] 127.0.0.1 sent
+[Pass] [2026-02-21 17:24:13:559|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:24:13:559|../../../include/socket/socket.hpp:recv:953] 127.0.0.1 received
+[Text] [2026-02-21 17:24:13:559|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:24:13:559|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:24:13:559|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 17:34:37:012|../../../include/socket/socket.hpp:Socket:379] :::::   SOCKET LOGGER   :::::
+[Pass] [2026-02-21 17:34:37:012|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:34:37:012|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:34:37:012|../../../include/socket/socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 17:34:37:012|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:34:37:012|../../../include/socket/socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 17:34:37:012|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:34:37:012|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:34:37:012|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 17:41:50:807|socket.hpp:Socket:379] :LOGGER:
+[Pass] [2026-02-21 17:41:50:807|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:41:50:807|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:41:50:807|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 17:41:50:807|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:41:50:808|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 17:41:50:808|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:41:50:808|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:41:50:808|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 17:42:32:896|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 17:42:32:897|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:42:32:897|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:42:32:897|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 17:42:32:897|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:42:32:897|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 17:42:32:897|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:42:32:897|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:42:32:897|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 17:44:26:789|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 17:44:26:789|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:44:26:789|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:44:26:789|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 17:44:26:790|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:44:26:790|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 17:44:26:790|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:44:26:790|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:44:26:790|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 17:48:48:498|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 17:48:48:498|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:48:48:498|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:48:48:498|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 17:48:48:498|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:48:48:498|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 17:48:48:498|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:48:48:498|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:48:48:498|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 17:52:13:859|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 17:52:13:860|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 17:52:13:860|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 17:52:13:860|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 17:52:13:860|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 17:52:13:860|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 17:52:13:860|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 17:52:13:860|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 17:52:13:860|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 18:35:50:012|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 18:35:50:012|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 18:35:50:012|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 18:35:50:013|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 18:35:50:013|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Text] [2026-02-21 18:37:26:561|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 18:37:26:562|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 18:37:26:562|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 18:37:26:562|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 18:37:26:562|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Fail] [2026-02-21 18:37:53:067|client-test.cpp:client_session:199] Data couldn't receive from 
+[Text] [2026-02-21 18:38:17:944|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 18:38:17:944|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 18:38:17:944|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 18:38:17:945|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 18:38:17:945|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 18:38:17:946|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 18:38:17:946|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 18:38:17:946|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 18:38:17:946|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 20:16:37:299|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 20:16:37:300|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 20:16:37:300|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 20:16:37:300|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 20:16:37:300|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 20:16:37:300|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 20:16:37:300|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 20:16:37:300|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 20:16:37:300|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 20:22:08:317|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 20:22:08:317|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 20:22:08:318|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 20:22:08:318|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 20:22:08:318|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 20:22:08:318|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 20:22:08:318|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 20:22:08:318|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 20:22:08:318|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 20:29:02:004|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 20:29:02:004|client-test.cpp:client_session:155] 127.0.0.1 Connected
+[Pass] [2026-02-21 20:29:02:004|client-test.cpp:client_session:176] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 20:29:02:004|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 20:29:02:004|client-test.cpp:client_session:194] 127.0.0.1 Sent
+[Info] [2026-02-21 20:29:02:004|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 20:29:02:004|client-test.cpp:client_session:207] Password: pwd@server!test
+[Text] [2026-02-21 20:29:02:004|client-test.cpp:client_session:208] Username: Client2026
+[Text] [2026-02-21 20:29:02:004|client-test.cpp:client_session:209] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 21:06:16:815|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 21:06:16:815|client-test.cpp:client_session:156] 127.0.0.1 Connected
+[Pass] [2026-02-21 21:06:16:815|client-test.cpp:client_session:177] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 21:06:16:815|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 21:06:16:815|client-test.cpp:client_session:195] 127.0.0.1 Sent
+[Info] [2026-02-21 21:06:16:815|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 21:06:16:815|client-test.cpp:client_session:208] Password: pwd@server!test
+[Text] [2026-02-21 21:06:16:815|client-test.cpp:client_session:209] Username: Client2026
+[Text] [2026-02-21 21:06:16:815|client-test.cpp:client_session:210] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 21:06:48:013|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 21:06:48:013|client-test.cpp:client_session:156] 127.0.0.1 Connected
+[Pass] [2026-02-21 21:06:48:013|client-test.cpp:client_session:177] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 21:06:48:013|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 21:06:48:013|client-test.cpp:client_session:195] 127.0.0.1 Sent
+[Info] [2026-02-21 21:06:48:013|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 21:06:48:013|client-test.cpp:client_session:208] Password: pwd@server!test
+[Text] [2026-02-21 21:06:48:013|client-test.cpp:client_session:209] Username: Client2026
+[Text] [2026-02-21 21:06:48:013|client-test.cpp:client_session:210] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-21 21:54:25:486|socket.hpp:Socket:379] ::: SOCKET LOGGER :::
+[Pass] [2026-02-21 21:54:25:486|client-test.cpp:client_session:156] 127.0.0.1 Connected
+[Pass] [2026-02-21 21:54:25:487|client-test.cpp:client_session:177] 127.0.0.1 Handshake Verified
+[Info] [2026-02-21 21:54:25:487|socket.hpp:send:885] 127.0.0.1 sent
+[Pass] [2026-02-21 21:54:25:487|client-test.cpp:client_session:195] 127.0.0.1 Sent
+[Info] [2026-02-21 21:54:25:487|socket.hpp:recv:959] 127.0.0.1 received
+[Text] [2026-02-21 21:54:25:487|client-test.cpp:client_session:208] Password: pwd@server!test
+[Text] [2026-02-21 21:54:25:487|client-test.cpp:client_session:209] Username: Client2026
+[Text] [2026-02-21 21:54:25:487|client-test.cpp:client_session:210] Message: Hello Server, It's Client! 😀
