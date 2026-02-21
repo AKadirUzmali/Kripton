@@ -32,7 +32,8 @@ namespace core::status
         none = 0,
         socket,
         server,
-        client
+        client,
+        policy
     };
 
     /**
