@@ -135,7 +135,4 @@ namespace core::buildtype
     #ifndef __BUILD_TYPE__
         #define __BUILD_TYPE__ build_t::None
     #endif
-
-    // Static
-    inline constexpr Build ss_buildtype(__BUILD_TYPE__);
 }
