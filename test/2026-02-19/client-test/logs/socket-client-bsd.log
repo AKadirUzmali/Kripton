@@ -1,0 +1,9 @@
+[Text] [2026-02-27 17:15:45:761|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Pass] [2026-02-27 17:15:45:786|client-test.cpp:client_session:168] 192.168.1.108 Connected
+[Pass] [2026-02-27 17:15:45:787|client-test.cpp:client_session:189] 192.168.1.108 Handshake Verified
+[Info] [2026-02-27 17:15:45:787|socket.hpp:send:892] 192.168.1.108 sent
+[Pass] [2026-02-27 17:15:45:787|client-test.cpp:client_session:207] 192.168.1.108 Sent
+[Info] [2026-02-27 17:15:45:787|socket.hpp:recv:966] 192.168.1.108 received
+[Text] [2026-02-27 17:15:45:787|client-test.cpp:client_session:220] Password: pwd@server!test
+[Text] [2026-02-27 17:15:45:787|client-test.cpp:client_session:221] Username: Client2026
+[Text] [2026-02-27 17:15:45:787|client-test.cpp:client_session:222] Message: Hello Server, It's Client! 😀

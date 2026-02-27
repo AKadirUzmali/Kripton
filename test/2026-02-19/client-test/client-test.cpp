@@ -7,6 +7,16 @@
  *  Bsd     :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra client-test.cpp -pthread -o bsd/client-test.bsd
  *  Linux   :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra client-test.cpp -o linux/client-test.linux
  *  Windows :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra client-test.cpp -o windows/client-test.exe -lws2_32
+ * 
+ * Çalıştırma:
+ *  Bsd     :: ./bsd/client-test.bsd <ip address>
+ *  Linux   :: ./linux/client-test.linux <ip address>
+ *  Windows :: ./windows/client-test.exe <ip address>
+ * 
+ * Örnek:
+ *  Bsd     :: ./bsd/server-test.bsd 192.168.1.108
+ *  Linux   :: ./linux/server-test.linux 192.168.1.108
+ *  Windows :: ./windows/server-test.exe 192.168.1.108
  */
 
 // Include
@@ -74,17 +84,19 @@ Status client_session(
 ) noexcept;
 
 // main
-int main(void)
+int main(int argc, char* argv[])
 {
+    if( argc < 2 )
+        return EXIT_FAILURE;
+
     using CipherEnc = Xor;
 
     Logger<FileOut, ConsoleOut> vv_clilog("logs/" + ss_logname, "console-" + ss_logname);
     Crypto<CipherEnc> vv_cipher("server-cipher", utf::to_utf8(U"key-cipher-server@20260219"));
     Socket<CipherEnc> vv_client(vv_cipher, "logs/socket-" + ss_logname, "netsocket-client", "pwd@server!test", 2026, ipv_t::ipv4, _FLAG_SOCKET_LOGGER | _FLAG_SOCKET_LOG_TITLE);
 
-    const std::string vv_ip = "127.0.0.1";
-
     // VALID IP?
+    const std::string vv_ip(argv[1]);
     if( !is_valid_ipv4(vv_ip) && !is_valid_ipv6(vv_ip) ) {
         vv_clilog.write(level_t::Err, vv_ip + " ip address is not valid, not ipv4/v6", GET_SOURCE);
     }
@@ -98,7 +110,7 @@ int main(void)
     vv_client.create();
 
     // CLIENT
-    tm_status = client_session<CipherEnc>(vv_client, "127.0.0.1");
+    tm_status = client_session<CipherEnc>(vv_client, vv_ip);
     vv_clilog.write(tm_status.is_ok() ? level_t::Succ : level_t::Err, std::to_string(tm_status.get_code()), GET_SOURCE);
 
     // PRINT
@@ -127,18 +139,24 @@ Status client_session(
 
     if( ar_sock.get_ipv() == ipv_t::ipv6 )
     {
-        sockaddr_in6 tm_v6 {};
+        static sockaddr_in6 tm_v6 {};
         tm_v6.sin6_family = tcp::ipv6::domain;
         tm_v6.sin6_port = htons(ar_sock.get_port());
+
+        if( inet_pton(tcp::ipv6::domain, ar_ip.c_str(), &tm_v6.sin6_addr) != 1 )
+            return Status::err(domain_t::client, 20002);
 
         tm_addr = reinterpret_cast<sockaddr*>(&tm_v6);
         tm_len = sizeof(tm_v6);
     }
     else
     {
-        sockaddr_in tm_v4 {};
+        static sockaddr_in tm_v4 {};
         tm_v4.sin_family = tcp::ipv4::domain;
         tm_v4.sin_port = htons(ar_sock.get_port());
+
+        if( inet_pton(tcp::ipv4::domain, ar_ip.c_str(), &tm_v4.sin_addr) != 1 )
+            return Status::err(domain_t::client, 20002);
 
         tm_addr = reinterpret_cast<sockaddr*>(&tm_v4);
         tm_len = sizeof(tm_v4);
@@ -148,6 +166,10 @@ Status client_session(
     {
         if( ar_sock.get_flag().has(_FLAG_SOCKET_LOGGER) )
             ar_sock.get_logger().write(level_t::Err, ar_ip + " connect failed", GET_SOURCE);
+
+        #if __OS_WINDOWS__
+            ar_sock.get_logger().write(level_t::Debug, "Windows Error Code: " + std::to_string(::WSAGetLastError()) ,GET_SOURCE);
+        #endif
 
         return Status::err(domain_t::client, 20003);
     }

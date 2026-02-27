@@ -1,0 +1,14 @@
+[Pass] [2026-02-27 17:15:45:773|client-test.cpp:main:96] New Client Name: Client2026
+[Pass] [2026-02-27 17:15:45:787|client-test.cpp:main:104] 20007
+================================================================================================================
+Path                : logs/client-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-02-27 17:15:45:787
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0

@@ -1,0 +1,16 @@
+[Text] [2026-02-27 17:15:40:148|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-02-27 17:15:40:149|server-test.cpp:server_initializer:183] Ip type is v4
+[Info] [2026-02-27 17:15:40:150|server-test.cpp:server_initializer:194] Server binded
+[Info] [2026-02-27 17:15:40:150|server-test.cpp:server_initializer:202] Server backlog: 1024
+[Pass] [2026-02-27 17:15:40:150|server-test.cpp:server_initializer:208] Server running
+[Pass] [2026-02-27 17:15:45:787|server-test.cpp:server_listener:296] 192.168.1.108 Handshake Verified
+[Info] [2026-02-27 17:15:45:787|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-02-27 17:15:45:787|server-test.cpp:client_work:401] Data received from 192.168.1.108
+[Text] [2026-02-27 17:15:45:787|server-test.cpp:client_work:416] Password: pwd@server!test
+[Text] [2026-02-27 17:15:45:787|server-test.cpp:client_work:417] Username: Client2026
+[Text] [2026-02-27 17:15:45:787|server-test.cpp:client_work:418] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-27 17:15:45:787|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-02-27 17:15:45:787|server-test.cpp:client_work:427] Data sent to 192.168.1.108
+[Info] [2026-02-27 17:15:45:787|server-test.cpp:operator():327] 192.168.1.108 enqueued | client work
+[Fail] [2026-02-27 17:15:49:032|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2

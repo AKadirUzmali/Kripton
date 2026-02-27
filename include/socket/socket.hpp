@@ -237,6 +237,7 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_port(const socket_port_t ar_port) noexcept;
     [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_ipv(const ipv_t ar_ipv) noexcept;
 
+    [[maybe_unused]] [[nodiscard]] static bool is_valid_ip(const std::string& ar_ipaddr) noexcept;
     [[maybe_unused]] [[nodiscard]] static bool is_valid_ipv4(const std::string& ar_ipaddr) noexcept;
     [[maybe_unused]] [[nodiscard]] static bool is_valid_ipv6(const std::string& ar_ipaddr) noexcept;
 
@@ -247,6 +248,37 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]] static Status handshake_send_verify(const socket_t ar_sock) noexcept;
     [[maybe_unused]] [[nodiscard]] static Status handshake_recv_verify(const socket_t ar_sock, const bool ar_close = true) noexcept;
 
+    // WSA SOCKET
+    #if __OS_WINDOWS__
+        static inline std::atomic<bool> s_wsa_init { false };
+        static inline WSAData s_wsa_data;
+
+        /**
+         * @brief Run WSA Socket
+         * 
+         * Windows için soket işlemlerinde gerekli olan
+         * wsa socket güvenli şekilde yapısını başlatıyoruz
+         */
+        static void run_wsa_socket() noexcept
+        {
+            // WINDOWS WSA SOCKET
+            if( !s_wsa_init.load(std::memory_order_relaxed) )
+            {
+                if( ::WSAStartup(MAKEWORD(2,2), &s_wsa_data) == 0 )
+                    s_wsa_init.store(true);
+            }
+        }
+    #endif
+
+    // INIT GLOBAL SOCKET
+    #if __OS_POSIX__
+        #define _SOCKET_INIT() ((void)0)
+    #elif __OS_WINDOWS__
+        #define _SOCKET_INIT() (run_wsa_socket())
+    #else
+        #error "[ERROR] Operating System Not Supporting!"
+    #endif
+
     // Class
     template<class AlgoT>
     class Socket : public virtual CrashHandler
@@ -256,9 +288,7 @@ namespace netsocket
         private:
             stream::Crypto<AlgoT>& m_cipher;
             log::Logger<file::FileOut> m_logger;
-
             policy::AccessPolicy m_policy;
-
             flag::Flag m_flag;
 
             socket_t m_sock;
@@ -270,12 +300,6 @@ namespace netsocket
             mutable std::mutex m_mtx;
 
             inline static std::atomic<uint32_t> s_total_sock { 0 };
-
-            #if __OS_WINDOWS__
-                inline static std::atomic<bool> s_wsa_init { false };
-
-                static bool run_wsa_socket() noexcept;
-            #endif
 
             inline static void inc_total_socket() noexcept { ++s_total_sock; };
             inline static void dec_total_socket() noexcept { if( s_total_sock ) --s_total_sock; };
@@ -364,14 +388,14 @@ namespace netsocket
         m_policy(ar_name, ar_password),
         m_flag(ar_flag)
     {
+        // PORT & IP TYPE
         this->set_port(ar_port);
         this->set_ipv(ar_ipv);
 
-        // WINDOWS WSA SOCKET
-        #if __OS_WINDOWS__
-            run_wsa_socket();
-        #endif
+        // GLOBAL SOCKET INIT
+        _SOCKET_INIT();
 
+        // INCREASE TOTAL SOCKET COUNTER
         inc_total_socket();
 
         // LOGGER TITLE
@@ -393,32 +417,15 @@ namespace netsocket
         this->clear();
 
         dec_total_socket();
-    }
 
-    /**
-     * @brief Run WSA Socket
-     * 
-     * Windows için soket işlemlerinde gerekli olan WSA
-     * yapısını başlatmayı sağlar
-     * 
-     * @return bool
-     */
-    #if __OS_WINDOWS__
-        template<class AlgoT>
-        bool Socket<AlgoT>::run_wsa_socket() noexcept
-        {
-            if( !s_wsa_init.load() && ::WSAGetLastError() != WSANOTINITIALISED )
+        #if __OS_WINDOWS__
+            if( s_total_sock < 1 && CrashHandler::is_signal() )
             {
-                WSAData tm_wsadata;
-                if( ::WSAStartup(MAKEWORD(2,2), &tm_wsadata) != 0 )
-                    return false;
-
-                s_wsa_init.store(true);
+                ::WSACleanup();
+                s_wsa_init.store(false);
             }
-
-            return true;
-        }
-    #endif
+        #endif
+    }
 
     /**
      * @brief Has Error
@@ -979,6 +986,11 @@ namespace netsocket
 
         this->close();
         this->clear();
+
+        #if __OS_WINDOWS__
+            if( s_total_sock < 1 && s_wsa_init.exchange(false) )
+                ::WSACleanup();
+        #endif
     }
 
     /**
@@ -1045,6 +1057,37 @@ namespace netsocket
     }
 
     /**
+     * @brief Is Valid IP
+     * 
+     * Verilen ip adresinin geçerli olup olmadığını
+     * kontrol ederek yanıt döndürecek
+     * 
+     * @param string& IP
+     * @return bool
+     */
+    [[maybe_unused]] [[nodiscard]]
+    static bool is_valid_ip(const std::string& ar_ipaddr) noexcept
+    {
+        if( ar_ipaddr.empty() )
+            return false;
+
+        _SOCKET_INIT();
+
+        addrinfo tm_addrinfo {};
+        tm_addrinfo.ai_family = AF_UNSPEC;
+        tm_addrinfo.ai_flags = AI_NUMERICHOST;
+        tm_addrinfo.ai_socktype = SOCK_STREAM;
+
+        addrinfo* tm_res = nullptr;
+        int tm_ret = ::getaddrinfo(ar_ipaddr.c_str(), nullptr, &tm_addrinfo, &tm_res);
+
+        if( tm_res )
+            ::freeaddrinfo(tm_res);
+
+        return tm_ret == 0;
+    }
+
+    /**
      * @brief Is Valid IPv4
      * 
      * Verilen ipv4 adresinin geçerli olup olmadığını
@@ -1056,8 +1099,22 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]]
     static bool is_valid_ipv4(const std::string& ar_ipaddr) noexcept
     {
-        sockaddr_in tm_sa {};
-        return inet_pton(tcp::ipv4::domain, ar_ipaddr.c_str(), &(tm_sa.sin_addr)) == 1;
+        if( ar_ipaddr.empty() )
+            return false;
+
+        _SOCKET_INIT();
+
+        addrinfo tm_addrinfo {};
+        tm_addrinfo.ai_family = tcp::ipv4::domain;
+        tm_addrinfo.ai_flags  = AI_NUMERICHOST;
+
+        addrinfo* tm_res = nullptr;
+        int tm_ret = ::getaddrinfo(ar_ipaddr.c_str(), nullptr, &tm_addrinfo, &tm_res);
+
+        if( tm_res )
+            ::freeaddrinfo(tm_res);
+
+        return tm_ret == 0;
     }
 
     /**
@@ -1072,8 +1129,22 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]]
     static bool is_valid_ipv6(const std::string& ar_ipaddr) noexcept
     {
-        sockaddr_in6 tm_sa {};
-        return inet_pton(tcp::ipv6::domain, ar_ipaddr.c_str(), &(tm_sa.sin6_addr)) == 1;
+        if( ar_ipaddr.empty() )
+            return false;
+
+        _SOCKET_INIT();
+
+        addrinfo tm_addrinfo {};
+        tm_addrinfo.ai_family = tcp::ipv6::domain;
+        tm_addrinfo.ai_flags = AI_NUMERICHOST;
+
+        addrinfo* tm_res = nullptr;
+        int tm_ret = ::getaddrinfo(ar_ipaddr.c_str(), nullptr, &tm_addrinfo, &tm_res);
+
+        if( tm_res )
+            ::freeaddrinfo(tm_res);
+
+        return tm_ret == 0;
     }
 
     /**

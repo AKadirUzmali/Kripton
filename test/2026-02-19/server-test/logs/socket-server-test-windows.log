@@ -1,0 +1,53 @@
+[Text] [2026-02-26 17:42:43:718|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Info] [2026-02-26 17:42:43:720|server-test.cpp:server_initializer:183] Ip type is v4
+[Info] [2026-02-26 17:42:43:720|server-test.cpp:server_initializer:194] Server binded
+[Info] [2026-02-26 17:42:43:720|server-test.cpp:server_initializer:202] Server backlog: 1024
+[Pass] [2026-02-26 17:42:43:720|server-test.cpp:server_initializer:208] Server running
+[Fail] [2026-02-26 17:42:50:170|socket.hpp:crashed:955] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-02-26 17:49:19:583|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Info] [2026-02-26 17:49:19:584|server-test.cpp:server_initializer:183] Ip type is v4
+[Info] [2026-02-26 17:49:19:584|server-test.cpp:server_initializer:194] Server binded
+[Info] [2026-02-26 17:49:19:585|server-test.cpp:server_initializer:202] Server backlog: 1024
+[Pass] [2026-02-26 17:49:19:585|server-test.cpp:server_initializer:208] Server running
+[Fail] [2026-02-26 17:49:37:575|socket.hpp:crashed:955] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-02-26 18:31:11:887|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Info] [2026-02-26 18:31:11:888|server-test.cpp:server_initializer:183] Ip type is v4
+[Info] [2026-02-26 18:31:11:888|server-test.cpp:server_initializer:194] Server binded
+[Info] [2026-02-26 18:31:11:888|server-test.cpp:server_initializer:202] Server backlog: 1024
+[Pass] [2026-02-26 18:31:11:888|server-test.cpp:server_initializer:208] Server running
+[Fail] [2026-02-26 18:31:18:606|socket.hpp:crashed:955] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-02-26 20:44:41:096|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Info] [2026-02-26 20:44:41:098|server-test.cpp:server_initializer:183] Ip type is v4
+[Info] [2026-02-26 20:44:41:098|server-test.cpp:server_initializer:194] Server binded
+[Info] [2026-02-26 20:44:41:098|server-test.cpp:server_initializer:202] Server backlog: 1024
+[Pass] [2026-02-26 20:44:41:098|server-test.cpp:server_initializer:208] Server running
+[Pass] [2026-02-26 20:44:43:605|server-test.cpp:server_listener:296] 192.168.1.108 Handshake Verified
+[Info] [2026-02-26 20:44:43:605|socket.hpp:recv:937] 192.168.1.108 received
+[Warn] [2026-02-26 20:44:43:605|server-test.cpp:client_work:401] Data received from 192.168.1.108
+[Text] [2026-02-26 20:44:43:605|server-test.cpp:client_work:416] Password: pwd@server!test
+[Text] [2026-02-26 20:44:43:605|server-test.cpp:client_work:417] Username: Client2026
+[Text] [2026-02-26 20:44:43:605|server-test.cpp:client_work:418] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-26 20:44:43:605|socket.hpp:send:863] 192.168.1.108 sent
+[Warn] [2026-02-26 20:44:43:605|server-test.cpp:client_work:427] Data sent to 192.168.1.108
+[Info] [2026-02-26 20:44:43:605|server-test.cpp:operator():327] 192.168.1.108 enqueued | client work
+[Fail] [2026-02-26 20:44:47:432|socket.hpp:crashed:955] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-02-26 22:13:11:206|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-02-26 22:13:11:208|server-test.cpp:server_initializer:183] Ip type is v4
+[Info] [2026-02-26 22:13:11:208|server-test.cpp:server_initializer:194] Server binded
+[Info] [2026-02-26 22:13:11:208|server-test.cpp:server_initializer:202] Server backlog: 1024
+[Pass] [2026-02-26 22:13:11:208|server-test.cpp:server_initializer:208] Server running
+[Pass] [2026-02-26 22:13:13:772|server-test.cpp:server_listener:296] 192.168.1.108 Handshake Verified
+[Info] [2026-02-26 22:13:13:772|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-02-26 22:13:13:773|server-test.cpp:client_work:401] Data received from 192.168.1.108
+[Text] [2026-02-26 22:13:13:773|server-test.cpp:client_work:416] Password: pwd@server!test
+[Text] [2026-02-26 22:13:13:773|server-test.cpp:client_work:417] Username: Client2026
+[Text] [2026-02-26 22:13:13:773|server-test.cpp:client_work:418] Message: Hello Server, It's Client! 😀
+[Info] [2026-02-26 22:13:13:773|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-02-26 22:13:13:773|server-test.cpp:client_work:427] Data sent to 192.168.1.108
+[Info] [2026-02-26 22:13:13:773|server-test.cpp:operator():327] 192.168.1.108 enqueued | client work
+[Fail] [2026-02-26 22:13:17:899|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
