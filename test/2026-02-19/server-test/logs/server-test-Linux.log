@@ -194,3 +194,5 @@ Timestamp           : 2026-02-21 18:37:22:875
 [Fail] Crash Code: 2
 [Pass] [2026-02-21 21:54:23:482|server-test.cpp:main:123] Server Succesfully Initalized
 [Fail] Crash Code: 2
+[Pass] [2026-02-27 14:30:10:688|server-test.cpp:main:128] Server Succesfully Initalized
+[Fail] Crash Code: 2

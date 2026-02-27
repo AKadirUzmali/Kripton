@@ -1,0 +1,10 @@
+[Pass] [2026-02-26 17:42:43:720|server-test.cpp:main:123] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-26 17:49:19:585|server-test.cpp:main:123] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-26 18:31:11:888|server-test.cpp:main:123] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-26 20:44:41:098|server-test.cpp:main:123] Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-02-26 22:13:11:208|server-test.cpp:main:123] Server Succesfully Initalized
+[Fail] Crash Code: 2

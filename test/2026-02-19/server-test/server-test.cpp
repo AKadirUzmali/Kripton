@@ -20,6 +20,11 @@
  *  Bsd     :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra server-test.cpp -pthread -o bsd/server-test.bsd
  *  Linux   :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra server-test.cpp -o linux/server-test.linux
  *  Windows :: g++ -I../../../include -std=c++17 -Wall -Werror -Wextra server-test.cpp -o windows/server-test.exe -lws2_32
+ * 
+ * Çalıştırma:
+ *  Bsd     :: ./bsd/server-test.bsd
+ *  Linux   :: ./linux/server-test.linux
+ *  Windows :: ./windows/server-test.exe
  */
 
 // Include
@@ -71,7 +76,7 @@ using namespace netsocket;
 static constexpr Version ss_ver(0, 8, 0);
 static constexpr Vch<16> ss_verhash("20260219|test|server|080", 20260219);
 
-static const std::string ss_osname = current_os_name();
+static const std::string ss_osname = utf::to_lower(current_os_name());
 static const std::string ss_logname = "server-test-" + ss_osname;
 
 static ThreadPool ss_tpool;
