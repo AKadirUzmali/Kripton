@@ -1,0 +1,33 @@
+[Text] [2026-02-26 17:42:12:466|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Fail] [2026-02-26 17:42:12:469|client-test.cpp:client_session:150] 127.0.0.1 connect failed
+[Debug] [2026-02-26 17:42:12:469|client-test.cpp:client_session:153] Windows Error Code: 10049
+[Text] [2026-02-26 17:42:47:973|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Fail] [2026-02-26 17:42:47:975|client-test.cpp:client_session:150] 127.0.0.1 connect failed
+[Debug] [2026-02-26 17:42:47:975|client-test.cpp:client_session:153] Windows Error Code: 10049
+[Text] [2026-02-26 17:49:31:448|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Fail] [2026-02-26 17:49:31:449|socket.hpp:crashed:955] Crash Code: 11
+[Fail] Crash Code: 11
+[Text] [2026-02-26 17:50:30:365|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Fail] [2026-02-26 17:50:30:367|socket.hpp:crashed:955] Crash Code: 22
+[Fail] Crash Code: 22
+[Text] [2026-02-26 18:31:14:329|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Fail] [2026-02-26 18:31:14:331|client-test.cpp:client_session:152] 192.168.1.108 connect failed
+[Debug] [2026-02-26 18:31:14:331|client-test.cpp:client_session:155] Windows Error Code: 10049
+[Text] [2026-02-26 20:44:43:603|socket.hpp:Socket:382] ::: SOCKET LOGGER :::
+[Pass] [2026-02-26 20:44:43:605|client-test.cpp:client_session:168] 192.168.1.108 Connected
+[Pass] [2026-02-26 20:44:43:605|client-test.cpp:client_session:189] 192.168.1.108 Handshake Verified
+[Info] [2026-02-26 20:44:43:605|socket.hpp:send:863] 192.168.1.108 sent
+[Pass] [2026-02-26 20:44:43:605|client-test.cpp:client_session:207] 192.168.1.108 Sent
+[Info] [2026-02-26 20:44:43:605|socket.hpp:recv:937] 192.168.1.108 received
+[Text] [2026-02-26 20:44:43:605|client-test.cpp:client_session:220] Password: pwd@server!test
+[Text] [2026-02-26 20:44:43:605|client-test.cpp:client_session:221] Username: Client2026
+[Text] [2026-02-26 20:44:43:605|client-test.cpp:client_session:222] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-26 22:13:13:770|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Pass] [2026-02-26 22:13:13:772|client-test.cpp:client_session:168] 192.168.1.108 Connected
+[Pass] [2026-02-26 22:13:13:772|client-test.cpp:client_session:189] 192.168.1.108 Handshake Verified
+[Info] [2026-02-26 22:13:13:772|socket.hpp:send:892] 192.168.1.108 sent
+[Pass] [2026-02-26 22:13:13:772|client-test.cpp:client_session:207] 192.168.1.108 Sent
+[Info] [2026-02-26 22:13:13:773|socket.hpp:recv:966] 192.168.1.108 received
+[Text] [2026-02-26 22:13:13:773|client-test.cpp:client_session:220] Password: pwd@server!test
+[Text] [2026-02-26 22:13:13:773|client-test.cpp:client_session:221] Username: Client2026
+[Text] [2026-02-26 22:13:13:773|client-test.cpp:client_session:222] Message: Hello Server, It's Client! 😀
