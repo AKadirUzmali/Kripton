@@ -230,3 +230,12 @@
 [Text] [2026-02-27 14:30:15:768|client-test.cpp:client_session:230] Password: pwd@server!test
 [Text] [2026-02-27 14:30:15:768|client-test.cpp:client_session:231] Username: Client2026
 [Text] [2026-02-27 14:30:15:768|client-test.cpp:client_session:232] Message: Hello Server, It's Client! 😀
+[Text] [2026-02-27 14:41:24:251|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Pass] [2026-02-27 14:41:24:252|client-test.cpp:client_session:178] 127.0.0.1 Connected
+[Pass] [2026-02-27 14:41:24:252|client-test.cpp:client_session:199] 127.0.0.1 Handshake Verified
+[Info] [2026-02-27 14:41:24:252|socket.hpp:send:892] 127.0.0.1 sent
+[Pass] [2026-02-27 14:41:24:252|client-test.cpp:client_session:217] 127.0.0.1 Sent
+[Info] [2026-02-27 14:41:24:252|socket.hpp:recv:966] 127.0.0.1 received
+[Text] [2026-02-27 14:41:24:252|client-test.cpp:client_session:230] Password: pwd@server!test
+[Text] [2026-02-27 14:41:24:252|client-test.cpp:client_session:231] Username: Client2026
+[Text] [2026-02-27 14:41:24:252|client-test.cpp:client_session:232] Message: Hello Server, It's Client! 😀
