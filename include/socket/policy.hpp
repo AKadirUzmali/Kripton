@@ -32,7 +32,7 @@ namespace netsocket::policy
 
     static constexpr max_conn_t _MIN_SAME_IP_COUNT = 1;
     static constexpr max_conn_t _DEF_SAME_IP_COUNT = _MIN_SAME_IP_COUNT;
-    static constexpr max_conn_t _MAX_SAME_IP_COUNT = 2;
+    static constexpr max_conn_t _MAX_SAME_IP_COUNT = 128;
 
     static constexpr name_len_t _MIN_LEN_PASSWORD = 4;
     static constexpr name_len_t _MAX_LEN_PASSWORD = 128;
@@ -243,7 +243,7 @@ namespace netsocket::policy
      */
     max_conn_t AccessPolicy::get_max_connection() const noexcept
     {
-        return this->m_max_connection.load();
+        return this->m_max_connection.load(std::memory_order_relaxed);
     }
 
     /**
@@ -255,7 +255,7 @@ namespace netsocket::policy
      */
     max_conn_t AccessPolicy::get_max_same_ip() const noexcept
     {
-        return this->m_max_connection.load();
+        return this->m_max_same_ip.load(std::memory_order_relaxed);
     }
 
     /**
@@ -345,10 +345,10 @@ namespace netsocket::policy
     {
         if( ar_max_conn < _MIN_CONNECTION ) return Status::err(domain_t::policy, to_underlying(policy_e::value_under_min));
         else if( ar_max_conn > _MAX_CONNECTION ) return Status::err(domain_t::policy, to_underlying(policy_e::value_over_max));
-        else if( this->m_max_connection.load() == ar_max_conn ) return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
+        else if( this->m_max_connection.load(std::memory_order_relaxed) == ar_max_conn ) return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
 
         this->m_max_connection.store(ar_max_conn);
-        return this->m_max_connection.load() == ar_max_conn ?
+        return this->m_max_connection.load(std::memory_order_relaxed) == ar_max_conn ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_max_connection)) :
             Status::err(domain_t::policy, to_underlying(policy_e::fail_set_max_connection));
     }
@@ -366,10 +366,10 @@ namespace netsocket::policy
     {
         if( ar_max_same_ip < _MIN_SAME_IP_COUNT ) return Status::err(domain_t::policy, to_underlying(policy_e::value_under_min));
         else if( ar_max_same_ip > _MAX_SAME_IP_COUNT ) return Status::err(domain_t::policy, to_underlying(policy_e::value_over_max));
-        else if( this->m_max_same_ip.load() == ar_max_same_ip ) return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
+        else if( this->m_max_same_ip.load(std::memory_order_relaxed) == ar_max_same_ip ) return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
 
         this->m_max_same_ip.store(ar_max_same_ip);
-        return this->m_max_same_ip.load() == ar_max_same_ip ?
+        return this->m_max_same_ip.load(std::memory_order_relaxed) == ar_max_same_ip ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_max_same_ip)) :
             Status::err(domain_t::policy, to_underlying(policy_e::fail_set_max_same_ip));
     }
@@ -462,7 +462,7 @@ namespace netsocket::policy
 
         if( this->m_banned_ip_list.find(ar_ipaddr) != this->m_banned_ip_list.end() )
             return Status::err(domain_t::policy, to_underlying(policy_e::not_allow_ipaddr_already_banned));
-        else if( this->m_allowed_ip_list.find(ar_ipaddr) == this->m_allowed_ip_list.end() )
+        else if( this->m_allowed_ip_list.find(ar_ipaddr) == this->m_allowed_ip_list.end() && this->m_allowed_ip_list.size() > 0 )
             return Status::err(domain_t::policy, to_underlying(policy_e::not_allow_ipaddr_not_in_list));
 
         return Status::ok(domain_t::policy, to_underlying(policy_e::can_allow_ipaddr));

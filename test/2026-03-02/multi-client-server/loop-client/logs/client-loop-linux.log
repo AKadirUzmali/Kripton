@@ -1,0 +1,113 @@
+[Pass] [2026-03-02 18:13:49:755|loop-client.cpp:main:157] New Client Name: CLooper
+[Pass] [2026-03-02 18:13:50:747|loop-client.cpp:main:157] New Client Name: CLooper
+[Pass] [2026-03-02 18:13:52:126|loop-client.cpp:main:157] New Client Name: CLooper
+[Pass] [2026-03-02 18:13:53:581|loop-client.cpp:main:157] New Client Name: CLooper
+[Fail] [2026-03-02 18:13:53:581|loop-client.cpp:main:165] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:13:53:582
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 18:13:54:668|loop-client.cpp:main:157] New Client Name: CLooper
+[Pass] [2026-03-02 18:13:55:684|loop-client.cpp:main:157] New Client Name: CLooper
+[Fail] [2026-03-02 18:13:55:684|loop-client.cpp:main:165] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:13:55:684
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 18:13:57:411|loop-client.cpp:main:157] New Client Name: CLooper
+[Fail] [2026-03-02 18:13:57:411|loop-client.cpp:main:165] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:13:57:411
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 18:13:59:550|loop-client.cpp:main:157] New Client Name: CLooper
+[Fail] [2026-03-02 18:13:59:550|loop-client.cpp:main:165] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:13:59:550
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 18:13:59:755|loop-client.cpp:main:165] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:13:59:755
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 18:14:00:747|loop-client.cpp:main:165] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:14:00:747
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Fail] [2026-03-02 18:14:01:078|loop-client.cpp:main:141] 192.168.1.108 ip address is not valid ipv6
+[Pass] [2026-03-02 18:14:02:126|loop-client.cpp:main:165] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:14:02:126
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 18:14:04:668|loop-client.cpp:main:165] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:14:04:668
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0

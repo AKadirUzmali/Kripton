@@ -1,0 +1,21 @@
+[Text] [2026-03-02 15:21:47:960|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Text] [2026-03-02 15:22:03:905|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Pass] [2026-03-02 15:22:03:905|client-ipv6.cpp:client_session:179] 2a00:1d34:89b:8400::2 Connected
+[Pass] [2026-03-02 15:22:03:905|client-ipv6.cpp:client_session:200] 2a00:1d34:89b:8400::2 Handshake Verified
+[Info] [2026-03-02 15:22:03:905|socket.hpp:send:892] 2a00:1d34:89b:8400::2 sent
+[Pass] [2026-03-02 15:22:03:905|client-ipv6.cpp:client_session:218] 2a00:1d34:89b:8400::2 Sent
+[Info] [2026-03-02 15:22:03:905|socket.hpp:recv:966] 2a00:1d34:89b:8400::2 received
+[Text] [2026-03-02 15:22:03:905|client-ipv6.cpp:client_session:231] Password: pwd@server.ipv6!test
+[Text] [2026-03-02 15:22:03:905|client-ipv6.cpp:client_session:232] Username: Client-v6
+[Text] [2026-03-02 15:22:03:905|client-ipv6.cpp:client_session:233] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 15:22:12:663|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Fail] [2026-03-02 15:22:12:663|client-ipv6.cpp:client_session:169] fe80::62a4:4cff:fe54:56a8 connect failed
+[Text] [2026-03-02 15:22:16:071|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Pass] [2026-03-02 15:22:16:071|client-ipv6.cpp:client_session:179] 2a00:1d34:89b:8400::2 Connected
+[Pass] [2026-03-02 15:22:16:071|client-ipv6.cpp:client_session:200] 2a00:1d34:89b:8400::2 Handshake Verified
+[Info] [2026-03-02 15:22:16:071|socket.hpp:send:892] 2a00:1d34:89b:8400::2 sent
+[Pass] [2026-03-02 15:22:16:071|client-ipv6.cpp:client_session:218] 2a00:1d34:89b:8400::2 Sent
+[Info] [2026-03-02 15:22:16:071|socket.hpp:recv:966] 2a00:1d34:89b:8400::2 received
+[Text] [2026-03-02 15:22:16:072|client-ipv6.cpp:client_session:231] Password: pwd@server.ipv6!test
+[Text] [2026-03-02 15:22:16:072|client-ipv6.cpp:client_session:232] Username: Client-v6
+[Text] [2026-03-02 15:22:16:072|client-ipv6.cpp:client_session:233] Message: Hello Server, It's Client! 😀
