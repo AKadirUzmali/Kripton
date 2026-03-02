@@ -62,10 +62,10 @@ namespace core::status
             uint16_t m_code;
 
         public:
-            constexpr Status(
-                const status_t ar_status,
-                const domain_t ar_domain,
-                const uint16_t ar_code
+            constexpr explicit Status(
+                const status_t ar_status = status_t::none,
+                const domain_t ar_domain = domain_t::none,
+                const uint16_t ar_code = 0
             ) noexcept;
 
             constexpr inline status_t get_status() const noexcept { return m_status; }
