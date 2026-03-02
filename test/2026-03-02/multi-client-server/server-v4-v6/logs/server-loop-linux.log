@@ -1,0 +1,15 @@
+[Pass] [2026-03-02 18:13:48:671|server-v4-v6.cpp:main:173] New Max Connection Limit is: 4
+[Pass] [2026-03-02 18:13:48:671|server-v4-v6.cpp:main:179] New Max Same Ip Limit is: 3
+[Pass] [2026-03-02 18:13:48:671|server-v4-v6.cpp:main:194] Ipv6 Server Succesfully Initalized
+================================================================================================================
+Path                : logs/server-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 18:14:20:023
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 3
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
