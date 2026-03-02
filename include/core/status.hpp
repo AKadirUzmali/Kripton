@@ -62,7 +62,7 @@ namespace core::status
             uint16_t m_code;
 
         public:
-            constexpr explicit Status(
+            constexpr Status(
                 const status_t ar_status = status_t::none,
                 const domain_t ar_domain = domain_t::none,
                 const uint16_t ar_code = 0
