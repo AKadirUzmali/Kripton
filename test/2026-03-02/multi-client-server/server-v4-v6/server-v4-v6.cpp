@@ -152,7 +152,7 @@ int main(int argc, char* argv[])
         vv_servlog.write(level_t::Err, vv_ipv + " ip version is not valid, not v4/v6", GET_SOURCE);
         return EXIT_FAILURE;
     }
-    const ipv_t vv_iptype = vv_ipv.compare("v4") ? ipv_t::ipv4 : ipv_t::ipv6;
+    const ipv_t vv_iptype = vv_ipv.compare("v4") == 0 ? ipv_t::ipv4 : ipv_t::ipv6;
     
     // SOCKET
     Socket<CipherEnc> vv_server(vv_cipher,
@@ -289,7 +289,7 @@ Status server_initializer(
         setsockopt(ar_server.get_socket(), SOL_SOCKET, SO_RCVTIMEO, &tm_val, sizeof(tm_val));
         setsockopt(ar_server.get_socket(), SOL_SOCKET, SO_SNDTIMEO, &tm_val, sizeof(tm_val));
     #elif __OS_WINDOWS__
-        DWORD timeout tm_val = 5000;
+        DWORD tm_val = 5000;
 
         setsockopt(ar_server.get_socket(), SOL_SOCKET, SO_RCVTIMEO, (const char*)&tm_val, sizeof(tm_val));
         setsockopt(ar_server.get_socket(), SOL_SOCKET, SO_SNDTIMEO, (const char*)&tm_val, sizeof(tm_val));
@@ -340,7 +340,7 @@ void server_listener(
     tm_ipaddr.reserve(64);
 
     // SOCKET STARTING TO RUN
-    while( ar_running.load() && !CrashHandler::is_signal() )
+    while( ar_running.load(std::memory_order_relaxed) && !CrashHandler::is_signal() )
     {
         // ACCEPT
         sockaddr_storage tm_sockstore {};
@@ -349,13 +349,6 @@ void server_listener(
 
         // IS VALID SOCKET
         if( !is_valid_socket(tm_cli_accpt) ) {
-            // FOR TEST, SERVER FINISHER
-            static int tm_total = 0;
-            ++tm_total;
-
-            if( tm_total > 3 )
-                return;
-
             if( ar_server.get_flag().has(_FLAG_SOCKET_LOGGER) )
                 ar_server.get_logger().write(level_t::Warn, "Socket is not valid", GET_SOURCE);
 

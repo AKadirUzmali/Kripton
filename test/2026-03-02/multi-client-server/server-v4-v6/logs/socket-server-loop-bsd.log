@@ -1,0 +1,1537 @@
+[Text] [2026-03-02 21:55:12:442|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 21:55:12:445|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 21:55:12:445|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 21:55:12:445|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 21:55:12:445|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 21:55:22:430|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 21:55:56:103|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 21:55:56:103|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 21:55:56:103|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 21:55:56:103|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 21:55:56:103|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 21:56:06:445|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 21:58:08:684|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 21:58:08:685|server-v4-v6.cpp:server_initializer:244] Ip type is v6
+[Info] [2026-03-02 21:58:08:685|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 21:58:08:685|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 21:58:08:685|server-v4-v6.cpp:server_initializer:299] Server running
+[Pass] [2026-03-02 21:58:10:572|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 21:58:10:572|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 21:58:10:573|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:10:573|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:10:573|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:10:573|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:10:573|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:10:573|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:10:573|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:10:573|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 21:58:11:108|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 21:58:11:108|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 21:58:11:108|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:11:108|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:11:108|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:11:108|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:11:108|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:11:108|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:11:108|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:11:108|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 21:58:11:548|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 21:58:11:548|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 21:58:11:548|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:11:548|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:11:548|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:11:548|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:11:548|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:11:548|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:11:548|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:11:548|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:11:573|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:11:573|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:11:573|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:11:573|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:11:573|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:11:573|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:11:573|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:11:573|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:12:112|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:12:112|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:12:112|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:12:112|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:12:112|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:12:112|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:12:112|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:12:112|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 21:58:12:236|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Warn] [2026-03-02 21:58:12:236|server-v4-v6.cpp:server_listener:436] Over total same ip limit
+[Info] [2026-03-02 21:58:12:550|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:12:550|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:12:550|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:12:550|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:12:550|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:12:550|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:12:550|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:12:550|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:12:604|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:12:604|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:12:604|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:12:604|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:12:604|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:12:604|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:12:604|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:12:604|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 21:58:12:828|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Warn] [2026-03-02 21:58:12:828|server-v4-v6.cpp:server_listener:436] Over total same ip limit
+[Info] [2026-03-02 21:58:13:111|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:13:111|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:13:111|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:13:111|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:13:111|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:13:111|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:13:111|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:13:111|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 21:58:13:548|server-v4-v6.cpp:server_listener:394] ::ffff:127.0.0.1 Handshake Verified
+[Info] [2026-03-02 21:58:13:548|server-v4-v6.cpp:server_listener:445] ::ffff:127.0.0.1 added client list
+[Info] [2026-03-02 21:58:13:548|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:13:548|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 21:58:13:548|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:13:548|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:13:548|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:13:548|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:13:548|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:13:548|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 21:58:13:549|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:13:549|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:13:549|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:13:549|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:13:549|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:13:549|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:13:549|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:13:549|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:13:580|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:13:580|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:13:580|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:13:580|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:13:580|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:13:580|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:13:580|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:13:580|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:14:114|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:14:114|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:14:114|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:14:114|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:14:114|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:14:115|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:14:115|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:14:115|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:14:568|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Info] [2026-03-02 21:58:14:568|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Warn] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:14:568|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Info] [2026-03-02 21:58:14:568|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:14:568|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:14:578|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:14:578|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:14:578|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:14:578|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:14:578|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:14:578|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:14:578|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:14:578|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:15:110|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:15:110|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:15:110|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:15:110|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:15:110|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:15:110|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:15:110|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:15:110|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:15:581|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Info] [2026-03-02 21:58:15:581|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Info] [2026-03-02 21:58:15:581|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:15:581|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Info] [2026-03-02 21:58:15:581|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Info] [2026-03-02 21:58:15:581|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:15:581|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 21:58:16:110|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:16:110|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:16:110|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:16:110|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:16:110|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:16:110|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:16:110|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:16:110|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:16:588|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Info] [2026-03-02 21:58:16:588|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Info] [2026-03-02 21:58:16:588|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:16:588|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Info] [2026-03-02 21:58:16:588|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:16:588|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:16:588|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:17:172|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:17:172|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:17:172|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:17:172|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:17:172|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:17:172|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:17:172|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:17:172|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:17:589|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Info] [2026-03-02 21:58:17:589|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Info] [2026-03-02 21:58:17:589|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:17:589|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:17:589|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Info] [2026-03-02 21:58:17:590|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Info] [2026-03-02 21:58:17:590|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:17:590|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:17:590|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:17:590|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:18:109|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:18:109|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:18:109|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:18:109|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:18:109|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:18:109|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:18:109|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:18:109|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:18:549|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:18:549|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 21:58:18:549|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:18:549|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:18:549|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:18:549|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:18:549|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:18:549|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 21:58:18:554|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:18:554|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:18:554|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:18:554|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:18:554|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:18:554|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:18:554|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:18:554|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:18:578|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:18:578|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:18:578|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:18:578|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:18:578|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:18:578|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:18:578|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:18:578|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:19:162|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:19:162|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:19:162|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:19:162|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:19:162|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:19:162|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:19:162|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:19:162|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:19:575|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:19:575|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Info] [2026-03-02 21:58:19:575|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Warn] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:19:575|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Info] [2026-03-02 21:58:19:575|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Text] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 21:58:19:575|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:19:575|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:20:168|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 21:58:20:168|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 21:58:20:168|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:20:168|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 21:58:20:168|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:20:168|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:20:168|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 21:58:20:168|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 21:58:20:558|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Info] [2026-03-02 21:58:20:558|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Text] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:20:558|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Info] [2026-03-02 21:58:20:558|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 21:58:20:558|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:20:578|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 21:58:20:578|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_0
+[Warn] [2026-03-02 21:58:21:109|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 21:58:21:109|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_1
+[Info] [2026-03-02 21:58:21:550|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:21:550|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:21:550|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 21:58:21:550|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_2
+[Info] [2026-03-02 21:58:22:553|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 21:58:22:553|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 21:58:22:553|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 21:58:22:553|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 21:58:22:553|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 21:58:22:553|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 21:58:22:553|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 21:58:22:553|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 21:58:23:568|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:127.0.0.1 | code: 17
+[Warn] [2026-03-02 21:58:23:568|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:127.0.0.1_0
+[Fail] [2026-03-02 21:59:29:905|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:38:17:072|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:38:17:087|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:38:17:087|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:38:17:087|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:38:17:087|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:38:24:674|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:39:12:298|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:39:12:298|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:39:12:298|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:39:12:299|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:39:12:299|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:39:27:673|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:39:47:522|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:39:47:522|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:39:47:522|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:39:47:522|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:39:47:522|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:40:35:639|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:42:28:630|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:42:28:633|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:42:28:633|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:42:28:633|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:42:28:633|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:42:34:526|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:46:07:283|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:46:07:283|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:46:07:283|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:46:07:283|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:46:07:283|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:46:16:057|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:47:09:306|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:47:09:306|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:47:09:306|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:47:09:306|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:47:09:306|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:47:22:904|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:47:33:289|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:47:33:289|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:47:33:289|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:47:33:289|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:47:33:289|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:47:41:359|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:49:10:033|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:49:10:034|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:49:10:034|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:49:10:034|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:49:10:034|server-v4-v6.cpp:server_initializer:299] Server running
+[Fail] [2026-03-02 23:49:32:773|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:52:26:630|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:52:26:630|server-v4-v6.cpp:server_initializer:244] Ip type is v6
+[Info] [2026-03-02 23:52:26:630|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:52:26:630|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:52:26:630|server-v4-v6.cpp:server_initializer:299] Server running
+[Pass] [2026-03-02 23:52:28:123|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:52:28:123|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 23:52:28:123|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:28:123|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:28:123|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:28:123|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:28:123|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:28:123|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:28:124|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:28:124|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:29:128|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:29:129|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:29:129|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:29:129|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:29:129|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:29:129|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:29:129|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:29:129|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 23:52:29:499|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:52:29:499|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 23:52:29:499|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:29:499|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:29:499|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:29:499|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:29:499|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:29:499|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:29:499|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:29:499|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:30:126|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:30:126|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:30:126|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:30:126|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:30:126|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:30:126|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:30:126|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:30:126|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:30:499|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:30:499|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:30:500|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:30:500|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:30:500|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:30:500|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:30:500|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:30:500|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 23:52:30:931|server-v4-v6.cpp:server_listener:394] ::ffff:127.0.0.1 Handshake Verified
+[Info] [2026-03-02 23:52:30:931|server-v4-v6.cpp:server_listener:445] ::ffff:127.0.0.1 added client list
+[Info] [2026-03-02 23:52:30:931|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:30:931|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:30:931|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:30:931|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:30:931|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:30:931|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:30:931|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:30:931|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:31:124|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:31:124|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:31:124|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:31:124|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:31:124|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:31:124|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:31:124|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:31:124|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:31:502|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:31:502|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:31:502|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:31:502|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:31:502|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:31:502|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:31:502|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:31:502|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:31:932|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:31:932|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:31:932|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:31:932|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:31:932|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:31:932|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:31:932|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:31:932|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:32:125|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:32:125|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:32:125|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:32:125|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:32:125|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:32:125|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:32:125|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:32:125|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:32:519|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:32:519|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:32:519|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:32:519|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:32:520|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:32:520|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:32:520|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:32:520|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:32:938|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:32:938|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:32:938|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:32:938|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:32:938|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:32:938|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:32:938|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:32:938|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:33:127|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:33:127|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:33:127|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:33:127|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:33:127|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:33:127|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:33:127|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:33:127|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:33:511|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:33:511|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:33:511|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:33:512|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:33:512|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:33:512|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:33:512|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:33:512|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 23:52:33:667|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:52:33:667|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 23:52:33:667|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:33:667|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:33:667|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:33:667|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:33:667|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:33:667|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:33:667|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:33:667|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:33:935|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:33:935|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:33:935|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:33:935|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:33:935|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:33:935|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:33:935|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:33:935|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:34:129|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:34:129|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:34:130|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:34:130|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:34:130|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:34:130|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:34:130|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:34:130|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:34:501|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:34:501|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:34:501|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:34:501|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:34:501|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:34:501|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:34:501|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:34:501|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:34:673|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:34:673|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:34:673|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:34:673|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:34:673|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:34:673|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:34:673|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:34:673|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:34:932|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:34:932|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:34:932|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:34:932|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:34:932|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:34:932|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:34:932|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:34:932|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:35:135|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:35:135|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:35:135|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:35:135|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:35:135|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:35:135|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:35:135|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:35:135|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:35:504|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:35:504|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:35:504|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:35:505|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:35:505|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:35:505|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:35:505|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:35:505|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:35:671|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:35:671|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:35:671|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:35:671|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:35:671|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:35:671|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:35:671|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:35:671|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:35:938|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:35:938|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:35:938|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:35:938|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:35:938|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:35:938|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:35:938|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:35:938|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:36:125|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:36:125|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:36:125|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:36:125|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:36:125|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:36:125|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:36:125|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:36:125|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:36:521|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:36:521|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:36:521|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:36:521|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:36:521|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:36:521|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:36:521|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:36:521|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:36:710|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:36:710|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:36:710|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:36:710|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:36:710|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:36:710|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:36:710|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:36:710|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:36:947|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:36:947|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:36:947|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:36:947|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:36:947|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:36:947|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:36:947|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:36:947|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:37:126|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:37:126|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:37:126|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:37:126|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:52:37:127|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:37:127|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:37:127|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:37:127|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:37:547|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:37:547|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:37:547|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:37:547|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:37:547|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:37:547|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:37:547|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:37:547|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:37:671|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:37:671|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:37:671|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:37:671|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:37:671|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:37:671|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:37:671|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:37:671|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:37:948|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:37:948|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:37:948|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:37:948|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:37:948|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:37:948|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:37:948|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:37:948|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 23:52:38:157|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:52:38:157|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_0
+[Info] [2026-03-02 23:52:38:504|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:38:504|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:38:504|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:38:505|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_1
+[Text] [2026-03-02 23:52:38:505|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:38:505|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:38:505|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:38:505|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:38:683|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:38:683|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:38:683|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:38:683|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:38:683|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:38:684|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:38:684|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:38:684|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 23:52:38:747|server-v4-v6.cpp:server_listener:394] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:52:38:747|server-v4-v6.cpp:server_listener:445] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 23:52:38:747|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:38:747|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:38:747|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:38:747|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:38:747|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:38:747|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:38:747|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:38:747|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:38:969|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:38:969|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:38:969|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:38:969|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:38:969|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:38:969|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:38:969|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:38:969|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 23:52:39:510|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:52:39:510|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_1
+[Info] [2026-03-02 23:52:39:671|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:39:671|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:39:671|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:39:671|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:39:671|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:39:671|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:39:671|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:39:671|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:39:748|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:39:748|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:39:748|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:39:748|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:39:748|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:39:748|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:39:748|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:39:748|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:39:947|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:52:39:947|server-v4-v6.cpp:client_work:531] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:52:39:947|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:39:948|server-v4-v6.cpp:client_work:547] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:52:39:948|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:39:948|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:39:948|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:52:39:948|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:52:40:705|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:40:705|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:40:705|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:40:705|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:40:705|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:40:705|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:40:706|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:40:706|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:40:770|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:40:770|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:40:770|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:40:770|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:40:770|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:40:770|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:40:770|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:40:770|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 23:52:40:957|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:127.0.0.1 | code: 17
+[Warn] [2026-03-02 23:52:40:957|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:127.0.0.1_0
+[Info] [2026-03-02 23:52:41:672|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:41:672|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:41:672|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:41:672|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:41:672|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:41:672|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:41:672|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:41:672|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:41:749|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:41:749|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:41:749|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:41:749|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:41:749|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:41:749|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:41:749|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:41:749|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:42:679|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:42:679|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:42:679|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:42:679|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:42:679|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:42:679|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:42:679|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:42:679|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:42:749|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:42:749|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:42:749|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:42:749|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:42:749|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:42:749|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:42:749|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:42:749|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 23:52:43:680|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:52:43:680|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_2
+[Info] [2026-03-02 23:52:43:749|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:43:749|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:43:749|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:43:749|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:43:749|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:43:749|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:43:749|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:43:749|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:44:749|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:44:749|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:44:749|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:44:749|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:44:749|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:44:749|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:44:749|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:44:749|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:45:751|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:45:751|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:45:751|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:45:751|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:45:751|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:45:751|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:45:751|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:45:751|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:46:749|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:46:749|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:46:749|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:46:749|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:46:749|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:46:749|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:46:749|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:46:749|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:52:47:754|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:52:47:754|server-v4-v6.cpp:client_work:531] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:52:47:755|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:52:47:755|server-v4-v6.cpp:client_work:547] Id: ::ffff:192.168.1.108_2
+[Text] [2026-03-02 23:52:47:755|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:52:47:755|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:52:47:755|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:52:47:755|server-v4-v6.cpp:client_work:559] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 23:52:48:770|server-v4-v6.cpp:client_work:541] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:52:48:770|server-v4-v6.cpp:operator():464] Socket closed | ::ffff:192.168.1.108_2
+[Fail] [2026-03-02 23:52:53:929|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:53:21:116|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:53:21:116|server-v4-v6.cpp:server_initializer:244] Ip type is v6
+[Info] [2026-03-02 23:53:21:116|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:53:21:116|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:53:21:116|server-v4-v6.cpp:server_initializer:299] Server running
+[Pass] [2026-03-02 23:53:30:354|server-v4-v6.cpp:server_listener:394] ::1 Handshake Verified
+[Info] [2026-03-02 23:53:30:354|server-v4-v6.cpp:server_listener:445] ::1 added client list
+[Info] [2026-03-02 23:53:30:354|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:30:354|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:30:354|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:30:354|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:30:354|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:30:354|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:30:354|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:30:354|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:31:354|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:31:354|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:31:355|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:31:355|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:31:355|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:31:355|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:31:355|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:31:355|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:32:357|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:32:357|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:32:357|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:32:357|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:32:357|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:32:357|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:32:357|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:32:357|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:33:397|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:33:397|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:33:397|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:33:397|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:33:397|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:33:397|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:33:397|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:33:397|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:34:356|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:34:356|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:34:356|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:34:356|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:34:356|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:34:356|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:34:356|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:34:356|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:35:357|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:35:357|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:35:357|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:35:357|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:35:357|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:35:357|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:35:357|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:35:357|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:36:355|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:36:355|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:36:355|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:36:355|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:36:355|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:36:355|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:36:355|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:36:355|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:37:416|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:37:416|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:37:416|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:37:416|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:37:416|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:37:416|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:37:416|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:37:416|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:38:385|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:38:385|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:38:385|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:38:385|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:38:385|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:38:385|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:38:385|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:38:385|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Info] [2026-03-02 23:53:39:372|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:53:39:372|server-v4-v6.cpp:client_work:531] Data received from ::1
+[Text] [2026-03-02 23:53:39:372|server-v4-v6.cpp:client_work:546] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:53:39:372|server-v4-v6.cpp:client_work:547] Id: ::1_0
+[Text] [2026-03-02 23:53:39:372|server-v4-v6.cpp:client_work:548] Username: CLooper
+[Text] [2026-03-02 23:53:39:372|server-v4-v6.cpp:client_work:549] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:53:39:372|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:53:39:372|server-v4-v6.cpp:client_work:559] Data sent to ::1
+[Warn] [2026-03-02 23:53:40:392|server-v4-v6.cpp:client_work:541] data couldn't receive from ::1 | code: 17
+[Warn] [2026-03-02 23:53:40:392|server-v4-v6.cpp:operator():464] Socket closed | ::1_0
+[Fail] [2026-03-02 23:53:47:536|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:54:29:777|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:54:29:777|server-v4-v6.cpp:server_initializer:244] Ip type is v6
+[Info] [2026-03-02 23:54:29:777|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:54:29:777|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:54:29:777|server-v4-v6.cpp:server_initializer:299] Server running
+[Pass] [2026-03-02 23:54:32:289|server-v4-v6.cpp:server_listener:387] ::1 Handshake Verified
+[Info] [2026-03-02 23:54:32:289|server-v4-v6.cpp:server_listener:438] ::1 added client list
+[Info] [2026-03-02 23:54:32:289|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:32:289|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:32:289|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:32:289|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:32:289|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:32:289|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:32:289|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:32:289|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:33:289|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:33:290|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:33:290|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:33:290|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:33:290|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:33:290|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:33:290|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:33:290|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:34:292|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:34:292|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:34:292|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:34:292|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:34:292|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:34:292|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:34:292|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:34:292|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:35:291|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:35:291|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:35:291|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:35:291|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:35:291|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:35:291|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:35:291|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:35:291|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:36:290|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:36:290|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:36:291|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:36:291|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:36:291|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:36:291|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:36:291|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:36:291|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:37:291|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:37:291|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:37:291|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:37:291|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:37:291|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:37:291|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:37:291|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:37:291|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Pass] [2026-03-02 23:54:37:857|server-v4-v6.cpp:server_listener:387] ::ffff:192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:54:37:857|server-v4-v6.cpp:server_listener:438] ::ffff:192.168.1.108 added client list
+[Info] [2026-03-02 23:54:37:857|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:37:857|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:37:857|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:37:857|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:37:857|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:37:857|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:37:857|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:37:857|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:38:345|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:38:345|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:38:345|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:38:345|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:38:345|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:38:345|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:38:345|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:38:345|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:38:861|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:38:861|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:38:861|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:38:861|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:38:861|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:38:861|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:38:861|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:38:861|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:39:290|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:39:290|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:39:290|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:39:290|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:39:290|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:39:290|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:39:290|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:39:290|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:39:877|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:39:877|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:39:877|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:39:877|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:39:877|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:39:877|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:39:877|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:39:877|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:40:324|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:40:324|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:40:324|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:40:324|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:40:324|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:40:324|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:40:325|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:40:325|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Pass] [2026-03-02 23:54:40:368|server-v4-v6.cpp:server_listener:387] ::ffff:127.0.0.1 Handshake Verified
+[Info] [2026-03-02 23:54:40:368|server-v4-v6.cpp:server_listener:438] ::ffff:127.0.0.1 added client list
+[Info] [2026-03-02 23:54:40:368|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:40:368|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:40:368|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:40:368|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:40:368|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:40:368|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:40:369|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:40:369|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:40:863|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:40:863|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:40:863|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:40:863|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:40:863|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:40:863|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:40:863|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:40:863|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:41:290|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:41:291|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:41:291|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:41:291|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:41:291|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:41:291|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:41:291|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:41:291|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:41:400|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:41:400|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:41:400|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:41:400|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:41:400|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:41:400|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:41:400|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:41:401|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:41:869|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:41:869|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:41:869|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:41:869|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:41:869|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:41:869|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:41:870|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:41:870|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Warn] [2026-03-02 23:54:42:290|server-v4-v6.cpp:client_work:534] data couldn't receive from ::1 | code: 17
+[Warn] [2026-03-02 23:54:42:290|server-v4-v6.cpp:operator():457] Socket closed | ::1_0
+[Info] [2026-03-02 23:54:42:369|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:42:369|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:42:369|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:42:369|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:42:369|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:42:369|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:42:369|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:42:369|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:42:864|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:42:864|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:42:864|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:42:864|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:42:864|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:42:864|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:42:864|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:42:864|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:43:373|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:43:373|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:43:373|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:43:373|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:43:373|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:43:373|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:43:373|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:43:373|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:43:862|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:43:862|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:43:862|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:43:862|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:43:863|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:43:863|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:43:863|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:43:863|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:44:380|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:44:380|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:44:380|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:44:380|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:44:380|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:44:380|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:44:380|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:44:380|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:44:869|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:44:869|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:44:869|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:44:869|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:44:869|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:44:869|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:44:869|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:44:869|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Pass] [2026-03-02 23:54:45:153|server-v4-v6.cpp:server_listener:387] ::1 Handshake Verified
+[Info] [2026-03-02 23:54:45:153|server-v4-v6.cpp:server_listener:438] ::1 added client list
+[Info] [2026-03-02 23:54:45:154|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:45:154|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:45:154|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:45:154|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:45:154|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:45:154|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:45:154|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:45:154|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:45:371|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:45:371|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:45:371|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:45:371|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:45:371|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:45:371|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:45:371|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:45:371|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:45:871|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:45:871|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:45:871|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:45:871|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:45:871|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:45:871|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:45:871|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:45:871|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:46:161|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:46:161|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:46:161|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:46:161|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:46:161|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:46:161|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:46:161|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:46:161|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:46:384|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:46:384|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:46:384|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:46:385|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:46:385|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:46:385|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:46:385|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:46:385|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:46:864|socket.hpp:recv:966] ::ffff:192.168.1.108 received
+[Warn] [2026-03-02 23:54:46:864|server-v4-v6.cpp:client_work:524] Data received from ::ffff:192.168.1.108
+[Text] [2026-03-02 23:54:46:864|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:46:864|server-v4-v6.cpp:client_work:540] Id: ::ffff:192.168.1.108_0
+[Text] [2026-03-02 23:54:46:864|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:46:864|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:46:864|socket.hpp:send:892] ::ffff:192.168.1.108 sent
+[Warn] [2026-03-02 23:54:46:864|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:192.168.1.108
+[Info] [2026-03-02 23:54:47:202|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:47:202|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:47:202|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:47:202|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:47:202|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:47:202|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:47:202|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:47:202|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:47:369|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:47:369|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:47:369|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:47:369|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:47:369|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:47:369|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:47:369|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:47:369|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Warn] [2026-03-02 23:54:47:865|server-v4-v6.cpp:client_work:534] data couldn't receive from ::ffff:192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:54:47:865|server-v4-v6.cpp:operator():457] Socket closed | ::ffff:192.168.1.108_0
+[Info] [2026-03-02 23:54:48:154|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:48:154|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:48:154|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:48:154|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:48:154|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:48:154|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:48:155|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:48:155|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:48:393|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:48:393|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:48:394|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:48:394|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:48:394|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:48:394|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:48:394|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:48:394|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:49:168|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:49:169|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:49:169|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:49:169|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:49:169|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:49:169|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:49:169|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:49:169|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:49:370|socket.hpp:recv:966] ::ffff:127.0.0.1 received
+[Warn] [2026-03-02 23:54:49:371|server-v4-v6.cpp:client_work:524] Data received from ::ffff:127.0.0.1
+[Text] [2026-03-02 23:54:49:371|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:49:371|server-v4-v6.cpp:client_work:540] Id: ::ffff:127.0.0.1_0
+[Text] [2026-03-02 23:54:49:371|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:49:371|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:49:371|socket.hpp:send:892] ::ffff:127.0.0.1 sent
+[Warn] [2026-03-02 23:54:49:371|server-v4-v6.cpp:client_work:552] Data sent to ::ffff:127.0.0.1
+[Info] [2026-03-02 23:54:50:158|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:50:158|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:50:158|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:50:158|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:50:158|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:50:158|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:50:158|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:50:158|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Warn] [2026-03-02 23:54:50:371|server-v4-v6.cpp:client_work:534] data couldn't receive from ::ffff:127.0.0.1 | code: 17
+[Warn] [2026-03-02 23:54:50:371|server-v4-v6.cpp:operator():457] Socket closed | ::ffff:127.0.0.1_0
+[Info] [2026-03-02 23:54:51:157|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:51:157|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:51:157|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:51:157|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:51:157|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:51:157|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:51:157|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:51:157|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:52:156|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:52:157|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:52:157|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:52:157|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:52:157|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:52:157|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:52:157|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:52:157|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:53:163|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:53:163|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:53:163|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:53:163|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:53:163|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:53:163|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:53:163|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:53:163|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Info] [2026-03-02 23:54:54:154|socket.hpp:recv:966] ::1 received
+[Warn] [2026-03-02 23:54:54:154|server-v4-v6.cpp:client_work:524] Data received from ::1
+[Text] [2026-03-02 23:54:54:154|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:54:54:155|server-v4-v6.cpp:client_work:540] Id: ::1_0
+[Text] [2026-03-02 23:54:54:155|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:54:54:155|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:54:54:155|socket.hpp:send:892] ::1 sent
+[Warn] [2026-03-02 23:54:54:155|server-v4-v6.cpp:client_work:552] Data sent to ::1
+[Warn] [2026-03-02 23:54:55:157|server-v4-v6.cpp:client_work:534] data couldn't receive from ::1 | code: 17
+[Warn] [2026-03-02 23:54:55:157|server-v4-v6.cpp:operator():457] Socket closed | ::1_0
+[Fail] [2026-03-02 23:55:46:670|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2
+[Text] [2026-03-02 23:55:49:031|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 23:55:49:031|server-v4-v6.cpp:server_initializer:259] Ip type is v4
+[Info] [2026-03-02 23:55:49:031|server-v4-v6.cpp:server_initializer:270] Server binded
+[Info] [2026-03-02 23:55:49:031|server-v4-v6.cpp:server_initializer:278] Server backlog: 4
+[Pass] [2026-03-02 23:55:49:031|server-v4-v6.cpp:server_initializer:299] Server running
+[Pass] [2026-03-02 23:55:53:039|server-v4-v6.cpp:server_listener:387] 192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:55:53:039|server-v4-v6.cpp:server_listener:438] 192.168.1.108 added client list
+[Info] [2026-03-02 23:55:53:039|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:53:039|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:53:039|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:53:039|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:53:039|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:53:039|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:53:039|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:53:039|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:54:039|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:54:039|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:54:039|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:54:039|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:54:039|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:54:039|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:54:039|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:54:040|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Pass] [2026-03-02 23:55:54:919|server-v4-v6.cpp:server_listener:387] 127.0.0.1 Handshake Verified
+[Info] [2026-03-02 23:55:54:919|server-v4-v6.cpp:server_listener:438] 127.0.0.1 added client list
+[Info] [2026-03-02 23:55:54:919|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:55:54:919|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:55:54:919|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:54:919|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:55:54:919|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:54:919|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:54:919|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:55:54:919|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:55:55:048|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:55:048|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:55:048|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:55:048|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:55:048|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:55:048|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:55:048|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:55:048|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:55:920|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:55:55:920|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:55:55:920|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:55:920|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:55:55:920|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:55:920|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:55:920|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:55:55:920|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:55:56:042|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:56:042|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:56:042|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:56:042|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:56:042|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:56:042|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:56:042|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:56:042|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:56:920|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:55:56:920|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:55:56:920|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:56:920|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:55:56:920|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:56:920|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:56:920|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:55:56:920|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:55:57:042|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:57:042|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:57:042|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:57:042|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:57:042|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:57:042|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:57:042|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:57:042|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:57:920|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:55:57:920|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:55:57:920|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:57:920|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:55:57:920|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:57:920|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:57:920|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:55:57:920|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:55:58:042|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:58:042|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:58:042|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:58:042|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:58:042|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:58:042|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:58:042|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:58:042|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Pass] [2026-03-02 23:55:58:479|server-v4-v6.cpp:server_listener:387] 192.168.1.108 Handshake Verified
+[Info] [2026-03-02 23:55:58:479|server-v4-v6.cpp:server_listener:438] 192.168.1.108 added client list
+[Info] [2026-03-02 23:55:58:479|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:58:479|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:58:479|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:58:479|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:55:58:479|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:58:479|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:58:479|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:58:479|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:58:921|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:55:58:921|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:55:58:921|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:58:921|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:55:58:921|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:58:921|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:58:921|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:55:58:921|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:55:59:070|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:59:070|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:59:070|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:59:070|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:55:59:070|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:59:070|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:59:070|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:59:070|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:59:481|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:55:59:481|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:55:59:481|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:59:481|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:55:59:481|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:59:481|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:59:481|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:55:59:481|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:55:59:920|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:55:59:920|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:55:59:920|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:55:59:920|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:55:59:920|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:55:59:920|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:55:59:920|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:55:59:920|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:56:00:041|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:00:041|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:00:041|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:00:041|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:56:00:041|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:00:041|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:00:041|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:00:041|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:00:496|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:00:496|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:00:497|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:00:497|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:00:497|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:00:497|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:00:497|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:00:497|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:00:933|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:56:00:933|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:56:00:933|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:00:933|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:56:00:933|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:00:933|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:00:933|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:56:00:933|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:56:01:041|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:01:041|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:01:041|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:01:041|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:56:01:041|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:01:041|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:01:041|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:01:041|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:01:480|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:01:480|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:01:480|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:01:480|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:01:480|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:01:480|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:01:480|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:01:480|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:01:924|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:56:01:924|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:56:01:924|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:01:924|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:56:01:924|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:01:924|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:01:925|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:56:01:925|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:56:02:063|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:02:063|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:02:063|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:02:063|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_0
+[Text] [2026-03-02 23:56:02:063|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:02:063|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:02:063|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:02:063|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:02:480|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:02:480|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:02:480|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:02:480|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:02:480|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:02:480|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:02:480|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:02:480|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:02:921|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:56:02:921|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:56:02:921|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:02:921|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:56:02:921|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:02:921|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:02:921|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:56:02:921|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Warn] [2026-03-02 23:56:03:041|server-v4-v6.cpp:client_work:534] data couldn't receive from 192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:56:03:041|server-v4-v6.cpp:operator():457] Socket closed | 192.168.1.108_0
+[Info] [2026-03-02 23:56:03:485|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:03:485|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:03:485|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:03:485|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:03:485|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:03:485|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:03:485|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:03:485|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:03:922|socket.hpp:recv:966] 127.0.0.1 received
+[Warn] [2026-03-02 23:56:03:922|server-v4-v6.cpp:client_work:524] Data received from 127.0.0.1
+[Text] [2026-03-02 23:56:03:922|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:03:922|server-v4-v6.cpp:client_work:540] Id: 127.0.0.1_0
+[Text] [2026-03-02 23:56:03:922|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:03:922|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:03:922|socket.hpp:send:892] 127.0.0.1 sent
+[Warn] [2026-03-02 23:56:03:922|server-v4-v6.cpp:client_work:552] Data sent to 127.0.0.1
+[Info] [2026-03-02 23:56:04:499|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:04:499|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:04:499|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:04:499|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:04:499|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:04:499|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:04:499|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:04:499|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Warn] [2026-03-02 23:56:04:921|server-v4-v6.cpp:client_work:534] data couldn't receive from 127.0.0.1 | code: 17
+[Warn] [2026-03-02 23:56:04:921|server-v4-v6.cpp:operator():457] Socket closed | 127.0.0.1_0
+[Info] [2026-03-02 23:56:05:485|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:05:485|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:05:485|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:05:485|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:05:486|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:05:486|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:05:486|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:05:486|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:06:481|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:06:481|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:06:481|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:06:481|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:06:481|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:06:481|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:06:481|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:06:481|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Info] [2026-03-02 23:56:07:480|socket.hpp:recv:966] 192.168.1.108 received
+[Warn] [2026-03-02 23:56:07:480|server-v4-v6.cpp:client_work:524] Data received from 192.168.1.108
+[Text] [2026-03-02 23:56:07:481|server-v4-v6.cpp:client_work:539] Password: pwd@server.loop!test
+[Text] [2026-03-02 23:56:07:481|server-v4-v6.cpp:client_work:540] Id: 192.168.1.108_1
+[Text] [2026-03-02 23:56:07:481|server-v4-v6.cpp:client_work:541] Username: CLooper
+[Text] [2026-03-02 23:56:07:481|server-v4-v6.cpp:client_work:542] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 23:56:07:481|socket.hpp:send:892] 192.168.1.108 sent
+[Warn] [2026-03-02 23:56:07:481|server-v4-v6.cpp:client_work:552] Data sent to 192.168.1.108
+[Warn] [2026-03-02 23:56:08:483|server-v4-v6.cpp:client_work:534] data couldn't receive from 192.168.1.108 | code: 17
+[Warn] [2026-03-02 23:56:08:483|server-v4-v6.cpp:operator():457] Socket closed | 192.168.1.108_1
+[Fail] [2026-03-02 23:56:15:533|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2

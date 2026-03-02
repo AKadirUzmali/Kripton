@@ -1,0 +1,9 @@
+[Text] [2026-03-02 19:32:07:599|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Pass] [2026-03-02 19:32:07:602|client-ipv6.cpp:client_session:184] 2a00:1d34:89b:8400::3 Connected
+[Pass] [2026-03-02 19:32:07:602|client-ipv6.cpp:client_session:205] 2a00:1d34:89b:8400::3 Handshake Verified
+[Info] [2026-03-02 19:32:07:602|socket.hpp:send:892] 2a00:1d34:89b:8400::3 sent
+[Pass] [2026-03-02 19:32:07:602|client-ipv6.cpp:client_session:223] 2a00:1d34:89b:8400::3 Sent
+[Info] [2026-03-02 19:32:07:602|socket.hpp:recv:966] 2a00:1d34:89b:8400::3 received
+[Text] [2026-03-02 19:32:07:602|client-ipv6.cpp:client_session:236] Password: pwd@server.ipv6!test
+[Text] [2026-03-02 19:32:07:602|client-ipv6.cpp:client_session:237] Username: Client-v6
+[Text] [2026-03-02 19:32:07:602|client-ipv6.cpp:client_session:238] Message: Hello Server, It's Client! 😀

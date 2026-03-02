@@ -1,0 +1,16 @@
+[Text] [2026-03-02 19:32:02:251|socket.hpp:Socket:403] ::: SOCKET LOGGER :::
+[Info] [2026-03-02 19:32:02:253|server-ipv6.cpp:server_initializer:166] Ip type is v6
+[Info] [2026-03-02 19:32:02:253|server-ipv6.cpp:server_initializer:192] Server binded
+[Info] [2026-03-02 19:32:02:253|server-ipv6.cpp:server_initializer:200] Server backlog: 1024
+[Pass] [2026-03-02 19:32:02:253|server-ipv6.cpp:server_initializer:206] Server running
+[Pass] [2026-03-02 19:32:07:602|server-ipv6.cpp:server_listener:294] 2a00:1d34:89b:8400::3 Handshake Verified
+[Info] [2026-03-02 19:32:07:602|socket.hpp:recv:966] 2a00:1d34:89b:8400::3 received
+[Warn] [2026-03-02 19:32:07:602|server-ipv6.cpp:client_work:399] Data received from 2a00:1d34:89b:8400::3
+[Text] [2026-03-02 19:32:07:602|server-ipv6.cpp:client_work:414] Password: pwd@server.ipv6!test
+[Text] [2026-03-02 19:32:07:602|server-ipv6.cpp:client_work:415] Username: Client-v6
+[Text] [2026-03-02 19:32:07:602|server-ipv6.cpp:client_work:416] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-02 19:32:07:602|socket.hpp:send:892] 2a00:1d34:89b:8400::3 sent
+[Warn] [2026-03-02 19:32:07:602|server-ipv6.cpp:client_work:425] Data sent to 2a00:1d34:89b:8400::3
+[Info] [2026-03-02 19:32:07:602|server-ipv6.cpp:operator():325] 2a00:1d34:89b:8400::3 enqueued | client work
+[Fail] [2026-03-02 19:32:10:587|socket.hpp:crashed:984] Crash Code: 2
+[Fail] Crash Code: 2

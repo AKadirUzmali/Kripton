@@ -1,0 +1,14 @@
+[Pass] [2026-03-02 19:32:07:600|client-ipv6.cpp:main:112] New Client Name: Client-v6
+[Pass] [2026-03-02 19:32:07:602|client-ipv6.cpp:main:120] 20007
+================================================================================================================
+Path                : logs/client-ipv6-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:32:07:602
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0

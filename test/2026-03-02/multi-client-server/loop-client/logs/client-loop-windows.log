@@ -1,0 +1,420 @@
+[Pass] [2026-03-02 19:36:58:328|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:37:00:231|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:37:01:383|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:37:02:852|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 19:37:02:853|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:37:02:853
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:37:04:472|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 19:37:04:473|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:37:04:473
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:37:08:344|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:37:08:345
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:37:10:237|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:37:10:238
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:37:11:392|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:37:11:392
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:45:38:610|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:45:39:633|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:45:40:858|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:45:42:032|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 19:45:42:033|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:45:42:034
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:45:43:174|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 19:45:48:610|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:45:48:611
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:45:49:647|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:45:49:647
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:45:50:868|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:45:50:868
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 19:45:53:181|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 19:45:53:181
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:04:38:599|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:04:39:927|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:04:42:192|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:04:43:456|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 20:04:43:457|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:04:43:458
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Fail] [2026-03-02 20:04:43:612|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:04:43:612
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Fail] [2026-03-02 20:04:43:940|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:04:43:941
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Fail] [2026-03-02 20:04:44:206|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:04:44:206
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:04:44:549|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 20:04:46:609|loop-client.cpp:main:170] 20003
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:04:46:609
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:05:35:709|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:05:37:652|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:05:38:709|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:05:40:270|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 20:05:40:271|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:05:40:271
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Fail] [2026-03-02 20:05:40:666|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:05:40:667
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Fail] [2026-03-02 20:05:40:712|loop-client.cpp:main:170] 20006
+[Fail] [2026-03-02 20:05:40:712|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:05:40:713
+================================================================================================================
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:05:40:713
+================================================================================================================
+[Logger] Error: 1
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:05:42:195|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 20:05:44:237|loop-client.cpp:main:170] 20003
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:05:44:237
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:06:17:301|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:06:18:908|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:06:20:189|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:06:23:628|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 20:06:23:630|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:06:23:630
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:06:25:242|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:06:27:307|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:06:27:307
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:06:28:926|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:06:28:926
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:06:30:197|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:06:30:197
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:06:35:247|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:06:35:247
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:06:55:143|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:06:56:604|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:06:58:388|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:07:00:110|loop-client.cpp:main:162] New Client Name: CLooper
+[Pass] [2026-03-02 20:07:02:011|loop-client.cpp:main:162] New Client Name: CLooper
+[Fail] [2026-03-02 20:07:02:013|loop-client.cpp:main:170] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:07:02:014
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:07:05:157|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:07:05:158
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:07:06:608|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:07:06:609
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:07:08:392|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:07:08:392
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 20:07:10:122|loop-client.cpp:main:170] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-02 20:07:10:122
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
