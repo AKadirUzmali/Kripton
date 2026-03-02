@@ -1,0 +1,56 @@
+[Pass] [2026-03-02 15:21:47:960|client-ipv6.cpp:main:107] New Client Name: Client-v6
+[Fail] [2026-03-02 15:21:47:960|client-ipv6.cpp:main:115] 20002
+================================================================================================================
+Path                : logs/client-ipv6-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 15:21:47:960
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 15:22:03:905|client-ipv6.cpp:main:107] New Client Name: Client-v6
+[Pass] [2026-03-02 15:22:03:905|client-ipv6.cpp:main:115] 20007
+================================================================================================================
+Path                : logs/client-ipv6-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 15:22:03:905
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 15:22:12:663|client-ipv6.cpp:main:107] New Client Name: Client-v6
+[Fail] [2026-03-02 15:22:12:663|client-ipv6.cpp:main:115] 20003
+================================================================================================================
+Path                : logs/client-ipv6-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 15:22:12:663
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-02 15:22:16:071|client-ipv6.cpp:main:107] New Client Name: Client-v6
+[Pass] [2026-03-02 15:22:16:072|client-ipv6.cpp:main:115] 20007
+================================================================================================================
+Path                : logs/client-ipv6-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-02 15:22:16:072
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
