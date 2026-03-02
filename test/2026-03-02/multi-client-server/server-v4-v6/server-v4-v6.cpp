@@ -46,6 +46,11 @@
  *  Bsd     :: ./bsd/server-v4-v6.bsd v6
  *  Linux   :: ./linux/server-v4-v6.linux v4
  *  Windows :: ./windows/server-v4-v6.exe v4
+ * 
+ * Sonuç:
+ *  Sunucu beklendiği gibi çalıştı ve performans açısından bir soruna neden olmadı.
+ *  Debian/GNU 13 üzerine yapılan teste işlemci kullanımı %0.0 ve bellek kullanımı
+ *  yaklaşık 350kb olarak belirlendi. Gayet stabil ve hatasız çalıştı.
  */
 
 // Include

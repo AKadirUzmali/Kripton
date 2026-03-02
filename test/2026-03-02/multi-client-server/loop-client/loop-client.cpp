@@ -40,6 +40,11 @@
  *  Bsd     :: ./bsd/loop-client.bsd v6 ::1
  *  Linux   :: ./linux/loop-client.linux v4 127.0.0.1
  *  Windows :: ./windows/loop-client.exe v4 192.168.1.108
+ * 
+ * Sonuç:
+ *  İstemci beklendiği gibi çalıştı ve performans açısından bir soruna neden olmadı.
+ *  Debian/GNU 13 üzerine yapılan teste işlemci kullanımı %0.0 ve bellek kullanımı
+ *  yaklaşık 250kb olarak belirlendi. Gayet stabil ve hatasız çalıştı.
  */
 
 // Include
