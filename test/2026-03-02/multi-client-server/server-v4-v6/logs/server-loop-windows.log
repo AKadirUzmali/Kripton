@@ -1,0 +1,4 @@
+[Pass] [2026-03-02 20:06:53:428|server-v4-v6.cpp:main:178] New Max Connection Limit is: 4
+[Pass] [2026-03-02 20:06:53:428|server-v4-v6.cpp:main:184] New Max Same Ip Limit is: 3
+[Pass] [2026-03-02 20:06:53:429|server-v4-v6.cpp:main:199] Ipv6 Server Succesfully Initalized
+[Fail] Crash Code: 2

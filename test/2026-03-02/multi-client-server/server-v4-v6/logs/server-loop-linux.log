@@ -13,3 +13,11 @@ Timestamp           : 2026-03-02 18:14:20:023
 [Logger] Information: 0
 [Logger] Debug: 0
 [Logger] Text: 0
+[Pass] [2026-03-02 21:32:44:538|server-v4-v6.cpp:main:178] New Max Connection Limit is: 4
+[Pass] [2026-03-02 21:32:44:538|server-v4-v6.cpp:main:184] New Max Same Ip Limit is: 3
+[Pass] [2026-03-02 21:32:44:538|server-v4-v6.cpp:main:199] Ipv6 Server Succesfully Initalized
+[Fail] Crash Code: 2
+[Pass] [2026-03-02 21:36:18:959|server-v4-v6.cpp:main:178] New Max Connection Limit is: 4
+[Pass] [2026-03-02 21:36:18:959|server-v4-v6.cpp:main:184] New Max Same Ip Limit is: 3
+[Pass] [2026-03-02 21:36:18:959|server-v4-v6.cpp:main:199] Ipv6 Server Succesfully Initalized
+[Fail] Crash Code: 2
