@@ -82,14 +82,14 @@ namespace core::version
             {}
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool operator==(const TimeVersion& ar_other) const noexcept
+            bool operator==(const TimeVersion& ar_other) const noexcept
             {
                 return this->m_counter.load(std::memory_order_acquire) == ar_other.m_counter.load(std::memory_order_acquire)
                     && this->m_timestamp.load(std::memory_order_acquire) == ar_other.m_timestamp.load(std::memory_order_acquire);
             }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool operator!=(const TimeVersion& ar_other) const noexcept
+            bool operator!=(const TimeVersion& ar_other) const noexcept
             { return !(*this == ar_other); }
 
             [[maybe_unused]]
