@@ -1,0 +1,1674 @@
+[Fail] [2026-03-12 16:54:38:204|client-test.cpp:client_session:218] 192.168.1.108 connect failed
+[Pass] [2026-03-12 17:15:53:898|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 17:15:53:898|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 17:15:53:898|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 17:15:53:898|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 17:15:53:898|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 17:20:29:796|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 17:20:29:796|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 17:20:29:796|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 17:20:29:796|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 17:20:29:796|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 17:22:15:282|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 17:22:15:282|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 17:22:15:282|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 17:22:15:282|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 17:22:15:282|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 17:23:41:586|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 17:23:41:587|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 17:23:41:587|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 17:23:41:587|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 17:23:41:587|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 19:36:54:082|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 19:36:54:082|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 19:36:54:082|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:36:54:082|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:36:54:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:36:54:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:36:54:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:36:54:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:36:55:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:36:55:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:36:55:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:36:55:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:36:55:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:36:55:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:36:56:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:36:56:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:36:56:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:36:56:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:36:56:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:36:56:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:36:57:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:36:57:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:36:57:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:36:57:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:36:57:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:36:57:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:36:58:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:36:58:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:36:58:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:36:58:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:36:58:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:36:58:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:36:59:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:36:59:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:36:59:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:36:59:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:36:59:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:36:59:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:37:00:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:37:00:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:37:00:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:37:00:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:37:00:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:37:00:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:37:01:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:37:01:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:37:01:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:37:01:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:37:01:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:37:01:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:37:02:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:37:02:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:37:02:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:37:02:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:37:02:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:37:02:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 19:37:03:083|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:37:03:083|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 19:37:03:083|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 19:37:03:083|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 19:37:03:083|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 19:37:03:083|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 19:52:32:911|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 19:52:32:911|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 19:52:32:911|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 19:52:32:911|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 19:52:32:911|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 20:01:35:951|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 20:01:35:951|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 20:01:35:951|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:01:35:951|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 20:01:35:951|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 20:02:18:665|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 20:02:18:665|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 20:02:18:665|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:02:18:665|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 20:02:18:666|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 20:14:01:395|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 20:14:01:395|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 20:14:01:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:01:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:01:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:01:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:01:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:01:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:02:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:02:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:02:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:02:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:02:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:02:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:03:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:03:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:03:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:03:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:03:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:03:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:04:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:04:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:04:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:04:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:04:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:04:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:05:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:05:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:05:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:05:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:05:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:05:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:06:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:06:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:06:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:06:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:06:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:06:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:07:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:07:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:07:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:07:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:07:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:07:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:08:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:08:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:08:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:08:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:08:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:08:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:09:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:09:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:09:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:09:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:09:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:09:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 20:14:10:395|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:14:10:395|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 20:14:10:395|socket.hpp:recv:1019] 192.168.1.108 recv
+[Text] [2026-03-12 20:14:10:395|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 20:14:10:395|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 20:14:10:395|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 20:18:22:257|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 20:18:22:257|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 20:18:22:258|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 20:18:22:258|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 20:18:22:258|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 21:23:47:419|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:23:47:419|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:23:47:419|socket.hpp:send:930] 192.168.1.108 sent
+[Pass] [2026-03-12 21:23:47:419|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 21:23:47:419|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 21:26:56:426|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:26:56:426|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:26:56:426|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:26:56:426|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 21:26:56:426|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 21:30:49:437|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:30:49:437|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:30:49:437|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:30:49:437|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 21:30:49:437|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 21:36:01:125|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:36:01:125|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:36:01:125|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:01:125|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:01:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:01:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:01:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:01:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:02:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:02:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:02:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:02:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:02:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:02:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:03:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:03:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:03:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:03:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:03:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:03:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:04:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:04:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:04:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:04:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:04:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:04:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:05:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:05:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:05:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:05:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:05:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:05:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:06:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:06:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:06:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:06:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:06:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:06:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:07:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:07:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:07:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:07:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:07:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:07:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:08:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:08:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:08:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:08:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:08:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:08:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:09:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:09:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:09:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:09:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:09:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:09:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:36:10:126|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:10:126|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:10:126|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:10:126|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:10:126|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:10:126|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 21:36:59:044|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:36:59:044|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:36:59:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:36:59:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:36:59:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:36:59:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:36:59:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:36:59:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:00:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:00:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:00:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:00:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:00:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:00:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:01:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:01:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:01:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:01:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:01:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:01:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:02:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:02:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:02:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:02:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:02:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:02:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:03:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:03:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:03:045|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:03:045|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:03:045|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:03:045|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:04:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:04:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:04:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:04:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:04:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:04:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:05:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:05:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:05:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:05:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:05:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:05:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:06:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:06:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:06:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:06:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:06:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:06:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:07:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:07:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:07:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:07:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:07:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:07:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:37:08:044|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:37:08:044|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:37:08:044|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:37:08:044|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:37:08:044|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:37:08:044|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 21:38:49:946|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:38:49:946|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:38:49:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:49:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:49:946|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:49:946|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:49:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:49:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:50:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:50:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:50:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:50:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:50:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:50:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:51:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:51:947|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:51:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:51:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:51:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:51:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:52:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:52:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:52:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:52:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:52:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:52:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:53:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:53:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:53:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:53:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:53:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:53:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:54:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:54:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:54:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:54:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:54:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:54:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:55:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:55:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:55:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:55:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:55:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:55:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:56:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:56:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:56:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:56:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:56:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:56:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:57:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:57:947|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:57:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:57:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:57:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:57:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:38:58:946|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:38:58:946|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:38:58:947|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:38:58:947|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:38:58:947|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:38:58:947|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 21:43:50:286|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:43:50:286|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:43:50:286|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:43:50:286|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 21:43:50:286|client-test.cpp:client_session:284] Data couldn't receive from 192.168.1.108
+[Pass] [2026-03-12 21:45:44:137|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:45:44:137|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:45:44:137|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:45:44:137|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 21:45:44:137|client-test.cpp:client_session:284] Data couldn't receive from 192.168.1.108
+[Pass] [2026-03-12 21:50:22:232|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:50:22:232|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:50:22:232|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:50:22:232|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 21:50:22:232|client-test.cpp:client_session:284] Data couldn't receive from 192.168.1.108
+[Pass] [2026-03-12 21:55:09:546|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:55:09:546|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:55:09:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:09:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:09:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:09:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:09:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:09:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:10:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:10:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:10:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:10:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:10:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:10:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:11:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:11:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:11:550|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:11:550|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:11:550|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:11:550|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:12:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:12:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:12:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:12:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:12:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:12:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:13:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:13:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:13:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:13:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:13:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:13:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:14:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:14:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:14:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:14:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:14:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:14:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:15:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:15:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:15:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:15:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:15:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:15:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:16:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:16:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:16:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:16:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:16:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:16:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:17:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:17:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:17:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:17:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:17:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:17:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:18:546|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:18:546|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:18:546|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:18:546|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:18:546|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:18:546|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 21:55:33:444|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 21:55:33:445|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 21:55:33:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:33:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:33:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:33:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:33:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:33:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:34:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:34:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:34:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:34:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:34:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:34:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:35:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:35:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:35:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:35:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:35:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:35:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:36:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:36:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:36:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:36:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:36:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:36:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:37:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:37:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:37:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:37:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:37:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:37:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:38:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:38:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:38:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:38:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:38:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:38:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:39:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:39:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:39:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:39:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:39:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:39:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:40:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:40:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:40:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:40:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:40:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:40:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:41:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:41:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:41:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:41:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:41:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:41:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 21:55:42:445|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 21:55:42:445|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 21:55:42:445|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 21:55:42:445|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 21:55:42:445|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 21:55:42:445|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:01:12:741|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:01:12:741|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:01:12:741|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:12:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:12:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:12:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:12:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:12:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:13:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:13:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:13:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:13:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:13:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:13:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:14:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:14:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:14:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:14:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:14:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:14:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:15:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:15:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:15:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:15:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:15:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:15:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:16:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:16:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:16:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:16:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:16:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:16:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:17:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:17:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:17:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:17:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:17:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:17:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:18:744|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:18:744|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:18:745|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:18:745|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:18:745|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:18:745|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:19:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:19:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:19:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:19:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:19:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:19:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:20:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:20:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:20:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:20:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:20:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:20:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:21:742|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:21:742|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:21:742|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:21:742|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:21:742|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:21:742|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:01:55:740|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:01:55:740|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:01:55:740|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:01:55:740|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:01:55:740|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:01:55:740|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:01:55:740|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:01:55:740|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:01:56:740|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:01:56:740|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:01:56:740|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:03:53:233|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:03:53:233|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:03:53:233|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:03:53:233|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:03:53:233|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:03:53:233|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:03:53:233|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:03:53:233|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:03:54:233|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:03:54:233|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:03:54:233|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:04:20:054|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:04:20:054|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:04:20:054|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:20:054|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:20:054|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:20:054|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:20:054|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:20:054|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:21:054|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:04:21:054|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:04:21:054|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:04:46:078|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:04:46:079|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:04:46:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:46:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:46:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:46:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:46:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:46:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:47:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:47:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:47:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:47:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:47:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:47:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:48:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:48:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:48:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:48:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:48:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:48:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:49:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:49:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:49:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:49:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:49:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:49:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:50:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:50:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:50:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:50:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:50:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:50:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:51:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:51:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:51:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:51:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:51:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:51:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:52:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:52:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:52:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:52:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:52:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:52:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:53:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:53:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:53:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:53:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:53:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:53:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:54:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:54:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:54:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:54:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:54:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:54:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:04:55:079|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:04:55:079|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:04:55:079|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:04:55:079|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:04:55:079|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:04:55:079|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:06:12:950|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:06:12:950|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:06:12:950|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:06:12:950|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:06:12:950|client-test.cpp:client_session:284] Data couldn't receive from 192.168.1.108
+[Pass] [2026-03-12 22:07:37:460|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:07:37:461|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:07:37:461|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:07:37:461|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:07:37:461|client-test.cpp:client_session:284] Data couldn't receive from 192.168.1.108
+[Pass] [2026-03-12 22:07:39:646|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:07:39:646|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:07:39:646|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:07:39:646|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:07:39:646|client-test.cpp:client_session:284] Data couldn't receive from 192.168.1.108
+[Pass] [2026-03-12 22:11:19:743|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:11:19:743|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:11:19:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:19:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:19:743|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:19:743|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:19:743|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:19:743|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:20:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:20:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:20:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:20:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:20:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:20:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:21:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:21:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:21:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:21:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:21:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:21:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:22:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:22:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:22:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:22:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:22:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:22:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:23:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:23:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:23:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:23:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:23:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:23:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:24:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:24:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:24:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:24:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:24:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:24:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:25:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:25:744|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:25:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:25:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:25:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:25:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:26:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:26:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:26:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:26:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:26:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:26:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:27:743|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:27:743|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:27:744|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:27:744|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:27:744|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:27:744|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:11:28:746|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:11:28:746|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:11:28:747|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:11:28:747|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:11:28:747|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:11:28:747|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:13:47:853|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:13:47:853|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:13:47:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:47:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:47:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:47:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:47:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:47:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:48:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:48:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:48:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:48:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:48:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:48:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:49:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:49:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:49:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:49:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:49:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:49:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:50:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:50:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:50:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:50:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:50:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:50:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:51:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:51:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:51:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:51:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:51:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:51:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:52:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:52:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:52:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:52:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:52:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:52:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:53:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:53:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:53:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:53:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:53:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:53:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:54:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:54:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:54:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:54:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:54:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:54:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:55:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:55:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:55:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:55:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:55:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:55:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:13:56:854|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:13:56:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:13:56:854|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:13:56:854|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:13:56:854|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:13:56:854|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:14:41:321|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:14:41:321|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:14:41:321|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:41:321|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:41:321|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:41:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:41:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:41:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:42:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:42:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:42:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:42:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:42:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:42:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:43:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:43:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:43:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:43:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:43:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:43:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:44:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:44:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:44:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:44:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:44:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:44:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:45:321|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:45:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:45:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:45:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:45:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:45:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:46:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:46:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:46:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:46:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:46:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:46:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:47:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:47:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:47:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:47:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:47:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:47:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:48:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:48:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:48:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:48:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:48:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:48:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:49:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:49:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:49:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:49:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:49:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:49:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:14:50:322|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:14:50:322|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:14:50:322|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:14:50:322|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:14:50:322|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:14:50:322|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:20:10:381|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:20:10:382|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:20:10:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:10:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:10:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:10:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:10:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:10:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:11:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:11:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:11:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:11:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:11:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:11:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:12:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:12:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:12:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:12:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:12:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:12:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:13:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:13:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:13:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:13:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:13:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:13:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:14:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:14:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:14:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:14:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:14:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:14:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:15:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:15:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:15:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:15:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:15:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:15:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:16:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:16:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:16:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:16:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:16:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:16:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:17:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:17:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:17:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:17:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:17:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:17:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:18:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:18:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:18:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:18:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:18:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:18:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:20:19:382|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:20:19:382|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:20:19:382|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:20:19:382|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:20:19:382|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:20:19:382|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:24:36:069|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:24:36:069|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:24:36:069|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:36:069|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:36:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:36:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:36:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:36:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:37:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:37:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:37:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:37:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:37:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:37:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:38:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:38:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:38:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:38:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:38:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:38:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:39:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:39:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:39:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:39:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:39:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:39:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:40:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:40:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:40:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:40:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:40:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:40:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:41:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:41:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:41:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:41:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:41:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:41:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:42:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:42:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:42:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:42:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:42:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:42:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:43:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:43:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:43:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:43:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:43:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:43:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:44:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:44:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:44:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:44:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:44:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:44:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:24:45:070|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:24:45:070|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:24:45:070|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:24:45:070|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:24:45:070|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:24:45:070|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:25:49:308|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:25:49:308|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:25:49:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:49:308|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:49:308|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:49:308|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:49:308|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:49:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:50:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:50:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:50:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:50:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:50:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:50:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:51:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:51:308|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:51:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:51:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:51:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:51:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:52:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:52:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:52:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:52:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:52:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:52:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:53:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:53:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:53:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:53:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:53:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:53:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:54:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:54:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:54:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:54:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:54:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:54:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:55:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:55:308|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:55:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:55:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:55:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:55:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:56:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:56:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:56:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:56:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:56:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:56:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:57:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:57:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:57:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:57:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:57:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:57:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:25:58:308|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:25:58:309|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:25:58:309|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:25:58:309|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:25:58:309|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:25:58:309|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:28:22:074|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:22:075|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:22:075|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:28:22:075|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:22:075|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:23:642|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:23:642|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:23:642|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:28:23:642|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:23:642|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:24:530|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:24:531|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:24:531|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:24:531|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:24:531|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:25:393|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:25:393|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:25:393|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:25:393|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:25:393|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:26:306|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:26:306|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:26:306|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:26:306|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:26:306|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:27:207|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:27:208|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:27:208|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:27:208|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:27:208|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:28:081|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:28:081|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:28:081|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:28:081|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:28:081|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:28:986|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:28:986|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:28:986|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:28:986|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:28:986|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:29:890|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:29:890|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:29:890|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:29:890|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:29:890|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:30:865|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:30:865|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:30:865|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:30:865|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:30:865|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:31:816|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:31:816|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:31:816|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:31:816|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:31:816|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:32:770|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:32:770|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:32:770|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:32:770|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:32:770|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:33:618|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:33:618|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:33:618|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:33:618|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:33:618|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:34:289|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:34:289|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:34:289|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:34:289|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:34:289|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:34:658|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:34:658|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:34:658|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:34:658|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:34:658|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:35:026|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:35:026|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:35:026|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:35:026|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:35:027|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:35:424|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:35:425|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:35:425|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:35:425|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:35:425|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:35:834|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:35:834|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:35:834|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:35:834|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:35:834|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:28:44:281|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:28:44:281|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:28:44:281|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:28:44:281|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:28:44:281|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:33:56:754|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:33:56:754|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:33:56:754|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:33:56:754|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:33:56:754|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:33:57:810|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:33:57:810|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:33:57:810|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:33:57:810|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:33:57:810|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:33:58:690|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:33:58:690|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:33:58:690|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:33:58:690|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:33:58:690|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:34:28:027|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:34:28:027|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:34:28:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:28:027|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:28:027|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:28:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:28:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:28:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:29:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:29:027|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:29:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:29:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:29:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:29:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:30:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:30:028|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:30:030|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:30:030|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:30:030|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:30:030|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:31:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:31:028|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:31:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:31:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:31:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:31:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:32:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:32:027|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:32:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:32:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:32:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:32:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:33:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:33:027|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:33:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:33:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:33:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:33:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:34:028|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:34:028|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:34:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:34:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:34:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:34:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:35:028|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:35:028|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:35:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:35:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:35:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:35:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:36:028|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:36:028|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:36:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:36:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:36:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:36:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 22:34:37:027|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:34:37:028|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 22:34:37:028|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 22:34:37:028|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 22:34:37:028|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 22:34:37:028|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:35:30:735|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:30:735|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:30:735|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:35:30:735|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:30:735|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:31:521|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:31:521|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:31:521|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:35:31:521|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:31:521|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:32:153|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:32:153|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:32:153|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:32:153|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:32:153|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:33:050|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:33:050|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:33:050|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:33:050|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:33:050|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:34:178|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:34:178|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:34:178|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:34:178|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:34:178|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:35:033|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:35:033|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:35:033|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:35:033|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:35:033|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:35:889|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:35:889|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:35:889|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:35:889|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:35:889|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:37:000|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:37:000|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:37:000|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:37:000|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:37:000|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:37:882|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:37:882|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:37:882|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:37:882|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:37:882|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:38:938|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:38:938|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:38:938|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:38:938|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:38:938|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:40:009|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:40:009|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:40:009|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:40:009|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:40:009|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:40:826|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:40:826|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:40:826|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:40:826|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:40:826|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:41:513|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:41:513|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:41:513|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:41:513|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:41:513|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:42:137|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:42:137|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:42:137|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:42:137|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:42:137|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:42:690|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:42:690|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:42:690|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:42:690|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:42:690|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:35:47:024|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:35:47:024|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:35:47:024|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:35:47:024|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:35:47:024|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:44:243|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:44:244|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:44:244|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:39:44:244|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:44:244|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:45:371|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:45:371|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:45:372|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:45:372|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:45:372|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:46:460|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:46:460|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:46:460|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:46:461|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:46:461|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:47:460|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:47:460|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:47:460|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:47:460|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:47:460|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:48:378|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:48:378|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:48:378|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:48:378|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:48:378|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:49:291|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:49:291|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:49:291|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:49:291|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:49:291|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:50:234|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:50:234|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:50:234|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:50:234|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:50:234|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:51:082|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:51:082|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:51:082|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:39:51:082|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:51:082|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:51:976|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:51:976|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:51:976|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:51:976|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:51:976|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:52:853|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:52:854|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:52:854|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:52:854|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:52:854|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:53:714|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:53:714|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:53:714|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:53:714|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:53:714|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:54:573|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:54:573|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:54:573|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:54:573|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:54:573|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:55:108|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:55:108|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:55:108|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:55:108|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:55:108|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:39:55:477|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:39:55:478|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:39:55:478|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:39:55:478|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:39:55:478|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:47:09:976|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:47:09:976|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:47:09:977|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:47:09:977|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:47:09:977|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:48:30:149|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:48:30:150|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:48:30:150|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:48:30:150|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:48:30:150|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:48:31:506|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:48:31:506|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:48:31:507|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 22:48:31:507|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:48:31:507|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:48:36:473|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:48:36:473|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:48:36:473|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:48:36:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:48:36:473|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 22:48:37:857|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 22:48:37:857|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 22:48:37:857|socket.hpp:send:929]  sent
+[Pass] [2026-03-12 22:48:37:857|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 22:48:37:857|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:07:40:671|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:07:40:672|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:07:40:672|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:40:672|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 23:07:40:672|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:07:41:261|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:07:41:262|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:07:41:262|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:41:262|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 23:07:41:262|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:07:41:873|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:07:41:873|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:07:41:873|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:41:873|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 23:07:41:873|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:07:42:473|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:07:42:473|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:07:42:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:42:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:42:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:42:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:42:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:42:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:43:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:43:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:43:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:43:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:43:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:43:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:44:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:44:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:44:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:44:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:44:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:44:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:45:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:45:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:45:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:45:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:45:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:45:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:46:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:46:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:46:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:46:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:46:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:46:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:47:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:47:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:47:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:47:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:47:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:47:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:48:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:48:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:48:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:48:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:48:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:48:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:49:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:49:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:49:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:49:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:49:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:49:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:50:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:50:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:50:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:50:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:50:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:50:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:07:51:473|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:07:51:473|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:07:51:473|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:07:51:473|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:07:51:473|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:07:51:473|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:09:38:853|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:09:38:853|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:09:38:853|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:38:853|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 23:09:38:853|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:09:39:413|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:09:39:413|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:09:39:413|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:39:413|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 23:09:39:413|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:09:39:962|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:09:39:962|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:09:39:962|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:39:962|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Fail] [2026-03-12 23:09:39:962|client-test.cpp:client_session:284] Data couldn't receive from 
+[Pass] [2026-03-12 23:09:40:580|client-test.cpp:client_session:229] 192.168.1.108 Connected
+[Pass] [2026-03-12 23:09:40:581|client-test.cpp:client_session:250] 192.168.1.108 Handshake Verified
+[Info] [2026-03-12 23:09:40:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:40:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:40:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:40:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:40:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:40:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:41:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:41:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:41:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:41:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:41:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:41:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:42:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:42:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:42:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:42:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:42:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:42:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:43:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:43:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:43:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:43:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:43:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:43:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:44:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:44:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:44:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:44:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:44:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:44:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:45:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:45:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:45:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:45:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:45:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:45:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:46:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:46:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:46:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:46:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:46:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:46:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:47:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:47:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:47:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:47:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:47:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:47:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:48:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:48:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:48:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:48:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:48:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:48:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:09:49:581|socket.hpp:send:929] 192.168.1.108 sent
+[Pass] [2026-03-12 23:09:49:581|client-test.cpp:client_session:278] 192.168.1.108 Sent
+[Info] [2026-03-12 23:09:49:581|socket.hpp:recv:1018] 192.168.1.108 recv
+[Text] [2026-03-12 23:09:49:581|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:09:49:581|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:09:49:581|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:11:09:313|client-test.cpp:client_session:229] ::1 Connected
+[Pass] [2026-03-12 23:11:09:313|client-test.cpp:client_session:250] ::1 Handshake Verified
+[Info] [2026-03-12 23:11:09:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:09:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:09:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:09:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:09:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:09:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:10:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:10:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:10:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:10:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:10:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:10:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:11:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:11:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:11:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:11:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:11:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:11:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:12:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:12:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:12:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:12:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:12:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:12:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:13:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:13:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:13:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:13:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:13:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:13:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:14:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:14:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:14:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:14:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:14:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:14:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:15:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:15:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:15:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:15:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:15:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:15:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:16:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:16:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:16:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:16:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:16:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:16:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:17:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:17:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:17:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:17:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:17:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:17:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:11:18:313|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:11:18:313|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:11:18:313|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:11:18:313|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:11:18:313|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:11:18:313|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:15:51:590|client-test.cpp:client_session:229] ::1 Connected
+[Pass] [2026-03-12 23:15:51:590|client-test.cpp:client_session:250] ::1 Handshake Verified
+[Info] [2026-03-12 23:15:51:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:51:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:51:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:51:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:51:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:51:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:52:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:52:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:52:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:52:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:52:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:52:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:53:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:53:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:53:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:53:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:53:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:53:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:54:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:54:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:54:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:54:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:54:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:54:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:55:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:55:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:55:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:55:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:55:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:55:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:56:592|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:56:592|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:56:593|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:56:593|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:56:593|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:56:593|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:57:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:57:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:57:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:57:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:57:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:57:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:58:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:58:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:58:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:58:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:58:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:58:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:15:59:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:15:59:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:15:59:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:15:59:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:15:59:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:15:59:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
+[Info] [2026-03-12 23:16:00:590|socket.hpp:send:929] ::1 sent
+[Pass] [2026-03-12 23:16:00:590|client-test.cpp:client_session:278] ::1 Sent
+[Info] [2026-03-12 23:16:00:590|socket.hpp:recv:1018] ::1 recv
+[Text] [2026-03-12 23:16:00:590|client-test.cpp:client_session:292] Password: pwd@server!test
+[Text] [2026-03-12 23:16:00:590|client-test.cpp:client_session:293] Username: CLooper
+[Text] [2026-03-12 23:16:00:590|client-test.cpp:client_session:294] Message: Hello Server, It's Client! 😀
