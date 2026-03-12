@@ -44,14 +44,13 @@ namespace core::algorithm
             bool set_name(const std::string& ar_name) noexcept;
             bool set_key(const std::string& ar_key) noexcept;
 
-        protected:
-            virtual ~Algorithm();
-
         public:
             explicit Algorithm(
                 const std::string& ar_name,
                 const std::string& ar_key
             );
+
+            virtual ~Algorithm();
 
             virtual bool has_error() const noexcept;
 
@@ -61,8 +60,8 @@ namespace core::algorithm
             inline const std::string& get_name() const noexcept;
             inline const std::string& get_key() const noexcept;
 
-            virtual bool encrypt(std::string& ar_text) noexcept = 0;
-            virtual bool decrypt(std::string& ar_text) noexcept = 0;
+            virtual bool encrypt(std::string& ar_text) noexcept { (void)ar_text; return false; };
+            virtual bool decrypt(std::string& ar_text) noexcept { (void)ar_text; return false; };
 
             static inline bool is_valid_name(const std::string& ar_name) noexcept;
             static inline bool is_valid_key(const std::string& ar_key) noexcept;
