@@ -163,16 +163,16 @@ namespace netsocket
     // Struct
     struct UserPacket
     {
-        std::string m_username { "" };
         uint16_t m_try_passwd { 0 };
         uint16_t m_same_user_count { 0 };
+        std::string m_username { "" };
     };
 
     // Struct
     struct SocketCtx
     {
-        std::string m_ip;
         UserPacket m_user;
+        std::string m_ip;
     };
 
     #if __OS_WINDOWS__
@@ -190,7 +190,7 @@ namespace netsocket
     // Using Namespace
     using namespace core;
     using namespace pool;
-    using namespace crypto;
+    using namespace cipher;
     using namespace dev;
     using namespace tools;
     using namespace output;
@@ -263,8 +263,6 @@ namespace netsocket
     // Class
     class Socket : public virtual CrashHandler
     {
-        static_assert(std::is_base_of_v<algorithm::Algorithm, AlgoT>, "Socket<AlgoT>: AlgoT must derive from Algorithm");
-
         public:
             // Function Define
             [[maybe_unused]] [[nodiscard]] static inline bool is_valid_socket(const socket_t ar_sock) noexcept;
@@ -327,8 +325,8 @@ namespace netsocket
             virtual inline ipv_t get_ipv() const noexcept;
             virtual inline wait_time_t get_timeout() const noexcept;
 
-            virtual Status run() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_run)); }
-            virtual Status stop() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_stop)); }
+            virtual void run() noexcept { return; };
+            virtual Status stop() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_stop)); };
 
             virtual void print() noexcept;
 
@@ -483,7 +481,7 @@ namespace netsocket
      */
     bool Socket::has_cipher() const noexcept
     {
-        return !this->m_cipher.algorithm().has_error();
+        return !this->m_cipher.has_error();
     }
 
     /**
@@ -886,22 +884,28 @@ namespace netsocket
         DataPacket& ar_datapack
     ) noexcept
     {
+        // NOT VALID SOCKET
         if( !is_valid_socket(ar_target_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::target_socket_not_valid));
 
+        // IS NAME OR MESSAGE EMPTY?
         if( ar_datapack.m_name.empty() || ar_datapack.m_msg.empty() )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::not_enough_data_in_packet));
 
+        // ENCRYPT THE ALL DATA
         this->get_cipher().encrypt(ar_datapack.m_pwd);
         this->get_cipher().encrypt(ar_datapack.m_name);
         this->get_cipher().encrypt(ar_datapack.m_msg);
 
+        // NET PACKET BUFFER
         netpacket::NetPacket tm_netpack(ar_datapack.m_pwd, ar_datapack.m_name, ar_datapack.m_msg);
         const auto& tm_buffer = tm_netpack.get();
 
+        // TOTAL SENT DATA SIZE VARIABLE
         uint32_t tm_total_sent = 0;
         const uint32_t tm_total_size = tm_buffer.size();
 
+        // SEND
         while( tm_total_sent < tm_total_size ) {
             int tm_sent = ::send(ar_target_sock,
                 reinterpret_cast<const char*>(tm_buffer.data()) + tm_total_sent,
@@ -909,14 +913,17 @@ namespace netsocket
                 0
             );
 
+            // NOT SENT OR SOCKET CLOSED
             if( tm_sent < 0 )
                 return Status::err(domain_t::socket, status::to_underlying(socket_code_t::packet_not_send));
             else if ( tm_sent == 0 )
                 return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_can_be_close));
 
+            // ADD SENT DATA SIZE TO VARIABLE UNTIL SENT ENDS UP
             tm_total_sent += tm_sent;
         }
 
+        // LOGGER
         if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
             const std::string tm_ip = get_ip(ar_target_sock);
             this->m_logger.write(level_t::Info, tm_ip + " sent", GET_SOURCE);
@@ -940,59 +947,75 @@ namespace netsocket
         DataPacket& ar_datapack
     ) noexcept
     {
+        // NOT VALID SOCKET
         if( !is_valid_socket(ar_target_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::target_socket_not_valid));
 
+        // HEADER DATA ARRAY
         char tm_header[netpacket::_SIZE_HEADER] {};
 
+        // RECEIVE NEXT DATA LENGTH
         int tm_recv = ::recv(ar_target_sock, tm_header, netpacket::_SIZE_HEADER, MSG_WAITALL);
         if( tm_recv < 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv_header));
         else if( tm_recv == 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_header_close));
 
+        // LENGTH VARIABLES
         uint16_t tm_len_pwd = 0;
         uint16_t tm_len_name = 0;
         uint16_t tm_len_msg = 0;
 
+        // READ NEXT DATA LENGTH
         if( std::sscanf(tm_header, "%03hu%03hu%04hu", &tm_len_pwd, &tm_len_name, &tm_len_msg) != 3 )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::packet_corrupt));
 
+        // DATA LENGTH IS VALID?
         const uint32_t tm_payload_len = tm_len_pwd + tm_len_name + tm_len_msg;
         if( tm_payload_len == 0 )
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::packet_no_data));
 
+        // VECTOR FOR DATA
         std::vector<char> tm_payload(tm_payload_len);
 
+        // RECEIVE THE REAL DATA
         tm_recv = ::recv(ar_target_sock, tm_payload.data(), static_cast<int>(tm_payload_len), MSG_WAITALL);
         if( tm_recv < 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv));
         else if( tm_recv == 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_close));
 
+        // OFFSET
         uint32_t tm_offset = 0;
 
+        // PASSWORD LENGTH
         std::string tm_pwd(tm_payload.data() + tm_offset, tm_len_pwd);
         tm_offset += tm_len_pwd;
 
+        // NAME LENGTH
         std::string tm_name(tm_payload.data() + tm_offset, tm_len_name);
         tm_offset += tm_len_name;
 
+        // MESSAGE LENGTH
         std::string tm_msg(tm_payload.data() + tm_offset, tm_len_msg);
         tm_offset += tm_len_msg;
 
+        // DECRYPT ALL
         this->get_cipher().decrypt(tm_pwd);
         this->get_cipher().decrypt(tm_name);
         this->get_cipher().decrypt(tm_msg);
 
+        // ASSIGN TO DATA PACKET
         ar_datapack.m_pwd = tm_pwd;
         ar_datapack.m_name = tm_name;
         ar_datapack.m_msg = tm_msg;
 
+        // IS NAME OR MESSAGE EMPTY?
         if( ar_datapack.m_name.empty() )
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::recv_username_empty));
         else if( ar_datapack.m_msg.empty() )
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::recv_message_empty));
 
+        // LOGGER
         if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Info, tm_ip + " received", GET_SOURCE);
+            this->m_logger.write(level_t::Info, tm_ip + " recv", GET_SOURCE);
         }
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_recv));
@@ -1007,14 +1030,17 @@ namespace netsocket
      */
     void Socket::crashed() noexcept
     {
+        // LOGGER
         if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
             const std::string tm_msg = "Crash Code: " + std::to_string(CrashHandler::get_signal());
             this->m_logger.write(level_t::Err, tm_msg, GET_SOURCE);
         }
 
+        // CLOSE AND CLEAR
         this->close();
         this->clear();
 
+        // WSA CLEANUP FOR WINDOWS
         #if __OS_WINDOWS__
             if( s_total_sock < 1 && s_wsa_init.exchange(false) )
                 ::WSACleanup();
