@@ -1,0 +1,21 @@
+[Pass] [2026-03-13 18:18:19:635|server-run.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-13 18:18:19:636|server-run.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-13 18:18:19:636|server-run.cpp:main:137] Server Run Function Started
+[Pass] [2026-03-13 18:18:19:637|server-run.cpp:main:143] 192.168.1.108 banned from server
+[Pass] [2026-03-13 18:18:22:638|server-run.cpp:main:149] 192.168.1.108 ban removed after 3 second
+[Fail] Crash Code: 2
+[Pass] [2026-03-13 18:18:48:244|server-run.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-13 18:18:48:245|server-run.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-13 18:18:48:246|server-run.cpp:main:137] Server Run Function Started
+[Pass] [2026-03-13 18:18:48:246|server-run.cpp:main:143] 192.168.1.108 banned from server
+[Pass] [2026-03-13 18:18:51:249|server-run.cpp:main:149] 192.168.1.108 ban removed after 3 second
+[Pass] [2026-03-13 18:19:17:972|server-run.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-13 18:19:17:973|server-run.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-13 18:19:17:973|server-run.cpp:main:137] Server Run Function Started
+[Pass] [2026-03-13 18:19:17:973|server-run.cpp:main:143] 192.168.1.108 banned from server
+[Fail] Crash Code: 2
+[Pass] [2026-03-13 18:20:05:279|server-run.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-13 18:20:05:280|server-run.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-13 18:20:05:281|server-run.cpp:main:137] Server Run Function Started
+[Pass] [2026-03-13 18:20:05:281|server-run.cpp:main:143] 192.168.1.108 banned from server
+[Pass] [2026-03-13 18:20:08:285|server-run.cpp:main:149] 192.168.1.108 ban removed after 3 second
