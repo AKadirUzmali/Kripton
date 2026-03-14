@@ -2,7 +2,7 @@
 #pragma once
 
 /**
- * Crypto Pool (Kripto Havuzu)
+ * Cipher Pool (Şifre Havuzu)
  * 
  * Şifreleme yöntemlerini tek bir dosyada tutmayı
  * sağlıyoruz bu sayede karmaşıklık daha az oluyor
@@ -10,14 +10,12 @@
 
 #include <core/algorithm.hpp>
 
-#include <crypto/crypto.hpp>
-#include <crypto/xor/xor.hpp>
+#include <cipher/xor/xor.hpp>
 
 // Namespace
-namespace pool::cryptopool
+namespace pool::cipherpool
 {
     // Using Namespace
     using namespace core::algorithm;
-    using namespace crypto;
-    using namespace crypto::stream;
+    using namespace cipher::stream;
 }

@@ -13,7 +13,7 @@
 #include <mutex>
 #include <unordered_set>
 
-#include <core/status.hpp>
+#include <kits/corekit.hpp>
 
 // Namespace
 namespace netsocket::policy
@@ -24,6 +24,7 @@ namespace netsocket::policy
 
     // Using Namespace
     using namespace core::status;
+    using namespace core::version;
 
     // Limit
     static constexpr max_conn_t _MIN_CONNECTION = 1;
@@ -61,7 +62,8 @@ namespace netsocket::policy
         not_allow_ipaddr_already_banned,
         not_allow_ipaddr_not_in_list,
         cannot_auth_password_not_matched,
-        set_not_allow_ipaddr,
+        set_allow_fail,
+        set_notallow_fail,
 
         succ = 1000,
         set_username,
@@ -75,6 +77,7 @@ namespace netsocket::policy
         can_auth_no_password_require,
         can_auth_with_password,
         set_allow_ipaddr,
+        set_notallow_ipaddr,
 
         warn = 2000,
         same_value,
@@ -83,10 +86,6 @@ namespace netsocket::policy
 
         info = 3000
     };
-
-    // Function Define
-    [[maybe_unused]] [[nodiscard]] static constexpr bool is_valid_username(const char* ar_username) noexcept;
-    [[maybe_unused]] [[nodiscard]] static constexpr bool is_valid_password(const char* ar_password) noexcept;
 
     // Class
     class AccessPolicy final
@@ -103,6 +102,8 @@ namespace netsocket::policy
             std::unordered_set<std::string> m_banned_ip_list;
             std::unordered_set<std::string> m_allowed_ip_list;
 
+            TimeVersion m_timever;
+            
             mutable std::mutex m_mtx;
         
         public:
@@ -122,17 +123,22 @@ namespace netsocket::policy
             inline max_conn_t get_max_connection() const noexcept;
             inline max_conn_t get_max_same_ip() const noexcept;
 
+            inline const TimeVersion& get_last_imp_change() const noexcept;
+
             Status set_username(const std::string& ar_username) noexcept;
             Status set_password(const std::string& ar_password) noexcept;
             Status set_require_password(const bool ar_require = true) noexcept;
             Status set_max_connection(const max_conn_t ar_max_conn = _DEF_CONNECTION) noexcept;
             Status set_max_same_ip(const max_conn_t ar_max_same_ip = _DEF_SAME_IP_COUNT) noexcept;
             Status set_ban(const std::string& ar_ipaddr, const bool ar_ban = true) noexcept;
-            Status set_allow(const std::string& ar_ipaddr) noexcept;
+            Status set_allow(const std::string& ar_ipaddr, const bool ar_allow = true) noexcept;
 
             Status can_allow(const std::string& ar_ipaddr) noexcept;
             Status can_auth(const std::string& ar_ipaddr, const std::string& ar_pwd) noexcept;
 
+        public:
+            [[maybe_unused]] [[nodiscard]] static bool is_valid_username(const std::string& ar_username) noexcept;
+            [[maybe_unused]] [[nodiscard]] static bool is_valid_password(const std::string& ar_password) noexcept;
     };
 
     /**
@@ -256,6 +262,19 @@ namespace netsocket::policy
     max_conn_t AccessPolicy::get_max_same_ip() const noexcept
     {
         return this->m_max_same_ip.load(std::memory_order_relaxed);
+    }
+
+    /**
+     * @brief Get Last Important Change
+     * 
+     * Önemli bazı işlemlerin en son işleme sokulma bilgisini
+     * ait olduğu değeri değiştirilemez referans ile döndürür
+     * 
+     * @return const TimeVersion&
+     */
+    const TimeVersion& AccessPolicy::get_last_imp_change() const noexcept
+    {
+        return this->m_timever;
     }
 
     /**
@@ -397,10 +416,11 @@ namespace netsocket::policy
 
         // unban
         if( !ar_ban ) {
-                if( this->m_banned_ip_list.find(ar_ipaddr) == this->m_banned_ip_list.end() )
-                    return Status::warn(domain_t::policy, to_underlying(policy_e::ipaddr_already_unbanned));
+            if( this->m_banned_ip_list.find(ar_ipaddr) == this->m_banned_ip_list.end() )
+                return Status::warn(domain_t::policy, to_underlying(policy_e::ipaddr_already_unbanned));
 
-                this->m_banned_ip_list.erase(ar_ipaddr);
+            this->m_banned_ip_list.erase(ar_ipaddr);
+            this->m_timever++;
 
             return this->m_banned_ip_list.find(ar_ipaddr) == this->m_banned_ip_list.end() ?
                 Status::ok(domain_t::policy, to_underlying(policy_e::set_unban_ipaddr)) :
@@ -412,6 +432,7 @@ namespace netsocket::policy
             return Status::warn(domain_t::policy, to_underlying(policy_e::ipaddr_already_banned));
 
         this->m_banned_ip_list.emplace(ar_ipaddr);
+        this->m_timever++;
 
         return this->m_banned_ip_list.find(ar_ipaddr) != this->m_banned_ip_list.end() ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_ban_ipaddr)) :
@@ -425,9 +446,14 @@ namespace netsocket::policy
      * karar verecektir
      * 
      * @param string& IP
+     * @param bool Allow
+     * 
      * @return Status
      */
-    Status AccessPolicy::set_allow(const std::string& ar_ipaddr) noexcept
+    Status AccessPolicy::set_allow(
+        const std::string& ar_ipaddr,
+        const bool ar_allow
+    ) noexcept
     {
         if( ar_ipaddr.empty() )
             return Status::err(domain_t::policy, to_underlying(policy_e::ipaddr_is_empty));
@@ -437,10 +463,23 @@ namespace netsocket::policy
         if( this->m_allowed_ip_list.find(ar_ipaddr) != this->m_allowed_ip_list.end() )
             return Status::warn(domain_t::policy, to_underlying(policy_e::ipaddr_already_allowed));
         
-        this->m_allowed_ip_list.emplace(ar_ipaddr);
-        return this->m_allowed_ip_list.find(ar_ipaddr) != this->m_allowed_ip_list.end() ?
-            Status::ok(domain_t::policy, to_underlying(policy_e::set_allow_ipaddr)) :
-            Status::err(domain_t::policy, to_underlying(policy_e::set_not_allow_ipaddr));
+        // Allow
+        if( ar_allow ) {
+            this->m_allowed_ip_list.emplace(ar_ipaddr);
+            this->m_timever++;
+
+            return this->m_allowed_ip_list.find(ar_ipaddr) != this->m_allowed_ip_list.end() ?
+                Status::ok(domain_t::policy, to_underlying(policy_e::set_allow_ipaddr)) :
+                Status::err(domain_t::policy, to_underlying(policy_e::set_allow_fail));
+        }
+
+        // Not Allow
+        this->m_allowed_ip_list.erase(ar_ipaddr);
+        this->m_timever++;
+
+        return this->m_allowed_ip_list.find(ar_ipaddr) == this->m_allowed_ip_list.end() ?
+            Status::ok(domain_t::policy, to_underlying(policy_e::set_notallow_ipaddr)) :
+            Status::err(domain_t::policy, to_underlying(policy_e::set_notallow_fail));
     }
 
     /**
@@ -487,7 +526,7 @@ namespace netsocket::policy
         if( !tm_status.is_ok() )
             return tm_status;
 
-        if( !this->m_require_password.load() )
+        if( !this->m_require_password.load(std::memory_order_relaxed) )
             return Status::ok(domain_t::policy, to_underlying(policy_e::can_auth_no_password_require));
 
         std::scoped_lock tm_lock(this->m_mtx);
@@ -505,18 +544,15 @@ namespace netsocket::policy
      * 
      * Verilen isim değerinin geçerli olup olmadığını kontrol eder
      * 
-     * @param char* Username
+     * @param string& Username
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    constexpr bool is_valid_username(
-        const char* ar_username
+    bool AccessPolicy::is_valid_username(
+        const std::string& ar_username
     ) noexcept
     {
-        if( !ar_username )
-            return false;
-        
-        const name_len_t tm_len = static_cast<name_len_t>(std::strlen(ar_username));
+        const name_len_t tm_len = static_cast<name_len_t>(ar_username.length());
         return tm_len >= _MIN_LEN_USERNAME && tm_len <= _MAX_LEN_USERNAME;
     }
 
@@ -526,18 +562,15 @@ namespace netsocket::policy
      * Verilen metinin geçerli bir şifre olup olmadığını kontrol
      * eder ve bunu derleme zamanında da yapabilir
      * 
-     * @param char* Password
+     * @param string& Password
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    constexpr bool is_valid_password(
-        const char* ar_password
+    bool AccessPolicy::is_valid_password(
+        const std::string& ar_password
     ) noexcept
     {
-        if( !ar_password )
-            return false;
-        
-        const name_len_t tm_len = static_cast<name_len_t>(std::strlen(ar_password));
+        const name_len_t tm_len = static_cast<name_len_t>(ar_password.length());
         return tm_len >= _MIN_LEN_PASSWORD && tm_len <= _MAX_LEN_PASSWORD;
     }
 }

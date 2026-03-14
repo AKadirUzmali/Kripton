@@ -1,0 +1,126 @@
+[Pass] [2026-03-14 20:01:24:842|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-14 20:01:24:856|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:01:24:856
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:01:26:273|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-14 20:01:26:273|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:01:26:273
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:01:28:121|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-14 20:01:29:737|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-14 20:01:31:201|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-14 20:01:38:124|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:01:38:124
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:01:39:773|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:01:39:773
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:01:41:213|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:01:41:213
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:04:35:157|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-14 20:04:36:181|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-14 20:04:37:239|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-14 20:04:38:325|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-14 20:04:38:326|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:04:38:326
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:04:45:161|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:04:45:162
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:04:46:183|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:04:46:183
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-14 20:04:47:245|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-bsd
+Platform            : Unix
+Operating System    : Bsd
+Timestamp           : 2026-03-14 20:04:47:245
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0

@@ -18,7 +18,7 @@
 #include <core/algorithm.hpp>
 
 // Namespace
-namespace crypto::stream
+namespace cipher::stream
 {
     // Using Namespace
     using namespace core::algorithm;
@@ -32,8 +32,8 @@ namespace crypto::stream
                 const std::string& ar_key
             );
 
-            bool encrypt(std::string& ar_text) noexcept override;
-            bool decrypt(std::string& ar_text) noexcept override;
+            virtual bool encrypt(std::string& ar_text) noexcept override;
+            virtual bool decrypt(std::string& ar_text) noexcept override;
     };
 
     /**

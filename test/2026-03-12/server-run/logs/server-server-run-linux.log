@@ -1,0 +1,468 @@
+[2026-03-12 22:25:47:637] ========== SERVER ==========
+[2026-03-12 22:25:47:637] Socket: Stopped
+[2026-03-12 22:25:47:637] Port: 2026
+[2026-03-12 22:25:47:637] Ip Version: v4
+[2026-03-12 22:25:47:637] Total Client: 0
+[2026-03-12 22:25:47:637] Max Connection Limit: 4
+[2026-03-12 22:25:47:637] Max Same Ip Limit: 3
+[2026-03-12 22:25:47:637] Require Password: No
+[2026-03-12 22:25:47:637] ============================
+[2026-03-12 22:25:47:637] ========== SERVER ==========
+[2026-03-12 22:25:47:637] Socket: Running
+[2026-03-12 22:25:47:637] Port: 2026
+[2026-03-12 22:25:47:637] Ip Version: v4
+[2026-03-12 22:25:47:637] Total Client: 0
+[2026-03-12 22:25:47:637] Max Connection Limit: 4
+[2026-03-12 22:25:47:637] Max Same Ip Limit: 3
+[2026-03-12 22:25:47:637] Require Password: No
+[2026-03-12 22:25:47:637] ============================
+[SERVER|RECV] [2026-03-12 22:25:49:308] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:49:308] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:49:308] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:49:308] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:50:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:50:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:50:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:50:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:51:308] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:51:308] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:51:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:51:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:52:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:52:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:52:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:52:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:53:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:53:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:53:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:53:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:54:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:54:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:54:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:54:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:55:308] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:55:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:55:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:55:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:56:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:56:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:56:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:56:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:57:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:57:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:57:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:57:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:25:58:309] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:25:58:309] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:25:58:309] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:25:58:309] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:26:09:806|server.hpp:run:994] Server Started To Run
+[2026-03-12 22:28:20:943] ========== SERVER ==========
+[2026-03-12 22:28:20:943] Socket: Stopped
+[2026-03-12 22:28:20:943] Port: 2026
+[2026-03-12 22:28:20:943] Ip Version: v4
+[2026-03-12 22:28:20:943] Total Client: 0
+[2026-03-12 22:28:20:943] Max Connection Limit: 4
+[2026-03-12 22:28:20:943] Max Same Ip Limit: 3
+[2026-03-12 22:28:20:943] Require Password: Yes
+[2026-03-12 22:28:20:943] ============================
+[2026-03-12 22:28:23:943] ========== SERVER ==========
+[2026-03-12 22:28:23:943] Socket: Running
+[2026-03-12 22:28:23:943] Port: 2026
+[2026-03-12 22:28:23:943] Ip Version: v4
+[2026-03-12 22:28:23:943] Total Client: 0
+[2026-03-12 22:28:23:943] Max Connection Limit: 4
+[2026-03-12 22:28:23:943] Max Same Ip Limit: 3
+[2026-03-12 22:28:23:943] Require Password: Yes
+[2026-03-12 22:28:23:943] ============================
+[Pass] [2026-03-12 22:28:44:281|server.hpp:run:994] Server Started To Run
+[2026-03-12 22:33:54:257] ========== SERVER ==========
+[2026-03-12 22:33:54:257] Socket: Stopped
+[2026-03-12 22:33:54:257] Port: 2026
+[2026-03-12 22:33:54:257] Ip Version: v4
+[2026-03-12 22:33:54:257] Total Client: 0
+[2026-03-12 22:33:54:257] Max Connection Limit: 4
+[2026-03-12 22:33:54:257] Max Same Ip Limit: 3
+[2026-03-12 22:33:54:257] Require Password: Yes
+[2026-03-12 22:33:54:257] ============================
+[2026-03-12 22:33:57:257] ========== SERVER ==========
+[2026-03-12 22:33:57:257] Socket: Running
+[2026-03-12 22:33:57:257] Port: 2026
+[2026-03-12 22:33:57:257] Ip Version: v4
+[2026-03-12 22:33:57:258] Total Client: 0
+[2026-03-12 22:33:57:258] Max Connection Limit: 4
+[2026-03-12 22:33:57:258] Max Same Ip Limit: 3
+[2026-03-12 22:33:57:258] Require Password: Yes
+[2026-03-12 22:33:57:258] ============================
+[Fail] Crash Code: 2
+[2026-03-12 22:34:26:746] ========== SERVER ==========
+[2026-03-12 22:34:26:746] Socket: Stopped
+[2026-03-12 22:34:26:746] Port: 2026
+[2026-03-12 22:34:26:746] Ip Version: v4
+[2026-03-12 22:34:26:746] Total Client: 0
+[2026-03-12 22:34:26:746] Max Connection Limit: 4
+[2026-03-12 22:34:26:746] Max Same Ip Limit: 3
+[2026-03-12 22:34:26:746] Require Password: Yes
+[2026-03-12 22:34:26:746] ============================
+[SERVER|RECV] [2026-03-12 22:34:28:027] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:28:027] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:28:027] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:28:027] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:29:027] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:29:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:29:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:29:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[2026-03-12 22:34:29:746] ========== SERVER ==========
+[2026-03-12 22:34:29:746] Socket: Running
+[2026-03-12 22:34:29:746] Port: 2026
+[2026-03-12 22:34:29:747] Ip Version: v4
+[2026-03-12 22:34:29:747] Total Client: 1
+[2026-03-12 22:34:29:747] Max Connection Limit: 4
+[2026-03-12 22:34:29:747] Max Same Ip Limit: 3
+[2026-03-12 22:34:29:747] Require Password: Yes
+[2026-03-12 22:34:29:747] ============================
+[SERVER|RECV] [2026-03-12 22:34:30:028] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:30:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:30:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:30:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:31:028] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:31:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:31:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:31:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:32:027] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:32:027] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:32:027] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:32:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:33:027] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:33:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:33:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:33:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:34:028] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:34:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:34:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:34:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:35:028] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:35:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:35:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:35:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:36:028] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:36:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:36:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:36:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 22:34:37:027] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 22:34:37:028] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 22:34:37:028] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 22:34:37:028] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 22:34:53:586|server.hpp:run:994] Server Started To Run
+[2026-03-12 22:35:29:106] ========== SERVER ==========
+[2026-03-12 22:35:29:106] Socket: Stopped
+[2026-03-12 22:35:29:106] Port: 2026
+[2026-03-12 22:35:29:106] Ip Version: v4
+[2026-03-12 22:35:29:106] Total Client: 0
+[2026-03-12 22:35:29:106] Max Connection Limit: 4
+[2026-03-12 22:35:29:106] Max Same Ip Limit: 3
+[2026-03-12 22:35:29:106] Require Password: Yes
+[2026-03-12 22:35:29:106] ============================
+[2026-03-12 22:35:32:106] ========== SERVER ==========
+[2026-03-12 22:35:32:106] Socket: Running
+[2026-03-12 22:35:32:106] Port: 2026
+[2026-03-12 22:35:32:106] Ip Version: v4
+[2026-03-12 22:35:32:106] Total Client: 0
+[2026-03-12 22:35:32:106] Max Connection Limit: 4
+[2026-03-12 22:35:32:106] Max Same Ip Limit: 3
+[2026-03-12 22:35:32:106] Require Password: Yes
+[2026-03-12 22:35:32:106] ============================
+[Pass] [2026-03-12 22:35:52:210|server.hpp:run:994] Server Started To Run
+[2026-03-12 22:39:42:244] ========== SERVER ==========
+[2026-03-12 22:39:42:244] Socket: Stopped
+[2026-03-12 22:39:42:244] Port: 2026
+[2026-03-12 22:39:42:244] Ip Version: v4
+[2026-03-12 22:39:42:244] Total Client: 0
+[2026-03-12 22:39:42:244] Max Connection Limit: 4
+[2026-03-12 22:39:42:244] Max Same Ip Limit: 3
+[2026-03-12 22:39:42:244] Require Password: Yes
+[2026-03-12 22:39:42:244] ============================
+[2026-03-12 22:39:45:245] ========== SERVER ==========
+[2026-03-12 22:39:45:245] Socket: Running
+[2026-03-12 22:39:45:245] Port: 2026
+[2026-03-12 22:39:45:245] Ip Version: v4
+[2026-03-12 22:39:45:245] Total Client: 0
+[2026-03-12 22:39:45:245] Max Connection Limit: 4
+[2026-03-12 22:39:45:245] Max Same Ip Limit: 3
+[2026-03-12 22:39:45:245] Require Password: Yes
+[2026-03-12 22:39:45:245] ============================
+[Pass] [2026-03-12 22:40:05:646|server.hpp:run:994] Server Started To Run
+[2026-03-12 22:47:07:155] ========== SERVER ==========
+[2026-03-12 22:47:07:155] Socket: Stopped
+[2026-03-12 22:47:07:155] Port: 2026
+[2026-03-12 22:47:07:155] Ip Version: v4
+[2026-03-12 22:47:07:155] Total Client: 0
+[2026-03-12 22:47:07:155] Max Connection Limit: 4
+[2026-03-12 22:47:07:155] Max Same Ip Limit: 3
+[2026-03-12 22:47:07:155] Require Password: Yes
+[2026-03-12 22:47:07:155] ============================
+[2026-03-12 22:47:10:156] ========== SERVER ==========
+[2026-03-12 22:47:10:156] Socket: Running
+[2026-03-12 22:47:10:156] Port: 2026
+[2026-03-12 22:47:10:156] Ip Version: v4
+[2026-03-12 22:47:10:156] Total Client: 0
+[2026-03-12 22:47:10:156] Max Connection Limit: 4
+[2026-03-12 22:47:10:156] Max Same Ip Limit: 3
+[2026-03-12 22:47:10:156] Require Password: Yes
+[2026-03-12 22:47:10:156] ============================
+[Pass] [2026-03-12 22:47:30:574|server.hpp:run:998] Server Started To Run
+[2026-03-12 22:48:28:545] ========== SERVER ==========
+[2026-03-12 22:48:28:545] Socket: Stopped
+[2026-03-12 22:48:28:545] Port: 2026
+[2026-03-12 22:48:28:545] Ip Version: v4
+[2026-03-12 22:48:28:545] Total Client: 0
+[2026-03-12 22:48:28:545] Max Connection Limit: 4
+[2026-03-12 22:48:28:545] Max Same Ip Limit: 3
+[2026-03-12 22:48:28:545] Require Password: Yes
+[2026-03-12 22:48:28:545] ============================
+[2026-03-12 22:48:31:546] ========== SERVER ==========
+[2026-03-12 22:48:31:546] Socket: Running
+[2026-03-12 22:48:31:546] Port: 2026
+[2026-03-12 22:48:31:546] Ip Version: v4
+[2026-03-12 22:48:31:546] Total Client: 0
+[2026-03-12 22:48:31:546] Max Connection Limit: 4
+[2026-03-12 22:48:31:546] Max Same Ip Limit: 3
+[2026-03-12 22:48:31:546] Require Password: Yes
+[2026-03-12 22:48:31:546] ============================
+[Pass] [2026-03-12 22:48:53:262|server.hpp:run:998] Server Started To Run
+[2026-03-12 23:07:39:124] ========== SERVER ==========
+[2026-03-12 23:07:39:124] Socket: Stopped
+[2026-03-12 23:07:39:124] Port: 2026
+[2026-03-12 23:07:39:124] Ip Version: v4
+[2026-03-12 23:07:39:124] Total Client: 0
+[2026-03-12 23:07:39:124] Max Connection Limit: 4
+[2026-03-12 23:07:39:124] Max Same Ip Limit: 3
+[2026-03-12 23:07:39:124] Require Password: Yes
+[2026-03-12 23:07:39:124] ============================
+[2026-03-12 23:07:42:125] ========== SERVER ==========
+[2026-03-12 23:07:42:125] Socket: Running
+[2026-03-12 23:07:42:125] Port: 2026
+[2026-03-12 23:07:42:125] Ip Version: v4
+[2026-03-12 23:07:42:125] Total Client: 0
+[2026-03-12 23:07:42:125] Max Connection Limit: 4
+[2026-03-12 23:07:42:125] Max Same Ip Limit: 3
+[2026-03-12 23:07:42:125] Require Password: Yes
+[2026-03-12 23:07:42:125] ============================
+[SERVER|RECV] [2026-03-12 23:07:42:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:42:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:42:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:42:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:43:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:43:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:43:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:43:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:44:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:44:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:44:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:44:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:45:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:45:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:45:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:45:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:46:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:46:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:46:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:46:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:47:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:47:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:47:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:47:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:48:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:48:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:48:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:48:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:49:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:49:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:49:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:49:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:50:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:50:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:50:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:50:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:07:51:473] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:07:51:473] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:07:51:473] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:07:51:473] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:08:02:962|server.hpp:run:998] Server Started To Run
+[2026-03-12 23:09:37:046] ========== SERVER ==========
+[2026-03-12 23:09:37:046] Socket: Stopped
+[2026-03-12 23:09:37:046] Port: 2026
+[2026-03-12 23:09:37:046] Ip Version: v4
+[2026-03-12 23:09:37:046] Total Client: 0
+[2026-03-12 23:09:37:046] Max Connection Limit: 4
+[2026-03-12 23:09:37:046] Max Same Ip Limit: 3
+[2026-03-12 23:09:37:046] Require Password: Yes
+[2026-03-12 23:09:37:046] ============================
+[SERVER|RECV] [2026-03-12 23:09:40:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:40:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:40:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:40:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:41:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:41:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:41:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:41:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:42:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:42:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:42:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:42:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:43:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:43:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:43:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:43:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:44:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:44:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:44:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:44:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[2026-03-12 23:09:45:046] ========== SERVER ==========
+[2026-03-12 23:09:45:046] Socket: Running
+[2026-03-12 23:09:45:046] Port: 2026
+[2026-03-12 23:09:45:046] Ip Version: v4
+[2026-03-12 23:09:45:046] Total Client: 1
+[2026-03-12 23:09:45:046] Max Connection Limit: 4
+[2026-03-12 23:09:45:046] Max Same Ip Limit: 3
+[2026-03-12 23:09:45:046] Require Password: Yes
+[2026-03-12 23:09:45:046] ============================
+[SERVER|RECV] [2026-03-12 23:09:45:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:45:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:45:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:45:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:46:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:46:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:46:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:46:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:47:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:47:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:47:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:47:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:48:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:48:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:48:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:48:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:09:49:581] SERVER|RECV : Id: 7
+[SERVER|RECV] [2026-03-12 23:09:49:581] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:09:49:581] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:09:49:581] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:10:00:978|server.hpp:run:998] Server Started To Run
+[2026-03-12 23:11:04:976] ========== SERVER ==========
+[2026-03-12 23:11:04:976] Socket: Stopped
+[2026-03-12 23:11:04:976] Port: 2026
+[2026-03-12 23:11:04:976] Ip Version: v6
+[2026-03-12 23:11:04:976] Total Client: 0
+[2026-03-12 23:11:04:976] Max Connection Limit: 4
+[2026-03-12 23:11:04:976] Max Same Ip Limit: 3
+[2026-03-12 23:11:04:976] Require Password: Yes
+[2026-03-12 23:11:04:976] ============================
+[SERVER|RECV] [2026-03-12 23:11:09:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:09:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:09:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:09:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:10:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:10:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:10:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:10:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:11:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:11:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:11:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:11:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:12:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:12:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:12:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:12:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[2026-03-12 23:11:12:976] ========== SERVER ==========
+[2026-03-12 23:11:12:976] Socket: Running
+[2026-03-12 23:11:12:976] Port: 2026
+[2026-03-12 23:11:12:976] Ip Version: v6
+[2026-03-12 23:11:12:976] Total Client: 1
+[2026-03-12 23:11:12:976] Max Connection Limit: 4
+[2026-03-12 23:11:12:976] Max Same Ip Limit: 3
+[2026-03-12 23:11:12:976] Require Password: Yes
+[2026-03-12 23:11:12:976] ============================
+[SERVER|RECV] [2026-03-12 23:11:13:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:13:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:13:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:13:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:14:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:14:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:14:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:14:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:15:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:15:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:15:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:15:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:16:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:16:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:16:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:16:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:17:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:17:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:17:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:17:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:11:18:313] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:11:18:313] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:11:18:313] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:11:18:313] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:11:29:806|server.hpp:run:998] Server Started To Run
+[2026-03-12 23:15:50:009] ========== SERVER ==========
+[2026-03-12 23:15:50:009] Socket: Stopped
+[2026-03-12 23:15:50:009] Port: 2026
+[2026-03-12 23:15:50:009] Ip Version: v6
+[2026-03-12 23:15:50:009] Total Client: 0
+[2026-03-12 23:15:50:009] Max Connection Limit: 4
+[2026-03-12 23:15:50:009] Max Same Ip Limit: 3
+[2026-03-12 23:15:50:009] Require Password: Yes
+[2026-03-12 23:15:50:009] ============================
+[SERVER|RECV] [2026-03-12 23:15:51:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:51:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:51:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:51:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:52:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:52:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:52:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:52:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:53:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:53:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:53:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:53:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:54:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:54:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:54:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:54:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:55:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:55:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:55:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:55:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:56:593] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:56:593] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:56:593] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:56:593] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:57:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:57:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:57:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:57:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[2026-03-12 23:15:58:009] ========== SERVER ==========
+[2026-03-12 23:15:58:009] Socket: Running
+[2026-03-12 23:15:58:009] Port: 2026
+[2026-03-12 23:15:58:009] Ip Version: v6
+[2026-03-12 23:15:58:009] Total Client: 1
+[2026-03-12 23:15:58:009] Max Connection Limit: 4
+[2026-03-12 23:15:58:009] Max Same Ip Limit: 3
+[2026-03-12 23:15:58:009] Require Password: Yes
+[2026-03-12 23:15:58:009] ============================
+[SERVER|RECV] [2026-03-12 23:15:58:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:58:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:58:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:58:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:15:59:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:15:59:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:15:59:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:15:59:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[SERVER|RECV] [2026-03-12 23:16:00:590] SERVER|RECV : Id: 6
+[SERVER|RECV] [2026-03-12 23:16:00:590] SERVER|RECV : Password: pwd@server!test
+[SERVER|RECV] [2026-03-12 23:16:00:590] SERVER|RECV : Username: CLooper
+[SERVER|RECV] [2026-03-12 23:16:00:590] SERVER|RECV : Message: Hello Server, It's Client! 😀
+[Pass] [2026-03-12 23:16:17:298|server.hpp:run:998] Server Started To Run

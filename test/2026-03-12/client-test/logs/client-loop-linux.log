@@ -1,0 +1,1456 @@
+[Pass] [2026-03-12 16:54:38:204|client-test.cpp:main:157] New Client Name: CLooper
+[Fail] [2026-03-12 16:54:38:204|client-test.cpp:main:165] 20003
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 16:54:38:204
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 17:15:53:898|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 17:15:53:899|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 17:15:53:899
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 17:20:29:796|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 17:20:29:796|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 17:20:29:796
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 17:22:15:282|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 17:22:15:283|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 17:22:15:283
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 17:23:41:586|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 17:23:41:587|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 17:23:41:587
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 19:36:54:082|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 19:37:04:082|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 19:37:04:083
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 19:52:32:910|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 19:52:32:911|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 19:52:32:911
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 20:01:35:951|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 20:01:35:951|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 20:01:35:951
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 20:02:18:664|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 20:02:18:666|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 20:02:18:666
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 20:14:01:394|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 20:14:11:395|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 20:14:11:395
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 20:18:22:257|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 20:18:22:258|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 20:18:22:258
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:23:47:419|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 21:23:47:419|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:23:47:419
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:26:56:426|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 21:26:56:426|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:26:56:426
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:30:49:436|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 21:30:49:437|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:30:49:437
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:36:01:125|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 21:36:11:126|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:36:11:126
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:36:59:044|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 21:37:09:044|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:37:09:044
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:38:49:946|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 21:38:59:946|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:38:59:946
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:43:50:286|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 21:43:50:286|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:43:50:286
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:45:44:136|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 21:45:44:137|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:45:44:137
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:50:22:232|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 21:50:22:232|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:50:22:232
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:55:09:546|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 21:55:19:546|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:55:19:546
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 21:55:33:444|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 21:55:43:445|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 21:55:43:445
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:01:12:741|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:01:22:742|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:01:22:742
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:01:55:740|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:01:56:740|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:01:56:740
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:03:53:233|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:03:54:233|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:03:54:233
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:04:20:054|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:04:21:054|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:04:21:054
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:04:46:078|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:04:56:079|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:04:56:079
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:06:12:950|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:06:12:950|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:06:12:950
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:07:37:460|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:07:37:461|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:07:37:461
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:07:39:646|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:07:39:646|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:07:39:646
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:11:19:743|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:11:29:743|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:11:29:743
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:13:47:853|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:13:57:854|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:13:57:854
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:14:41:321|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:14:51:321|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:14:51:322
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:20:10:381|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:20:20:382|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:20:20:382
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:24:36:069|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:24:46:070|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:24:46:070
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:25:49:308|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:25:59:308|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:25:59:309
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:22:074|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:22:075|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:22:075
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:23:642|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:23:642|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:23:642
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:24:530|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:24:531|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:24:531
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:25:392|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:25:393|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:25:393
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:26:306|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:26:306|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:26:306
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:27:207|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:27:208|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:27:208
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:28:080|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:28:081|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:28:081
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:28:986|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:28:986|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:28:987
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:29:889|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:29:890|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:29:890
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:30:864|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:30:865|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:30:865
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:31:816|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:31:816|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:31:816
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:32:770|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:32:770|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:32:770
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:33:618|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:33:618|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:33:618
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:34:289|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:34:289|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:34:289
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:34:658|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:34:658|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:34:658
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:35:026|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:35:027|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:35:027
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:35:424|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:35:425|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:35:425
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:35:834|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:35:834|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:35:834
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:28:44:281|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:28:44:281|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:28:44:282
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:33:56:754|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:33:56:754|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:33:56:754
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:33:57:810|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:33:57:810|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:33:57:810
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:33:58:690|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:33:58:690|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:33:58:690
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:34:28:027|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 22:34:38:028|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:34:38:028
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:30:735|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:30:735|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:30:735
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:31:521|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:31:521|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:31:521
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:32:153|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:32:153|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:32:153
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:33:050|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:33:050|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:33:050
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:34:178|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:34:178|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:34:178
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:35:033|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:35:033|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:35:033
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:35:889|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:35:889|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:35:889
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:37:000|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:37:000|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:37:000
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:37:882|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:37:882|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:37:882
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:38:938|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:38:938|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:38:938
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:40:009|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:40:009|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:40:009
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:40:826|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:40:826|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:40:826
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:41:513|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:41:513|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:41:513
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:42:137|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:42:137|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:42:137
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:42:690|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:42:690|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:42:690
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:35:47:024|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:35:47:024|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:35:47:024
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:44:243|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:44:244|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:44:244
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:45:371|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:45:372|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:45:372
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:46:460|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:46:461|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:46:461
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:47:460|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:47:460|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:47:460
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:48:377|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:48:378|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:48:378
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:49:291|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:49:291|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:49:291
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:50:234|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:50:234|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:50:234
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:51:082|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:51:082|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:51:082
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:51:976|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:51:976|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:51:976
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:52:853|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:52:854|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:52:854
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:53:713|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:53:714|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:53:714
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:54:572|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:54:573|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:54:573
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:55:108|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:55:108|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:55:108
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:39:55:477|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:39:55:478|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:39:55:478
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:47:09:976|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:47:09:977|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:47:09:977
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:48:30:149|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:48:30:150|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:48:30:150
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:48:31:506|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:48:31:507|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:48:31:507
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:48:36:473|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:48:36:473|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:48:36:474
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 22:48:37:857|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 22:48:37:857|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 22:48:37:857
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:07:40:671|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 23:07:40:672|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:07:40:672
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:07:41:261|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 23:07:41:262|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:07:41:262
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:07:41:873|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 23:07:41:873|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:07:41:873
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:07:42:472|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 23:07:52:473|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:07:52:473
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:09:38:853|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 23:09:38:853|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:09:38:853
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:09:39:413|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 23:09:39:413|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:09:39:413
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:09:39:961|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-12 23:09:39:962|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:09:39:962
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:09:40:580|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 23:09:50:581|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:09:50:581
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:11:09:312|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 23:11:19:313|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:11:19:313
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-12 23:15:51:590|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-12 23:16:01:590|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-linux
+Platform            : Unix-Like
+Operating System    : Linux
+Timestamp           : 2026-03-12 23:16:01:590
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0

@@ -63,6 +63,10 @@ namespace dev::log
             explicit Logger(std::string_view ar_firstname, NameT&&... ar_rest);
 
             void write(const level_t ar_lvl, const std::string_view ar_msg, const Source ar_src) noexcept;
+            void write(const level_t ar_lvl, const std::string_view ar_msg) noexcept;
+            void write(const std::string_view ar_title, const std::string_view ar_msg) noexcept;
+            void write(const std::string_view ar_msg) noexcept;
+
             void print() noexcept;
     };
 
@@ -123,6 +127,78 @@ namespace dev::log
             tm_out->write(ar_lvl, tm_text);
 
         ++this->m_tests[get_valid_index(to_index(ar_lvl))];
+    }
+
+    /**
+     * @brief Write
+     * 
+     * Dosyaya verilen türe göre çıktı vermeyi sağlar
+     * 
+     * @param level_t Level
+     * @param string_view Message
+     */
+    template<class... OutputC>
+    void Logger<OutputC...>::write(const level_t ar_lvl, const std::string_view ar_msg) noexcept
+    {
+        std::string tm_text;
+        tm_text.reserve(256);
+
+        tm_text.push_back('[');
+        tm_text.append(tools::time::current_timestamp());
+        tm_text.append("] ");
+        tm_text.append(ar_msg);
+
+        for(auto& tm_out : this->m_outputs)
+            tm_out->write(ar_lvl, tm_text);
+
+        ++this->m_tests[get_valid_index(to_index(ar_lvl))];
+    }
+
+    /**
+     * @brief Write
+     * 
+     * Dosyaya verilen türe göre başlıkla çıktı vermeyi sağlar
+     * 
+     * @param string_view Title
+     * @param string_view Message
+     */
+    template<class... OutputC>
+    void Logger<OutputC...>::write(const std::string_view ar_title, const std::string_view ar_msg) noexcept
+    {
+        std::string tm_text;
+        tm_text.reserve(256);
+
+        tm_text.push_back('[');
+        tm_text.append(tools::time::current_timestamp());
+        tm_text.append("] ");
+        tm_text.append(ar_title);
+        tm_text.append(" : ");
+        tm_text.append(ar_msg);
+
+        for(auto& tm_out : this->m_outputs)
+            tm_out->write(ar_title, tm_text);
+    }
+
+    /**
+     * @brief Write
+     * 
+     * Dosyaya çıktı vermeyi sağlar
+     * 
+     * @param string_view Message
+     */
+    template<class... OutputC>
+    void Logger<OutputC...>::write(const std::string_view ar_msg) noexcept
+    {
+        std::string tm_text;
+        tm_text.reserve(256);
+
+        tm_text.push_back('[');
+        tm_text.append(tools::time::current_timestamp());
+        tm_text.append("] ");
+        tm_text.append(ar_msg);
+
+        for(auto& tm_out : this->m_outputs)
+            tm_out->write(tm_text);
     }
 
     /**

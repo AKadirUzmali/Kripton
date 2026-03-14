@@ -18,9 +18,7 @@
 #include <kits/hashkit.hpp>
 
 #include <pool/threadpool.hpp>
-#include <pool/cryptopool.hpp>
-
-#include <crypto/crypto.hpp>
+#include <pool/cipherpool.hpp>
 
 #include <socket/policy.hpp>
 #include <socket/netpacket.hpp>
@@ -165,16 +163,16 @@ namespace netsocket
     // Struct
     struct UserPacket
     {
-        std::string m_username { "" };
         uint16_t m_try_passwd { 0 };
         uint16_t m_same_user_count { 0 };
+        std::string m_username { "" };
     };
 
     // Struct
     struct SocketCtx
     {
-        std::string m_ip;
         UserPacket m_user;
+        std::string m_ip;
     };
 
     #if __OS_WINDOWS__
@@ -192,12 +190,11 @@ namespace netsocket
     // Using Namespace
     using namespace core;
     using namespace pool;
-    using namespace crypto;
+    using namespace cipher;
     using namespace dev;
     using namespace tools;
     using namespace output;
     using namespace level;
-
     using namespace crash;
 
     using status::Status;
@@ -218,10 +215,10 @@ namespace netsocket
     static constexpr flag::flag_t _FLAG_SOCKET_NULL = { 0 << 0 };
     static constexpr flag::flag_t _FLAG_SOCKET_LOGGER = { 1 << 0 };
     static constexpr flag::flag_t _FLAG_SOCKET_LOG_TITLE = { 1 << 1 };
+    static constexpr flag::flag_t _FLAG_SOCKET_IPV6 = { 1 << 2 };
 
     // Version Hash
     static constexpr uint8_t ss_hash_hex_size = 16;
-
     static constexpr uint32_t ss_hash_code = (
         netpacket::_SIZE_HEADER +
         netpacket::_SIZE_PASSWORD + netpacket::_SIZE_USERNAME + netpacket::_SIZE_MESSAGE +
@@ -230,23 +227,7 @@ namespace netsocket
         netpacket::_SIZE_OVER_SOCKET
     ) % (uint32_t)~0;
 
-    static constexpr hash::vch::Vch<ss_hash_hex_size> ss_ver_hash("2026-02-09|socket", ss_hash_code);
-
-    // Function Define
-    [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_socket(const socket_t ar_sock) noexcept;
-    [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_port(const socket_port_t ar_port) noexcept;
-    [[maybe_unused]] [[nodiscard]] static inline constexpr bool is_valid_ipv(const ipv_t ar_ipv) noexcept;
-
-    [[maybe_unused]] [[nodiscard]] static bool is_valid_ip(const std::string& ar_ipaddr) noexcept;
-    [[maybe_unused]] [[nodiscard]] static bool is_valid_ipv4(const std::string& ar_ipaddr) noexcept;
-    [[maybe_unused]] [[nodiscard]] static bool is_valid_ipv6(const std::string& ar_ipaddr) noexcept;
-
-    [[maybe_unused]] static bool shutdown_socket(const socket_t ar_sock) noexcept;
-    [[maybe_unused]] static bool close_socket(const socket_t ar_sock) noexcept;
-    [[maybe_unused]] [[nodiscard]] static std::string get_ip(const socket_t ar_sock) noexcept;
-
-    [[maybe_unused]] [[nodiscard]] static Status handshake_send_verify(const socket_t ar_sock) noexcept;
-    [[maybe_unused]] [[nodiscard]] static Status handshake_recv_verify(const socket_t ar_sock, const bool ar_close = true) noexcept;
+    static constexpr hash::vch::Vch<ss_hash_hex_size> ss_ver_hash("2026-03-07|socket|+cipher", ss_hash_code);
 
     // WSA SOCKET
     #if __OS_WINDOWS__
@@ -280,13 +261,27 @@ namespace netsocket
     #endif
 
     // Class
-    template<class AlgoT>
     class Socket : public virtual CrashHandler
     {
-        static_assert(std::is_base_of_v<algorithm::Algorithm, AlgoT>, "Socket<AlgoT>: AlgoT must derive from Algorithm");
+        public:
+            // Function Define
+            [[maybe_unused]] [[nodiscard]] static inline bool is_valid_socket(const socket_t ar_sock) noexcept;
+            [[maybe_unused]] [[nodiscard]] static inline bool is_valid_port(const socket_port_t ar_port) noexcept;
+            [[maybe_unused]] [[nodiscard]] static inline bool is_valid_ipv(const ipv_t ar_ipv) noexcept;
+
+            [[maybe_unused]] [[nodiscard]] static bool is_valid_ip(const std::string& ar_ipaddr) noexcept;
+            [[maybe_unused]] [[nodiscard]] static bool is_valid_ipv4(const std::string& ar_ipaddr) noexcept;
+            [[maybe_unused]] [[nodiscard]] static bool is_valid_ipv6(const std::string& ar_ipaddr) noexcept;
+
+            [[maybe_unused]] static bool shutdown_socket(const socket_t ar_sock) noexcept;
+            [[maybe_unused]] static bool close_socket(const socket_t ar_sock) noexcept;
+            [[maybe_unused]] [[nodiscard]] static std::string get_ip(const socket_t ar_sock) noexcept;
+
+            [[maybe_unused]] [[nodiscard]] static Status handshake_send_verify(const socket_t ar_sock) noexcept;
+            [[maybe_unused]] [[nodiscard]] static Status handshake_recv_verify(const socket_t ar_sock, const bool ar_close = true) noexcept;
 
         private:
-            stream::Crypto<AlgoT>& m_cipher;
+            algorithm::Algorithm m_cipher;
             log::Logger<file::FileOut> m_logger;
             policy::AccessPolicy m_policy;
             flag::Flag m_flag;
@@ -306,13 +301,13 @@ namespace netsocket
 
         public:
             explicit Socket(
-                stream::Crypto<AlgoT>& ar_cipher,
+                algorithm::Algorithm& ar_cipher,
                 const std::string& ar_filepath,
                 const std::string& ar_name,
                 const std::string& ar_password,
                 const socket_port_t ar_port,
                 const ipv_t ar_ipv,
-                const flag::flag_t ar_flag = 0
+                const flag::flag_t ar_flag = _FLAG_SOCKET_NULL
             );
 
             virtual ~Socket();
@@ -330,15 +325,20 @@ namespace netsocket
             virtual inline ipv_t get_ipv() const noexcept;
             virtual inline wait_time_t get_timeout() const noexcept;
 
-            virtual Status run() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_run)); }
-            virtual Status stop() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_stop)); }
+            virtual void run() noexcept { return; };
+            virtual Status stop() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_stop)); };
 
             virtual void print() noexcept;
 
-            virtual inline stream::Crypto<AlgoT>& get_cipher() noexcept;
+            virtual inline algorithm::Algorithm& get_cipher() noexcept;
             virtual inline log::Logger<output::file::FileOut>& get_logger() noexcept;
             virtual inline policy::AccessPolicy& get_policy() noexcept;
             virtual inline flag::Flag& get_flag() noexcept;
+
+            virtual inline const algorithm::Algorithm& get_cipher() const noexcept;
+            virtual inline const log::Logger<output::file::FileOut>& get_logger() const noexcept;
+            virtual inline const policy::AccessPolicy& get_policy() const noexcept;
+            virtual inline const flag::Flag& get_flag() const noexcept;
 
             virtual Status set_socket(const socket_t ar_sock) noexcept;
             virtual Status set_port(const socket_port_t ar_port) noexcept;
@@ -365,17 +365,16 @@ namespace netsocket
      * gerekli atamaları yaparak soketi oluşturur. Eğer
      * Windows kullanılıyor ise, ek bir kontrol sağlar
      * 
-     * @param Crypto<AlgoT>& Cipher
+     * @param Algorithm& Cipher
      * @param string& Filepath
      * @param string& Name
      * @param string& Password
      * @param socket_port_t Port
-     * @param ipv_t IP Version
+     * @param ipv_t Ip Version
      * @param flag_t Flag
      */
-    template<class AlgoT>
-    Socket<AlgoT>::Socket(
-        stream::Crypto<AlgoT>& ar_cipher,
+    Socket::Socket(
+        algorithm::Algorithm& ar_cipher,
         const std::string& ar_filepath,
         const std::string& ar_name,
         const std::string& ar_password,
@@ -397,10 +396,6 @@ namespace netsocket
 
         // INCREASE TOTAL SOCKET COUNTER
         inc_total_socket();
-
-        // LOGGER TITLE
-        if( this->m_flag.has(_FLAG_SOCKET_LOG_TITLE) )
-            this->m_logger.write(level_t::Text, "::: SOCKET LOGGER :::", GET_SOURCE);
     }
 
     /**
@@ -410,14 +405,16 @@ namespace netsocket
      * temizler ve en sonda toplam soket sayısında eksiltme
      * yaparak sonlandırır
      */
-    template<class AlgoT>
-    Socket<AlgoT>::~Socket()
+    Socket::~Socket()
     {
+        // CLOSE AND CLEAR SOCKET
         this->close();
         this->clear();
 
+        // DECREASE TOTAL SOCKET COUNTER
         dec_total_socket();
 
+        // WINDOWS WSA SUPPORT
         #if __OS_WINDOWS__
             if( s_total_sock < 1 && CrashHandler::is_signal() )
             {
@@ -434,8 +431,7 @@ namespace netsocket
      * 
      * @return bool
      */
-    template<class AlgoT>
-    bool Socket<AlgoT>::has_error() const noexcept
+    bool Socket::has_error() const noexcept
     {
         return !this->has_socket() || !this->has_port() || !this->has_ipv() || !this->has_cipher();
     }
@@ -447,8 +443,7 @@ namespace netsocket
      * 
      * @return bool
      */
-    template<class AlgoT>
-    bool Socket<AlgoT>::has_socket() const noexcept
+    bool Socket::has_socket() const noexcept
     {
         return is_valid_socket(this->m_sock);
     }
@@ -460,8 +455,7 @@ namespace netsocket
      * 
      * @return bool
      */
-    template<class AlgoT>
-    bool Socket<AlgoT>::has_port() const noexcept
+    bool Socket::has_port() const noexcept
     {
         return is_valid_port(this->m_port);
     }
@@ -473,8 +467,7 @@ namespace netsocket
      * 
      * @return bool
      */
-    template<class AlgoT>
-    bool Socket<AlgoT>::has_ipv() const noexcept
+    bool Socket::has_ipv() const noexcept
     {
         return is_valid_ipv(this->m_ipv);
     }
@@ -486,10 +479,9 @@ namespace netsocket
      * 
      * @return bool
      */
-    template<class AlgoT>
-    bool Socket<AlgoT>::has_cipher() const noexcept
+    bool Socket::has_cipher() const noexcept
     {
-        return !this->m_cipher.algorithm().has_error();
+        return !this->m_cipher.has_error();
     }
 
     /**
@@ -499,8 +491,7 @@ namespace netsocket
      * 
      * @return uint32_t
      */
-    template<class AlgoT>
-    uint32_t Socket<AlgoT>::get_total_socket() noexcept
+    uint32_t Socket::get_total_socket() noexcept
     {
         return s_total_sock.load(std::memory_order_relaxed);
     }
@@ -512,8 +503,7 @@ namespace netsocket
      * 
      * @return socket_t
      */
-    template<class AlgoT>
-    socket_t Socket<AlgoT>::get_socket() const noexcept
+    socket_t Socket::get_socket() const noexcept
     {
         return this->m_sock;
     }
@@ -525,8 +515,7 @@ namespace netsocket
      * 
      * @return socket_port_t
      */
-    template<class AlgoT>
-    socket_port_t Socket<AlgoT>::get_port() const noexcept
+    socket_port_t Socket::get_port() const noexcept
     {
         return this->m_port;
     }
@@ -538,8 +527,7 @@ namespace netsocket
      * 
      * @return ipv_t
      */
-    template<class AlgoT>
-    ipv_t Socket<AlgoT>::get_ipv() const noexcept
+    ipv_t Socket::get_ipv() const noexcept
     {
         return this->m_ipv;
     }
@@ -551,8 +539,7 @@ namespace netsocket
      * 
      * @return wait_time_t
      */
-    template<class AlgoT>
-    wait_time_t Socket<AlgoT>::get_timeout() const noexcept
+    wait_time_t Socket::get_timeout() const noexcept
     {
         return this->m_timeout.load();
     }
@@ -564,8 +551,7 @@ namespace netsocket
      * 
      * @return print
      */
-    template<class AlgoT>
-    void Socket<AlgoT>::print() noexcept
+    void Socket::print() noexcept
     {
         this->m_logger.print();
     }
@@ -577,10 +563,22 @@ namespace netsocket
      * sayede performans ve güvenlik kaygısı olmadan işleme devam
      * edilebilir
      * 
-     * @return Crypto<AlgoT>&
+     * @return Algorithm&
      */
-    template<class AlgoT>
-    stream::Crypto<AlgoT>& Socket<AlgoT>::get_cipher() noexcept
+    algorithm::Algorithm& Socket::get_cipher() noexcept
+    {
+        return this->m_cipher;
+    }
+
+    /**
+     * @brief Get Cipher
+     * 
+     * Şifreleme yapısının adresini korumalı referans olarak döndürür,
+     * bu sayede güvenlik kaygısı olmadan işleme devam edilebilir
+     * 
+     * @return const Algorithm&
+     */
+    const algorithm::Algorithm& Socket::get_cipher() const noexcept
     {
         return this->m_cipher;
     }
@@ -594,8 +592,20 @@ namespace netsocket
      * 
      * @return Logger&
      */
-    template<class AlgoT>
-    log::Logger<output::file::FileOut>& Socket<AlgoT>::get_logger() noexcept
+    log::Logger<output::file::FileOut>& Socket::get_logger() noexcept
+    {
+        return this->m_logger;
+    }
+
+    /**
+     * @brief Get Logger
+     * 
+     * Kayıt yapısının adresini korumalı referans olarak döndürür,
+     * bu sayede güvenlik kaygısı olmadan işleme devam edilebilir
+     * 
+     * @return const Logger&
+     */
+    const log::Logger<output::file::FileOut>& Socket::get_logger() const noexcept
     {
         return this->m_logger;
     }
@@ -603,14 +613,26 @@ namespace netsocket
     /**
      * @brief Get Policy
      * 
-     * Policy (Politika) yapısının adresini referans olarak döndürür bu
-     * sayede performans ve güvenlik kaygısı olmadan işleme devam
+     * Policy (Politika) yapısının adresini korumalı referans olarak döndürür,
+     * bu sayede güvenlik kaygısı olmadan işleme devam edilebilir
+     * 
+     * @param AccessPolicy&
+     */
+    policy::AccessPolicy& Socket::get_policy() noexcept
+    {
+        return this->m_policy;
+    }
+
+    /**
+     * @brief Get Policy
+     * 
+     * Policy (Politika) yapısının adresini referans olarak döndürür,
+     * bu sayede performans ve güvenlik kaygısı olmadan işleme devam
      * edilebilir
      * 
      * @param AccessPolicy&
      */
-    template<class AlgoT>
-    policy::AccessPolicy& Socket<AlgoT>::get_policy() noexcept
+    const policy::AccessPolicy& Socket::get_policy() const noexcept
     {
         return this->m_policy;
     }
@@ -618,12 +640,26 @@ namespace netsocket
     /**
      * @brief Get Flag
      * 
-     * Flag (bayrak) değerini döndürür
+     * Flag (bayrak) yapısının adresini referans olarak döndürür,
+     * bu sayede performans ve güvenlik kaygısı olmadan işleme devam
+     * edilebilir
      * 
      * @return flag_t
      */
-    template<class AlgoT>
-    flag::Flag& Socket<AlgoT>::get_flag() noexcept
+    flag::Flag& Socket::get_flag() noexcept
+    {
+        return this->m_flag;
+    }
+
+    /**
+     * @brief Get Flag
+     * 
+     * Flag (bayrak) yapısının adresini korumalı referans olarak döndürür,
+     * bu sayede güvenlik kaygısı olmadan işleme devam edilebilir
+     * 
+     * @return flag_t
+     */
+    const flag::Flag& Socket::get_flag() const noexcept
     {
         return this->m_flag;
     }
@@ -638,8 +674,7 @@ namespace netsocket
      * @param socket_t Socket
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::set_socket(
+    Status Socket::set_socket(
         const socket_t ar_sock
     ) noexcept
     {
@@ -663,8 +698,7 @@ namespace netsocket
      * @param socket_port_t Port
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::set_port(
+    Status Socket::set_port(
         const socket_port_t ar_port
     ) noexcept
     {
@@ -688,8 +722,7 @@ namespace netsocket
      * @param ipv_t Ipv
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::set_ipv(
+    Status Socket::set_ipv(
         const ipv_t ar_ipv
     ) noexcept
     {
@@ -715,8 +748,7 @@ namespace netsocket
      * @param wait_time_t Timeout
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::set_timeout(const wait_time_t ar_timeout) noexcept
+    Status Socket::set_timeout(const wait_time_t ar_timeout) noexcept
     {
         if( ar_timeout < _MIN_TIMEOUT ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::value_under_min));
         else if( ar_timeout > _MAX_TIMEOUT ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::value_over_max));
@@ -736,8 +768,7 @@ namespace netsocket
      * 
      * @param Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::create() noexcept
+    Status Socket::create() noexcept
     {
         socket_dom_t tm_sock_domain;
         socket_conn_t tm_sock_type;
@@ -793,8 +824,7 @@ namespace netsocket
      * 
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::close() noexcept
+    Status Socket::close() noexcept
     {
         if( !is_valid_socket(this->m_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
@@ -819,8 +849,7 @@ namespace netsocket
      * 
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::clear() noexcept
+    Status Socket::clear() noexcept
     {
         Status tm_close_status = this->close();
         if( !tm_close_status.is_ok() )
@@ -850,28 +879,33 @@ namespace netsocket
      * 
      * @return Status
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::send(
+    Status Socket::send(
         const socket_t ar_target_sock,
         DataPacket& ar_datapack
     ) noexcept
     {
+        // NOT VALID SOCKET
         if( !is_valid_socket(ar_target_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::target_socket_not_valid));
 
+        // IS NAME OR MESSAGE EMPTY?
         if( ar_datapack.m_name.empty() || ar_datapack.m_msg.empty() )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::not_enough_data_in_packet));
 
+        // ENCRYPT THE ALL DATA
         this->get_cipher().encrypt(ar_datapack.m_pwd);
         this->get_cipher().encrypt(ar_datapack.m_name);
         this->get_cipher().encrypt(ar_datapack.m_msg);
 
+        // NET PACKET BUFFER
         netpacket::NetPacket tm_netpack(ar_datapack.m_pwd, ar_datapack.m_name, ar_datapack.m_msg);
         const auto& tm_buffer = tm_netpack.get();
 
+        // TOTAL SENT DATA SIZE VARIABLE
         uint32_t tm_total_sent = 0;
         const uint32_t tm_total_size = tm_buffer.size();
 
+        // SEND
         while( tm_total_sent < tm_total_size ) {
             int tm_sent = ::send(ar_target_sock,
                 reinterpret_cast<const char*>(tm_buffer.data()) + tm_total_sent,
@@ -879,14 +913,17 @@ namespace netsocket
                 0
             );
 
+            // NOT SENT OR SOCKET CLOSED
             if( tm_sent < 0 )
                 return Status::err(domain_t::socket, status::to_underlying(socket_code_t::packet_not_send));
             else if ( tm_sent == 0 )
                 return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_can_be_close));
 
+            // ADD SENT DATA SIZE TO VARIABLE UNTIL SENT ENDS UP
             tm_total_sent += tm_sent;
         }
 
+        // LOGGER
         if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
             const std::string tm_ip = get_ip(ar_target_sock);
             this->m_logger.write(level_t::Info, tm_ip + " sent", GET_SOURCE);
@@ -905,65 +942,80 @@ namespace netsocket
      * @param socket_t Target Socket
      * @param DataPacket& Data
      */
-    template<class AlgoT>
-    Status Socket<AlgoT>::recv(
+    Status Socket::recv(
         const socket_t ar_target_sock,
         DataPacket& ar_datapack
     ) noexcept
     {
+        // NOT VALID SOCKET
         if( !is_valid_socket(ar_target_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::target_socket_not_valid));
 
+        // HEADER DATA ARRAY
         char tm_header[netpacket::_SIZE_HEADER] {};
 
+        // RECEIVE NEXT DATA LENGTH
         int tm_recv = ::recv(ar_target_sock, tm_header, netpacket::_SIZE_HEADER, MSG_WAITALL);
         if( tm_recv < 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv_header));
         else if( tm_recv == 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_header_close));
 
+        // LENGTH VARIABLES
         uint16_t tm_len_pwd = 0;
         uint16_t tm_len_name = 0;
         uint16_t tm_len_msg = 0;
 
+        // READ NEXT DATA LENGTH
         if( std::sscanf(tm_header, "%03hu%03hu%04hu", &tm_len_pwd, &tm_len_name, &tm_len_msg) != 3 )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::packet_corrupt));
 
+        // DATA LENGTH IS VALID?
         const uint32_t tm_payload_len = tm_len_pwd + tm_len_name + tm_len_msg;
         if( tm_payload_len == 0 )
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::packet_no_data));
 
+        // VECTOR FOR DATA
         std::vector<char> tm_payload(tm_payload_len);
 
+        // RECEIVE THE REAL DATA
         tm_recv = ::recv(ar_target_sock, tm_payload.data(), static_cast<int>(tm_payload_len), MSG_WAITALL);
         if( tm_recv < 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv));
         else if( tm_recv == 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_close));
 
+        // OFFSET
         uint32_t tm_offset = 0;
 
+        // PASSWORD LENGTH
         std::string tm_pwd(tm_payload.data() + tm_offset, tm_len_pwd);
         tm_offset += tm_len_pwd;
 
+        // NAME LENGTH
         std::string tm_name(tm_payload.data() + tm_offset, tm_len_name);
         tm_offset += tm_len_name;
 
+        // MESSAGE LENGTH
         std::string tm_msg(tm_payload.data() + tm_offset, tm_len_msg);
         tm_offset += tm_len_msg;
 
+        // DECRYPT ALL
         this->get_cipher().decrypt(tm_pwd);
         this->get_cipher().decrypt(tm_name);
         this->get_cipher().decrypt(tm_msg);
 
+        // ASSIGN TO DATA PACKET
         ar_datapack.m_pwd = tm_pwd;
         ar_datapack.m_name = tm_name;
         ar_datapack.m_msg = tm_msg;
 
+        // IS NAME OR MESSAGE EMPTY?
         if( ar_datapack.m_name.empty() )
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::recv_username_empty));
         else if( ar_datapack.m_msg.empty() )
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::recv_message_empty));
 
+        // LOGGER
         if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Info, tm_ip + " received", GET_SOURCE);
+            this->m_logger.write(level_t::Info, tm_ip + " recv", GET_SOURCE);
         }
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_recv));
@@ -976,17 +1028,19 @@ namespace netsocket
      * yapılması gerekenleri çalıştırarak sistem sızıntılarını
      * önlemeye çalışır
      */
-    template<class AlgoT>
-    void Socket<AlgoT>::crashed() noexcept
+    void Socket::crashed() noexcept
     {
+        // LOGGER
         if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
             const std::string tm_msg = "Crash Code: " + std::to_string(CrashHandler::get_signal());
             this->m_logger.write(level_t::Err, tm_msg, GET_SOURCE);
         }
 
+        // CLOSE AND CLEAR
         this->close();
         this->clear();
 
+        // WSA CLEANUP FOR WINDOWS
         #if __OS_WINDOWS__
             if( s_total_sock < 1 && s_wsa_init.exchange(false) )
                 ::WSACleanup();
@@ -1005,7 +1059,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    constexpr bool is_valid_socket(
+    bool Socket::is_valid_socket(
         const socket_t ar_sock
     ) noexcept
     {
@@ -1024,7 +1078,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    constexpr bool is_valid_port(
+    bool Socket::is_valid_port(
         const socket_port_t ar_port
     ) noexcept
     {
@@ -1044,7 +1098,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    constexpr bool is_valid_ipv(const ipv_t ar_ipv) noexcept
+    bool Socket::is_valid_ipv(const ipv_t ar_ipv) noexcept
     {
         switch(ar_ipv)
         {
@@ -1066,7 +1120,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    static bool is_valid_ip(const std::string& ar_ipaddr) noexcept
+    bool Socket::is_valid_ip(const std::string& ar_ipaddr) noexcept
     {
         if( ar_ipaddr.empty() )
             return false;
@@ -1097,7 +1151,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    static bool is_valid_ipv4(const std::string& ar_ipaddr) noexcept
+    bool Socket::is_valid_ipv4(const std::string& ar_ipaddr) noexcept
     {
         if( ar_ipaddr.empty() )
             return false;
@@ -1127,7 +1181,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]] [[nodiscard]]
-    static bool is_valid_ipv6(const std::string& ar_ipaddr) noexcept
+    bool Socket::is_valid_ipv6(const std::string& ar_ipaddr) noexcept
     {
         if( ar_ipaddr.empty() )
             return false;
@@ -1158,7 +1212,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]]
-    bool shutdown_socket(
+    bool Socket::shutdown_socket(
         const socket_t ar_sock
     ) noexcept
     {
@@ -1185,7 +1239,7 @@ namespace netsocket
      * @return bool
      */
     [[maybe_unused]]
-    bool close_socket(
+    bool Socket::close_socket(
         const socket_t ar_sock
     ) noexcept
     {
@@ -1209,7 +1263,7 @@ namespace netsocket
      * @return string
      */
     [[maybe_unused]] [[nodiscard]]
-    std::string get_ip(
+    std::string Socket::get_ip(
         const socket_t ar_sock
     ) noexcept
     {
@@ -1250,7 +1304,7 @@ namespace netsocket
      * @return Status
      */
     [[maybe_unused]] [[nodiscard]]
-    Status handshake_send_verify(const socket_t ar_sock) noexcept
+    Status Socket::handshake_send_verify(const socket_t ar_sock) noexcept
     {
         if( !is_valid_socket(ar_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
@@ -1279,7 +1333,7 @@ namespace netsocket
      * @return Status
      */
     [[maybe_unused]] [[nodiscard]]
-    Status handshake_recv_verify(const socket_t ar_sock, const bool ar_close) noexcept
+    Status Socket::handshake_recv_verify(const socket_t ar_sock, const bool ar_close) noexcept
     {
         if( !is_valid_socket(ar_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));

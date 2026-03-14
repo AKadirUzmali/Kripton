@@ -1,0 +1,126 @@
+[Pass] [2026-03-13 18:18:49:179|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-13 18:18:49:182|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:18:49:182
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:18:50:190|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-13 18:18:50:193|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:18:50:193
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:18:51:246|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-13 18:18:51:248|client-test.cpp:main:166] 20006
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:18:51:248
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:18:52:349|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-13 18:18:53:339|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-13 18:19:02:356|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:19:02:357
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:19:03:355|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:19:03:356
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:19:12:520|client-test.cpp:main:158] New Client Name: CLooper
+[Fail] [2026-03-13 18:19:14:571|client-test.cpp:main:166] 20003
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:19:14:571
+================================================================================================================
+[Logger] Error: 1
+[Logger] Success: 1
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:20:06:522|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-13 18:20:09:882|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-13 18:20:12:732|client-test.cpp:main:158] New Client Name: CLooper
+[Pass] [2026-03-13 18:20:16:542|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:20:16:542
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:20:19:885|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:20:19:885
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
+[Pass] [2026-03-13 18:20:22:755|client-test.cpp:main:166] 20007
+================================================================================================================
+Path                : logs/client-loop-windows
+Platform            : MsWin
+Operating System    : Windows
+Timestamp           : 2026-03-13 18:20:22:756
+================================================================================================================
+[Logger] Error: 0
+[Logger] Success: 2
+[Logger] Warning: 0
+[Logger] Information: 0
+[Logger] Debug: 0
+[Logger] Text: 0
