@@ -27,44 +27,68 @@ namespace core::flag
             flag_t m_value {};
 
         public:
-            constexpr explicit Flag(const flag_t ar_value = 0) noexcept
+            constexpr explicit Flag(flag_t ar_value = 0) noexcept
             : m_value(ar_value)
             {}
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr flag_t operator|(const flag_t ar_value) const noexcept
+            constexpr flag_t operator|(flag_t ar_value) const noexcept
             { return m_value | ar_value; }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr flag_t operator|=(const flag_t ar_value) noexcept
+            constexpr flag_t operator|=(flag_t ar_value) noexcept
             { m_value |= ar_value; return m_value; }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool operator&(const flag_t ar_value) const noexcept
+            constexpr bool operator&(flag_t ar_value) const noexcept
             { return m_value & ar_value; }
 
             [[maybe_unused]] [[nodiscard]]
-            constexpr bool has(const flag_t ar_value) const noexcept
+            constexpr bool has(flag_t ar_value) const noexcept
             { return (m_value & ar_value) != 0; }
 
+            template<typename... Args>
+            [[maybe_unused]] [[nodiscard]]
+            constexpr bool has_any(Args... ar_values) const noexcept
+            {
+                static_assert((std::is_same_v<Args, flag_t> && ...), "All arguments must be flag_t");
+                return (((m_value & ar_values) != 0) || ...);
+            }
+            
+            template<typename... Args>
+            [[maybe_unused]] [[nodiscard]]
+            constexpr bool has_all(Args... ar_values) const noexcept
+            {
+                static_assert((std::is_same_v<Args, flag_t> && ...), "All arguments must be flag_t");
+                return (((m_value & ar_values) != 0) && ...);
+            }
+
             [[maybe_unused]]
-            constexpr void set(const flag_t ar_value) noexcept
+            constexpr void set(flag_t ar_value) noexcept
             { m_value = ar_value; }
 
             [[maybe_unused]] [[nodiscard]]
             constexpr flag_t get() const noexcept
             { return m_value; }
 
+            template<typename... Args>
             [[maybe_unused]]
-            constexpr void add(const flag_t ar_value) noexcept
-            { m_value |= ar_value; }
+            constexpr void add(Args... ar_values) noexcept
+            {
+                static_assert((std::is_same_v<Args, flag_t> && ...), "All arguments must be flag_t");
+                (( m_value |= ar_values ), ...);
+            }
+
+            template<typename... Args>
+            [[maybe_unused]]
+            constexpr void unset(Args... ar_values) noexcept
+            {
+                static_assert((std::is_same_v<Args, flag_t> && ...), "All arguments must be flag_t");
+                (( m_value &= ~ar_values ), ...);
+            }
 
             [[maybe_unused]]
-            constexpr void unset(const flag_t ar_value) noexcept
-            { m_value &= ~ar_value; }
-
-            [[maybe_unused]]
-            constexpr void change(const flag_t ar_remove, const flag_t ar_add) noexcept
+            constexpr void change(flag_t ar_remove, flag_t ar_add) noexcept
             { m_value = (m_value & ~ar_remove) | ar_add; }
 
             [[maybe_unused]]
