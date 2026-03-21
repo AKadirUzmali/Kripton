@@ -628,6 +628,9 @@ namespace netsocket::server
             this->m_clients.emplace(tm_cli_accpt, SocketCtx{ UserPacket{}, tm_ip });
             DEBUG_ONLY(this->get_logger().write(level_t::Info, tm_ip + " added client list", GET_SOURCE));
 
+            if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
+                this->get_logger().write(level_t::Info, tm_ip + " Connected");
+
             this->m_tpool.enqueue([&, tm_cli_accpt, tm_ip]{
                 auto tm_it = this->m_clients.find(tm_cli_accpt);
                 if( tm_it == this->m_clients.end() )
@@ -640,6 +643,9 @@ namespace netsocket::server
                 Socket::close_socket(tm_cli_accpt);
 
                 DEBUG_ONLY(this->get_logger().write(level_t::Warn, "Socket closed | " + tm_client.m_ip + '_' + std::to_string(tm_client.m_user.m_same_user_count), GET_SOURCE));
+                
+                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
+                    this->get_logger().write(level_t::Info, tm_ip + " Disconnected");
 
                 this->m_clients.erase(tm_cli_accpt);
             });
