@@ -18,8 +18,6 @@
  */
 
 // Include
-#include <dev/core/source.hpp>
-
 #include <dev/log/levels.hpp>
 #include <dev/log/logger.hpp>
 
@@ -31,3 +29,6 @@
 
 #include <kits/toolkit.hpp>
 #include <kits/outputkit.hpp>
+#include <kits/corekit.hpp>
+
+#include <dev/debugger/debugger.hpp>

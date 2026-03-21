@@ -46,11 +46,27 @@
  * bağlantı sonlandırma yapabilir ya da bu özelliği kapatarak istemcinin
  * kendisini kapatana kadar ya da engellenene kadar sunucu da kalması
  * sağlanabilir.
+ * 
+ * 
+ * Güncelleme 2026/03/21
+ * 
+ * Bir sunucu aynı port üzerinden iki tane sunucu açamaz. Bunun gibi hatayı
+ * önlemek için program sunucu port değerini değiştirdikçe bunu bir listeye
+ * ekler ver hali hazırda olup olmadığını kontrol eder. Sürekli kontrol
+ * yapmaması için ise bayrak değeri ile bunu daha rahat kontrol edebiliriz.
+ * Bunun dışında, run fonksiyonu dönüş değeri "void" yerine "Status" olarak
+ * ayarlandı. Bu sayede sunucuyu işleten fonksiyon çalıştığında başarı
+ * sonucu alabileceğiz ama aksi halde hata sonucu alarak hatamızı da bulabileceğiz.
+ * Hata sonuçlarını direk ana sürümde çıktı vermek yerine, sadece hata ayıklama
+ * sırasında çıktı verebilmek için de DEBUG_ONLY ön işlemcisini ekledik.
+ * Bu sayede ise ana sürümde anlaşılamayan mesajlar görmek ve performans düşüşü
+ * yaşamak yerine sorunları bu şekilde çözmüş olacağız.
  */
 
 // Include
 #include <functional>
 #include <unordered_map>
+#include <unordered_set>
 
 #include <kits/corekit.hpp>
 #include <kits/hashkit.hpp>
@@ -97,9 +113,6 @@ namespace netsocket::server
         #error "[ERROR] Unsupported Operating System!"
     #endif
 
-    // Version Hash
-    static constexpr Vch<32> ss_verhash("2026.03.07|server", 1303);
-
     // Enum
     enum class server_code_t : uint16_t
     {
@@ -129,6 +142,7 @@ namespace netsocket::server
         server_run_thread_fail,
         server_already_init,
         server_not_waited,
+        server_port_already_in_use,
 
         succ = 1000,
         server_bind,
@@ -147,6 +161,7 @@ namespace netsocket::server
         server_started_to_run,
         handler_set,
         server_thread_waited,
+        server_port_changed,
 
         warn = 2000,
         already_bind,
@@ -179,6 +194,13 @@ namespace netsocket::server
             static constexpr flag::flag_t _FLAG_ALREADY_BIND = { 1 << 27 };
             static constexpr flag::flag_t _FLAG_ALREADY_LISTEN = { 1 << 26 };
             static constexpr flag::flag_t _FLAG_ALREADY_INIT = { 1 << 25 };
+            static constexpr flag::flag_t _FLAG_ERR_BIND = { 1 << 24 };
+            static constexpr flag::flag_t _FLAG_ERR_LISTEN = { 1 << 23 };
+            static constexpr flag::flag_t _FLAG_ERR_INIT = { 1 << 22 };
+            static constexpr flag::flag_t _FLAG_PORT_ALREADY_IN_USE = { 1 << 21 };
+
+            // Port List
+            static inline std::unordered_set<socket_port_t> s_used_ports;
 
         private:
             ThreadPool m_tpool;
@@ -197,6 +219,8 @@ namespace netsocket::server
             Status do_bind() noexcept;
             Status do_listen() noexcept;
             Status do_accept(socket_t& ar_cli_sock) noexcept;
+
+            void server_runner() noexcept;
 
             void client_worker(
                 socket_t ar_cli_sock,
@@ -231,12 +255,13 @@ namespace netsocket::server
 
             Status delete_client(const socket_t ar_sock) noexcept;
 
+            Status set_port(const socket_port_t ar_port) noexcept override;
             Status set_handler(data_handler& ar_handler) noexcept;
 
             Status send(const socket_t ar_sock, DataPacket& ar_datapack) noexcept override;
             Status recv(const socket_t ar_sock, DataPacket& ar_datapack) noexcept override;
 
-            void run() noexcept override;
+            Status run() noexcept override;
             Status stop() noexcept override;
 
             void print() noexcept override;
@@ -314,14 +339,14 @@ namespace netsocket::server
         // BIND
         tm_status = this->do_bind();
         if( !tm_status.is_ok() ) {
-            this->m_status.add(_FLAG_SERVER_ERR);
+            this->m_status.add(_FLAG_SERVER_ERR, _FLAG_ERR_BIND);
             return;
         }
 
         // LISTEN
         tm_status = this->do_listen();
         if( !tm_status.is_ok() ) {
-            this->m_status.add(_FLAG_SERVER_ERR);
+            this->m_status.add(_FLAG_SERVER_ERR, _FLAG_ERR_LISTEN);
             return;
         }
 
@@ -341,7 +366,7 @@ namespace netsocket::server
         #endif
 
         this->m_status.add(_FLAG_ALREADY_INIT);
-        this->m_status.unset(_FLAG_SERVER_ERR);
+        this->m_status.unset(_FLAG_SERVER_ERR, _FLAG_ERR_BIND, _FLAG_ERR_LISTEN, _FLAG_ERR_INIT);
     }
 
     /**
@@ -416,6 +441,21 @@ namespace netsocket::server
         if( tm_res == ss_inv_bind )
         {
             this->m_status.unset(_FLAG_ALREADY_BIND);
+
+            // BIND ERROR POSIX
+            #if __OS_POSIX__
+                if(errno == EADDRINUSE ) {
+                    this->m_status.add(_FLAG_PORT_ALREADY_IN_USE);
+                    return Status::err(domain_t::server, status::to_underlying(server_code_t::server_port_already_in_use));
+                }
+            // BIND ERROR WINDOWS
+            #elif __OS_WINDOWS__
+                if( WSAGetLastError() == WSAEADDRINUSE ) {
+                    this->m_status.add(_FLAG_PORT_ALREADY_IN_USE);
+                    return Status::err(domain_t::server, status::to_underlying(server_code_t::server_port_already_in_use));
+                }
+            #endif
+
             return Status::err(domain_t::server, status::to_underlying(server_code_t::server_not_bind));
         }
 
@@ -493,6 +533,120 @@ namespace netsocket::server
     }
 
     /**
+     * @brief Server Runner
+     * 
+     * Sunucuyu döngü halinde sürekli çalışır şekilde
+     * tutup işlemlerini yürütecek olan fonksiyondur.
+     * İstemcilerin kabulünü vs. yaparak istemcileri
+     * işleme alır
+     */
+    void Server::server_runner() noexcept
+    {
+        // IP
+        std::string tm_ip;
+        tm_ip.reserve(128);
+
+        // RUN
+        while( this->is_running() )
+        {
+            // CLIENT SOCKET
+            socket_t tm_cli_accpt = ss_inv_socket;
+
+            // ACCEPT
+            if( !this->do_accept(tm_cli_accpt).is_ok() )
+                continue;
+
+            // CLIENT IP
+            tm_ip.clear();
+            tm_ip = Socket::get_ip(tm_cli_accpt);
+
+            // SOCKET VERSION HASH VERIFY
+            Status tm_handshake = Socket::handshake_recv_verify(tm_cli_accpt, false);
+            if( !tm_handshake.is_ok() ) {
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, tm_ip + " version hash didn't match | code: " + std::to_string(tm_handshake.get_code()), GET_SOURCE));
+
+                tm_handshake = Socket::handshake_send_verify(tm_cli_accpt);
+                DEBUG_ONLY(
+                    if( !tm_handshake.is_ok() )
+                        this->get_logger().write(level_t::Warn, tm_ip + " recv version hash sent for warning | code: " + std::to_string(tm_handshake.get_code()), GET_SOURCE)
+                );
+
+                continue;
+            }
+
+            // SOCKET VERSION HASH SEND VERIFY
+            tm_handshake = Socket::handshake_send_verify(tm_cli_accpt);
+            if( !tm_handshake.is_ok() ) {
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, tm_ip + " version hash sent for warning | code: " + std::to_string(tm_handshake.get_code()), GET_SOURCE));
+                continue;
+            }
+
+            DEBUG_ONLY(this->get_logger().write(level_t::Succ, tm_ip + " Handshake Verified", GET_SOURCE));
+
+            // BANNED OR ALLOWED ?
+            Status tm_allow = this->get_policy().can_allow(tm_ip);
+            if( !tm_allow.is_ok() )
+            {
+                switch(tm_allow.get_code())
+                {
+                    case status::to_underlying(policy::policy_e::not_allow_ipaddr_already_banned):
+                        DEBUG_ONLY(this->get_logger().write(level_t::Succ, tm_ip + " ip banned", GET_SOURCE));
+                    break;
+
+                    case status::to_underlying(policy::policy_e::not_allow_ipaddr_not_in_list):
+                        DEBUG_ONLY(this->get_logger().write(level_t::Succ, tm_ip + " ip not in the allowed ips", GET_SOURCE));
+                    break;
+                }
+
+                Socket::close_socket(tm_cli_accpt);
+                continue;
+            }
+
+            // SAME IP
+            size_t tm_count_same_ip = 0;
+            for(const auto& [sock, ctx] : this->m_clients)
+            {
+                if(ctx.m_ip == tm_ip)
+                    ++tm_count_same_ip;
+            }
+
+            if( this->m_clients.size() >= this->get_policy().get_max_connection() )
+            {
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, "Over total connection limit", GET_SOURCE));
+
+                Socket::close_socket(tm_cli_accpt);
+                continue;
+            }
+            else if( tm_count_same_ip >= this->get_policy().get_max_same_ip() )
+            {
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, "Over total same ip limit", GET_SOURCE));
+
+                Socket::close_socket(tm_cli_accpt);
+                continue;
+            }
+
+            this->m_clients.emplace(tm_cli_accpt, SocketCtx{ UserPacket{}, tm_ip });
+            DEBUG_ONLY(this->get_logger().write(level_t::Info, tm_ip + " added client list", GET_SOURCE));
+
+            this->m_tpool.enqueue([&, tm_cli_accpt, tm_ip]{
+                auto tm_it = this->m_clients.find(tm_cli_accpt);
+                if( tm_it == this->m_clients.end() )
+                    return;
+
+                SocketCtx& tm_client = tm_it->second;
+                tm_client.m_user.m_same_user_count = tm_count_same_ip;
+
+                this->client_worker(tm_cli_accpt, tm_ip, tm_client);
+                Socket::close_socket(tm_cli_accpt);
+
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, "Socket closed | " + tm_client.m_ip + '_' + std::to_string(tm_client.m_user.m_same_user_count), GET_SOURCE));
+
+                this->m_clients.erase(tm_cli_accpt);
+            });
+        }
+    }
+
+    /**
      * @brief Client Worker
      * 
      * Sunucu da her bağlantı için bir işçi çalışacak.
@@ -514,9 +668,8 @@ namespace netsocket::server
         if( this->has_error() || !Socket::is_valid_socket(ar_cli_sock))
             return;
 
-        // TIMEOUT VARIABLE
+        // TIMEOUT
         const auto tm_timeout = std::chrono::seconds(this->get_timeout());
-        const std::string tm_msg_timeout = " idle timeout over limit (" + std::to_string(this->get_timeout()) + ")";
 
         // RUNNING
         while( this->is_running() )
@@ -539,17 +692,13 @@ namespace netsocket::server
             // BAN CHECK
             if( this->get_policy().is_connection_banned(ar_ipaddr) )
             {
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Warn, ar_ipaddr + " banned");
-
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, ar_ipaddr + " banned ip tried to connect"));
                 break;
             }
             // ALLOW CHECK
             else if( !this->get_policy().is_connection_allowed(ar_ipaddr) )
             {
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Warn, ar_ipaddr + " not allowed");
-
+                DEBUG_ONLY(this->get_logger().write(level_t::Warn, ar_ipaddr + " not allowed"));
                 break;
             }
 
@@ -559,27 +708,24 @@ namespace netsocket::server
 
             // RECV STATUS
             switch( tm_status.get_code() ) {
-                case status::to_underlying(socket_code_t::socket_data_recv):            
-                    if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                        this->get_logger().write(level_t::Warn, "received from " + ar_ipaddr);
+                case status::to_underlying(socket_code_t::socket_data_recv):       
+                    DEBUG_ONLY(this->get_logger().write(level_t::Warn, "received from " + ar_ipaddr));
                 break;
 
                 case status::to_underlying(socket_code_t::packet_no_data):
-                    if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                        this->get_logger().write(level_t::Warn, "no data from " + ar_ipaddr);
+                    DEBUG_ONLY(this->get_logger().write(level_t::Warn, "no data from " + ar_ipaddr));
                 break;
 
                 default:
-                    if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                        this->get_logger().write(level_t::Warn, "data couldn't receive from " + ar_ipaddr + " | code: " + std::to_string(tm_status.get_code()));
+                    DEBUG_ONLY(this->get_logger().write(level_t::Warn, "data couldn't receive from " + ar_ipaddr + " | code: " + std::to_string(tm_status.get_code())));
                 return;
             }
 
-            // TEST
-            this->get_logger().write("SERVER|RECV", "Id: " + std::to_string(ar_cli_sock));
-            this->get_logger().write("SERVER|RECV", "Password: " + tm_datapack.m_pwd);
-            this->get_logger().write("SERVER|RECV", "Username: " + tm_datapack.m_name);
-            this->get_logger().write("SERVER|RECV", "Message: " + tm_datapack.m_msg);
+            // LOG ALL
+            DEBUG_ONLY(this->get_logger().write("Server|Recv", "Id: " + std::to_string(ar_cli_sock)));
+            DEBUG_ONLY(this->get_logger().write("Server|Recv", "Password: " + tm_datapack.m_pwd));
+            DEBUG_ONLY(this->get_logger().write("Server|Recv", "Username: " + tm_datapack.m_name));
+            DEBUG_ONLY(this->get_logger().write("Server|Recv", "Message: " + tm_datapack.m_msg));
 
             // SEND
             tm_status = this->send(ar_cli_sock, tm_datapack);
@@ -588,14 +734,12 @@ namespace netsocket::server
             switch( tm_status.get_code() )
             {
                 case status::to_underlying(socket_code_t::socket_data_sent):
-                    if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                        this->get_logger().write(level_t::Warn, "sent to " + ar_ipaddr, GET_SOURCE);
-                    break;
+                    DEBUG_ONLY(this->get_logger().write(level_t::Warn, "sent to " + ar_ipaddr, GET_SOURCE));
+                break;
 
                 default:
-                    if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                        this->get_logger().write(level_t::Warn, "data couldn't send to " + ar_ipaddr + " | code: " + std::to_string(tm_status.get_code()));
-                    return;
+                    DEBUG_ONLY(this->get_logger().write(level_t::Warn, "data couldn't send to " + ar_ipaddr + " | code: " + std::to_string(tm_status.get_code())));
+                return;
             }
         }
     }
@@ -705,6 +849,49 @@ namespace netsocket::server
     }
 
     /**
+     * @brief Set Port
+     * 
+     * Ana socket sınıfında bulunmasına rağmen sunucu sınıfında
+     * yeniden tasarlanmıştır çünkü birden çok sunucu aynı port
+     * adresini kullanmayı deneyebilir. Bu hatayı önlemek için ise
+     * en başta port ayarlama fonksiyonu ile de ek kontrol sağlarız
+     * 
+     * @param socket_port_t Port
+     * @return Status
+     */
+    Status Server::set_port(const socket_port_t ar_port) noexcept
+    {
+        // IS VALID PORT ?
+        if( !is_valid_port(ar_port) )
+            return Status::err(domain_t::socket, status::to_underlying(socket_code_t::port_not_valid));
+
+        // PORT ALREADY IN USE ?
+        {
+            std::scoped_lock tm_lock(this->m_mtx);
+            
+            if( s_used_ports.count(ar_port) )
+            {
+                this->m_status.add(_FLAG_PORT_ALREADY_IN_USE);
+                return Status::err(domain_t::server, status::to_underlying(server_code_t::server_port_already_in_use));
+            }
+        }
+
+        // SET THE PORT
+        Status tm_status = Socket::set_port(ar_port);
+        if( !tm_status.is_ok() )
+            return tm_status;
+
+        // ADD PORT TO LIST
+        {
+            std::scoped_lock tm_lock(this->m_mtx);
+            s_used_ports.emplace(this->get_port());
+            this->m_status.unset(_FLAG_PORT_ALREADY_IN_USE);
+        }
+
+        return Status::ok(domain_t::server, status::to_underlying(server_code_t::server_port_changed));
+    }
+
+    /**
      * @brief Set Handler
      * 
      * Sunucu istemciye veri gönderimi yaparken
@@ -804,8 +991,7 @@ namespace netsocket::server
         ++(tm_client_it->second.m_user.m_try_passwd);
 
         // LOG THE WRONG PASSWORD ATTEMPT
-        if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-            this->get_logger().write(level_t::Warn, tm_ip + " sent wrong password attempt #" + std::to_string(tm_client_it->second.m_user.m_try_passwd));
+        DEBUG_ONLY(this->get_logger().write(level_t::Warn, tm_ip + " sent wrong password attempt #" + std::to_string(tm_client_it->second.m_user.m_try_passwd)));
 
         // PASSWORD VARIABLE TYPE
         using pwd_t = decltype(tm_client_it->second.m_user.m_try_passwd);
@@ -853,13 +1039,22 @@ namespace netsocket::server
      * durdurulana dek çalışmaya devam eder ve istemciler ile
      * bağlantıyı sağlar. Hata oluşması ya da durdurma emri
      * sonrası çalışmayı sonlandırır
+     * 
+     * @return Status
      */
-    void Server::run() noexcept
+    Status Server::run() noexcept
     {
         // HAS ERROR
         if( this->m_status.has(_FLAG_SERVER_ERR) ) {
-            this->get_logger().write(level_t::Err, "Server Cannot Run Until Error Fixed", GET_SOURCE);
-            return;
+            this->get_logger().write(level_t::Err, "Server Cannot Run Until Error Fixed");
+            return Status::err(domain_t::server, status::to_underlying(server_code_t::has_error));
+        }
+
+        // PORT ALREADY IN USE
+        if( this->m_status.has(_FLAG_PORT_ALREADY_IN_USE) )
+        {
+            this->get_logger().write(level_t::Err, "Server Port (" + std::to_string(this->get_port()) + ") Already In Use");
+            return Status::err(domain_t::server, status::to_underlying(server_code_t::server_port_already_in_use));
         }
 
         // SERVER SOCKET
@@ -867,135 +1062,25 @@ namespace netsocket::server
 
         // NOT VALID SOCKET
         if( !Socket::is_valid_socket(tm_server) ) { 
-            this->get_logger().write(level_t::Err, "Server Socket Is Not Valid", GET_SOURCE);
-            return;
+            this->get_logger().write(level_t::Err, "Server Socket Is Not Valid");
+            return Status::err(domain_t::server, status::to_underlying(socket_code_t::socket_not_valid));
         }
 
         // SET RUNNING
         this->m_running.store(true, std::memory_order_relaxed);
-            
-        // IP
-        std::string tm_ip;
-        tm_ip.reserve(128);
 
-        // RUN
-        while( this->is_running() )
-        {
-            // CLIENT SOCKET
-            socket_t tm_cli_accpt = ss_inv_socket;
-
-            // ACCEPT
-            if( !this->do_accept(tm_cli_accpt).is_ok() )
-                continue;
-
-            // CLIENT IP
-            tm_ip.clear();
-            tm_ip = Socket::get_ip(tm_cli_accpt);
-
-            // SOCKET VERSION HASH VERIFY
-            Status tm_handshake = Socket::handshake_recv_verify(tm_cli_accpt, false);
-            if( !tm_handshake.is_ok() ) {
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Warn, tm_ip + " version hash didn't match | code: " + std::to_string(tm_handshake.get_code()), GET_SOURCE);
-
-                tm_handshake = Socket::handshake_send_verify(tm_cli_accpt);
-                if( !tm_handshake.is_ok() ) {
-                    if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                        this->get_logger().write(level_t::Warn, tm_ip + " recv version hash sent for warning | code: " + std::to_string(tm_handshake.get_code()), GET_SOURCE);
-                }
-
-                continue;
-            }
-
-            // SOCKET VERSION HASH SEND VERIFY
-            tm_handshake = Socket::handshake_send_verify(tm_cli_accpt);
-            if( !tm_handshake.is_ok() ) {
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Warn, tm_ip + " version hash sent for warning | code: " + std::to_string(tm_handshake.get_code()), GET_SOURCE);
-
-                continue;
-            }
-
-            if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                this->get_logger().write(level_t::Succ, tm_ip + " Handshake Verified", GET_SOURCE);
-
-            // BANNED OR ALLOWED ?
-            Status tm_allow = this->get_policy().can_allow(tm_ip);
-            if( !tm_allow.is_ok() )
-            {
-                switch(tm_allow.get_code())
-                {
-                    case status::to_underlying(policy::policy_e::not_allow_ipaddr_already_banned):
-                        if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                            this->get_logger().write(level_t::Succ, tm_ip + " ip address banned", GET_SOURCE);
-                        break;
-
-                    case status::to_underlying(policy::policy_e::not_allow_ipaddr_not_in_list):
-                        if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                            this->get_logger().write(level_t::Succ, tm_ip + " ip address not in the allowed ips", GET_SOURCE);
-                        break;
-                }
-
-                Socket::close_socket(tm_cli_accpt);
-                continue;
-            }
-
-            // SAME IP
-            size_t tm_count_same_ip = 0;
-            for(const auto& [sock, ctx] : this->m_clients)
-            {
-                if(ctx.m_ip == tm_ip)
-                    ++tm_count_same_ip;
-            }
-
-            if( this->m_clients.size() >= this->get_policy().get_max_connection() )
-            {
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Warn, "Over total connection limit", GET_SOURCE);
-
-                Socket::close_socket(tm_cli_accpt);
-                continue;
-            }
-            else if( tm_count_same_ip >= this->get_policy().get_max_same_ip() )
-            {
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Warn, "Over total same ip limit", GET_SOURCE);
-
-                Socket::close_socket(tm_cli_accpt);
-                continue;
-            }
-
-            this->m_clients.emplace(tm_cli_accpt, SocketCtx{ UserPacket{}, tm_ip });
-
-            if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-            this->get_logger().write(level_t::Info, tm_ip + " added client list", GET_SOURCE);
-
-            this->m_tpool.enqueue([&, tm_cli_accpt, tm_ip]{
-                auto tm_it = this->m_clients.find(tm_cli_accpt);
-                if( tm_it == this->m_clients.end() )
-                    return;
-
-                SocketCtx& tm_client = tm_it->second;
-                tm_client.m_user.m_same_user_count = tm_count_same_ip;
-
-                this->client_worker(tm_cli_accpt, tm_ip, tm_client);
-                Socket::close_socket(tm_cli_accpt);
-
-                if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                {
-                    this->get_logger().write(
-                        level_t::Warn,
-                        "Socket closed | " + tm_client.m_ip + '_' + std::to_string(tm_client.m_user.m_same_user_count),
-                        GET_SOURCE
-                    );
-                }
-
-                this->m_clients.erase(tm_cli_accpt);
+        // SERVER RUNNER
+        try {
+            this->m_worker = std::thread([this]{
+                this->server_runner();
             });
+        } catch (...) {
+            this->m_running.store(false, std::memory_order_relaxed);
+            return Status::err(domain_t::server, status::to_underlying(server_code_t::server_run_thread_fail));
         }
 
         // RUNNED
-        this->get_logger().write(level_t::Succ, "Server Started To Run", GET_SOURCE);
+        return Status::ok(domain_t::server, status::to_underlying(server_code_t::server_started_to_run));
     }
 
     /**
@@ -1034,6 +1119,7 @@ namespace netsocket::server
     void Server::print() noexcept
     {
         this->get_logger().write("========== SERVER ==========");
+        this->get_logger().write(std::string("Build: ").append(Build::c_str()));
         this->get_logger().write(std::string("Socket: ").append(this->is_running() ? "Running" : "Stopped"));
         this->get_logger().write(std::string("Port: ").append(std::to_string(this->get_port())));
         this->get_logger().write(std::string("Ip Version: ").append(this->get_ipv() == ipv_t::ipv6 ? "v6" : "v4"));
@@ -1052,7 +1138,7 @@ namespace netsocket::server
      */
     void Server::crashed() noexcept
     {
-        Socket::crashed();
         this->stop();
+        Socket::crashed();
     }
 }
