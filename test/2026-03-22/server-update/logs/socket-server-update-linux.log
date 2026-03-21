@@ -1,0 +1,234 @@
+[2026-03-22 00:43:42:331] ========== SERVER ==========
+[2026-03-22 00:43:42:331] Socket: Stopped
+[2026-03-22 00:43:42:331] Port: 2026
+[2026-03-22 00:43:42:331] Ip Version: v6
+[2026-03-22 00:43:42:331] Total Client: 0
+[2026-03-22 00:43:42:331] Max Connection Limit: 4
+[2026-03-22 00:43:42:331] Max Same Ip Limit: 3
+[2026-03-22 00:43:42:331] Require Password: Yes
+[2026-03-22 00:43:42:331] ============================
+[Pass] [2026-03-22 00:43:43:800|server.hpp:server_runner:584] ::1 Handshake Verified
+[Info] [2026-03-22 00:43:43:800|server.hpp:server_runner:629] ::1 added client list
+[Warn] [2026-03-22 00:43:43:801] received from ::1
+[Server|Recv] [2026-03-22 00:43:43:801] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:43:801] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:43:801] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:43:801] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:43:801|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:44:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:44:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:44:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:44:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:44:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:44:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:45:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:45:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:45:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:45:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:45:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:45:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:46:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:46:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:46:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:46:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:46:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:46:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:47:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:47:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:47:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:47:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:47:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:47:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:48:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:48:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:48:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:48:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:48:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:48:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:49:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:49:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:49:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:49:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:49:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:49:800|server.hpp:client_worker:737] sent to ::1
+[2026-03-22 00:43:50:331] ========== SERVER ==========
+[2026-03-22 00:43:50:331] Socket: Running
+[2026-03-22 00:43:50:331] Port: 2026
+[2026-03-22 00:43:50:331] Ip Version: v6
+[2026-03-22 00:43:50:331] Total Client: 1
+[2026-03-22 00:43:50:331] Max Connection Limit: 4
+[2026-03-22 00:43:50:331] Max Same Ip Limit: 3
+[2026-03-22 00:43:50:331] Require Password: Yes
+[2026-03-22 00:43:50:331] ============================
+[Warn] [2026-03-22 00:43:50:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:50:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:50:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:50:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:50:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:50:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:51:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:51:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:51:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:51:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:51:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:51:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:52:800] received from ::1
+[Server|Recv] [2026-03-22 00:43:52:800] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:43:52:800] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:43:52:800] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:43:52:800] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:43:52:800|server.hpp:client_worker:737] sent to ::1
+[Warn] [2026-03-22 00:43:53:800] data couldn't receive from ::1 | code: 15
+[Warn] [2026-03-22 00:43:53:801|server.hpp:operator():642] Socket closed | ::1_0
+[2026-03-22 00:44:31:856] ========== SERVER ==========
+[2026-03-22 00:44:31:856] Socket: Stopped
+[2026-03-22 00:44:31:856] Port: 2026
+[2026-03-22 00:44:31:856] Ip Version: v6
+[2026-03-22 00:44:31:856] Total Client: 0
+[2026-03-22 00:44:31:856] Max Connection Limit: 4
+[2026-03-22 00:44:31:856] Max Same Ip Limit: 3
+[2026-03-22 00:44:31:856] Require Password: Yes
+[2026-03-22 00:44:31:856] ============================
+[2026-03-22 00:44:39:857] ========== SERVER ==========
+[2026-03-22 00:44:39:857] Socket: Running
+[2026-03-22 00:44:39:857] Port: 2026
+[2026-03-22 00:44:39:857] Ip Version: v6
+[2026-03-22 00:44:39:857] Total Client: 1
+[2026-03-22 00:44:39:857] Max Connection Limit: 4
+[2026-03-22 00:44:39:857] Max Same Ip Limit: 3
+[2026-03-22 00:44:39:857] Require Password: Yes
+[2026-03-22 00:44:39:857] ============================
+[2026-03-22 00:55:08:762] ========== SERVER ==========
+[2026-03-22 00:55:08:762] Build: Release
+[2026-03-22 00:55:08:762] Socket: Stopped
+[2026-03-22 00:55:08:762] Port: 2026
+[2026-03-22 00:55:08:762] Ip Version: v6
+[2026-03-22 00:55:08:762] Total Client: 0
+[2026-03-22 00:55:08:762] Max Connection Limit: 4
+[2026-03-22 00:55:08:762] Max Same Ip Limit: 3
+[2026-03-22 00:55:08:762] Require Password: Yes
+[2026-03-22 00:55:08:762] ============================
+[2026-03-22 00:55:16:762] ========== SERVER ==========
+[2026-03-22 00:55:16:762] Build: Release
+[2026-03-22 00:55:16:762] Socket: Running
+[2026-03-22 00:55:16:762] Port: 2026
+[2026-03-22 00:55:16:762] Ip Version: v6
+[2026-03-22 00:55:16:762] Total Client: 1
+[2026-03-22 00:55:16:762] Max Connection Limit: 4
+[2026-03-22 00:55:16:762] Max Same Ip Limit: 3
+[2026-03-22 00:55:16:762] Require Password: Yes
+[2026-03-22 00:55:16:762] ============================
+[2026-03-22 00:55:49:386] ========== SERVER ==========
+[2026-03-22 00:55:49:386] Build: Debug
+[2026-03-22 00:55:49:386] Socket: Stopped
+[2026-03-22 00:55:49:386] Port: 2026
+[2026-03-22 00:55:49:386] Ip Version: v4
+[2026-03-22 00:55:49:386] Total Client: 0
+[2026-03-22 00:55:49:386] Max Connection Limit: 4
+[2026-03-22 00:55:49:386] Max Same Ip Limit: 3
+[2026-03-22 00:55:49:386] Require Password: Yes
+[2026-03-22 00:55:49:386] ============================
+[Pass] [2026-03-22 00:55:50:943|server.hpp:server_runner:584] 192.168.1.108 Handshake Verified
+[Pass] [2026-03-22 00:55:50:943|server.hpp:server_runner:593] 192.168.1.108 ip banned
+[Pass] [2026-03-22 00:55:51:654|server.hpp:server_runner:584] 192.168.1.108 Handshake Verified
+[Pass] [2026-03-22 00:55:51:654|server.hpp:server_runner:593] 192.168.1.108 ip banned
+[Pass] [2026-03-22 00:55:52:183|server.hpp:server_runner:584] 192.168.1.108 Handshake Verified
+[Pass] [2026-03-22 00:55:52:183|server.hpp:server_runner:593] 192.168.1.108 ip banned
+[Pass] [2026-03-22 00:55:52:769|server.hpp:server_runner:584] 192.168.1.108 Handshake Verified
+[Info] [2026-03-22 00:55:52:769|server.hpp:server_runner:629] 192.168.1.108 added client list
+[Warn] [2026-03-22 00:55:52:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:52:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:52:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:52:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:52:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:52:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:55:53:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:53:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:53:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:53:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:53:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:53:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:55:54:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:54:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:54:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:54:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:54:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:54:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:55:55:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:55:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:55:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:55:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:55:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:55:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:55:56:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:56:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:56:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:56:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:56:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:56:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[2026-03-22 00:55:57:386] ========== SERVER ==========
+[2026-03-22 00:55:57:386] Build: Debug
+[2026-03-22 00:55:57:386] Socket: Running
+[2026-03-22 00:55:57:386] Port: 2026
+[2026-03-22 00:55:57:386] Ip Version: v4
+[2026-03-22 00:55:57:386] Total Client: 1
+[2026-03-22 00:55:57:386] Max Connection Limit: 4
+[2026-03-22 00:55:57:386] Max Same Ip Limit: 3
+[2026-03-22 00:55:57:386] Require Password: Yes
+[2026-03-22 00:55:57:386] ============================
+[Warn] [2026-03-22 00:55:57:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:57:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:57:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:57:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:57:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:57:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:55:58:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:58:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:58:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:58:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:58:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:58:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:55:59:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:55:59:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:55:59:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:55:59:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:55:59:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:55:59:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:56:00:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:56:00:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:56:00:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:56:00:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:56:00:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:56:00:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:56:01:769] received from 192.168.1.108
+[Server|Recv] [2026-03-22 00:56:01:769] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 00:56:01:769] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 00:56:01:769] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 00:56:01:769] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 00:56:01:769|server.hpp:client_worker:737] sent to 192.168.1.108
+[Warn] [2026-03-22 00:56:02:769] data couldn't receive from 192.168.1.108 | code: 15
+[Warn] [2026-03-22 00:56:02:769|server.hpp:operator():642] Socket closed | 192.168.1.108_0
+[2026-03-22 00:56:36:951] ========== SERVER ==========
+[2026-03-22 00:56:36:951] Build: Debug
+[2026-03-22 00:56:36:951] Socket: Stopped
+[2026-03-22 00:56:36:951] Port: 2026
+[2026-03-22 00:56:36:951] Ip Version: v4
+[2026-03-22 00:56:36:951] Total Client: 0
+[2026-03-22 00:56:36:951] Max Connection Limit: 4
+[2026-03-22 00:56:36:951] Max Same Ip Limit: 3
+[2026-03-22 00:56:36:951] Require Password: Yes
+[2026-03-22 00:56:36:951] ============================
+[Warn] [2026-03-22 00:56:38:336|server.hpp:server_runner:566] 192.168.1.108 version hash didn't match | code: 15
+[Warn] [2026-03-22 00:56:39:993|server.hpp:server_runner:566] 192.168.1.108 version hash didn't match | code: 15
+[Warn] [2026-03-22 00:56:40:928|server.hpp:server_runner:566] 192.168.1.108 version hash didn't match | code: 15
+[Warn] [2026-03-22 00:56:41:784|server.hpp:server_runner:566] 192.168.1.108 version hash didn't match | code: 15
+[2026-03-22 00:56:44:951] ========== SERVER ==========
+[2026-03-22 00:56:44:951] Build: Debug
+[2026-03-22 00:56:44:951] Socket: Running
+[2026-03-22 00:56:44:951] Port: 2026
+[2026-03-22 00:56:44:951] Ip Version: v4
+[2026-03-22 00:56:44:951] Total Client: 0
+[2026-03-22 00:56:44:951] Max Connection Limit: 4
+[2026-03-22 00:56:44:951] Max Same Ip Limit: 3
+[2026-03-22 00:56:44:951] Require Password: Yes
+[2026-03-22 00:56:44:951] ============================
