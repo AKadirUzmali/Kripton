@@ -214,7 +214,7 @@ namespace netsocket
     // Flag
     static constexpr flag::flag_t _FLAG_SOCKET_NULL = { 0 << 0 };
     static constexpr flag::flag_t _FLAG_SOCKET_LOGGER = { 1 << 0 };
-    static constexpr flag::flag_t _FLAG_SOCKET_LOG_TITLE = { 1 << 1 };
+    static constexpr flag::flag_t _FLAG_SOCKET_DEBUG = { 1 << 1 };
     static constexpr flag::flag_t _FLAG_SOCKET_IPV6 = { 1 << 2 };
 
     // Version Hash
@@ -227,7 +227,7 @@ namespace netsocket
         netpacket::_SIZE_OVER_SOCKET
     ) % (uint32_t)~0;
 
-    static constexpr hash::vch::Vch<ss_hash_hex_size> ss_ver_hash("2026-03-07|socket|+cipher", ss_hash_code);
+    static constexpr hash::vch::Vch<ss_hash_hex_size> ss_ver_hash("2026-03-21|server-update|2358", ss_hash_code);
 
     // WSA SOCKET
     #if __OS_WINDOWS__
@@ -325,8 +325,8 @@ namespace netsocket
             virtual inline ipv_t get_ipv() const noexcept;
             virtual inline wait_time_t get_timeout() const noexcept;
 
-            virtual void run() noexcept { return; };
-            virtual Status stop() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_stop)); };
+            virtual Status run() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_run)); }
+            virtual Status stop() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_stop)); }
 
             virtual void print() noexcept;
 
