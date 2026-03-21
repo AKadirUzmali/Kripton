@@ -23,3 +23,28 @@
 [Info] [2026-03-22 00:56:36:951|server-update.cpp:main:138] Server Started To Run
 [Pass] [2026-03-22 00:56:36:951|server-update.cpp:main:144] 192.168.1.108 banned from server
 [Pass] [2026-03-22 00:56:39:951|server-update.cpp:main:150] 192.168.1.108 ban removed after 3 second
+[Pass] [2026-03-22 01:20:08:943|server-update.cpp:main:118] New Max Connection Limit is: 4
+[Pass] [2026-03-22 01:20:08:943|server-update.cpp:main:124] New Max Same Ip Limit is: 3
+[Info] [2026-03-22 01:20:08:943|server-update.cpp:main:138] Server Started To Run
+[Pass] [2026-03-22 01:20:08:944|server-update.cpp:main:144] 192.168.1.108 banned from server
+[Pass] [2026-03-22 01:20:11:944|server-update.cpp:main:150] 192.168.1.108 ban removed after 3 second
+[Pass] [2026-03-22 01:24:22:990|server-update.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-22 01:24:22:990|server-update.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-22 01:24:22:990|server-update.cpp:main:140] Server Started To Run
+[Pass] [2026-03-22 01:24:22:990|server-update.cpp:main:146] 192.168.1.108 banned from server
+[Pass] [2026-03-22 01:24:25:990|server-update.cpp:main:152] 192.168.1.108 ban removed after 3 second
+[Pass] [2026-03-22 01:25:07:746|server-update.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-22 01:25:07:746|server-update.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-22 01:25:07:746|server-update.cpp:main:140] Server Started To Run
+[Pass] [2026-03-22 01:25:07:746|server-update.cpp:main:146] 192.168.1.108 banned from server
+[Pass] [2026-03-22 01:25:10:746|server-update.cpp:main:152] 192.168.1.108 ban removed after 3 second
+[Pass] [2026-03-22 01:26:35:718|server-update.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-22 01:26:35:718|server-update.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-22 01:26:35:718|server-update.cpp:main:140] Server Started To Run
+[Pass] [2026-03-22 01:26:35:718|server-update.cpp:main:146] 192.168.1.108 banned from server
+[Pass] [2026-03-22 01:26:38:718|server-update.cpp:main:152] 192.168.1.108 ban removed after 3 second
+[Pass] [2026-03-22 01:27:23:832|server-update.cpp:main:120] New Max Connection Limit is: 4
+[Pass] [2026-03-22 01:27:23:833|server-update.cpp:main:126] New Max Same Ip Limit is: 3
+[Info] [2026-03-22 01:27:23:833|server-update.cpp:main:140] Server Started To Run
+[Pass] [2026-03-22 01:27:23:833|server-update.cpp:main:146] 192.168.1.108 banned from server
+[Pass] [2026-03-22 01:27:26:833|server-update.cpp:main:152] 192.168.1.108 ban removed after 3 second
