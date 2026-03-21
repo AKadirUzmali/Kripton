@@ -35,12 +35,18 @@ namespace core::buildtype
         None
     };
 
-    // Function Define
-    [[maybe_unused]] [[nodiscard]] inline constexpr std::uint8_t get_valid_index(const std::uint8_t ar_index) noexcept;
-    [[maybe_unused]] [[nodiscard]] inline constexpr std::uint8_t to_index(const build_t ar_type) noexcept;
-
-    [[maybe_unused]] [[nodiscard]] inline constexpr const char* to_string(const build_t ar_type) noexcept;
-    [[maybe_unused]] [[nodiscard]] inline constexpr const char* to_string(const std::uint8_t ar_index) noexcept;
+    // Build Type
+    #if defined __BUILD_DEV__
+        static constexpr const build_t __build_type__(build_t::Debug);
+    #elif defined __BUILD_DEBUG__
+        static constexpr const build_t __build_type__(build_t::Debug);
+    #elif defined __BUILD_ALPHA__
+        static constexpr const build_t __build_type__(build_t::Alpha);
+    #elif defined __BUILD_BETA__
+        static constexpr const build_t __build_type__(build_t::Beta);
+    #else
+        static constexpr const build_t __build_type__(build_t::Release);
+    #endif
 
     // Struct
     struct Build
@@ -52,35 +58,15 @@ namespace core::buildtype
             static constexpr std::uint8_t s_size_names = sizeof(s_names) / sizeof(s_names[0]);
 
         private:
-            build_t m_buildtype;
+            static constexpr inline build_t s_buildtype = __build_type__;
 
         private:
             [[maybe_unused]] [[nodiscard]] static inline constexpr std::uint8_t to_index(const build_t ar_buildtype) noexcept;
             [[maybe_unused]] [[nodiscard]] static inline constexpr std::uint8_t get_valid_index(const std::uint8_t ar_idx) noexcept;
 
         public:
-            constexpr explicit Build(const build_t ar_buildtype) noexcept;
-
-            constexpr const char* c_str() const noexcept;
+            static constexpr const char* c_str() noexcept;
     };
-
-    /**
-     * @brief Build
-     * 
-     * Verilmiş olan tür argümanına göre türü ayarlanır
-     * ve kontrolden geçirilmiş tür numarası ile uygun olan
-     * tür isimi verilir
-     * 
-     * @note Thread açısından güvensiz fakat amaç 1 defa yap olduğu için bunu sorun etmiyoruz
-     * 
-     * @param build_t Build Type
-     */
-    [[maybe_unused]] [[nodiscard]]
-    constexpr Build::Build(
-        const build_t ar_buildtype
-    ) noexcept
-    : m_buildtype(ar_buildtype)
-    {}
 
     /**
      * @brief To Index
@@ -96,9 +82,7 @@ namespace core::buildtype
      * @return uint8_t
      */
     [[maybe_unused]] [[nodiscard]]
-    constexpr std::uint8_t Build::to_index(
-        const build_t ar_buildtype
-    ) noexcept
+    constexpr std::uint8_t Build::to_index(const build_t ar_buildtype) noexcept
     {
         return static_cast<std::uint8_t>(ar_buildtype);
     }
@@ -112,9 +96,8 @@ namespace core::buildtype
      * @param uint8_t Index
      * @return uint8_t
      */
-    constexpr std::uint8_t Build::get_valid_index(
-        const std::uint8_t ar_idx
-    ) noexcept {
+    constexpr std::uint8_t Build::get_valid_index(const std::uint8_t ar_idx) noexcept
+    {
         return (ar_idx < Build::s_size_names) ? ar_idx : (Build::s_size_names - 1);
     }
 
@@ -126,13 +109,8 @@ namespace core::buildtype
      * 
      * @return const char*
      */
-    constexpr const char* Build::c_str() const noexcept
+    constexpr const char* Build::c_str() noexcept
     {
-        return Build::s_names[Build::get_valid_index(Build::to_index(this->m_buildtype))];
+        return Build::s_names[Build::get_valid_index(Build::to_index(s_buildtype))];
     }
-
-    // Define
-    #ifndef __BUILD_TYPE__
-        #define __BUILD_TYPE__ build_t::None
-    #endif
 }
