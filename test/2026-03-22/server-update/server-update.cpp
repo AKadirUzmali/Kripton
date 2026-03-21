@@ -101,6 +101,8 @@ int main(int argc, char* argv[])
         true,
         2026,
         vv_iptype,
+        policy::_DEF_CONNECTION,
+        policy::_DEF_SAME_IP_COUNT,
         _FLAG_SOCKET_LOGGER
     );
 

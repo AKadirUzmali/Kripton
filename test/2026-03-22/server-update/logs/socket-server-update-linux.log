@@ -232,3 +232,363 @@
 [2026-03-22 00:56:44:951] Max Same Ip Limit: 3
 [2026-03-22 00:56:44:951] Require Password: Yes
 [2026-03-22 00:56:44:951] ============================
+[2026-03-22 01:20:08:943] ========== SERVER ==========
+[2026-03-22 01:20:08:943] Build: Debug
+[2026-03-22 01:20:08:943] Socket: Stopped
+[2026-03-22 01:20:08:943] Port: 2026
+[2026-03-22 01:20:08:943] Ip Version: v6
+[2026-03-22 01:20:08:943] Total Client: 0
+[2026-03-22 01:20:08:943] Max Connection Limit: 4
+[2026-03-22 01:20:08:943] Max Same Ip Limit: 3
+[2026-03-22 01:20:08:943] Require Password: Yes
+[2026-03-22 01:20:08:943] ============================
+[Pass] [2026-03-22 01:20:10:592|server.hpp:server_runner:584] ::1 Handshake Verified
+[Info] [2026-03-22 01:20:10:592|server.hpp:server_runner:629] ::1 added client list
+[Warn] [2026-03-22 01:20:10:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:10:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:10:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:10:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:10:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:10:593|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:11:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:11:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:11:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:11:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:11:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:11:592|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:12:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:12:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:12:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:12:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:12:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:12:592|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:13:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:13:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:13:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:13:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:13:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:13:593|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:14:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:14:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:14:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:14:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:14:593] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:14:593|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:15:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:15:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:15:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:15:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:15:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:15:592|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:16:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:16:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:16:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:16:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:16:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:16:593|server.hpp:client_worker:743] sent to ::1
+[2026-03-22 01:20:16:944] ========== SERVER ==========
+[2026-03-22 01:20:16:944] Build: Debug
+[2026-03-22 01:20:16:944] Socket: Running
+[2026-03-22 01:20:16:944] Port: 2026
+[2026-03-22 01:20:16:944] Ip Version: v6
+[2026-03-22 01:20:16:944] Total Client: 1
+[2026-03-22 01:20:16:944] Max Connection Limit: 4
+[2026-03-22 01:20:16:944] Max Same Ip Limit: 3
+[2026-03-22 01:20:16:944] Require Password: Yes
+[2026-03-22 01:20:16:944] ============================
+[Warn] [2026-03-22 01:20:17:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:17:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:17:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:17:593] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:17:593] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:17:593|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:18:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:18:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:18:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:18:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:18:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:18:593|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:19:592] received from ::1
+[Server|Recv] [2026-03-22 01:20:19:592] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:20:19:592] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:20:19:592] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:20:19:592] Server|Recv : Message: Hello Server, It's Client! 😀
+[Warn] [2026-03-22 01:20:19:593|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:20:20:593] data couldn't receive from ::1 | code: 15
+[Warn] [2026-03-22 01:20:20:593|server.hpp:operator():645] Socket closed | ::1_0
+[2026-03-22 01:24:22:990] ========== SERVER ==========
+[2026-03-22 01:24:22:990] Build: Debug
+[2026-03-22 01:24:22:990] Socket: Stopped
+[2026-03-22 01:24:22:990] Port: 2026
+[2026-03-22 01:24:22:990] Ip Version: v6
+[2026-03-22 01:24:22:990] Total Client: 0
+[2026-03-22 01:24:22:990] Max Connection Limit: 4
+[2026-03-22 01:24:22:990] Max Same Ip Limit: 3
+[2026-03-22 01:24:22:990] Require Password: Yes
+[2026-03-22 01:24:22:990] ============================
+[Pass] [2026-03-22 01:24:24:428|server.hpp:server_runner:584] ::1 Handshake Verified
+[Info] [2026-03-22 01:24:24:428|server.hpp:server_runner:629] ::1 added client list
+[Info] [2026-03-22 01:24:24:428] ::1 Connected
+[Info] [2026-03-22 01:24:24:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:24:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:24:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:24:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:24:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:24:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:24:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:24:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:25:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:25:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:25:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:25:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:25:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:25:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:25:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:25:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:26:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:26:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:26:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:26:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:26:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:26:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:26:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:26:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:27:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:27:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:27:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:27:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:27:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:27:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:27:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:27:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:28:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:28:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:28:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:28:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:28:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:28:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:28:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:28:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:29:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:29:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:29:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:29:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:29:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:29:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:29:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:29:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:30:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:30:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:30:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:30:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:30:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:30:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:30:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:30:428|server.hpp:client_worker:743] sent to ::1
+[2026-03-22 01:24:30:990] ========== SERVER ==========
+[2026-03-22 01:24:30:990] Build: Debug
+[2026-03-22 01:24:30:990] Socket: Running
+[2026-03-22 01:24:30:990] Port: 2026
+[2026-03-22 01:24:30:990] Ip Version: v6
+[2026-03-22 01:24:30:990] Total Client: 1
+[2026-03-22 01:24:30:990] Max Connection Limit: 4
+[2026-03-22 01:24:30:990] Max Same Ip Limit: 3
+[2026-03-22 01:24:30:990] Require Password: Yes
+[2026-03-22 01:24:30:990] ============================
+[Info] [2026-03-22 01:24:31:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:31:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:31:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:31:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:31:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:31:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:31:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:31:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:32:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:32:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:32:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:32:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:32:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:32:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:32:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:32:428|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:24:33:428|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:24:33:428] received from ::1
+[Server|Recv] [2026-03-22 01:24:33:428] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:24:33:428] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:24:33:428] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:24:33:428] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:24:33:428|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:24:33:428|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:24:34:428] data couldn't receive from ::1 | code: 15
+[Warn] [2026-03-22 01:24:34:429|server.hpp:operator():645] Socket closed | ::1_0
+[Info] [2026-03-22 01:24:34:429] ::1 Disconnected
+[2026-03-22 01:25:07:746] ========== SERVER ==========
+[2026-03-22 01:25:07:746] Build: Release
+[2026-03-22 01:25:07:746] Socket: Stopped
+[2026-03-22 01:25:07:746] Port: 2026
+[2026-03-22 01:25:07:746] Ip Version: v6
+[2026-03-22 01:25:07:746] Total Client: 0
+[2026-03-22 01:25:07:746] Max Connection Limit: 4
+[2026-03-22 01:25:07:746] Max Same Ip Limit: 3
+[2026-03-22 01:25:07:746] Require Password: Yes
+[2026-03-22 01:25:07:746] ============================
+[Info] [2026-03-22 01:25:08:939] ::1 Connected
+[Info] [2026-03-22 01:25:08:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:08:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:09:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:09:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:10:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:10:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:11:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:11:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:12:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:12:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:13:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:13:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:14:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:14:939|socket.hpp:send:929] ::1 sent
+[2026-03-22 01:25:15:746] ========== SERVER ==========
+[2026-03-22 01:25:15:746] Build: Release
+[2026-03-22 01:25:15:746] Socket: Running
+[2026-03-22 01:25:15:746] Port: 2026
+[2026-03-22 01:25:15:746] Ip Version: v6
+[2026-03-22 01:25:15:746] Total Client: 1
+[2026-03-22 01:25:15:746] Max Connection Limit: 4
+[2026-03-22 01:25:15:746] Max Same Ip Limit: 3
+[2026-03-22 01:25:15:746] Require Password: Yes
+[2026-03-22 01:25:15:746] ============================
+[Info] [2026-03-22 01:25:15:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:15:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:16:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:16:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:17:939|socket.hpp:recv:1018] ::1 recv
+[Info] [2026-03-22 01:25:17:939|socket.hpp:send:929] ::1 sent
+[Info] [2026-03-22 01:25:18:939] ::1 Disconnected
+[2026-03-22 01:26:35:718] ========== SERVER ==========
+[2026-03-22 01:26:35:718] Build: Release
+[2026-03-22 01:26:35:718] Socket: Stopped
+[2026-03-22 01:26:35:718] Port: 2026
+[2026-03-22 01:26:35:718] Ip Version: v6
+[2026-03-22 01:26:35:718] Total Client: 0
+[2026-03-22 01:26:35:718] Max Connection Limit: 4
+[2026-03-22 01:26:35:718] Max Same Ip Limit: 3
+[2026-03-22 01:26:35:718] Require Password: Yes
+[2026-03-22 01:26:35:718] ============================
+[Info] [2026-03-22 01:26:36:839] ::1 Connected
+[2026-03-22 01:26:43:718] ========== SERVER ==========
+[2026-03-22 01:26:43:718] Build: Release
+[2026-03-22 01:26:43:718] Socket: Running
+[2026-03-22 01:26:43:718] Port: 2026
+[2026-03-22 01:26:43:718] Ip Version: v6
+[2026-03-22 01:26:43:718] Total Client: 1
+[2026-03-22 01:26:43:718] Max Connection Limit: 4
+[2026-03-22 01:26:43:718] Max Same Ip Limit: 3
+[2026-03-22 01:26:43:718] Require Password: Yes
+[2026-03-22 01:26:43:718] ============================
+[Info] [2026-03-22 01:26:46:839] ::1 Disconnected
+[2026-03-22 01:27:23:833] ========== SERVER ==========
+[2026-03-22 01:27:23:833] Build: Debug
+[2026-03-22 01:27:23:833] Socket: Stopped
+[2026-03-22 01:27:23:833] Port: 2026
+[2026-03-22 01:27:23:833] Ip Version: v6
+[2026-03-22 01:27:23:833] Total Client: 0
+[2026-03-22 01:27:23:833] Max Connection Limit: 4
+[2026-03-22 01:27:23:833] Max Same Ip Limit: 3
+[2026-03-22 01:27:23:833] Require Password: Yes
+[2026-03-22 01:27:23:833] ============================
+[Pass] [2026-03-22 01:27:24:815|server.hpp:server_runner:584] ::1 Handshake Verified
+[Info] [2026-03-22 01:27:24:815|server.hpp:server_runner:629] ::1 added client list
+[Info] [2026-03-22 01:27:24:815] ::1 Connected
+[Info] [2026-03-22 01:27:24:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:24:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:24:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:24:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:24:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:24:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:24:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:24:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:25:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:25:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:25:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:25:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:25:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:25:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:25:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:25:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:26:815|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:26:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:26:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:26:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:26:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:26:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:26:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:26:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:27:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:27:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:27:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:27:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:27:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:27:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:27:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:27:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:28:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:28:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:28:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:28:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:28:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:28:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:28:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:28:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:29:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:29:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:29:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:29:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:29:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:29:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:29:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:29:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:30:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:30:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:30:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:30:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:30:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:30:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:30:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:30:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:31:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:31:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:31:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:31:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:31:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:31:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:31:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:31:816|server.hpp:client_worker:743] sent to ::1
+[2026-03-22 01:27:31:833] ========== SERVER ==========
+[2026-03-22 01:27:31:833] Build: Debug
+[2026-03-22 01:27:31:833] Socket: Running
+[2026-03-22 01:27:31:833] Port: 2026
+[2026-03-22 01:27:31:833] Ip Version: v6
+[2026-03-22 01:27:31:833] Total Client: 1
+[2026-03-22 01:27:31:833] Max Connection Limit: 4
+[2026-03-22 01:27:31:833] Max Same Ip Limit: 3
+[2026-03-22 01:27:31:833] Require Password: Yes
+[2026-03-22 01:27:31:833] ============================
+[Info] [2026-03-22 01:27:32:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:32:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:32:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:32:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:32:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:32:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:32:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:32:816|server.hpp:client_worker:743] sent to ::1
+[Info] [2026-03-22 01:27:33:816|socket.hpp:recv:1018] ::1 recv
+[Warn] [2026-03-22 01:27:33:816] received from ::1
+[Server|Recv] [2026-03-22 01:27:33:816] Server|Recv : Id: 6
+[Server|Recv] [2026-03-22 01:27:33:816] Server|Recv : Password: pwd@server!test
+[Server|Recv] [2026-03-22 01:27:33:816] Server|Recv : Username: CLooper
+[Server|Recv] [2026-03-22 01:27:33:816] Server|Recv : Message: Hello Server, It's Client! 😀
+[Info] [2026-03-22 01:27:33:816|socket.hpp:send:929] ::1 sent
+[Warn] [2026-03-22 01:27:33:816|server.hpp:client_worker:743] sent to ::1
+[Warn] [2026-03-22 01:27:34:816] data couldn't receive from ::1 | code: 15
+[Warn] [2026-03-22 01:27:34:816|server.hpp:operator():645] Socket closed | ::1_0
+[Info] [2026-03-22 01:27:34:816] ::1 Disconnected

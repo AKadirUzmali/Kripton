@@ -924,10 +924,10 @@ namespace netsocket
         }
 
         // LOGGER
-        if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
+        DEBUG_ONLY(
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Info, tm_ip + " sent", GET_SOURCE);
-        }
+            this->m_logger.write(level_t::Info, tm_ip + " sent", GET_SOURCE)
+        );
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_sent));
     }
@@ -1013,10 +1013,10 @@ namespace netsocket
             return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::recv_message_empty));
 
         // LOGGER
-        if( this->m_flag & _FLAG_SOCKET_LOGGER ) {
+        DEBUG_ONLY(
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Info, tm_ip + " recv", GET_SOURCE);
-        }
+            this->m_logger.write(level_t::Info, tm_ip + " recv", GET_SOURCE)
+        );
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_recv));
     }
