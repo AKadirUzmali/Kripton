@@ -6,6 +6,7 @@
 - [Sistem Güvenliği](Security.md)
 - [Geliştirici](Developer.md)
 - [Derleme](Build.md)
+- [Kayıtlar](Logs.md)
 
 ---
 
