@@ -9447,3 +9447,357 @@
 [Debug] [2026-03-31 06:36:06:932|client.hpp:stop:960 sec-2] Thread Stopped
 [Debug] [2026-03-31 06:36:06:932|client.hpp:stop:950 sec-1] Waiting For Stop Thread
 [Debug] [2026-03-31 06:36:06:932|client.hpp:stop:960 sec-1] Thread Stopped
+[Debug] [2026-03-31 07:40:44:590|client.hpp:run:904 debian-1] Client Worker Started To Run: 60817408
+[Debug] [2026-03-31 07:40:44:591|client.hpp:run:904 debian-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:40:44:591] ::1 Connected
+[Debug] [2026-03-31 07:40:44:591|client.hpp:run:904 debian-3] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:40:44:591] ::1 Connected
+[Info] [2026-03-31 07:40:44:591] ::1 Connected
+[Info] [2026-03-31 07:40:44:591] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 07:40:44:591|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 07:40:44:591] Client Connected To Server, Ip/Port: ::1/5070
+[Debug] [2026-03-31 07:40:44:591|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Info] [2026-03-31 07:40:44:591] Client Connected To Server, Ip/Port: ::1/6060
+[Info] [2026-03-31 07:40:44:591|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:40:44:591|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:44:591|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:44:591|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:44:591|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Info] [2026-03-31 07:40:44:593|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:40:44:593|socket.hpp:send:1010 debian-2] ::1 Sent
+[Debug] [2026-03-31 07:40:44:593|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:44:593|socket.hpp:recv:1121 debian-2] ::1 Receive
+[Debug] [2026-03-31 07:40:44:593|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:44:593|client-fix.cpp:client_handler:271 debian-2] Password: wrong-password-test
+[Debug] [2026-03-31 07:40:44:593|client-fix.cpp:client_handler:272 debian-2] Username: debian-2
+[Debug] [2026-03-31 07:40:44:593|client-fix.cpp:client_handler:273 debian-2] Message: Hello Server, It's debian-2 ! 😀
+[Debug] [2026-03-31 07:40:45:591|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:45:591|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:45:591|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:45:591|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:45:592|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:45:592|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:45:592|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:45:593|socket.hpp:send:1010 debian-2] ::1 Sent
+[Debug] [2026-03-31 07:40:45:593|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:45:593|socket.hpp:recv:1121 debian-2] ::1 Receive
+[Debug] [2026-03-31 07:40:45:593|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:45:593|client-fix.cpp:client_handler:271 debian-2] Password: wrong-password-test
+[Debug] [2026-03-31 07:40:45:593|client-fix.cpp:client_handler:272 debian-2] Username: debian-2
+[Debug] [2026-03-31 07:40:45:593|client-fix.cpp:client_handler:273 debian-2] Message: Hello Server, It's debian-2 ! 😀
+[Debug] [2026-03-31 07:40:45:678|client.hpp:run:904 gnu-1] Client Worker Started To Run: 60817408
+[Debug] [2026-03-31 07:40:45:678|client.hpp:run:904 gnu-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:40:45:678] ::1 Connected
+[Info] [2026-03-31 07:40:45:679] ::1 Connected
+[Info] [2026-03-31 07:40:45:679] ::1 Connected
+[Info] [2026-03-31 07:40:45:679] Client Connected To Server, Ip/Port: ::1/5070
+[Debug] [2026-03-31 07:40:45:679|client.hpp:run:904 gnu-3] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:40:45:679] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 07:40:45:679|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 07:40:45:679|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:40:45:679|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:45:679|socket.hpp:send:1010 gnu-2]  Sent
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:266] Data Couldn't Receive From ::1, Code: 35
+[Debug] [2026-03-31 07:40:45:679|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Info] [2026-03-31 07:40:45:679] Client Connected To Server, Ip/Port: ::1/6060
+[Info] [2026-03-31 07:40:45:679|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:40:45:679|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:45:679|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:45:679|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:45:679|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:46:592|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:46:592|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:46:592|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:46:592|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:46:592|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:46:594|socket.hpp:send:1010 debian-2] ::1 Sent
+[Debug] [2026-03-31 07:40:46:594|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:46:594|client-fix.cpp:client_handler:266] Data Couldn't Receive From ::1, Code: 35
+[Debug] [2026-03-31 07:40:46:594|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:40:46:679|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:46:679|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:46:679|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:46:679|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:46:679|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:47:592|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:47:593|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:47:593|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:47:593|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:47:593|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:47:679|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:47:680|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:47:680|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:47:680|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:47:680|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:48:593|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:48:593|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:48:593|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:48:593|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:48:593|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:48:593|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:48:593|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:48:593|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:48:593|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:48:594|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:48:594|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:48:594|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:48:594|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:48:594|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:48:680|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:48:680|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:48:680|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:48:680|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:48:680|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:48:681|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:48:681|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:49:594|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:49:594|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:49:594|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:49:594|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:49:594|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:49:681|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:49:681|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:49:681|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:49:681|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:49:681|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:50:594|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:50:594|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:50:594|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:50:594|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:50:594|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:50:594|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:50:594|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:50:595|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:50:595|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:50:595|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:50:595|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:50:595|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:50:595|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:50:595|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:50:681|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:50:681|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:50:681|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:50:681|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:50:681|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:51:595|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:51:595|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:51:595|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:51:595|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:51:595|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:51:682|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:51:682|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:51:682|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:51:682|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:51:682|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:51:682|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:51:682|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:51:682|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:51:682|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:51:684|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:51:684|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:51:684|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:51:684|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:51:684|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:52:595|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:52:595|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:52:595|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:52:595|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:52:595|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:52:595|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:52:595|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:52:595|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:52:595|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:52:596|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:52:596|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:52:596|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:52:596|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:52:596|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:52:682|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:52:682|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:52:682|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:52:682|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:52:682|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:52:682|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:52:682|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:52:684|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:52:684|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:52:684|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:52:684|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:52:685|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:52:685|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:52:685|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:53:596|socket.hpp:send:1010 debian-3] ::1 Sent
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:53:596|socket.hpp:recv:1121 debian-3] ::1 Receive
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:53:596|socket.hpp:send:1010 debian-1] ::1 Sent
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:271 debian-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:272 debian-3] Username: debian-3
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:273 debian-3] Message: Hello Server, It's debian-3 ! 😀
+[Debug] [2026-03-31 07:40:53:596|socket.hpp:recv:1121 debian-1] ::1 Receive
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:271 debian-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:272 debian-1] Username: debian-1
+[Debug] [2026-03-31 07:40:53:596|client-fix.cpp:client_handler:273 debian-1] Message: Hello Server, It's debian-1 ! 😀
+[Debug] [2026-03-31 07:40:53:683|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:53:683|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:53:683|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:53:683|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:53:683|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:53:683|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:53:683|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:53:685|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:53:685|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:53:685|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:53:685|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:53:685|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:53:685|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:53:685|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:54:596|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:40:54:596|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:40:54:683|socket.hpp:send:1010 gnu-1] ::1 Sent
+[Debug] [2026-03-31 07:40:54:683|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:54:683|socket.hpp:recv:1121 gnu-1] ::1 Receive
+[Debug] [2026-03-31 07:40:54:683|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:54:683|client-fix.cpp:client_handler:271 gnu-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:54:684|client-fix.cpp:client_handler:272 gnu-1] Username: gnu-1
+[Debug] [2026-03-31 07:40:54:684|client-fix.cpp:client_handler:273 gnu-1] Message: Hello Server, It's gnu-1 ! 😀
+[Debug] [2026-03-31 07:40:54:685|socket.hpp:send:1010 gnu-3] ::1 Sent
+[Debug] [2026-03-31 07:40:54:685|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 07:40:54:686|socket.hpp:recv:1121 gnu-3] ::1 Receive
+[Debug] [2026-03-31 07:40:54:686|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 07:40:54:686|client-fix.cpp:client_handler:271 gnu-3] Password: pwd@server!test
+[Debug] [2026-03-31 07:40:54:686|client-fix.cpp:client_handler:272 gnu-3] Username: gnu-3
+[Debug] [2026-03-31 07:40:54:686|client-fix.cpp:client_handler:273 gnu-3] Message: Hello Server, It's gnu-3 ! 😀
+[Debug] [2026-03-31 07:40:55:684|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:40:55:686|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:40:59:591|client.hpp:stop:950 debian-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:40:59:591|client.hpp:stop:960 debian-1] Thread Stopped
+[Debug] [2026-03-31 07:40:59:591|client.hpp:stop:950 debian-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:40:59:591|client.hpp:stop:960 debian-2] Thread Stopped
+[Debug] [2026-03-31 07:40:59:591|client.hpp:stop:950 debian-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:960 debian-3] Thread Stopped
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:950 debian-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:960 debian-3] Thread Stopped
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:950 debian-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:960 debian-2] Thread Stopped
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:950 debian-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:40:59:592|client.hpp:stop:960 debian-1] Thread Stopped
+[Debug] [2026-03-31 07:41:00:679|client.hpp:stop:950 gnu-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:41:00:679|client.hpp:stop:960 gnu-1] Thread Stopped
+[Debug] [2026-03-31 07:41:00:679|client.hpp:stop:950 gnu-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:41:00:679|client.hpp:stop:960 gnu-2] Thread Stopped
+[Debug] [2026-03-31 07:41:00:679|client.hpp:stop:950 gnu-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:960 gnu-3] Thread Stopped
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:950 gnu-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:960 gnu-3] Thread Stopped
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:950 gnu-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:960 gnu-2] Thread Stopped
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:950 gnu-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:41:00:680|client.hpp:stop:960 gnu-1] Thread Stopped

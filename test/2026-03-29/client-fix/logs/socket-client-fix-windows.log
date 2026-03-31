@@ -1,0 +1,212 @@
+[Debug] [2026-03-31 07:30:26:857|client.hpp:run:904 win-1] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:30:26:857] 2a00:1d34:85f:4000::2 Connected
+[Info] [2026-03-31 07:30:26:857] Client Connected To Server, Ip/Port: 2a00:1d34:85f:4000::2/5070
+[Info] [2026-03-31 07:30:26:858|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:30:26:858|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:26:858|client.hpp:run:904 win-2] Client Worker Started To Run: 60817408
+[Debug] [2026-03-31 07:30:26:858|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Info] [2026-03-31 07:30:26:858] 2a00:1d34:85f:4000::2 Connected
+[Info] [2026-03-31 07:30:26:858] Client Connected To Server, Ip/Port: 2a00:1d34:85f:4000::2/5070
+[Info] [2026-03-31 07:30:26:858|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:30:26:858|socket.hpp:send:1010 win-2] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:26:858|socket.hpp:recv:1121 win-2] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:271 win-2] Password: wrong-password-test
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:272 win-2] Username: win-2
+[Debug] [2026-03-31 07:30:26:858|client-fix.cpp:client_handler:273 win-2] Message: Hello Server, It's win-2 ! 😀
+[Debug] [2026-03-31 07:30:26:858|client.hpp:run:904 win-3] Client Worker Started To Run: 60817408
+[Debug] [2026-03-31 07:30:27:873|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:27:873|socket.hpp:send:1010 win-2] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:27:873|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:27:873|socket.hpp:recv:1121 win-2] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:271 win-2] Password: wrong-password-test
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:272 win-2] Username: win-2
+[Debug] [2026-03-31 07:30:27:873|client-fix.cpp:client_handler:273 win-2] Message: Hello Server, It's win-2 ! 😀
+[Debug] [2026-03-31 07:30:28:252|client.hpp:run:904 msdos-1] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:30:28:253] 2a00:1d34:85f:4000::2 Connected
+[Info] [2026-03-31 07:30:28:253] Client Connected To Server, Ip/Port: 2a00:1d34:85f:4000::2/5070
+[Debug] [2026-03-31 07:30:28:253|client.hpp:run:904 msdos-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 07:30:28:253|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:30:28:253|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Info] [2026-03-31 07:30:28:253] 2a00:1d34:85f:4000::2 Connected
+[Info] [2026-03-31 07:30:28:253] Client Connected To Server, Ip/Port: 2a00:1d34:85f:4000::2/5070
+[Info] [2026-03-31 07:30:28:253|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 07:30:28:253|socket.hpp:send:1010 msdos-2] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:28:253|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:28:253|client.hpp:run:904 msdos-3] Client Worker Started To Run: 60817408
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:28:253|client-fix.cpp:client_handler:266] Data Couldn't Receive From 2a00:1d34:85f:4000::2, Code: 16
+[Debug] [2026-03-31 07:30:28:253|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:30:28:883|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:28:883|socket.hpp:send:1010 win-2] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:266] Data Couldn't Receive From 2a00:1d34:85f:4000::2, Code: 35
+[Debug] [2026-03-31 07:30:28:883|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:30:28:883|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:28:883|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:28:898|client.hpp:do_connect:384 win-3] 2a00:1d34:85f:4000::2 Ip Connect Error
+[Debug] [2026-03-31 07:30:28:898|client.hpp:do_connect:388 win-3] Windows Error Code: 10061
+[Fail] [2026-03-31 07:30:28:898] Client Connect Error, Code: 20005
+[Debug] [2026-03-31 07:30:29:260|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:29:260|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:29:261|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:29:261|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:29:261|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:29:261|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:29:261|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:29:898|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:29:898|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:29:899|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:29:899|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:29:899|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:29:899|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:29:899|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:30:275|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:30:275|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:30:275|client.hpp:do_connect:384 msdos-3] 2a00:1d34:85f:4000::2 Ip Connect Error
+[Debug] [2026-03-31 07:30:30:275|client.hpp:do_connect:388 msdos-3] Windows Error Code: 10061
+[Fail] [2026-03-31 07:30:30:275] Client Connect Error, Code: 20005
+[Debug] [2026-03-31 07:30:30:275|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:30:275|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:30:275|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:30:275|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:30:275|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:30:911|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:30:911|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:30:911|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:30:911|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:30:911|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:30:911|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:30:911|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:31:286|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:31:286|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:31:287|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:31:287|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:31:287|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:31:287|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:31:287|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:31:912|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:31:912|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:31:912|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:31:912|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:31:912|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:31:912|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:31:912|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:32:289|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:32:289|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:32:289|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:32:289|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:32:289|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:32:289|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:32:289|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:32:917|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:32:917|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:32:917|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:32:917|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:32:917|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:32:917|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:32:917|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:33:292|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:33:292|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:33:292|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:33:292|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:33:292|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:33:292|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:33:292|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:33:932|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:33:932|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:33:932|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:33:932|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:33:932|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:33:932|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:33:932|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:34:306|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:34:307|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:34:307|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:34:307|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:34:307|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:34:307|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:34:307|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:34:946|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:34:947|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:34:947|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:34:947|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:34:947|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:34:947|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:34:947|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:35:320|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:35:320|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:35:320|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:35:320|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:35:320|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:35:320|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:35:320|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:35:958|socket.hpp:send:1010 win-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:35:958|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:35:959|socket.hpp:recv:1121 win-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:35:959|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:35:959|client-fix.cpp:client_handler:271 win-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:35:959|client-fix.cpp:client_handler:272 win-1] Username: win-1
+[Debug] [2026-03-31 07:30:35:959|client-fix.cpp:client_handler:273 win-1] Message: Hello Server, It's win-1 ! 😀
+[Debug] [2026-03-31 07:30:36:332|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:36:332|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:36:332|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:36:332|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:36:332|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:36:332|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:36:332|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:36:967|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:30:37:334|socket.hpp:send:1010 msdos-1] 2a00:1d34:85f:4000::2 Sent
+[Debug] [2026-03-31 07:30:37:334|client-fix.cpp:client_handler:241] Data Sent To 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:37:334|socket.hpp:recv:1121 msdos-1] 2a00:1d34:85f:4000::2 Receive
+[Debug] [2026-03-31 07:30:37:334|client-fix.cpp:client_handler:258] Data Receive From 2a00:1d34:85f:4000::2
+[Debug] [2026-03-31 07:30:37:334|client-fix.cpp:client_handler:271 msdos-1] Password: pwd@server!test
+[Debug] [2026-03-31 07:30:37:334|client-fix.cpp:client_handler:272 msdos-1] Username: msdos-1
+[Debug] [2026-03-31 07:30:37:334|client-fix.cpp:client_handler:273 msdos-1] Message: Hello Server, It's msdos-1 ! 😀
+[Debug] [2026-03-31 07:30:38:348|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 07:30:41:872|client.hpp:stop:950 win-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:41:872|client.hpp:stop:960 win-1] Thread Stopped
+[Debug] [2026-03-31 07:30:41:873|client.hpp:stop:950 win-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:41:873|client.hpp:stop:960 win-2] Thread Stopped
+[Debug] [2026-03-31 07:30:41:874|client.hpp:stop:950 win-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:41:874|client.hpp:stop:960 win-3] Thread Stopped
+[Debug] [2026-03-31 07:30:41:875|client.hpp:stop:950 win-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:41:875|client.hpp:stop:960 win-3] Thread Stopped
+[Debug] [2026-03-31 07:30:41:875|client.hpp:stop:950 win-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:41:875|client.hpp:stop:960 win-2] Thread Stopped
+[Debug] [2026-03-31 07:30:41:875|client.hpp:stop:950 win-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:41:875|client.hpp:stop:960 win-1] Thread Stopped
+[Debug] [2026-03-31 07:30:43:259|client.hpp:stop:950 msdos-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:43:259|client.hpp:stop:960 msdos-1] Thread Stopped
+[Debug] [2026-03-31 07:30:43:260|client.hpp:stop:950 msdos-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:43:260|client.hpp:stop:960 msdos-2] Thread Stopped
+[Debug] [2026-03-31 07:30:43:260|client.hpp:stop:950 msdos-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:43:261|client.hpp:stop:960 msdos-3] Thread Stopped
+[Debug] [2026-03-31 07:30:43:261|client.hpp:stop:950 msdos-3] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:43:261|client.hpp:stop:960 msdos-3] Thread Stopped
+[Debug] [2026-03-31 07:30:43:262|client.hpp:stop:950 msdos-2] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:43:262|client.hpp:stop:960 msdos-2] Thread Stopped
+[Debug] [2026-03-31 07:30:43:262|client.hpp:stop:950 msdos-1] Waiting For Stop Thread
+[Debug] [2026-03-31 07:30:43:262|client.hpp:stop:960 msdos-1] Thread Stopped

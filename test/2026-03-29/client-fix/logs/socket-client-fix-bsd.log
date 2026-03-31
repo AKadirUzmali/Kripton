@@ -1,0 +1,708 @@
+[Debug] [2026-03-31 10:14:53:341|client.hpp:run:904 free-1] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:14:53:351] ::1 Connected
+[Debug] [2026-03-31 10:14:53:351|client.hpp:run:904 free-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:14:53:351] ::1 Connected
+[Info] [2026-03-31 10:14:53:351] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 10:14:53:351] ::1 Connected
+[Debug] [2026-03-31 10:14:53:352|client.hpp:run:904 free-3] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:14:53:352|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:14:53:352] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 10:14:53:352] Client Connected To Server, Ip/Port: ::1/6060
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:send:1008 free-1] ::1 Sent
+[Info] [2026-03-31 10:14:53:352|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:14:53:352|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:send:1008 free-2] ::1 Sent
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:recv:1119 free-2] ::1 Receive
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:271 free-2] Password: wrong-password-test
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:272 free-2] Username: free-2
+[Debug] [2026-03-31 10:14:53:352|client-fix.cpp:client_handler:273 free-2] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:14:54:220|client.hpp:run:904 bsd-1] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:14:54:221] ::1 Connected
+[Debug] [2026-03-31 10:14:54:221|client.hpp:run:904 bsd-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:14:54:221] ::1 Connected
+[Info] [2026-03-31 10:14:54:221] ::1 Connected
+[Info] [2026-03-31 10:14:54:221] Client Connected To Server, Ip/Port: ::1/5070
+[Debug] [2026-03-31 10:14:54:221|client.hpp:run:904 bsd-3] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:14:54:221] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 10:14:54:221|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:14:54:221] Client Connected To Server, Ip/Port: ::1/6060
+[Info] [2026-03-31 10:14:54:221|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:14:54:221|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:send:1008 bsd-2] ::1 Sent
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:266] Data Couldn't Receive From ::1, Code: 16
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:54:221|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:14:54:221|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:54:354|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:54:397|socket.hpp:send:1008 free-2] ::1 Sent
+[Debug] [2026-03-31 10:14:54:397|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:54:397|socket.hpp:recv:1119 free-2] ::1 Receive
+[Debug] [2026-03-31 10:14:54:397|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:54:397|client-fix.cpp:client_handler:271 free-2] Password: wrong-password-test
+[Debug] [2026-03-31 10:14:54:397|client-fix.cpp:client_handler:272 free-2] Username: free-2
+[Debug] [2026-03-31 10:14:54:397|client-fix.cpp:client_handler:273 free-2] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:14:55:228|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:55:417|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:55:417|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:55:417|socket.hpp:send:1008 free-2] ::1 Sent
+[Debug] [2026-03-31 10:14:55:417|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:55:418|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:55:418|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:266] Data Couldn't Receive From ::1, Code: 35
+[Debug] [2026-03-31 10:14:55:418|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:14:55:418|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:55:418|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:56:233|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:14:56:233|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:56:233|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:14:56:233|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:56:233|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:233|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:14:56:233|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:56:242|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:14:56:242|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:56:242|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:14:56:242|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:56:242|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:242|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:14:56:242|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:56:421|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:14:56:421|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:56:421|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:56:421|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:56:421|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:421|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:56:421|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:56:481|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:56:481|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:56:481|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:56:481|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:56:481|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:481|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:56:481|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:57:238|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:14:57:238|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:57:238|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:14:57:238|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:57:238|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:238|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:14:57:238|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:57:244|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:14:57:244|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:57:244|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:14:57:244|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:57:244|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:244|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:14:57:244|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:57:440|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:14:57:440|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:57:440|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:57:440|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:57:440|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:440|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:57:440|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:57:545|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:57:545|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:57:545|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:57:545|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:57:545|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:545|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:57:545|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:58:246|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:14:58:246|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:58:246|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:14:58:246|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:58:246|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:246|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:14:58:246|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:58:307|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:14:58:307|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:58:307|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:14:58:307|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:58:307|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:307|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:14:58:307|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:58:451|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:14:58:451|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:58:451|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:58:451|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:58:451|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:451|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:58:451|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:58:546|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:58:546|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:58:546|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:58:546|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:58:546|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:546|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:58:546|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:59:248|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:14:59:248|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:59:248|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:14:59:248|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:59:248|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:248|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:14:59:248|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:59:315|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:14:59:315|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:59:315|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:14:59:315|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:59:315|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:315|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:14:59:315|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:59:463|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:14:59:463|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:59:463|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:14:59:463|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:59:463|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:463|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:14:59:463|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:59:552|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:14:59:552|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:14:59:552|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:14:59:552|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:14:59:552|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:552|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:14:59:552|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:00:308|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:15:00:308|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:00:308|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:15:00:308|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:00:309|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:309|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:15:00:309|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:00:378|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:15:00:378|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:00:378|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:15:00:378|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:00:378|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:378|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:15:00:378|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:00:526|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:15:00:526|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:00:526|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:15:00:526|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:00:526|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:526|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:15:00:526|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:15:00:615|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:15:00:615|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:00:615|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:15:00:615|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:00:615|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:615|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:15:00:615|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:01:362|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:15:01:362|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:01:362|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:15:01:362|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:01:362|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:362|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:15:01:362|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:01:412|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:15:01:412|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:01:412|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:15:01:412|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:01:412|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:412|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:15:01:412|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:01:590|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:15:01:590|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:01:590|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:15:01:590|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:01:590|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:590|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:15:01:590|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:15:01:679|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:15:01:679|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:01:679|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:15:01:679|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:01:679|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:679|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:15:01:679|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:02:426|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:15:02:426|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:02:426|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:15:02:426|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:02:426|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:426|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:15:02:426|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:02:451|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:15:02:451|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:02:451|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:15:02:451|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:02:451|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:451|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:15:02:451|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:02:653|socket.hpp:send:1008 free-1] ::1 Sent
+[Debug] [2026-03-31 10:15:02:653|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:02:653|socket.hpp:recv:1119 free-1] ::1 Receive
+[Debug] [2026-03-31 10:15:02:653|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:02:653|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:653|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:15:02:653|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:15:02:742|socket.hpp:send:1008 free-3] ::1 Sent
+[Debug] [2026-03-31 10:15:02:742|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:02:742|socket.hpp:recv:1119 free-3] ::1 Receive
+[Debug] [2026-03-31 10:15:02:742|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:02:742|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:742|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:15:02:742|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:03:489|socket.hpp:send:1008 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:15:03:489|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:03:489|socket.hpp:send:1008 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:15:03:489|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:15:03:489|socket.hpp:recv:1119 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:15:03:489|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:03:489|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:03:489|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:15:03:490|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:03:490|socket.hpp:recv:1119 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:15:03:490|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:15:03:490|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:03:490|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:15:03:490|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:03:717|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:15:03:806|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:15:04:494|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:15:04:498|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:15:08:442|client.hpp:stop:950 free-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:08:442|client.hpp:stop:960 free-1] Thread Stopped
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:950 free-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:960 free-2] Thread Stopped
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:950 free-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:960 free-3] Thread Stopped
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:950 free-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:960 free-3] Thread Stopped
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:950 free-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:960 free-2] Thread Stopped
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:950 free-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:08:443|client.hpp:stop:960 free-1] Thread Stopped
+[Debug] [2026-03-31 10:15:09:223|client.hpp:stop:950 bsd-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:960 bsd-1] Thread Stopped
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:950 bsd-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:960 bsd-2] Thread Stopped
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:950 bsd-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:960 bsd-3] Thread Stopped
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:950 bsd-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:960 bsd-3] Thread Stopped
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:950 bsd-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:960 bsd-2] Thread Stopped
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:950 bsd-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:09:224|client.hpp:stop:960 bsd-1] Thread Stopped
+[Debug] [2026-03-31 10:35:06:188|client.hpp:run:904 free-1] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:35:06:198] ::1 Connected
+[Debug] [2026-03-31 10:35:06:198|client.hpp:run:904 free-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:35:06:198] ::1 Connected
+[Debug] [2026-03-31 10:35:06:198|client.hpp:run:904 free-3] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:35:06:198] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 10:35:06:198] ::1 Connected
+[Info] [2026-03-31 10:35:06:198] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 10:35:06:198|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:35:06:199|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:35:06:199] Client Connected To Server, Ip/Port: ::1/6060
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:send:1010 free-1] ::1 Sent
+[Info] [2026-03-31 10:35:06:199|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:send:1010 free-2] ::1 Sent
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:recv:1121 free-2] ::1 Receive
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:271 free-2] Password: wrong-password-test
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:272 free-2] Username: free-2
+[Debug] [2026-03-31 10:35:06:199|client-fix.cpp:client_handler:273 free-2] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:35:06:860|client.hpp:run:904 bsd-1] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:35:06:860] ::1 Connected
+[Debug] [2026-03-31 10:35:06:860|client.hpp:run:904 bsd-2] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:35:06:860] ::1 Connected
+[Info] [2026-03-31 10:35:06:860] Client Connected To Server, Ip/Port: ::1/5070
+[Debug] [2026-03-31 10:35:06:860|client.hpp:run:904 bsd-3] Client Worker Started To Run: 60817408
+[Info] [2026-03-31 10:35:06:860] Client Connected To Server, Ip/Port: ::1/5070
+[Info] [2026-03-31 10:35:06:860] ::1 Connected
+[Info] [2026-03-31 10:35:06:860|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:35:06:860|client.hpp:operator():486] Client Handler Starting...
+[Info] [2026-03-31 10:35:06:860] Client Connected To Server, Ip/Port: ::1/6060
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:send:1010 bsd-2] ::1 Sent
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Info] [2026-03-31 10:35:06:860|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:266] Data Couldn't Receive From ::1, Code: 16
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:06:860|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:06:860|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:06:861|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:06:861|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:06:861|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:861|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:06:861|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:07:199|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:07:199|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:07:199|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:07:199|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:07:199|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:199|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:07:199|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:07:243|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:07:243|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:07:243|socket.hpp:send:1010 free-2] ::1 Sent
+[Debug] [2026-03-31 10:35:07:243|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:07:243|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:07:243|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:07:243|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:243|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:07:243|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:07:244|socket.hpp:recv:1121 free-2] ::1 Receive
+[Debug] [2026-03-31 10:35:07:244|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:07:244|client-fix.cpp:client_handler:271 free-2] Password: wrong-password-test
+[Debug] [2026-03-31 10:35:07:244|client-fix.cpp:client_handler:272 free-2] Username: free-2
+[Debug] [2026-03-31 10:35:07:244|client-fix.cpp:client_handler:273 free-2] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:35:07:861|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:07:861|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:07:861|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:07:861|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:07:861|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:861|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:07:861|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:07:862|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:07:862|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:07:862|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:07:862|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:07:862|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:862|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:07:862|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:08:246|socket.hpp:send:1010 free-2] ::1 Sent
+[Debug] [2026-03-31 10:35:08:246|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:08:246|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:08:246|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:08:246|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:08:246|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:08:246|client-fix.cpp:client_handler:266] Data Couldn't Receive From ::1, Code: 35
+[Debug] [2026-03-31 10:35:08:246|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:35:08:247|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:08:247|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:08:247|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:08:925|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:09:252|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:09:252|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:09:252|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:09:252|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:09:252|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:252|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:09:252|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:09:310|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:09:310|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:09:310|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:09:310|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:09:310|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:310|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:09:310|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:09:929|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:10:285|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:10:285|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:10:285|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:10:286|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:10:286|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:286|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:10:286|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:10:337|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:10:337|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:10:338|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:10:338|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:10:338|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:338|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:10:338|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:10:930|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:931|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:10:931|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:11:328|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:11:328|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:11:329|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:11:329|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:11:329|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:329|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:11:329|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:11:401|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:11:401|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:11:401|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:11:401|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:11:401|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:401|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:11:401|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:11:972|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:11:972|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:11:972|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:11:972|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:11:973|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:11:973|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:11:973|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:12:368|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:12:368|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:12:368|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:12:368|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:12:368|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:368|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:12:368|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:12:464|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:12:464|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:12:464|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:12:464|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:12:464|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:464|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:12:464|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:12:974|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:13:432|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:13:432|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:13:432|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:13:432|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:13:432|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:432|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:13:432|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:13:528|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:13:528|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:13:528|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:13:528|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:13:528|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:528|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:13:528|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:13:977|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:13:977|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:13:977|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:13:977|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:13:977|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:13:977|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:13:977|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:977|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:13:977|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:13:978|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:13:978|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:13:978|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:978|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:13:978|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:14:459|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:14:459|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:14:459|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:14:459|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:14:459|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:14:460|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:14:460|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:14:553|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:14:553|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:14:553|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:14:553|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:14:553|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:14:553|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:14:553|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:15:009|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:15:009|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:15:009|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:15:009|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:15:009|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:15:009|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:15:009|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:009|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:15:009|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:15:010|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:15:010|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:15:010|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:010|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:15:010|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:15:505|socket.hpp:send:1010 free-1] ::1 Sent
+[Debug] [2026-03-31 10:35:15:505|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:15:505|socket.hpp:recv:1121 free-1] ::1 Receive
+[Debug] [2026-03-31 10:35:15:505|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:15:505|client-fix.cpp:client_handler:271 free-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:505|client-fix.cpp:client_handler:272 free-1] Username: free-1
+[Debug] [2026-03-31 10:35:15:505|client-fix.cpp:client_handler:273 free-1] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:15:602|socket.hpp:send:1010 free-3] ::1 Sent
+[Debug] [2026-03-31 10:35:15:602|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:15:602|socket.hpp:recv:1121 free-3] ::1 Receive
+[Debug] [2026-03-31 10:35:15:602|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:15:602|client-fix.cpp:client_handler:271 free-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:602|client-fix.cpp:client_handler:272 free-3] Username: free-3
+[Debug] [2026-03-31 10:35:15:602|client-fix.cpp:client_handler:273 free-3] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:send:1010 bsd-1] ::1 Sent
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:send:1010 bsd-3] ::1 Sent
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:241] Data Sent To ::1
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:recv:1121 bsd-1] ::1 Receive
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:271 bsd-1] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:272 bsd-1] Username: bsd-1
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:273 bsd-1] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:recv:1121 bsd-3] ::1 Receive
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:258] Data Receive From ::1
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:271 bsd-3] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:272 bsd-3] Username: bsd-3
+[Debug] [2026-03-31 10:35:16:013|client-fix.cpp:client_handler:273 bsd-3] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:16:507|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:35:16:603|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:35:17:021|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:35:17:021|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-03-31 10:35:21:201|client.hpp:stop:950 free-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:21:201|client.hpp:stop:960 free-1] Thread Stopped
+[Debug] [2026-03-31 10:35:21:201|client.hpp:stop:950 free-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:21:201|client.hpp:stop:960 free-2] Thread Stopped
+[Debug] [2026-03-31 10:35:21:201|client.hpp:stop:950 free-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:21:201|client.hpp:stop:960 free-3] Thread Stopped
+[Debug] [2026-03-31 10:35:21:202|client.hpp:stop:950 free-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:21:202|client.hpp:stop:960 free-3] Thread Stopped
+[Debug] [2026-03-31 10:35:21:202|client.hpp:stop:950 free-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:21:202|client.hpp:stop:960 free-2] Thread Stopped
+[Debug] [2026-03-31 10:35:21:202|client.hpp:stop:950 free-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:21:202|client.hpp:stop:960 free-1] Thread Stopped
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:950 bsd-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:960 bsd-1] Thread Stopped
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:950 bsd-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:960 bsd-2] Thread Stopped
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:950 bsd-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:960 bsd-3] Thread Stopped
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:950 bsd-3] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:960 bsd-3] Thread Stopped
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:950 bsd-2] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:960 bsd-2] Thread Stopped
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:950 bsd-1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:22:081|client.hpp:stop:960 bsd-1] Thread Stopped
