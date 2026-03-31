@@ -42,3 +42,5 @@ Bu dokümanın amacı:
     + **Server** ve **Client** sınıflarının testleri yapıldı
     + **Kayıt** dosyaları kontrol edildi ve hatalar giderildi
     + Testin **son kontrolleri** yapıldı
+    + **BSD** ve **Windows** testleri yapıldı
+    + **Linux (Debian/GNU)** ile tekrar test edildi
