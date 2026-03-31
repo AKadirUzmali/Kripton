@@ -3,6 +3,12 @@
 
 /**
  * Access Policy (Erişimi Politikası)
+ * 
+ * Soket işlemlerinde hem sunucu hem de istemcinin
+ * güvenliğini sağlamak hem de karmaşıklığı azaltmak için
+ * bir erişim politikası gereklidir. Sunucu'ya özel ve
+ * İstemci'ye özel olan veya ikisine de ortak olan ayarları
+ * içerir
  */
 
 // Include
@@ -25,6 +31,15 @@ namespace netsocket::policy
     // Using Namespace
     using namespace core::status;
     using namespace core::version;
+
+    // Type Definiton
+    #if __OS_WINDOWS__
+        using socket_t = SOCKET;
+        static constexpr socket_t ss_inv_socket = INVALID_SOCKET;
+    #elif __OS_POSIX__
+        using socket_t = int;
+        static constexpr socket_t ss_inv_socket = -1;
+    #endif
 
     // Limit
     static constexpr max_conn_t _MIN_CONNECTION = 1;
@@ -64,6 +79,7 @@ namespace netsocket::policy
         cannot_auth_password_not_matched,
         set_allow_fail,
         set_notallow_fail,
+        socket_not_valid,
 
         succ = 1000,
         set_username,
@@ -99,7 +115,7 @@ namespace netsocket::policy
             std::atomic<max_conn_t> m_max_connection { _DEF_CONNECTION };
             std::atomic<max_conn_t> m_max_same_ip { _DEF_SAME_IP_COUNT };
 
-            std::unordered_set<std::string> m_banned_ip_list;
+            std::unordered_set<socket_t> m_banned_socket_list;
             std::unordered_set<std::string> m_allowed_ip_list;
 
             TimeVersion m_timever;
@@ -112,7 +128,7 @@ namespace netsocket::policy
                 const std::string& ar_password = ""
             );
 
-            inline bool is_connection_banned(const std::string& ar_ipaddr) noexcept;
+            inline bool is_connection_banned(const socket_t ar_socket) noexcept;
             inline bool is_connection_allowed(const std::string& ar_ipaddr) noexcept;
             inline bool is_require_password() const noexcept;
             
@@ -130,7 +146,7 @@ namespace netsocket::policy
             Status set_require_password(const bool ar_require = true) noexcept;
             Status set_max_connection(const max_conn_t ar_max_conn = _DEF_CONNECTION) noexcept;
             Status set_max_same_ip(const max_conn_t ar_max_same_ip = _DEF_SAME_IP_COUNT) noexcept;
-            Status set_ban(const std::string& ar_ipaddr, const bool ar_ban = true) noexcept;
+            Status set_ban(const socket_t ar_socket, const bool ar_ban = true) noexcept;
             Status set_allow(const std::string& ar_ipaddr, const bool ar_allow = true) noexcept;
 
             Status can_allow(const std::string& ar_ipaddr) noexcept;
@@ -166,12 +182,13 @@ namespace netsocket::policy
      * engellenmiş ip adresi listesinden kontrol ederek
      * karar verecek
      * 
+     * @param socket_t Socket
      * @return bool
      */
-    bool AccessPolicy::is_connection_banned(const std::string& ar_ipaddr) noexcept
+    bool AccessPolicy::is_connection_banned(const socket_t ar_socket) noexcept
     {
         std::scoped_lock tm_lock(this->m_mtx);
-        return this->m_banned_ip_list.find(ar_ipaddr) != this->m_banned_ip_list.end();
+        return this->m_banned_socket_list.find(ar_socket) != this->m_banned_socket_list.end();
     }
 
     /**
@@ -249,7 +266,7 @@ namespace netsocket::policy
      */
     max_conn_t AccessPolicy::get_max_connection() const noexcept
     {
-        return this->m_max_connection.load(std::memory_order_relaxed);
+        return this->m_max_connection.load(std::memory_order_seq_cst);
     }
 
     /**
@@ -261,7 +278,7 @@ namespace netsocket::policy
      */
     max_conn_t AccessPolicy::get_max_same_ip() const noexcept
     {
-        return this->m_max_same_ip.load(std::memory_order_relaxed);
+        return this->m_max_same_ip.load(std::memory_order_seq_cst);
     }
 
     /**
@@ -345,8 +362,8 @@ namespace netsocket::policy
         if( this->m_require_password.load() == ar_require)
             return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
 
-        this->m_require_password.store(ar_require);
-        return this->m_require_password.load() == ar_require ?
+        this->m_require_password.store(ar_require, std::memory_order_seq_cst);
+        return this->m_require_password.load(std::memory_order_seq_cst) == ar_require ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_require_password)) :
             Status::err(domain_t::policy, to_underlying(policy_e::fail_set_require_password));
     }
@@ -362,12 +379,15 @@ namespace netsocket::policy
      */
     Status AccessPolicy::set_max_connection(const max_conn_t ar_max_conn) noexcept
     {
-        if( ar_max_conn < _MIN_CONNECTION ) return Status::err(domain_t::policy, to_underlying(policy_e::value_under_min));
-        else if( ar_max_conn > _MAX_CONNECTION ) return Status::err(domain_t::policy, to_underlying(policy_e::value_over_max));
-        else if( this->m_max_connection.load(std::memory_order_relaxed) == ar_max_conn ) return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
+        if( ar_max_conn < _MIN_CONNECTION )
+            return Status::err(domain_t::policy, to_underlying(policy_e::value_under_min));
+        else if( ar_max_conn > _MAX_CONNECTION )
+            return Status::err(domain_t::policy, to_underlying(policy_e::value_over_max));
+        else if( this->m_max_connection.load(std::memory_order_seq_cst) == ar_max_conn )
+            return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
 
-        this->m_max_connection.store(ar_max_conn);
-        return this->m_max_connection.load(std::memory_order_relaxed) == ar_max_conn ?
+        this->m_max_connection.store(ar_max_conn, std::memory_order_seq_cst);
+        return this->m_max_connection.load(std::memory_order_seq_cst) == ar_max_conn ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_max_connection)) :
             Status::err(domain_t::policy, to_underlying(policy_e::fail_set_max_connection));
     }
@@ -383,12 +403,15 @@ namespace netsocket::policy
      */
     Status AccessPolicy::set_max_same_ip(const max_conn_t ar_max_same_ip) noexcept
     {
-        if( ar_max_same_ip < _MIN_SAME_IP_COUNT ) return Status::err(domain_t::policy, to_underlying(policy_e::value_under_min));
-        else if( ar_max_same_ip > _MAX_SAME_IP_COUNT ) return Status::err(domain_t::policy, to_underlying(policy_e::value_over_max));
-        else if( this->m_max_same_ip.load(std::memory_order_relaxed) == ar_max_same_ip ) return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
+        if( ar_max_same_ip < _MIN_SAME_IP_COUNT )
+            return Status::err(domain_t::policy, to_underlying(policy_e::value_under_min));
+        else if( ar_max_same_ip > _MAX_SAME_IP_COUNT )
+            return Status::err(domain_t::policy, to_underlying(policy_e::value_over_max));
+        else if( this->m_max_same_ip.load(std::memory_order_seq_cst) == ar_max_same_ip )
+            return Status::warn(domain_t::policy, to_underlying(policy_e::same_value));
 
-        this->m_max_same_ip.store(ar_max_same_ip);
-        return this->m_max_same_ip.load(std::memory_order_relaxed) == ar_max_same_ip ?
+        this->m_max_same_ip.store(ar_max_same_ip, std::memory_order_seq_cst);
+        return this->m_max_same_ip.load(std::memory_order_seq_cst) == ar_max_same_ip ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_max_same_ip)) :
             Status::err(domain_t::policy, to_underlying(policy_e::fail_set_max_same_ip));
     }
@@ -399,42 +422,42 @@ namespace netsocket::policy
      * Belirtilen ip adresinin yasaklanmasına ya da yasağın
      * kaldırılmasına karar verecektir
      * 
-     * @param string& IP
+     * @param socket_t Socket
      * @param bool Ban
      * 
      * @return Status
      */
     Status AccessPolicy::set_ban(
-        const std::string& ar_ipaddr,
+        const socket_t ar_socket,
         const bool ar_ban
     ) noexcept
     {
-        if( ar_ipaddr.empty() )
-            return Status::err(domain_t::policy, to_underlying(policy_e::ipaddr_is_empty));
+        if( ar_socket == ss_inv_socket )
+            return Status::err(domain_t::policy, to_underlying(policy_e::socket_not_valid));
 
         std::scoped_lock tm_lock(this->m_mtx);
 
         // unban
         if( !ar_ban ) {
-            if( this->m_banned_ip_list.find(ar_ipaddr) == this->m_banned_ip_list.end() )
+            if( this->m_banned_socket_list.find(ar_socket) == this->m_banned_socket_list.end() )
                 return Status::warn(domain_t::policy, to_underlying(policy_e::ipaddr_already_unbanned));
 
-            this->m_banned_ip_list.erase(ar_ipaddr);
+            this->m_banned_socket_list.erase(ar_socket);
             this->m_timever++;
 
-            return this->m_banned_ip_list.find(ar_ipaddr) == this->m_banned_ip_list.end() ?
+            return this->m_banned_socket_list.find(ar_socket) == this->m_banned_socket_list.end() ?
                 Status::ok(domain_t::policy, to_underlying(policy_e::set_unban_ipaddr)) :
                 Status::err(domain_t::policy, to_underlying(policy_e::fail_set_unban_ipaddr));
         }
 
         // ban
-        if( this->m_banned_ip_list.find(ar_ipaddr) != this->m_banned_ip_list.end() )
+        if( this->m_banned_socket_list.find(ar_socket) != this->m_banned_socket_list.end() )
             return Status::warn(domain_t::policy, to_underlying(policy_e::ipaddr_already_banned));
 
-        this->m_banned_ip_list.emplace(ar_ipaddr);
+        this->m_banned_socket_list.emplace(ar_socket);
         this->m_timever++;
 
-        return this->m_banned_ip_list.find(ar_ipaddr) != this->m_banned_ip_list.end() ?
+        return this->m_banned_socket_list.find(ar_socket) != this->m_banned_socket_list.end() ?
             Status::ok(domain_t::policy, to_underlying(policy_e::set_ban_ipaddr)) :
             Status::err(domain_t::policy, to_underlying(policy_e::fail_set_ban_ipaddr));
     }
@@ -497,12 +520,12 @@ namespace netsocket::policy
         if( ar_ipaddr.empty() )
             return Status::err(domain_t::policy, to_underlying(policy_e::ipaddr_is_empty));
 
-        std::scoped_lock tm_lock(this->m_mtx);
+        {
+            std::scoped_lock tm_lock(this->m_mtx);
 
-        if( this->m_banned_ip_list.find(ar_ipaddr) != this->m_banned_ip_list.end() )
-            return Status::err(domain_t::policy, to_underlying(policy_e::not_allow_ipaddr_already_banned));
-        else if( this->m_allowed_ip_list.find(ar_ipaddr) == this->m_allowed_ip_list.end() && this->m_allowed_ip_list.size() > 0 )
-            return Status::err(domain_t::policy, to_underlying(policy_e::not_allow_ipaddr_not_in_list));
+            if( this->m_allowed_ip_list.find(ar_ipaddr) == this->m_allowed_ip_list.end() && this->m_allowed_ip_list.size() > 0 )
+                return Status::err(domain_t::policy, to_underlying(policy_e::not_allow_ipaddr_not_in_list));
+        }
 
         return Status::ok(domain_t::policy, to_underlying(policy_e::can_allow_ipaddr));
     }
@@ -526,7 +549,7 @@ namespace netsocket::policy
         if( !tm_status.is_ok() )
             return tm_status;
 
-        if( !this->m_require_password.load(std::memory_order_relaxed) )
+        if( !this->m_require_password.load(std::memory_order_seq_cst) )
             return Status::ok(domain_t::policy, to_underlying(policy_e::can_auth_no_password_require));
 
         std::scoped_lock tm_lock(this->m_mtx);
