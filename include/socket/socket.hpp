@@ -908,6 +908,8 @@ namespace netsocket
         // FREEBSD FIX
         #if __OS_POSIX__
             Socket::shutdown_socket(tm_socket);
+	#elif __OS_WINDOWS__
+	    (void)tm_socket;
         #endif
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_close));
