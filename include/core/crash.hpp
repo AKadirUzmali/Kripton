@@ -75,7 +75,7 @@ namespace core::crash
 
             virtual ~CrashHandler() noexcept;
 
-            [[nodiscard]] static inline bool is_signal() noexcept;
+            [[nodiscard]] static inline bool has_signal() noexcept;
             [[nodiscard]] static inline int get_signal() noexcept;
 
         protected:
@@ -108,7 +108,7 @@ namespace core::crash
     }
 
     /**
-     * @brief Is Signal
+     * @brief Has Signal
      * 
      * Sinyal değerinin geçerli olup olmadığını
      * bildiren değer döndürür
@@ -116,7 +116,7 @@ namespace core::crash
      * @return bool
      */
     [[nodiscard]]
-    bool CrashHandler::is_signal() noexcept
+    bool CrashHandler::has_signal() noexcept
     {
         return s_signal_code.load(std::memory_order_acquire) != 0;
     }
@@ -243,7 +243,7 @@ namespace core::crash
      */
     void CrashHandler::dispatch() noexcept
     {
-        if( !is_signal() )
+        if( !has_signal() )
             return;
 
         std::scoped_lock tm_lock(s_list_mtx);
