@@ -16,6 +16,7 @@
 #include <vector>
 #include <memory>
 #include <filesystem>
+#include <mutex>
 
 #include <dev/core/source.hpp>
 #include <dev/log/levels.hpp>
@@ -39,6 +40,7 @@ namespace dev::log
         private:
             std::vector<std::unique_ptr<Output>> m_outputs;
             std::atomic<std::size_t> m_tests[ss_size_tests] = { 0, 0, 0, 0, 0, 0 };
+            static inline std::mutex s_mtx;
 
         private:
             template<class T>
@@ -64,6 +66,8 @@ namespace dev::log
 
             void write(const level_t ar_lvl, const std::string_view ar_msg, const Source ar_src) noexcept;
             void write(const level_t ar_lvl, const std::string_view ar_msg) noexcept;
+            void write(const level_t ar_lvl, const std::string_view ar_title, const std::string_view ar_msg) noexcept;
+            void write(const level_t ar_lvl, const std::string_view ar_title, const std::string_view ar_msg, const Source ar_src) noexcept;
             void write(const std::string_view ar_title, const std::string_view ar_msg) noexcept;
             void write(const std::string_view ar_msg) noexcept;
 
@@ -109,6 +113,8 @@ namespace dev::log
         const Source ar_src
     ) noexcept
     {
+        std::scoped_lock tm_lock(s_mtx);
+
         std::string tm_text;
         tm_text.reserve(256);
 
@@ -138,13 +144,94 @@ namespace dev::log
      * @param string_view Message
      */
     template<class... OutputC>
-    void Logger<OutputC...>::write(const level_t ar_lvl, const std::string_view ar_msg) noexcept
+    void Logger<OutputC...>::write(
+        const level_t ar_lvl,
+        const std::string_view ar_msg
+    ) noexcept
     {
+        std::scoped_lock tm_lock(s_mtx);
+
         std::string tm_text;
         tm_text.reserve(256);
 
         tm_text.push_back('[');
         tm_text.append(tools::time::current_timestamp());
+        tm_text.append("] ");
+        tm_text.append(ar_msg);
+
+        for(auto& tm_out : this->m_outputs)
+            tm_out->write(ar_lvl, tm_text);
+
+        ++this->m_tests[get_valid_index(to_index(ar_lvl))];
+    }
+
+    /**
+     * @brief Write
+     * 
+     * Dosyaya verilen türe göre çıktı vermeyi sağlar
+     * 
+     * @param level_t Level
+     * @param string_view Title
+     * @param string_view Message
+     */
+    template<class... OutputC>
+    void Logger<OutputC...>::write(
+        const level_t ar_lvl,
+        const std::string_view ar_title,
+        const std::string_view ar_msg
+    ) noexcept
+    {
+        std::scoped_lock tm_lock(s_mtx);
+
+        std::string tm_text;
+        tm_text.reserve(256);
+
+        tm_text.push_back('[');
+        tm_text.append(tools::time::current_timestamp());
+        tm_text.append(" ");
+        tm_text.append(ar_title);
+        tm_text.append("] ");
+        tm_text.append(ar_msg);
+
+        for(auto& tm_out : this->m_outputs)
+            tm_out->write(ar_lvl, tm_text);
+
+        ++this->m_tests[get_valid_index(to_index(ar_lvl))];
+    }
+
+    /**
+     * @brief Write
+     * 
+     * Dosyaya verilen türe göre çıktı vermeyi sağlar
+     * 
+     * @param level_t Level
+     * @param string_view Title
+     * @param string_view Message
+     * @param Source Src
+     */
+    template<class... OutputC>
+    void Logger<OutputC...>::write(
+        const level_t ar_lvl,
+        const std::string_view ar_title,
+        const std::string_view ar_msg,
+        const Source ar_src
+    ) noexcept
+    {
+        std::scoped_lock tm_lock(s_mtx);
+
+        std::string tm_text;
+        tm_text.reserve(256);
+
+        tm_text.push_back('[');
+        tm_text.append(tools::time::current_timestamp());
+        tm_text.push_back('|');
+        tm_text.append(std::filesystem::path(ar_src.m_file).filename().string());
+        tm_text.push_back(':');
+        tm_text.append(ar_src.m_func);
+        tm_text.push_back(':');
+        tm_text.append(std::to_string(ar_src.m_line));
+        tm_text.append(" ");
+        tm_text.append(ar_title);
         tm_text.append("] ");
         tm_text.append(ar_msg);
 
@@ -165,6 +252,8 @@ namespace dev::log
     template<class... OutputC>
     void Logger<OutputC...>::write(const std::string_view ar_title, const std::string_view ar_msg) noexcept
     {
+        std::scoped_lock tm_lock(s_mtx);
+
         std::string tm_text;
         tm_text.reserve(256);
 
@@ -189,6 +278,8 @@ namespace dev::log
     template<class... OutputC>
     void Logger<OutputC...>::write(const std::string_view ar_msg) noexcept
     {
+        std::scoped_lock tm_lock(s_mtx);
+
         std::string tm_text;
         tm_text.reserve(256);
 
@@ -209,6 +300,8 @@ namespace dev::log
     template<class... OutputC>
     void Logger<OutputC...>::print() noexcept
     {
+        std::scoped_lock tm_lock(s_mtx);
+
         std::string tm_text;
         tm_text.reserve(64);
 

@@ -74,7 +74,8 @@ namespace netsocket
     // Enum
     enum class ipv_t : uint8_t
     {
-        ipv4 = 0,
+        none = 0,
+        ipv4,
         ipv6
     };
 
@@ -111,6 +112,12 @@ namespace netsocket
         value_under_min,
         value_over_max,
         fail_set_timeout,
+        socket_not_set_running,
+        socket_already_running,
+        socket_no_init,
+        socket_has_already,
+        recv_length_not_expected,
+        recv_socket_close_header,
 
         succ = 1000,
         socket_set,
@@ -125,6 +132,7 @@ namespace netsocket
         socket_data_sent,
         socket_data_recv,
         set_timeout,
+        socket_set_running,
 
         warn = 2000,
         same_value,
@@ -227,7 +235,7 @@ namespace netsocket
         netpacket::_SIZE_OVER_SOCKET
     ) % (uint32_t)~0;
 
-    static constexpr hash::vch::Vch<ss_hash_hex_size> ss_ver_hash("2026-03-21|server-update|2358", ss_hash_code);
+    static constexpr hash::vch::Vch<ss_hash_hex_size> ss_ver_hash("2026-03-31|server-client-fix|test|0530", ss_hash_code);
 
     // WSA SOCKET
     #if __OS_WINDOWS__
@@ -243,17 +251,17 @@ namespace netsocket
         static void run_wsa_socket() noexcept
         {
             // WINDOWS WSA SOCKET
-            if( !s_wsa_init.load(std::memory_order_relaxed) )
+            if( !s_wsa_init.load(std::memory_order_seq_cst) )
             {
                 if( ::WSAStartup(MAKEWORD(2,2), &s_wsa_data) == 0 )
-                    s_wsa_init.store(true);
+                    s_wsa_init.store(true, std::memory_order_seq_cst);
             }
         }
     #endif
 
     // INIT GLOBAL SOCKET
     #if __OS_POSIX__
-        #define _SOCKET_INIT() ((void)0)
+        #define _SOCKET_INIT()
     #elif __OS_WINDOWS__
         #define _SOCKET_INIT() (run_wsa_socket())
     #else
@@ -286,9 +294,11 @@ namespace netsocket
             policy::AccessPolicy m_policy;
             flag::Flag m_flag;
 
-            socket_t m_sock;
-            ipv_t m_ipv;
-            socket_port_t m_port;
+            socket_t m_sock { ss_inv_socket };
+            ipv_t m_ipv { ipv_t::none };
+            socket_port_t m_port { ss_inv_port };
+
+            std::atomic<bool> m_running { false };
 
             std::atomic<wait_time_t> m_timeout { _DEF_TIMEOUT };
 
@@ -296,6 +306,7 @@ namespace netsocket
 
             inline static std::atomic<uint32_t> s_total_sock { 0 };
 
+        private:
             inline static void inc_total_socket() noexcept { ++s_total_sock; };
             inline static void dec_total_socket() noexcept { if( s_total_sock ) --s_total_sock; };
 
@@ -311,6 +322,8 @@ namespace netsocket
             );
 
             virtual ~Socket();
+
+            virtual inline bool is_running() const noexcept;
 
             virtual inline bool has_error() const noexcept;
             virtual inline bool has_socket() const noexcept;
@@ -349,10 +362,13 @@ namespace netsocket
             virtual Status close() noexcept;
             virtual Status clear() noexcept;
 
-            virtual Status send(const socket_t ar_sock, DataPacket& ar_datapack) noexcept;
+            virtual Status send(const socket_t ar_sock, const DataPacket& ar_datapack) noexcept;
             virtual Status recv(const socket_t ar_sock, DataPacket& ar_datapack) noexcept;
 
         protected:
+            virtual Status init() noexcept { return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_no_init)); }
+            virtual Status set_running(const bool ar_running = true) noexcept;
+
             virtual void crashed() noexcept override;
     };
 
@@ -416,12 +432,25 @@ namespace netsocket
 
         // WINDOWS WSA SUPPORT
         #if __OS_WINDOWS__
-            if( s_total_sock < 1 && CrashHandler::is_signal() )
+            if( s_total_sock < 1 && CrashHandler::has_signal() )
             {
                 ::WSACleanup();
-                s_wsa_init.store(false);
+                s_wsa_init.store(false, std::memory_order_seq_cst);
             }
         #endif
+    }
+
+    /**
+     * @brief Is Running
+     * 
+     * Soketin işleme alınıp çalışır durumda olup
+     * olmadığı bilgisini döndürecek
+     * 
+     * @return bool
+     */
+    bool Socket::is_running() const noexcept
+    {
+        return this->m_running.load(std::memory_order_seq_cst) && !CrashHandler::has_signal();
     }
 
     /**
@@ -445,7 +474,7 @@ namespace netsocket
      */
     bool Socket::has_socket() const noexcept
     {
-        return is_valid_socket(this->m_sock);
+        return Socket::is_valid_socket(this->m_sock);
     }
 
     /**
@@ -457,7 +486,7 @@ namespace netsocket
      */
     bool Socket::has_port() const noexcept
     {
-        return is_valid_port(this->m_port);
+        return Socket::is_valid_port(this->m_port);
     }
 
     /**
@@ -469,7 +498,7 @@ namespace netsocket
      */
     bool Socket::has_ipv() const noexcept
     {
-        return is_valid_ipv(this->m_ipv);
+        return Socket::is_valid_ipv(this->m_ipv);
     }
 
     /**
@@ -493,7 +522,7 @@ namespace netsocket
      */
     uint32_t Socket::get_total_socket() noexcept
     {
-        return s_total_sock.load(std::memory_order_relaxed);
+        return s_total_sock.load(std::memory_order_seq_cst);
     }
 
     /**
@@ -541,7 +570,7 @@ namespace netsocket
      */
     wait_time_t Socket::get_timeout() const noexcept
     {
-        return this->m_timeout.load();
+        return this->m_timeout.load(std::memory_order_acquire);
     }
 
     /**
@@ -678,13 +707,13 @@ namespace netsocket
         const socket_t ar_sock
     ) noexcept
     {
-        if( !is_valid_socket(ar_sock) )
+        if( !Socket::is_valid_socket(ar_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
 
         std::scoped_lock tm_lock(this->m_mtx);
         this->m_sock = ar_sock;
 
-        return is_valid_socket(this->m_sock) ?
+        return Socket::is_valid_socket(this->m_sock) ?
             Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_set))
             : Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_set_err_not_valid));
     }
@@ -702,13 +731,13 @@ namespace netsocket
         const socket_port_t ar_port
     ) noexcept
     {
-        if( !is_valid_port(ar_port) )
+        if( !Socket::is_valid_port(ar_port) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::port_not_valid));
 
         std::scoped_lock tm_lock(this->m_mtx);
         this->m_port = ar_port;
 
-        return is_valid_port(this->m_port) ?
+        return Socket::is_valid_port(this->m_port) ?
             Status::ok(domain_t::socket, status::to_underlying(socket_code_t::port_set))
             : Status::err(domain_t::socket, status::to_underlying(socket_code_t::port_set_err_not_valid));
     }
@@ -726,13 +755,13 @@ namespace netsocket
         const ipv_t ar_ipv
     ) noexcept
     {
-        if( !is_valid_ipv(ar_ipv) )
+        if( !Socket::is_valid_ipv(ar_ipv) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::ipv_not_valid));
 
         std::scoped_lock tm_lock(this->m_mtx);
         this->m_ipv = ar_ipv;
 
-        return is_valid_ipv(this->m_ipv) ?
+        return Socket::is_valid_ipv(this->m_ipv) ?
             Status::ok(domain_t::socket, status::to_underlying(socket_code_t::ipv_set))
             : Status::err(domain_t::socket, status::to_underlying(socket_code_t::ipv_set_err_not_valid));
     }
@@ -750,14 +779,39 @@ namespace netsocket
      */
     Status Socket::set_timeout(const wait_time_t ar_timeout) noexcept
     {
-        if( ar_timeout < _MIN_TIMEOUT ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::value_under_min));
-        else if( ar_timeout > _MAX_TIMEOUT ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::value_over_max));
-        else if( ar_timeout == this->m_timeout.load() ) return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::same_value));
+        if( ar_timeout < _MIN_TIMEOUT )
+            return Status::err(domain_t::socket, status::to_underlying(socket_code_t::value_under_min));
+        else if( ar_timeout > _MAX_TIMEOUT )
+            return Status::err(domain_t::socket, status::to_underlying(socket_code_t::value_over_max));
+        else if( ar_timeout == this->m_timeout.load(std::memory_order_seq_cst) )
+            return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::same_value));
 
-        this->m_timeout.store(ar_timeout);
-        return ar_timeout == this->m_timeout.load() ?
+        this->m_timeout.store(ar_timeout, std::memory_order_seq_cst);
+        return ar_timeout == this->m_timeout.load(std::memory_order_seq_cst) ?
             Status::ok(domain_t::socket, status::to_underlying(socket_code_t::set_timeout)) :
             Status::err(domain_t::socket, status::to_underlying(socket_code_t::fail_set_timeout));
+    }
+
+    /**
+     * @brief Set Running
+     * 
+     * Soketin çalışıp çalışmadığı bilgisini tutacak olan
+     * değişkeni ayarlamayı sağlar
+     * 
+     * @param bool Running
+     * @return Status
+     */
+    Status Socket::set_running(const bool ar_running) noexcept
+    {
+        // SAME VALUE
+        if( ar_running == this->m_running.load(std::memory_order_seq_cst) )
+            return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::same_value));
+        
+        // SET
+        this->m_running.store(ar_running, std::memory_order_seq_cst);
+        return ar_running == this->m_running.load(std::memory_order_seq_cst) ?
+            Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_set_running)) :
+            Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_set_running));
     }
 
     /**
@@ -770,6 +824,9 @@ namespace netsocket
      */
     Status Socket::create() noexcept
     {
+        if( Socket::is_valid_socket(this->m_sock) )
+            return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_has_already));
+
         socket_dom_t tm_sock_domain;
         socket_conn_t tm_sock_type;
         socket_proto_t tm_sock_proto;
@@ -791,7 +848,7 @@ namespace netsocket
         }
 
         socket_t tm_sock = ::socket(tm_sock_domain, tm_sock_type, tm_sock_proto);
-        if( !is_valid_socket(tm_sock) )
+        if( !Socket::is_valid_socket(tm_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
 
         this->set_socket(tm_sock);
@@ -799,19 +856,29 @@ namespace netsocket
         {
             std::scoped_lock tm_lock(this->m_mtx);
 
-            if( this->m_ipv != ipv_t::ipv4 )
+            if( this->m_ipv == ipv_t::ipv6 )
             {
-                int tm_off = 0;
-                ::setsockopt(this->m_sock,
-                    IPPROTO_IPV6,
-                    IPV6_V6ONLY,
-                    reinterpret_cast<const char*>(&tm_off),
-                    sizeof(tm_off)
-                );
+                #if __OS_POSIX__
+                    int tm_off = 0;
+                    ::setsockopt(this->m_sock,
+                        IPPROTO_IPV6,
+                        IPV6_V6ONLY,
+                        &tm_off,
+                        sizeof(tm_off)
+                    );
+                #elif __OS_WINDOWS__
+                    int tm_off = 0;
+                    ::setsockopt(this->m_sock,
+                        IPPROTO_IPV6,
+                        IPV6_V6ONLY,
+                        reinterpret_cast<const char*>(&tm_off),
+                        sizeof(tm_off)
+                    );
+                #endif
             }
         }
 
-        return is_valid_socket(this->m_sock) ?
+        return Socket::is_valid_socket(this->m_sock) ?
             Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_create))
             : Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_create));
     }
@@ -826,16 +893,22 @@ namespace netsocket
      */
     Status Socket::close() noexcept
     {
-        if( !is_valid_socket(this->m_sock) )
-            return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
-
-        if( !close_socket(this->m_sock) )
+        if( !Socket::is_valid_socket(this->m_sock) )
+            return Status::warn(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
+        else if( !Socket::close_socket(this->m_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_close));
+
+        socket_t tm_socket = this->m_sock;
 
         {
             std::scoped_lock tm_lock(this->m_mtx);
             this->m_sock = ss_inv_socket;
         }
+
+        // FREEBSD FIX
+        #if __OS_POSIX__
+            Socket::shutdown_socket(tm_socket);
+        #endif
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_close));
     }
@@ -851,18 +924,20 @@ namespace netsocket
      */
     Status Socket::clear() noexcept
     {
-        Status tm_close_status = this->close();
-        if( !tm_close_status.is_ok() )
-            return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_clear));
+        if( Socket::is_valid_socket(this->m_sock) )
+        {
+            Status tm_close_status = this->close();
+            if( !tm_close_status.is_ok() && !tm_close_status.is_warn() )
+                return Status::err(domain_t::socket, tm_close_status.get_code());
+        }
 
         {
             std::scoped_lock tm_lock(this->m_mtx);
 
             this->m_sock = ss_inv_socket;
             this->m_port = ss_inv_port;
+            this->m_flag.clear();
         }
-
-        this->m_flag.clear();
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_clear));
     }
@@ -881,11 +956,11 @@ namespace netsocket
      */
     Status Socket::send(
         const socket_t ar_target_sock,
-        DataPacket& ar_datapack
+        const DataPacket& ar_datapack
     ) noexcept
     {
         // NOT VALID SOCKET
-        if( !is_valid_socket(ar_target_sock) )
+        if( !Socket::is_valid_socket(ar_target_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::target_socket_not_valid));
 
         // IS NAME OR MESSAGE EMPTY?
@@ -893,12 +968,16 @@ namespace netsocket
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::not_enough_data_in_packet));
 
         // ENCRYPT THE ALL DATA
-        this->get_cipher().encrypt(ar_datapack.m_pwd);
-        this->get_cipher().encrypt(ar_datapack.m_name);
-        this->get_cipher().encrypt(ar_datapack.m_msg);
+        auto tm_pwd = ar_datapack.m_pwd;
+        auto tm_name = ar_datapack.m_name;
+        auto tm_msg = ar_datapack.m_msg;
+
+        this->get_cipher().encrypt(tm_pwd);
+        this->get_cipher().encrypt(tm_name);
+        this->get_cipher().encrypt(tm_msg);
 
         // NET PACKET BUFFER
-        netpacket::NetPacket tm_netpack(ar_datapack.m_pwd, ar_datapack.m_name, ar_datapack.m_msg);
+        netpacket::NetPacket tm_netpack(tm_pwd, tm_name, tm_msg);
         const auto& tm_buffer = tm_netpack.get();
 
         // TOTAL SENT DATA SIZE VARIABLE
@@ -926,7 +1005,7 @@ namespace netsocket
         // LOGGER
         DEBUG_ONLY(
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Info, tm_ip + " sent", GET_SOURCE)
+            this->m_logger.write(level_t::Debug, this->get_policy().get_username(), tm_ip + " Sent", GET_SOURCE)
         );
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_sent));
@@ -948,16 +1027,28 @@ namespace netsocket
     ) noexcept
     {
         // NOT VALID SOCKET
-        if( !is_valid_socket(ar_target_sock) )
+        if( !Socket::is_valid_socket(ar_target_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::target_socket_not_valid));
 
         // HEADER DATA ARRAY
-        char tm_header[netpacket::_SIZE_HEADER] {};
+        constexpr size_t size_header = netpacket::_SIZE_HEADER;
+        char tm_header[size_header] {};
 
         // RECEIVE NEXT DATA LENGTH
-        int tm_recv = ::recv(ar_target_sock, tm_header, netpacket::_SIZE_HEADER, MSG_WAITALL);
-        if( tm_recv < 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv_header));
-        else if( tm_recv == 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_header_close));
+        // RECEIVE THE REAL DATA
+        int tm_total_header = 0;
+        const int tm_expected_header = static_cast<int>(size_header);
+        while( tm_total_header < tm_expected_header )
+        {
+            int tm_recv = ::recv(ar_target_sock, tm_header + tm_total_header, tm_expected_header - tm_total_header, 0);
+
+            if( tm_recv < 0 )
+                return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv_header));
+            else if( tm_recv == 0 )
+                return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_close_header));
+
+            tm_total_header += tm_recv;
+        }
 
         // LENGTH VARIABLES
         uint16_t tm_len_pwd = 0;
@@ -977,9 +1068,19 @@ namespace netsocket
         std::vector<char> tm_payload(tm_payload_len);
 
         // RECEIVE THE REAL DATA
-        tm_recv = ::recv(ar_target_sock, tm_payload.data(), static_cast<int>(tm_payload_len), MSG_WAITALL);
-        if( tm_recv < 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv));
-        else if( tm_recv == 0 ) return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_close));
+        int tm_total_recv = 0;
+        const int tm_expected_len = static_cast<int>(tm_payload_len);
+        while( tm_total_recv < tm_expected_len )
+        {
+            int tm_recv = ::recv(ar_target_sock, tm_payload.data() + tm_total_recv, tm_expected_len - tm_total_recv, 0);
+
+            if( tm_recv < 0 )
+                return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_recv));
+            else if( tm_recv == 0 )
+                return Status::err(domain_t::socket, status::to_underlying(socket_code_t::recv_socket_close));
+
+            tm_total_recv += tm_recv;
+        }
 
         // OFFSET
         uint32_t tm_offset = 0;
@@ -1015,7 +1116,7 @@ namespace netsocket
         // LOGGER
         DEBUG_ONLY(
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Info, tm_ip + " recv", GET_SOURCE)
+            this->m_logger.write(level_t::Debug, this->get_policy().get_username(), tm_ip + " Receive", GET_SOURCE)
         );
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_recv));
@@ -1042,7 +1143,7 @@ namespace netsocket
 
         // WSA CLEANUP FOR WINDOWS
         #if __OS_WINDOWS__
-            if( s_total_sock < 1 && s_wsa_init.exchange(false) )
+            if( s_total_sock < 1 && s_wsa_init.load(std::memory_order_seq_cst) )
                 ::WSACleanup();
         #endif
     }
@@ -1105,9 +1206,10 @@ namespace netsocket
             case ipv_t::ipv4:
             case ipv_t::ipv6:
                 return true;
+            case ipv_t::none:
+            default:
+                return false;
         }
-
-        return false;
     }
 
     /**
@@ -1216,7 +1318,7 @@ namespace netsocket
         const socket_t ar_sock
     ) noexcept
     {
-        if( !is_valid_socket(ar_sock) )
+        if( !Socket::is_valid_socket(ar_sock) )
             return false;
 
         #if __OS_WINDOWS__
@@ -1225,7 +1327,7 @@ namespace netsocket
             ::shutdown(ar_sock, SHUT_RDWR);
         #endif
 
-	return true;
+	    return true;
     }
 
     /**
@@ -1243,7 +1345,7 @@ namespace netsocket
         const socket_t ar_sock
     ) noexcept
     {
-        if( !is_valid_socket(ar_sock) )
+        if( !Socket::is_valid_socket(ar_sock) )
             return false;
 
         #if __OS_WINDOWS__
@@ -1267,7 +1369,7 @@ namespace netsocket
         const socket_t ar_sock
     ) noexcept
     {
-        if( !is_valid_socket(ar_sock) )
+        if( !Socket::is_valid_socket(ar_sock) )
             return std::string{};
 
         sockaddr_storage tm_addr {};
@@ -1306,11 +1408,11 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]]
     Status Socket::handshake_send_verify(const socket_t ar_sock) noexcept
     {
-        if( !is_valid_socket(ar_sock) )
+        if( !Socket::is_valid_socket(ar_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
 
         char tm_hash[ss_hash_hex_size] {};
-        std::strncpy(tm_hash, ss_ver_hash.c_str(), sizeof(tm_hash));
+        std::memcpy(tm_hash, ss_ver_hash.c_str(), ss_hash_hex_size);
 
         int tm_sent = ::send(ar_sock, reinterpret_cast<const char*>(tm_hash), sizeof(tm_hash), 0);
         if( tm_sent != sizeof(tm_hash) )
@@ -1335,7 +1437,7 @@ namespace netsocket
     [[maybe_unused]] [[nodiscard]]
     Status Socket::handshake_recv_verify(const socket_t ar_sock, const bool ar_close) noexcept
     {
-        if( !is_valid_socket(ar_sock) )
+        if( !Socket::is_valid_socket(ar_sock) )
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_not_valid));
 
         char tm_hash[ss_hash_hex_size] {};
@@ -1348,8 +1450,8 @@ namespace netsocket
         {
             if( ar_close )
             {
-                shutdown_socket(ar_sock);
-                close_socket(ar_sock);
+                Socket::shutdown_socket(ar_sock);
+                Socket::close_socket(ar_sock);
             }
 
             return Status::err(domain_t::socket, status::to_underlying(socket_code_t::socket_hash_not_match));

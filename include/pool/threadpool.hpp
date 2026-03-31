@@ -52,7 +52,9 @@ namespace pool::threadpool
             [[nodiscard]] inline std::size_t get_thread_count() const noexcept;
 
             void enqueue(std::function<void()> ar_func) noexcept;
+            
             void stop() noexcept;
+            void stop(const std::vector<std::thread::id>& ar_tid) noexcept;
 
         private:
             void shutdown() noexcept;
@@ -95,12 +97,15 @@ namespace pool::threadpool
 
                         this->m_convar.wait(tm_lock, [this]{
                             return this->m_stop.load(std::memory_order_acquire)
-                                || CrashHandler::is_signal()
+                                || CrashHandler::has_signal()
                                 || !this->m_tasks.empty();
                         });
 
-                        if( this->m_stop.load(std::memory_order_relaxed) || CrashHandler::is_signal() )
-                            return;
+                        if( this->m_stop.load(std::memory_order_relaxed) || CrashHandler::has_signal() )
+                            break;
+
+                        if( this->m_tasks.empty() )
+                            continue;
 
                         tm_task = std::move(this->m_tasks.front());
                         this->m_tasks.pop();
@@ -136,7 +141,7 @@ namespace pool::threadpool
     [[nodiscard]]
     bool ThreadPool::is_running() const noexcept
     {
-        return !this->m_stop.load(std::memory_order_relaxed);
+        return !this->m_stop.load(std::memory_order_relaxed) && !CrashHandler::has_signal();
     }
 
     /**
@@ -168,7 +173,7 @@ namespace pool::threadpool
         {
             std::unique_lock<std::mutex> tm_lock(this->m_mtx);
 
-            if( this->m_stop.load(std::memory_order_relaxed) || CrashHandler::is_signal() )
+            if( this->m_stop.load(std::memory_order_relaxed) || CrashHandler::has_signal() )
                 return;
 
             this->m_tasks.emplace(std::move(ar_func));
@@ -193,10 +198,46 @@ namespace pool::threadpool
         this->m_convar.notify_all();
 
         const std::thread::id tm_self_id = std::this_thread::get_id();
-
         for(auto& tm_worker : this->m_workers) {
             if( tm_worker.joinable() && tm_worker.get_id() != tm_self_id )
                 tm_worker.join();
+        }
+    }
+
+    /**
+     * @brief Stop
+     * 
+     * İşlem havuzunu durdurarak sonlandırır
+     */
+    void ThreadPool::stop() noexcept
+    {
+        this->shutdown();
+    }
+
+    /**
+     * @brief Stop
+     * 
+     * Sonlandırma yapmadan önce hala çalışır durumda olmasını kontrol eder.
+     * Durmuş ise eğer, zaten sonlandırılmış demektir. Tüm durumlara
+     * bildirim gönderir. Döngü ile tüm çalışanları (workers) sırayla kontrol eder.
+     * Eğer sonlandırılabilecek durumda ise ve ana işlem değilse sonlandırır
+     * 
+     * @brief vector<thread::id>& Thread ID Vector
+     */
+    void ThreadPool::stop(const std::vector<std::thread::id>& ar_tid) noexcept
+    {
+        const std::thread::id tm_self_id = std::this_thread::get_id();
+
+        for(auto& tm_worker : this->m_workers)
+        {
+            if( tm_worker.get_id() == tm_self_id )
+                continue;
+
+            for( auto& tm_thread_id : ar_tid )
+            {
+                if( tm_thread_id == tm_worker.get_id() && tm_worker.joinable() )
+                    tm_worker.join();
+            }
         }
     }
 
@@ -209,16 +250,6 @@ namespace pool::threadpool
      * sonlanmasını sağlar
      */
     void ThreadPool::crashed() noexcept
-    {
-        this->shutdown();
-    }
-
-    /**
-     * @brief Stop
-     * 
-     * İşlem havuzunu durdurarak sonlandırır
-     */
-    void ThreadPool::stop() noexcept
     {
         this->shutdown();
     }
