@@ -1,0 +1,976 @@
+[Debug] [2026-03-31 10:14:52:151|server.hpp:init:1307 netserver2] Bind Error, Code: 10026
+[Debug] [2026-03-31 10:14:52:153|server.hpp:Server:422 netserver2] Server Constructor Initialize Error, Code: 10026
+[2026-03-31 10:14:52:165] ========== SERVER ==========
+[2026-03-31 10:14:52:165] Build: Debug
+[2026-03-31 10:14:52:165] Name: netserver1
+[2026-03-31 10:14:52:165] Base Flag: 5
+[2026-03-31 10:14:52:165] Status Flag: 503316480
+[2026-03-31 10:14:52:165] Is Full: No
+[2026-03-31 10:14:52:165] Is Empty: Yes
+[2026-03-31 10:14:52:165] Is Running: No
+[2026-03-31 10:14:52:165] Has Error: No
+[2026-03-31 10:14:52:165] Port: 5070
+[2026-03-31 10:14:52:165] Ip Version: v6
+[2026-03-31 10:14:52:165] Total Client: 0
+[2026-03-31 10:14:52:165] Max Connection Limit: 4
+[2026-03-31 10:14:52:165] Max Same Ip Limit: 3
+[2026-03-31 10:14:52:165] Require Password: Yes
+[2026-03-31 10:14:52:165] ============================
+[2026-03-31 10:14:52:165] ========== SERVER ==========
+[2026-03-31 10:14:52:165] Build: Debug
+[2026-03-31 10:14:52:165] Name: netserver2
+[2026-03-31 10:14:52:165] Base Flag: 5
+[2026-03-31 10:14:52:165] Status Flag: 283639808
+[2026-03-31 10:14:52:165] Is Full: No
+[2026-03-31 10:14:52:165] Is Empty: Yes
+[2026-03-31 10:14:52:165] Is Running: No
+[2026-03-31 10:14:52:165] Has Error: Yes
+[2026-03-31 10:14:52:165] Port: 5070
+[2026-03-31 10:14:52:165] Ip Version: v6
+[2026-03-31 10:14:52:165] Total Client: 0
+[2026-03-31 10:14:52:165] Max Connection Limit: 4
+[2026-03-31 10:14:52:165] Max Same Ip Limit: 3
+[2026-03-31 10:14:52:165] Require Password: Yes
+[2026-03-31 10:14:52:165] ============================
+[Debug] [2026-03-31 10:14:52:165|server.hpp:run:1410 netserver1] Server Worker Started To Run: 503316480
+[Debug] [2026-03-31 10:14:52:165|server.hpp:create:997 netserver2] Server Already Has Valid Socket
+[Debug] [2026-03-31 10:14:52:165|server.hpp:run:1410 netserver2] Server Worker Started To Run: 503316480
+[Debug] [2026-03-31 10:14:53:351|server.hpp:operator():734 netserver1] ::1 Added To Client List
+[Info] [2026-03-31 10:14:53:351 netserver1] ::1 Connected
+[Debug] [2026-03-31 10:14:53:351|server.hpp:operator():734 netserver1] ::1 Added To Client List
+[Info] [2026-03-31 10:14:53:352 netserver1] ::1 Connected
+[Debug] [2026-03-31 10:14:53:352|server.hpp:operator():756 netserver1] Server Handler Starting...
+[Debug] [2026-03-31 10:14:53:352|server.hpp:operator():756 netserver1] Server Handler Starting...
+[Debug] [2026-03-31 10:14:53:352|server.hpp:operator():734 netserver2] ::1 Added To Client List
+[Info] [2026-03-31 10:14:53:352 netserver2] ::1 Connected
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:53:352|server.hpp:operator():756 netserver2] Server Handler Starting...
+[Debug] [2026-03-31 10:14:53:352|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:53:352|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:53:352 netserver1] ::1/2 Sent Wrong Password Attempt #1
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:53:352|server.hpp:recv:1247 netserver1] ::1/2 Ip Client Password Not Matched
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 10
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:305 netserver1|Recv] Password: wrong-password-test
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-2
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:14:53:352|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:53:352|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:54:221|server.hpp:operator():734 netserver1] ::1 Added To Client List
+[Info] [2026-03-31 10:14:54:221 netserver1] ::1 Connected
+[Debug] [2026-03-31 10:14:54:221|server.hpp:operator():724 netserver1] Over total same ip limit
+[Debug] [2026-03-31 10:14:54:221|server.hpp:operator():734 netserver2] ::1 Added To Client List
+[Info] [2026-03-31 10:14:54:221 netserver2] ::1 Connected
+[Debug] [2026-03-31 10:14:54:221|server.hpp:operator():756 netserver2] Server Handler Starting...
+[Debug] [2026-03-31 10:14:54:221|server.hpp:operator():756 netserver1] Server Handler Starting...
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:54:221|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:54:221|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:54:221|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:54:221|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:54:354|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:54:354|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:54:354|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:54:354|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:54:397|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:54:397 netserver1] ::1/2 Sent Wrong Password Attempt #2
+[Debug] [2026-03-31 10:14:54:397|server.hpp:recv:1247 netserver1] ::1/2 Ip Client Password Not Matched
+[Debug] [2026-03-31 10:14:54:397|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 10
+[Debug] [2026-03-31 10:14:54:397|server-fix.cpp:server_handler:305 netserver1|Recv] Password: wrong-password-test
+[Debug] [2026-03-31 10:14:54:397|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-2
+[Debug] [2026-03-31 10:14:54:397|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:14:54:397|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:54:397|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:55:228|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:55:228|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:55:228|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:55:228|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:55:417|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:55:417|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:55:417|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:55:418|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:55:418 netserver1] ::1/2 Sent Wrong Password Attempt #3
+[Debug] [2026-03-31 10:14:55:418|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:55:418|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:55:418|server.hpp:recv:1212 netserver1] ::1/2 Ip Client Reached Try Password Limit
+[Debug] [2026-03-31 10:14:55:418|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:293 netserver1] Server Receive Error, Code: 10016
+[Debug] [2026-03-31 10:14:55:418|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:55:418|server.hpp:operator():763 netserver1] Client Socket Closed, Ip/SameUserCount: ::1/2
+[Info] [2026-03-31 10:14:55:418 netserver1] ::1 Disconnected
+[Debug] [2026-03-31 10:14:56:233|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:56:233|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:56:233|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:56:233|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:14:56:233|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:233|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:14:56:233|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:56:233|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:56:233|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:56:242|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:56:242|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:56:242|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:56:242|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:14:56:242|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:242|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:14:56:242|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:56:242|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:56:242|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:56:421|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:56:421|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:56:421|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:56:421|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:56:421|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:421|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:56:421|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:56:421|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:56:421|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:56:481|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:56:481|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:56:481|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:56:481|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:56:481|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:56:481|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:56:481|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:56:481|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:56:481|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[2026-03-31 10:14:57:230] ========== SERVER ==========
+[2026-03-31 10:14:57:230] Build: Debug
+[2026-03-31 10:14:57:230] Name: netserver1
+[2026-03-31 10:14:57:230] Base Flag: 5
+[2026-03-31 10:14:57:230] Status Flag: 503316480
+[2026-03-31 10:14:57:230] Is Full: No
+[2026-03-31 10:14:57:230] Is Empty: No
+[2026-03-31 10:14:57:230] Is Running: Yes
+[2026-03-31 10:14:57:230] Has Error: No
+[2026-03-31 10:14:57:230] Port: 5070
+[2026-03-31 10:14:57:230] Ip Version: v6
+[2026-03-31 10:14:57:230] Total Client: 2
+[2026-03-31 10:14:57:230] Max Connection Limit: 4
+[2026-03-31 10:14:57:230] Max Same Ip Limit: 3
+[2026-03-31 10:14:57:230] Require Password: Yes
+[2026-03-31 10:14:57:230] ============================
+[2026-03-31 10:14:57:230] ========== SERVER ==========
+[2026-03-31 10:14:57:230] Build: Debug
+[2026-03-31 10:14:57:230] Name: netserver2
+[2026-03-31 10:14:57:230] Base Flag: 5
+[2026-03-31 10:14:57:230] Status Flag: 503316480
+[2026-03-31 10:14:57:230] Is Full: No
+[2026-03-31 10:14:57:230] Is Empty: No
+[2026-03-31 10:14:57:230] Is Running: Yes
+[2026-03-31 10:14:57:230] Has Error: No
+[2026-03-31 10:14:57:230] Port: 6060
+[2026-03-31 10:14:57:230] Ip Version: v6
+[2026-03-31 10:14:57:230] Total Client: 2
+[2026-03-31 10:14:57:230] Max Connection Limit: 4
+[2026-03-31 10:14:57:230] Max Same Ip Limit: 3
+[2026-03-31 10:14:57:230] Require Password: Yes
+[2026-03-31 10:14:57:230] ============================
+[Debug] [2026-03-31 10:14:57:238|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:57:238|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:57:238|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:57:238|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:14:57:238|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:238|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:14:57:238|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:57:238|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:57:238|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:57:244|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:57:244|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:57:244|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:57:244|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:14:57:244|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:244|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:14:57:244|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:57:244|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:57:244|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:57:440|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:57:440|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:57:440|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:57:440|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:57:440|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:440|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:57:440|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:57:440|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:57:440|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:57:545|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:57:545|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:57:545|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:57:545|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:57:545|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:57:545|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:57:545|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:57:545|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:57:545|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:58:246|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:58:246|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:58:246|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:58:246|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:14:58:246|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:246|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:14:58:246|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:58:246|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:58:246|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:58:307|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:58:307|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:58:307|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:58:307|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:14:58:307|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:307|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:14:58:307|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:58:307|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:58:307|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:58:451|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:58:451|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:58:451|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:58:451|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:58:451|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:451|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:58:451|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:58:451|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:58:451|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:58:546|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:58:546|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:58:546|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:58:546|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:58:546|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:58:546|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:58:546|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:58:546|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:58:546|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:59:248|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:59:248|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:59:248|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:59:248|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:14:59:248|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:248|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:14:59:248|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:14:59:248|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:59:248|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:14:59:315|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:59:315|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:59:315|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:59:315|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:14:59:315|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:315|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:14:59:315|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:14:59:315|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:59:315|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:59:463|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:14:59:463|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:59:463|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:14:59:463|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:14:59:463|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:463|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:14:59:463|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:14:59:463|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:14:59:463|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:14:59:552|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:14:59:552|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:14:59:552|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:14:59:552|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:14:59:552|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:14:59:552|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:14:59:552|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:14:59:552|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:14:59:552|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:00:308|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:00:308|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:00:308|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:00:308|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:15:00:308|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:308|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:15:00:308|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:00:308|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:00:308|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:00:378|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:00:378|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:00:378|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:00:378|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:15:00:378|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:378|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:15:00:378|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:00:378|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:00:378|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:00:526|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:00:526|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:00:526|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:00:526|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:15:00:526|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:526|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:15:00:526|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:15:00:526|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:00:526|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:00:615|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:00:615|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:00:615|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:00:615|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:15:00:615|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:00:615|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:15:00:615|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:00:615|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:00:615|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:01:362|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:01:362|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:01:362|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:01:362|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:15:01:362|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:362|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:15:01:362|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:01:362|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:01:362|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:01:412|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:01:412|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:01:412|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:01:412|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:15:01:412|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:412|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:15:01:412|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:01:412|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:01:412|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:01:590|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:01:590|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:01:590|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:01:590|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:15:01:590|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:590|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:15:01:590|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:15:01:590|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:01:590|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:01:679|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:01:679|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:01:679|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:01:679|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:15:01:679|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:01:679|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:15:01:679|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:01:679|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:01:679|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:02:426|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:02:426|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:02:426|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:02:426|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:15:02:426|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:426|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:15:02:426|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:02:426|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:02:426|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:02:451|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:02:451|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:02:451|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:02:451|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:15:02:451|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:451|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:15:02:451|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:02:451|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:02:451|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:02:653|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:02:653|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:02:653|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:02:653|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:15:02:653|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:653|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:15:02:653|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:15:02:653|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:02:653|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:02:742|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:02:742|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:02:742|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:02:742|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:15:02:742|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:02:742|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:15:02:742|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:15:02:742|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:02:742|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:03:489|socket.hpp:recv:1119 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:15:03:489|socket.hpp:recv:1119 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:15:03:489|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:15:03:489|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:15:03:489|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:15:03:490|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:15:03:490|socket.hpp:send:1008 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:15:03:490|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:15:03:490|socket.hpp:send:1008 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:15:03:490|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:15:03:717|server.hpp:recv:1174 netserver1] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:15:03:717|server-fix.cpp:server_handler:293 netserver1] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:15:03:717|server.hpp:operator():763 netserver1] Client Socket Closed, Ip/SameUserCount: ::1/1
+[Info] [2026-03-31 10:15:03:717 netserver1] ::1 Disconnected
+[Debug] [2026-03-31 10:15:03:806|server.hpp:recv:1174 netserver2] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:15:03:806|server-fix.cpp:server_handler:293 netserver2] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:15:03:806|server.hpp:operator():763 netserver2] Client Socket Closed, Ip/SameUserCount: ::1/1
+[Info] [2026-03-31 10:15:03:806 netserver2] ::1 Disconnected
+[Debug] [2026-03-31 10:15:04:494|server.hpp:recv:1174 netserver1] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:15:04:494|server-fix.cpp:server_handler:293 netserver1] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:15:04:494|server.hpp:operator():763 netserver1] Client Socket Closed, Ip/SameUserCount: ::1/3
+[Info] [2026-03-31 10:15:04:494 netserver1] ::1 Disconnected
+[Debug] [2026-03-31 10:15:04:498|server.hpp:recv:1174 netserver2] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:15:04:498|server-fix.cpp:server_handler:293 netserver2] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:15:04:498|server.hpp:operator():763 netserver2] Client Socket Closed, Ip/SameUserCount: ::1/2
+[Info] [2026-03-31 10:15:04:498 netserver2] ::1 Disconnected
+[Debug] [2026-03-31 10:15:12:390|server.hpp:stop:1455 netserver1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:15:59:601|server.hpp:crashed:1507 netserver1] Server Crash, Flag: 503316480
+[Debug] [2026-03-31 10:15:59:601|server.hpp:stop:1455 netserver1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:05:276|server.hpp:init:1307 netserver2] Bind Error, Code: 10026
+[Debug] [2026-03-31 10:35:05:278|server.hpp:Server:422 netserver2] Server Constructor Initialize Error, Code: 10026
+[2026-03-31 10:35:05:289] ========== SERVER ==========
+[2026-03-31 10:35:05:289] Build: Debug
+[2026-03-31 10:35:05:290] Name: netserver1
+[2026-03-31 10:35:05:290] Base Flag: 5
+[2026-03-31 10:35:05:290] Status Flag: 503316480
+[2026-03-31 10:35:05:290] Is Full: No
+[2026-03-31 10:35:05:290] Is Empty: Yes
+[2026-03-31 10:35:05:290] Is Running: No
+[2026-03-31 10:35:05:290] Has Error: No
+[2026-03-31 10:35:05:290] Port: 5070
+[2026-03-31 10:35:05:290] Ip Version: v6
+[2026-03-31 10:35:05:290] Total Client: 0
+[2026-03-31 10:35:05:290] Max Connection Limit: 4
+[2026-03-31 10:35:05:290] Max Same Ip Limit: 3
+[2026-03-31 10:35:05:290] Require Password: Yes
+[2026-03-31 10:35:05:290] ============================
+[2026-03-31 10:35:05:290] ========== SERVER ==========
+[2026-03-31 10:35:05:290] Build: Debug
+[2026-03-31 10:35:05:290] Name: netserver2
+[2026-03-31 10:35:05:290] Base Flag: 5
+[2026-03-31 10:35:05:290] Status Flag: 283639808
+[2026-03-31 10:35:05:290] Is Full: No
+[2026-03-31 10:35:05:290] Is Empty: Yes
+[2026-03-31 10:35:05:290] Is Running: No
+[2026-03-31 10:35:05:290] Has Error: Yes
+[2026-03-31 10:35:05:290] Port: 5070
+[2026-03-31 10:35:05:290] Ip Version: v6
+[2026-03-31 10:35:05:290] Total Client: 0
+[2026-03-31 10:35:05:290] Max Connection Limit: 4
+[2026-03-31 10:35:05:290] Max Same Ip Limit: 3
+[2026-03-31 10:35:05:290] Require Password: Yes
+[2026-03-31 10:35:05:290] ============================
+[Debug] [2026-03-31 10:35:05:290|server.hpp:run:1410 netserver1] Server Worker Started To Run: 503316480
+[Debug] [2026-03-31 10:35:05:290|server.hpp:create:997 netserver2] Server Already Has Valid Socket
+[Debug] [2026-03-31 10:35:05:290|server.hpp:run:1410 netserver2] Server Worker Started To Run: 503316480
+[Debug] [2026-03-31 10:35:06:198|server.hpp:operator():734 netserver1] ::1 Added To Client List
+[Info] [2026-03-31 10:35:06:198 netserver1] ::1 Connected
+[Debug] [2026-03-31 10:35:06:198|server.hpp:operator():756 netserver1] Server Handler Starting...
+[Debug] [2026-03-31 10:35:06:198|server.hpp:operator():734 netserver1] ::1 Added To Client List
+[Info] [2026-03-31 10:35:06:198 netserver1] ::1 Connected
+[Debug] [2026-03-31 10:35:06:198|server.hpp:operator():756 netserver1] Server Handler Starting...
+[Debug] [2026-03-31 10:35:06:199|server.hpp:operator():734 netserver2] ::1 Added To Client List
+[Info] [2026-03-31 10:35:06:199 netserver2] ::1 Connected
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:06:199|server.hpp:operator():756 netserver2] Server Handler Starting...
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:06:199|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:06:199 netserver1] ::1/2 Sent Wrong Password Attempt #1
+[Debug] [2026-03-31 10:35:06:199|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:06:199|server.hpp:recv:1247 netserver1] ::1/2 Ip Client Password Not Matched
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 10
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:305 netserver1|Recv] Password: wrong-password-test
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-2
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:06:199|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:06:199|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:06:860|server.hpp:operator():734 netserver1] ::1 Added To Client List
+[Info] [2026-03-31 10:35:06:860 netserver1] ::1 Connected
+[Debug] [2026-03-31 10:35:06:860|server.hpp:operator():724 netserver1] Over total same ip limit
+[Debug] [2026-03-31 10:35:06:860|server.hpp:operator():756 netserver1] Server Handler Starting...
+[Debug] [2026-03-31 10:35:06:860|server.hpp:operator():734 netserver2] ::1 Added To Client List
+[Info] [2026-03-31 10:35:06:860 netserver2] ::1 Connected
+[Debug] [2026-03-31 10:35:06:860|server.hpp:operator():756 netserver2] Server Handler Starting...
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:06:860|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:06:860|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:06:860|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:06:860|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:06:861|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:06:861|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:06:861|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:07:199|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:07:199|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:07:199|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:07:199|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:07:199|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:199|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:07:199|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:07:199|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:07:199|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:07:243|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:07:243|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:07:243|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:07:243|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:07:243 netserver1] ::1/2 Sent Wrong Password Attempt #2
+[Debug] [2026-03-31 10:35:07:243|server.hpp:recv:1247 netserver1] ::1/2 Ip Client Password Not Matched
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 10
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:305 netserver1|Recv] Password: wrong-password-test
+[Debug] [2026-03-31 10:35:07:243|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-2
+[Debug] [2026-03-31 10:35:07:244|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-2 ! 😀
+[Debug] [2026-03-31 10:35:07:244|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:07:244|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:07:861|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:07:861|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:07:861|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:07:861|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:07:861|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:861|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:07:861|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:07:861|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:07:861|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:07:862|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:07:862|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:07:862|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:07:862|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:07:862|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:07:862|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:07:862|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:07:862|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:07:862|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:08:246|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:08:246 netserver1] ::1/2 Sent Wrong Password Attempt #3
+[Debug] [2026-03-31 10:35:08:246|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:08:246|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:08:246|server.hpp:recv:1212 netserver1] ::1/2 Ip Client Reached Try Password Limit
+[Debug] [2026-03-31 10:35:08:246|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:08:246|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:08:246|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:08:246|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:246|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:08:246|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:08:246|server-fix.cpp:server_handler:293 netserver1] Server Receive Error, Code: 10016
+[Debug] [2026-03-31 10:35:08:247|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:08:247|server.hpp:operator():763 netserver1] Client Socket Closed, Ip/SameUserCount: ::1/2
+[Debug] [2026-03-31 10:35:08:247|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Info] [2026-03-31 10:35:08:247 netserver1] ::1 Disconnected
+[Debug] [2026-03-31 10:35:08:247|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:08:247|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:08:925|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:08:925|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:08:925|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:08:925|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:09:252|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:09:252|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:09:252|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:09:252|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:09:252|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:252|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:09:252|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:09:252|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:09:252|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:09:310|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:09:310|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:09:310|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:09:310|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:09:310|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:310|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:09:310|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:09:310|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:09:310|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:09:929|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:09:929|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:09:929|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:09:929|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:10:285|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:10:285|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:10:285|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:10:285|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:10:285|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:285|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:10:285|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:10:285|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:10:285|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[2026-03-31 10:35:10:337] ========== SERVER ==========
+[2026-03-31 10:35:10:337] Build: Debug
+[2026-03-31 10:35:10:337] Name: netserver1
+[2026-03-31 10:35:10:337] Base Flag: 5
+[2026-03-31 10:35:10:337] Status Flag: 503316480
+[2026-03-31 10:35:10:337] Is Full: No
+[2026-03-31 10:35:10:337] Is Empty: No
+[2026-03-31 10:35:10:337] Is Running: Yes
+[2026-03-31 10:35:10:337] Has Error: No
+[2026-03-31 10:35:10:337] Port: 5070
+[2026-03-31 10:35:10:337] Ip Version: v6
+[2026-03-31 10:35:10:337] Total Client: 2
+[2026-03-31 10:35:10:337] Max Connection Limit: 4
+[2026-03-31 10:35:10:337] Max Same Ip Limit: 3
+[2026-03-31 10:35:10:337] Require Password: Yes
+[2026-03-31 10:35:10:337] ============================
+[2026-03-31 10:35:10:337] ========== SERVER ==========
+[2026-03-31 10:35:10:337] Build: Debug
+[2026-03-31 10:35:10:337] Name: netserver2
+[2026-03-31 10:35:10:337] Base Flag: 5
+[2026-03-31 10:35:10:337] Status Flag: 503316480
+[2026-03-31 10:35:10:337] Is Full: No
+[2026-03-31 10:35:10:337] Is Empty: No
+[2026-03-31 10:35:10:337] Is Running: Yes
+[2026-03-31 10:35:10:337] Has Error: No
+[2026-03-31 10:35:10:337] Port: 6060
+[2026-03-31 10:35:10:337] Ip Version: v6
+[2026-03-31 10:35:10:337] Total Client: 2
+[2026-03-31 10:35:10:337] Max Connection Limit: 4
+[2026-03-31 10:35:10:337] Max Same Ip Limit: 3
+[2026-03-31 10:35:10:337] Require Password: Yes
+[2026-03-31 10:35:10:338] ============================
+[Debug] [2026-03-31 10:35:10:338|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:10:338|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:10:338|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:10:338|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:10:338|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:338|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:10:338|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:10:338|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:10:338|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:10:930|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:10:930|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:10:930|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:10:930|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:11:328|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:11:328|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:11:328|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:11:328|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:11:328|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:328|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:11:328|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:11:329|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:11:329|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:11:401|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:11:401|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:11:401|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:11:401|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:11:401|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:401|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:11:401|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:11:401|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:11:401|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:11:972|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:11:972|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:11:972|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:11:972|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:11:972|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:11:973|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:11:973|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:11:973|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:11:973|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:12:368|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:12:368|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:12:368|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:12:368|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:12:368|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:368|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:12:368|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:12:368|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:12:368|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:12:464|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:12:464|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:12:464|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:12:464|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:12:464|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:464|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:12:464|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:12:464|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:12:464|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:12:974|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:12:974|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:12:974|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:12:974|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:13:432|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:13:432|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:13:432|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:13:432|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:13:432|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:432|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:13:432|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:13:432|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:13:432|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:13:528|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:13:528|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:13:528|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:13:528|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:13:528|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:528|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:13:528|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:13:528|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:13:528|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:13:977|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:13:977|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:13:977|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:13:977|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:13:977|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:13:977|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:13:978|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:13:978|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:13:978|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:13:978|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:14:459|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:14:459|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:14:459|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:14:459|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:14:459|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:14:459|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:14:459|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:14:459|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:14:459|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:14:553|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:14:553|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:14:553|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:14:553|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:14:553|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:14:553|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:14:553|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:14:553|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:14:553|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:15:009|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:15:009|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:15:009|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:15:009|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:15:009|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:15:009|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:15:010|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:15:010|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:15:010|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:15:505|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:15:505|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:15:505|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:15:505|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 8
+[Debug] [2026-03-31 10:35:15:505|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:505|server-fix.cpp:server_handler:306 netserver1|Recv] Username: free-1
+[Debug] [2026-03-31 10:35:15:505|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's free-1 ! 😀
+[Debug] [2026-03-31 10:35:15:505|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:15:505|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:15:602|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:15:602|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:15:602|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:15:602|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 9
+[Debug] [2026-03-31 10:35:15:602|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:15:602|server-fix.cpp:server_handler:306 netserver2|Recv] Username: free-3
+[Debug] [2026-03-31 10:35:15:602|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's free-3 ! 😀
+[Debug] [2026-03-31 10:35:15:602|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:15:602|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:recv:1121 netserver2] ::1 Receive
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:recv:1121 netserver1] ::1 Receive
+[Debug] [2026-03-31 10:35:16:013|server.hpp:recv:1183 netserver1] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:278 netserver1] Received From ::1
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:304 netserver1|Recv] Id: 11
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:305 netserver1|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:306 netserver1|Recv] Username: bsd-1
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:307 netserver1|Recv] Message: Hello Server, It's bsd-1 ! 😀
+[Debug] [2026-03-31 10:35:16:013|server.hpp:recv:1183 netserver2] ::1 Auth Successful, Code: 1010
+[Pass] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:278 netserver2] Received From ::1
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:304 netserver2|Recv] Id: 12
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:305 netserver2|Recv] Password: pwd@server!test
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:306 netserver2|Recv] Username: bsd-3
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:307 netserver2|Recv] Message: Hello Server, It's bsd-3 ! 😀
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:send:1010 netserver1] ::1 Sent
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:316 netserver1] Sent To ::1
+[Debug] [2026-03-31 10:35:16:013|socket.hpp:send:1010 netserver2] ::1 Sent
+[Debug] [2026-03-31 10:35:16:013|server-fix.cpp:server_handler:316 netserver2] Sent To ::1
+[Debug] [2026-03-31 10:35:16:507|server.hpp:recv:1174 netserver1] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:35:16:507|server-fix.cpp:server_handler:293 netserver1] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:35:16:507|server.hpp:operator():763 netserver1] Client Socket Closed, Ip/SameUserCount: ::1/1
+[Info] [2026-03-31 10:35:16:507 netserver1] ::1 Disconnected
+[Debug] [2026-03-31 10:35:16:603|server.hpp:recv:1174 netserver2] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:35:16:603|server-fix.cpp:server_handler:293 netserver2] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:35:16:603|server.hpp:operator():763 netserver2] Client Socket Closed, Ip/SameUserCount: ::1/1
+[Info] [2026-03-31 10:35:16:603 netserver2] ::1 Disconnected
+[Debug] [2026-03-31 10:35:17:021|server.hpp:recv:1174 netserver1] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:35:17:021|server-fix.cpp:server_handler:293 netserver1] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:35:17:021|server.hpp:recv:1174 netserver2] Server Receive Error, Code: 35
+[Debug] [2026-03-31 10:35:17:021|server-fix.cpp:server_handler:293 netserver2] Server Receive Error, Code: 10015
+[Debug] [2026-03-31 10:35:17:021|server.hpp:operator():763 netserver1] Client Socket Closed, Ip/SameUserCount: ::1/3
+[Debug] [2026-03-31 10:35:17:021|server.hpp:operator():763 netserver2] Client Socket Closed, Ip/SameUserCount: ::1/2
+[Info] [2026-03-31 10:35:17:021 netserver2] ::1 Disconnected
+[Info] [2026-03-31 10:35:17:021 netserver1] ::1 Disconnected
+[Debug] [2026-03-31 10:35:25:341|server.hpp:stop:1455 netserver1] Waiting For Stop Thread
+[Debug] [2026-03-31 10:35:36:601|server.hpp:crashed:1507 netserver1] Server Crash, Flag: 503316480
+[Debug] [2026-03-31 10:35:36:601|server.hpp:stop:1455 netserver1] Waiting For Stop Thread

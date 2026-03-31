@@ -1,0 +1,15 @@
+[Pass] [2026-03-31 07:30:20:533|server-fix.cpp:main:136 netserver1] Server Has No Error, Flag: 503316480
+[Pass] [2026-03-31 07:30:20:535|server-fix.cpp:main:137 netserver2] Server Has No Error, Flag: 503316480
+[Pass] [2026-03-31 07:30:20:535|server-fix.cpp:main:152 netserver1] New Max Connection Limit Is: 4
+[Pass] [2026-03-31 07:30:20:536|server-fix.cpp:main:159 netserver1] New Max Same Ip Limit Is: 3
+[Pass] [2026-03-31 07:30:20:536|server-fix.cpp:main:167 netserver2] New Max Connection Limit Is: 4
+[Pass] [2026-03-31 07:30:20:536|server-fix.cpp:main:174 netserver2] New Max Same Ip Limit Is: 3
+[Pass] [2026-03-31 07:30:20:537|server-fix.cpp:main:186 netserver2] Server Port Changed, Code: 11017
+[Pass] [2026-03-31 07:30:20:537|server-fix.cpp:main:190 netserver1] Server Has No Error, Flag: 503316480
+[Fail] [2026-03-31 07:30:20:538|server-fix.cpp:main:191 netserver2] Server Has No Error, Flag: 283115520
+[Pass] [2026-03-31 07:30:20:538 netserver1] Server Started To Run, Code: 11014
+[Fail] [2026-03-31 07:30:20:538 netserver2] Server Started To Run, Code: 10004
+[Pass] [2026-03-31 07:30:20:539|server-fix.cpp:main:202 netserver1] Server Has No Error, Flag: 503316480
+[Fail] [2026-03-31 07:30:20:539|server-fix.cpp:main:203 netserver2] Server Has No Error, Flag: 283115520
+[Pass] [2026-03-31 07:30:40:547 netserver1] Server Stopped, Code: 11013
+[Pass] [2026-03-31 07:30:40:547 netserver2] Server Stopped, Code: 11013
