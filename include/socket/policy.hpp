@@ -32,14 +32,9 @@ namespace netsocket::policy
     using namespace core::status;
     using namespace core::version;
 
-    // Type Definiton
-    #if __OS_WINDOWS__
-        using socket_t = SOCKET;
-        static constexpr socket_t ss_inv_socket = INVALID_SOCKET;
-    #elif __OS_POSIX__
-        using socket_t = int;
-        static constexpr socket_t ss_inv_socket = -1;
-    #endif
+    // Socket Type Definiton
+    using socket_t = int;
+    static constexpr socket_t ss_inv_socket = -1;
 
     // Limit
     static constexpr max_conn_t _MIN_CONNECTION = 1;
