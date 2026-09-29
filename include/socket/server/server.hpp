@@ -178,6 +178,7 @@ namespace netsocket::server
         server_thread_waited,
         server_port_changed,
         server_clear,
+        client_data_updated,
 
         warn = 12000,
         already_bind,
@@ -197,8 +198,7 @@ namespace netsocket::server
         public:
             using data_handler = std::function<void(
                 Server&,
-                const socket_t&,
-                const SocketCtx&
+                const socket_t&
             )>;
 
         private:
@@ -268,6 +268,7 @@ namespace netsocket::server
             inline std::size_t get_client_count() const noexcept;
             inline const flag::Flag& get_status_flag() const noexcept;
 
+            Status update_client(const socket_t ar_sock, const SocketCtx& ar_data) noexcept;
             Status delete_client(const socket_t ar_sock) noexcept;
 
             Status set_port(const socket_port_t ar_port) noexcept override;
@@ -698,92 +699,82 @@ namespace netsocket::server
 
                 // SAME IP COUNT VARIABLE
                 size_t tm_same_ip_count = 0;
+                SocketCtx tm_client;
 
                 // INCREASE SAME IP COUNT
                 {
                     std::scoped_lock tm_lock(this->m_mtx);
 
-                    if( this->m_ip_count.find(tm_ip) == this->m_ip_count.end() )
-                        this->m_ip_count.emplace(tm_ip, 0);
-
-                    ++this->m_ip_count.at(tm_ip);
-                    tm_same_ip_count = this->m_ip_count.at(tm_ip);
-
                     // OVER MAX CONNECTION ?
-                    if( this->m_clients.size() > this->get_policy().get_max_connection() )
+                    if( this->m_clients.size() >= this->get_policy().get_max_connection() )
                     {
                         DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Over total connection limit", GET_SOURCE));
-
                         Socket::close_socket(tm_cli_accpt);
                         return;
                     }
 
                     // OVER MAX SAME IP ?
-                    if( tm_same_ip_count > this->get_policy().get_max_same_ip() )
+                    const size_t tm_current_ip_count = this->m_ip_count[tm_ip] + 1;
+                    if( tm_current_ip_count > this->get_policy().get_max_same_ip() )
                     {
                         DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Over total same ip limit", GET_SOURCE));
-
                         Socket::close_socket(tm_cli_accpt);
                         return;
                     }
 
+                    // SAME IP COUNT
+                    this->m_ip_count[tm_ip] = tm_current_ip_count;
+                    tm_same_ip_count = tm_current_ip_count;
+
+                    // CLEAN CLIENT
+                    tm_client.m_ip = tm_ip;
+                    tm_client.m_user.m_same_user_count = tm_same_ip_count;
+                    tm_client.m_user.m_try_passwd = 0;
+                    tm_client.m_user.m_username = "";
+
                     // ADD TO CLIENT LIST
-                    this->m_clients.emplace(tm_cli_accpt, SocketCtx{ UserPacket{}, tm_ip });
+                    this->m_clients.insert_or_assign(tm_cli_accpt, tm_client);
                 }
 
                 DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), tm_ip + " Added To Client List", GET_SOURCE));
 
                 // LOG
                 if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Info, this->get_policy().get_username(), tm_ip + " Connected");
+                    this->get_logger().write(level_t::Info, this->get_policy().get_username(), std::to_string(tm_cli_accpt) + "/" + tm_ip + " Connected");
 
-                SocketCtx tm_client;
+                DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Server Handler Starting...", GET_SOURCE));
+
+                // CLIENT HANDLER
+                if( this->m_handler )
+                    this->m_handler(*this, tm_cli_accpt);
+
                 {
                     std::scoped_lock tm_lock(this->m_mtx);
 
-                    auto tm_it = this->m_clients.find(tm_cli_accpt);
-                    if( tm_it == this->m_clients.end() )
-                        return;
+                    // ERASE CLIENT FROM LIST
+                    this->m_clients.erase(tm_cli_accpt);
 
-                    tm_it->second.m_ip = tm_ip;
-                    tm_it->second.m_user.m_same_user_count = tm_same_ip_count;
-                    tm_it->second.m_user.m_try_passwd = 0;
-
-                    tm_client = tm_it->second;
+                    // DECREASE IP COUNTER
+                    auto tm_it = this->m_ip_count.find(tm_ip);
+                    if( tm_it != this->m_ip_count.end() )
+                    {
+                        if( tm_it->second > 1 )
+                            --tm_it->second;
+                        else
+                            this->m_ip_count.erase(tm_it);
+                    }
                 }
 
                 // RUN
                 DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Server Handler Starting...", GET_SOURCE));
-
-                if( this->m_handler )
-                    this->m_handler(*this, tm_cli_accpt, tm_client);
                 
                 // CLOSE
                 Socket::close_socket(tm_cli_accpt);
-                DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Client Socket Closed, Ip/SameUserCount: " + (tm_client.m_ip) + '/' + std::to_string(tm_same_ip_count), GET_SOURCE));
-                
-                // DECREASE SAME IP
-                {
-                    std::scoped_lock tm_lock(this->m_mtx);
-
-                    if( this->m_ip_count.find(tm_ip) != this->m_ip_count.end() )
-                    {
-                        if( this->m_ip_count.at(tm_ip) ) --this->m_ip_count.at(tm_ip);
-                        else this->m_ip_count.at(tm_ip) = 0;
-                    }
-                    else
-                        this->m_ip_count.emplace(tm_ip, 0);
-                }
+                DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Client Socket Closed, Ip/SameUserCount: " + tm_ip + '/' + std::to_string(tm_same_ip_count), GET_SOURCE));
 
                 // LOG
                 if( this->get_flag().has(_FLAG_SOCKET_LOGGER) )
-                    this->get_logger().write(level_t::Info, this->get_policy().get_username(), tm_ip + " Disconnected");
-
-                // REMOVE CLIENT FROM LIST
-                {
-                    std::scoped_lock tm_lock(this->m_mtx);
-                    this->m_clients.erase(tm_cli_accpt);
-                }
+                    this->get_logger().write(level_t::Info, this->get_policy().get_username(), std::to_string(tm_cli_accpt) + "/" + tm_ip + " Disconnected");
             });
         }
     }
@@ -888,6 +879,34 @@ namespace netsocket::server
     const flag::Flag& Server::get_status_flag() const noexcept
     {
         return this->m_status;
+    }
+
+    /**
+     * @brief Update Client
+     * 
+     * İstemciye ait veriler bazen güncellenebilir çünkü
+     * değiştirilebilir veridir. Bunu yapmayı sağlayacak
+     * fonksiyondur
+     * 
+     * @param socket_t Client Socket
+     * @param SocketCtx& New Client Data
+     * 
+     * @return Status
+     */
+    Status Server::update_client(const socket_t ar_sock, const SocketCtx& ar_data) noexcept
+    {
+        // Is socket valid ?
+        if( !is_valid_socket(ar_sock) )
+            return Status::err(domain_t::server, status::to_underlying(socket_code_t::socket_not_valid));
+
+        // Find Socket
+        auto tm_it = this->m_clients.find(ar_sock);
+        if( tm_it == this->m_clients.end() )
+            return Status::err(domain_t::server, status::to_underlying(server_code_t::socket_not_found_in_client_list));
+
+        // Client Data Update
+        this->m_clients.at(ar_sock) = ar_data;
+        return Status::ok(domain_t::server, status::to_underlying(server_code_t::client_data_updated));
     }
 
     /**
@@ -1172,7 +1191,7 @@ namespace netsocket::server
         {
             // DEBUG LOG
             DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), "Server Receive Error, Code: " + std::to_string(tm_status.get_code()), GET_SOURCE));
-            return Status::err(domain_t::server, status::to_underlying(server_code_t::fail_recv_from_client));
+            return Status::err(domain_t::server, tm_status.get_code());
         }
 
         // CAN AUTH ?
@@ -1193,7 +1212,11 @@ namespace netsocket::server
         ++(tm_client.m_user.m_try_passwd);
 
         // LOG THE WRONG PASSWORD ATTEMPT
-        DEBUG_ONLY(this->get_logger().write(level_t::Debug, this->get_policy().get_username(), tm_ip + "/" + std::to_string(tm_client.m_user.m_same_user_count) + " Sent Wrong Password Attempt #" + std::to_string(tm_client.m_user.m_try_passwd)));
+        DEBUG_ONLY(this->get_logger().write(level_t::Debug,
+            this->get_policy().get_username(),
+            tm_ip + "/" + std::to_string(tm_client.m_user.m_same_user_count) + " Sent To Wrong Password Attempt #" +
+                std::to_string(tm_client.m_user.m_try_passwd))
+        );
 
         // PASSWORD VARIABLE TYPE
         using pwd_t = decltype(tm_client.m_user.m_try_passwd);
