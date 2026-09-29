@@ -1,0 +1,33 @@
+[Pass] [2026-09-30 00:53:09:058|server-chat.cpp:main:131 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:53:09:058|server-chat.cpp:main:146 chat-server] New Max Connection Limit Is: 10
+[Pass] [2026-09-30 00:53:09:058|server-chat.cpp:main:155 chat-server] New Max Same Ip Limit Is: 7
+[Pass] [2026-09-30 00:53:09:058|server-chat.cpp:main:159 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:53:09:059|server-chat.cpp:main:172 chat-server] Server Run Code: 11014
+[Pass] [2026-09-30 00:54:11:568|server-chat.cpp:main:131 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:54:11:569|server-chat.cpp:main:146 chat-server] New Max Connection Limit Is: 10
+[Pass] [2026-09-30 00:54:11:569|server-chat.cpp:main:155 chat-server] New Max Same Ip Limit Is: 7
+[Pass] [2026-09-30 00:54:11:569|server-chat.cpp:main:159 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:54:11:569|server-chat.cpp:main:172 chat-server] Server Run Code: 11014
+[Pass] [2026-09-30 00:54:56:645|server-chat.cpp:main:131 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:54:56:645|server-chat.cpp:main:146 chat-server] New Max Connection Limit Is: 10
+[Pass] [2026-09-30 00:54:56:645|server-chat.cpp:main:155 chat-server] New Max Same Ip Limit Is: 7
+[Pass] [2026-09-30 00:54:56:645|server-chat.cpp:main:159 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:54:56:645|server-chat.cpp:main:172 chat-server] Server Run Code: 11014
+[Pass] [2026-09-30 00:58:00:783|server-chat.cpp:main:131 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:58:00:783|server-chat.cpp:main:146 chat-server] New Max Connection Limit Is: 10
+[Pass] [2026-09-30 00:58:00:783|server-chat.cpp:main:155 chat-server] New Max Same Ip Limit Is: 7
+[Pass] [2026-09-30 00:58:00:783|server-chat.cpp:main:159 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 00:58:00:783|server-chat.cpp:main:172 chat-server] Server Run Code: 11014
+[Pass] [2026-09-30 00:58:25:721|server-chat.cpp:main:191 chat-server] Server Stopped, Code: 11013
+[Pass] [2026-09-30 01:04:23:751|server-chat.cpp:main:131 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 01:04:23:752|server-chat.cpp:main:146 chat-server] New Max Connection Limit Is: 10
+[Pass] [2026-09-30 01:04:23:752|server-chat.cpp:main:155 chat-server] New Max Same Ip Limit Is: 7
+[Pass] [2026-09-30 01:04:23:752|server-chat.cpp:main:159 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 01:04:23:752|server-chat.cpp:main:172 chat-server] Server Run Code: 11014
+[Pass] [2026-09-30 01:04:46:393|server-chat.cpp:main:191 chat-server] Server Stopped, Code: 11013
+[Pass] [2026-09-30 01:10:17:110|server-chat.cpp:main:131 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 01:10:17:110|server-chat.cpp:main:146 chat-server] New Max Connection Limit Is: 10
+[Pass] [2026-09-30 01:10:17:110|server-chat.cpp:main:155 chat-server] New Max Same Ip Limit Is: 7
+[Pass] [2026-09-30 01:10:17:110|server-chat.cpp:main:159 chat-server] Server Flag: 503316480
+[Pass] [2026-09-30 01:10:17:110|server-chat.cpp:main:172 chat-server] Server Run Code: 11014
+[Pass] [2026-09-30 01:10:38:137|server-chat.cpp:main:191 chat-server] Server Stopped, Code: 11013

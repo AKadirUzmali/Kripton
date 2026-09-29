@@ -1,0 +1,69 @@
+[Debug] [2026-09-30 00:53:11:341|client.hpp:run:904 cli-2] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 00:53:11:341] ::1 Connected
+[Info] [2026-09-30 00:53:11:341] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 00:53:11:341|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 00:53:11:341|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:11:341|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:11:342|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:11:342|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:11:342|client-chat.cpp:client_handler:277 cli-2] Username: cli-2
+[Debug] [2026-09-30 00:53:11:342|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's cli-2 ! 😀
+[Debug] [2026-09-30 00:53:12:342|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:12:342|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:12:342|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:12:342|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:12:342|client-chat.cpp:client_handler:277 cli-2] Username: cli-1
+[Debug] [2026-09-30 00:53:12:342|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's cli-1 ! 😀
+[Debug] [2026-09-30 00:53:13:342|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:13:342|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:13:342|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:13:342|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:13:343|client-chat.cpp:client_handler:277 cli-2] Username: cli-3
+[Debug] [2026-09-30 00:53:13:343|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's cli-3 ! 😀
+[Debug] [2026-09-30 00:53:14:343|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:14:343|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:14:343|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:14:343|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:14:343|client-chat.cpp:client_handler:277 cli-2] Username: abc-1
+[Debug] [2026-09-30 00:53:14:343|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's abc-1 ! 😀
+[Debug] [2026-09-30 00:53:15:343|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:15:343|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:15:343|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:15:344|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:15:344|client-chat.cpp:client_handler:277 cli-2] Username: abc-1
+[Debug] [2026-09-30 00:53:15:344|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's abc-1 ! 😀
+[Debug] [2026-09-30 00:53:16:344|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:16:344|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:16:344|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:16:344|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:16:344|client-chat.cpp:client_handler:277 cli-2] Username: abc-1
+[Debug] [2026-09-30 00:53:16:344|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's abc-1 ! 😀
+[Debug] [2026-09-30 00:53:17:344|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:17:344|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:17:344|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:17:344|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:17:344|client-chat.cpp:client_handler:277 cli-2] Username: cli-1
+[Debug] [2026-09-30 00:53:17:344|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's cli-1 ! 😀
+[Debug] [2026-09-30 00:53:18:344|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:18:344|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:18:344|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:18:344|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:18:344|client-chat.cpp:client_handler:277 cli-2] Username: cli-2
+[Debug] [2026-09-30 00:53:18:344|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's cli-2 ! 😀
+[Debug] [2026-09-30 00:53:19:344|socket.hpp:send:1010 cli-2] Sent to: ::1
+[Debug] [2026-09-30 00:53:19:344|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:19:345|socket.hpp:recv:1121 cli-2] ::1 Receive
+[Debug] [2026-09-30 00:53:19:345|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:19:345|client-chat.cpp:client_handler:277 cli-2] Username: cli-2
+[Debug] [2026-09-30 00:53:19:345|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's cli-2 ! 😀
+[Debug] [2026-09-30 00:53:20:345|socket.hpp:send:1010 cli-2] Sent to: 
+[Debug] [2026-09-30 00:53:20:345|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:53:20:345|socket.hpp:recv:1121 cli-2]  Receive
+[Debug] [2026-09-30 00:53:20:345|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:53:20:345|client-chat.cpp:client_handler:277 cli-2] Username: abc-2
+[Debug] [2026-09-30 00:53:20:345|client-chat.cpp:client_handler:278 cli-2] Message: Hello Chat, It's abc-2 ! 😀
+[Debug] [2026-09-30 00:53:21:345|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 00:53:21:345|client.hpp:stop:950 cli-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:53:21:345|client.hpp:stop:960 cli-2] Thread Stopped
+[Debug] [2026-09-30 00:53:21:346|client.hpp:stop:950 cli-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:53:21:346|client.hpp:stop:960 cli-2] Thread Stopped

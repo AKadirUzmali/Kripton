@@ -1,0 +1,344 @@
+[Debug] [2026-09-30 00:54:14:379|client.hpp:run:904 wavaw2avwf-2] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 00:54:14:379] ::1 Connected
+[Info] [2026-09-30 00:54:14:379] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 00:54:14:379|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 00:54:14:379|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:14:379|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:14:380|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:14:380|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:14:380|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:54:14:380|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:54:15:380|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:15:380|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:15:380|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:15:380|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:15:380|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:54:15:380|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:54:16:380|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:16:380|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:16:380|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:16:380|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:16:380|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 00:54:16:380|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 00:54:17:381|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:17:381|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:17:381|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:17:381|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:17:381|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-2
+[Debug] [2026-09-30 00:54:17:381|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-2 ! 😀
+[Debug] [2026-09-30 00:54:18:381|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:18:381|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:18:381|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:18:381|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:18:381|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-2
+[Debug] [2026-09-30 00:54:18:381|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-2 ! 😀
+[Debug] [2026-09-30 00:54:19:382|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:19:382|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:19:382|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:19:382|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:19:382|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-1
+[Debug] [2026-09-30 00:54:19:382|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-1 ! 😀
+[Debug] [2026-09-30 00:54:20:382|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:20:382|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:20:382|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:20:382|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:20:382|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:54:20:382|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:54:21:382|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:21:382|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:21:382|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:21:382|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:21:382|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:54:21:382|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:54:22:383|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:22:383|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:22:383|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:22:383|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:22:383|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 00:54:22:383|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 00:54:23:383|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:54:23:383|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:54:23:383|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:54:23:383|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:54:23:383|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-3
+[Debug] [2026-09-30 00:54:23:383|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-3 ! 😀
+[Debug] [2026-09-30 00:54:24:383|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 00:54:24:383|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:54:24:384|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 00:54:24:384|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:54:24:384|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 00:55:00:091|client.hpp:run:904 wavaw2avwf-2] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 00:55:00:091] ::1 Connected
+[Info] [2026-09-30 00:55:00:092] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 00:55:00:092|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 00:55:00:092|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:00:092|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:00:092|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:00:092|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:00:092|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:55:00:092|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:55:01:092|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:01:092|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:01:092|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:01:092|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:01:092|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:55:01:092|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:55:02:092|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:02:093|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:02:093|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:02:093|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:02:093|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 00:55:02:093|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 00:55:03:093|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:03:093|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:03:093|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:03:093|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:03:093|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:55:03:093|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:55:04:093|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:04:093|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:04:093|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:04:093|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:04:093|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:55:04:093|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:55:05:093|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:05:093|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:05:093|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:05:093|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:05:093|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:55:05:093|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:55:06:094|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:06:094|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:06:094|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:06:094|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:06:094|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-2
+[Debug] [2026-09-30 00:55:06:094|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-2 ! 😀
+[Debug] [2026-09-30 00:55:07:094|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:07:094|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:07:094|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:07:094|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:07:094|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-3
+[Debug] [2026-09-30 00:55:07:094|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-3 ! 😀
+[Debug] [2026-09-30 00:55:08:095|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:08:095|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:08:095|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:08:095|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:08:095|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-1
+[Debug] [2026-09-30 00:55:08:095|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-1 ! 😀
+[Debug] [2026-09-30 00:55:09:095|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:55:09:095|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:55:09:095|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:55:09:095|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:55:09:095|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:55:09:095|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:55:10:095|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 00:55:10:095|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:55:10:096|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 00:55:10:097|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:55:10:097|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 00:58:03:763|client.hpp:run:904 wavaw2avwf-2] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 00:58:03:763] ::1 Connected
+[Info] [2026-09-30 00:58:03:763] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 00:58:03:763|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 00:58:03:763|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:03:763|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:03:763|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:03:763|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:03:763|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:58:03:763|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:58:04:764|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:04:764|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:04:764|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:04:764|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:04:764|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:58:04:764|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:58:05:764|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:05:764|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:05:764|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:05:764|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:05:764|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:58:05:764|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:58:06:765|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:06:765|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:06:765|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:06:765|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:06:765|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:58:06:765|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:58:07:765|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:07:765|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:07:765|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:07:765|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:07:765|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 00:58:07:765|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 00:58:08:765|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:08:765|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:08:765|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:08:765|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:08:765|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-1
+[Debug] [2026-09-30 00:58:08:765|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-1 ! 😀
+[Debug] [2026-09-30 00:58:09:766|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:09:766|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:09:766|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:09:766|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:09:766|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-3
+[Debug] [2026-09-30 00:58:09:766|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-3 ! 😀
+[Debug] [2026-09-30 00:58:10:766|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:10:766|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:10:766|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:10:766|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:10:766|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: kkkk-2
+[Debug] [2026-09-30 00:58:10:766|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's kkkk-2 ! 😀
+[Debug] [2026-09-30 00:58:11:766|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:11:766|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:11:766|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:11:766|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:11:766|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 00:58:11:766|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 00:58:12:767|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 00:58:12:767|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 00:58:12:767|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 00:58:12:767|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 00:58:12:767|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 00:58:12:767|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 00:58:13:767|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 00:58:13:767|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:58:13:767|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 00:58:13:767|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 00:58:13:767|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 01:04:24:767|client.hpp:run:904 wavaw2avwf-2] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 01:04:24:768] ::1 Connected
+[Info] [2026-09-30 01:04:24:768] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 01:04:24:769|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 01:04:24:769|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:24:769|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:24:769|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:24:769|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:24:769|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:04:24:769|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:04:25:769|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:25:769|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:25:769|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:25:769|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:25:769|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:04:25:769|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:04:26:769|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:26:769|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:26:769|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:26:769|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:26:769|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:04:26:769|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:04:27:770|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:27:770|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:27:770|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:27:770|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:27:770|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:04:27:770|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:04:28:770|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:28:770|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:28:770|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:28:770|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:28:770|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:04:28:770|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:04:29:770|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:29:770|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:29:770|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:29:771|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:29:771|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:04:29:771|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:04:30:771|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:30:771|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:30:771|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:30:771|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:30:771|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: klm-2
+[Debug] [2026-09-30 01:04:30:771|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's klm-2 ! 😀
+[Debug] [2026-09-30 01:04:31:771|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:31:771|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:31:771|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:31:771|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:31:771|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: klm-1
+[Debug] [2026-09-30 01:04:31:771|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:04:32:771|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:32:771|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:32:772|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:32:772|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:32:772|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: klm-3
+[Debug] [2026-09-30 01:04:32:772|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's klm-3 ! 😀
+[Debug] [2026-09-30 01:04:33:772|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:04:33:772|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:33:772|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:04:33:772|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:33:772|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:04:33:772|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:04:34:772|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 01:04:34:773|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 01:04:34:773|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 01:04:34:773|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 01:04:34:773|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
+[Debug] [2026-09-30 01:10:21:695|client.hpp:run:904 wavaw2avwf-2] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 01:10:21:695] ::1 Connected
+[Info] [2026-09-30 01:10:21:695] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 01:10:21:695|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 01:10:21:695|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:21:695|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:21:695|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:21:695|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:21:695|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:10:21:695|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:10:22:696|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:22:696|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:22:696|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:22:696|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:22:696|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:10:22:696|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:10:23:696|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:23:696|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:23:696|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:23:696|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:23:696|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:10:23:696|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:10:24:696|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:24:696|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:24:696|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:24:696|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:24:696|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:10:24:696|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:10:25:697|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:25:697|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:25:697|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:25:697|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:25:697|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:10:25:697|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:10:26:697|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:26:697|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:26:697|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:26:697|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:26:697|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:10:26:697|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:10:27:698|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:27:698|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:27:698|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:27:698|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:27:698|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: klm-1
+[Debug] [2026-09-30 01:10:27:698|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:10:28:698|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:28:698|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:28:698|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:28:698|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:28:698|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: klm-2
+[Debug] [2026-09-30 01:10:28:698|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's klm-2 ! 😀
+[Debug] [2026-09-30 01:10:29:699|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:29:699|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:29:699|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:29:699|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:29:699|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: klm-3
+[Debug] [2026-09-30 01:10:29:699|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's klm-3 ! 😀
+[Debug] [2026-09-30 01:10:30:699|socket.hpp:send:1010 wavaw2avwf-2] Sent to: ::1
+[Debug] [2026-09-30 01:10:30:699|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:30:699|socket.hpp:recv:1121 wavaw2avwf-2] ::1 Receive
+[Debug] [2026-09-30 01:10:30:699|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:30:699|client-chat.cpp:client_handler:277 wavaw2avwf-2] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:10:30:699|client-chat.cpp:client_handler:278 wavaw2avwf-2] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:10:31:699|client.hpp:stop:945 wavaw2avwf-2] Close Error, Code: 10
+[Debug] [2026-09-30 01:10:31:699|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 01:10:31:700|client.hpp:stop:950 wavaw2avwf-2] Waiting For Stop Thread
+[Debug] [2026-09-30 01:10:31:700|client.hpp:stop:960 wavaw2avwf-2] Thread Stopped
