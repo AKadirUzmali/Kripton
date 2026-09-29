@@ -10,6 +10,23 @@ Bu dokümanın amacı:
 
 ---
 
+## v0.8.9
+
+- Socket: Basit bir çıktı tarz düzeltmesi
+- Server: Bazı **bellek, dead-lock, mantık hatalarının** giderilmesi ve
+    çoklu istemci için ek düzenlemeler
+- Test: **Multi-Chat** için sunucu aldığı veriyi diğer istemciler ile
+    ona veriyi aktaran istemcinin adını kullanarak paylaşıyor ve
+    bu sayede diğer istemcilerde mesajı gönderen istemci ve mesajından
+    haberdar oluyor. Bazı hatalar, mantık hataları vs. olabilir
+    fakat test genel amacına ulaşmıştır. İlerleyen zamanda **gui**
+    ile ve daha yeni kod iyileştirmeleri ile bunlar sağlanabilir.
+    **Log** sistemini ise sabit yapmak yerine dinamik olacak şekilde
+    güncellenebilir ve kayıt sistemi daha okunaklı ve geleceğe dönük
+    olmuş olur. Sadece Linux (Debian/GNU 13) üzerinde test edildi.
+
+---
+
 ## v0.8.8
 
 - Crash: **is_signal** fonksiyonu **has_signal** olarak yeniden isimlendirildi
