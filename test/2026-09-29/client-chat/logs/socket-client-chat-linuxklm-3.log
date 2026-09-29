@@ -1,0 +1,138 @@
+[Info] [2026-09-30 01:04:25:777] ::1 Connected
+[Info] [2026-09-30 01:04:25:778] Client Connected To Server, Ip/Port: ::1/6565
+[Debug] [2026-09-30 01:04:25:778|client.hpp:run:904 klm-3] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 01:04:25:778|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 01:04:25:778|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:25:778|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:25:778|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:25:778|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:25:778|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:04:25:778|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:04:26:779|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:26:779|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:26:779|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:26:779|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:26:779|client-chat.cpp:client_handler:277 klm-3] Username: klm-2
+[Debug] [2026-09-30 01:04:26:779|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-2 ! 😀
+[Debug] [2026-09-30 01:04:27:779|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:27:780|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:27:780|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:27:780|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:27:780|client-chat.cpp:client_handler:277 klm-3] Username: klm-3
+[Debug] [2026-09-30 01:04:27:780|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-3 ! 😀
+[Debug] [2026-09-30 01:04:28:780|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:28:780|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:28:780|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:28:780|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:28:780|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:04:28:780|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:04:29:780|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:29:780|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:29:780|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:29:780|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:29:781|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:04:29:781|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:04:30:781|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:30:781|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:30:781|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:30:781|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:30:781|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-1
+[Debug] [2026-09-30 01:04:30:781|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-1 ! 😀
+[Debug] [2026-09-30 01:04:31:782|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:31:782|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:31:782|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:31:782|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:31:782|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:04:31:782|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:04:32:782|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:32:782|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:32:782|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:32:782|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:32:782|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:04:32:782|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:04:33:783|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:33:783|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:33:783|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:33:783|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:33:783|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:04:33:783|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:04:34:783|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:04:34:783|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:04:34:783|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:04:34:783|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:04:34:783|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:04:34:783|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:04:35:783|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 01:04:35:784|client.hpp:stop:950 klm-3] Waiting For Stop Thread
+[Debug] [2026-09-30 01:04:35:784|client.hpp:stop:960 klm-3] Thread Stopped
+[Debug] [2026-09-30 01:04:35:784|client.hpp:stop:950 klm-3] Waiting For Stop Thread
+[Debug] [2026-09-30 01:04:35:784|client.hpp:stop:960 klm-3] Thread Stopped
+[Debug] [2026-09-30 01:10:22:866|client.hpp:run:904 klm-3] Client Worker Started To Run: 60817408
+[Info] [2026-09-30 01:10:22:866] ::1 Connected
+[Info] [2026-09-30 01:10:22:866] Client Connected To Server, Ip/Port: ::1/6565
+[Info] [2026-09-30 01:10:22:866|client.hpp:operator():486] Client Handler Starting...
+[Debug] [2026-09-30 01:10:22:866|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:22:866|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:22:866|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:22:866|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:22:866|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:10:22:866|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:10:23:867|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:23:867|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:23:867|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:23:867|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:23:867|client-chat.cpp:client_handler:277 klm-3] Username: klm-2
+[Debug] [2026-09-30 01:10:23:867|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-2 ! 😀
+[Debug] [2026-09-30 01:10:24:867|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:24:867|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:24:867|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:24:867|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:24:867|client-chat.cpp:client_handler:277 klm-3] Username: klm-3
+[Debug] [2026-09-30 01:10:24:867|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-3 ! 😀
+[Debug] [2026-09-30 01:10:25:867|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:25:867|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:25:867|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:25:867|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:25:867|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:10:25:868|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:10:26:868|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:26:868|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:26:868|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:26:868|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:26:868|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:10:26:868|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:10:27:868|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:27:868|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:27:868|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:27:868|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:27:868|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-2
+[Debug] [2026-09-30 01:10:27:868|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-2 ! 😀
+[Debug] [2026-09-30 01:10:28:868|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:28:869|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:28:869|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:28:869|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:28:869|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:10:28:869|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:10:29:869|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:29:869|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:29:869|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:29:869|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:29:869|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:10:29:869|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:10:30:869|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:30:869|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:30:869|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:30:869|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:30:869|client-chat.cpp:client_handler:277 klm-3] Username: klm-1
+[Debug] [2026-09-30 01:10:30:869|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's klm-1 ! 😀
+[Debug] [2026-09-30 01:10:31:869|socket.hpp:send:1010 klm-3] Sent to: ::1
+[Debug] [2026-09-30 01:10:31:869|client-chat.cpp:client_handler:246] Data Sent To ::1
+[Debug] [2026-09-30 01:10:31:870|socket.hpp:recv:1121 klm-3] ::1 Receive
+[Debug] [2026-09-30 01:10:31:870|client-chat.cpp:client_handler:263] Data Receive From ::1
+[Debug] [2026-09-30 01:10:31:870|client-chat.cpp:client_handler:277 klm-3] Username: wavaw2avwf-3
+[Debug] [2026-09-30 01:10:31:870|client-chat.cpp:client_handler:278 klm-3] Message: Hello Chat, It's wavaw2avwf-3 ! 😀
+[Debug] [2026-09-30 01:10:32:870|client.hpp:operator():493] Client Socket Close, Code: 1006
+[Debug] [2026-09-30 01:10:32:871|client.hpp:stop:950 klm-3] Waiting For Stop Thread
+[Debug] [2026-09-30 01:10:32:871|client.hpp:stop:960 klm-3] Thread Stopped
+[Debug] [2026-09-30 01:10:32:871|client.hpp:stop:950 klm-3] Waiting For Stop Thread
+[Debug] [2026-09-30 01:10:32:871|client.hpp:stop:960 klm-3] Thread Stopped

@@ -1,0 +1,115 @@
+[Pass] [2026-09-30 00:53:10:316|client-chat.cpp:main:160 abc-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:53:10:316|client-chat.cpp:main:161 abc-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:53:10:316|client-chat.cpp:main:162 abc-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:53:10:316|client-chat.cpp:main:170 abc-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:53:10:316|client-chat.cpp:main:179 abc-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:53:10:317|client-chat.cpp:main:188 abc-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:53:11:340|client-chat.cpp:main:160 cli-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:53:11:340|client-chat.cpp:main:161 cli-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:53:11:340|client-chat.cpp:main:162 cli-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:53:11:341|client-chat.cpp:main:170 cli-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:53:11:341|client-chat.cpp:main:179 cli-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:53:11:341|client-chat.cpp:main:188 cli-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:53:20:320 abc-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:53:20:321 abc-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:53:20:321 abc-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:53:21:345 cli-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:53:21:345 cli-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:53:21:346 cli-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:54:13:169|client-chat.cpp:main:160 kkkk-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:54:13:169|client-chat.cpp:main:161 kkkk-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:54:13:169|client-chat.cpp:main:162 kkkk-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:54:13:169|client-chat.cpp:main:170 kkkk-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:54:13:170|client-chat.cpp:main:179 kkkk-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:54:13:170|client-chat.cpp:main:188 kkkk-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:54:14:378|client-chat.cpp:main:160 wavaw2avwf-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:54:14:379|client-chat.cpp:main:161 wavaw2avwf-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:54:14:379|client-chat.cpp:main:162 wavaw2avwf-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:54:14:379|client-chat.cpp:main:170 wavaw2avwf-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:54:14:379|client-chat.cpp:main:179 wavaw2avwf-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:54:14:379|client-chat.cpp:main:188 wavaw2avwf-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:54:23:174 kkkk-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:54:23:174 kkkk-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:54:23:175 kkkk-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:54:24:383 wavaw2avwf-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:54:24:384 wavaw2avwf-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:54:24:384 wavaw2avwf-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:55:00:091|client-chat.cpp:main:160 wavaw2avwf-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:55:00:091|client-chat.cpp:main:161 wavaw2avwf-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:55:00:091|client-chat.cpp:main:162 wavaw2avwf-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:55:00:091|client-chat.cpp:main:170 wavaw2avwf-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:55:00:091|client-chat.cpp:main:179 wavaw2avwf-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:55:00:091|client-chat.cpp:main:188 wavaw2avwf-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:55:01:223|client-chat.cpp:main:160 kkkk-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:55:01:223|client-chat.cpp:main:161 kkkk-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:55:01:223|client-chat.cpp:main:162 kkkk-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:55:01:223|client-chat.cpp:main:170 kkkk-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:55:01:223|client-chat.cpp:main:179 kkkk-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:55:01:223|client-chat.cpp:main:188 kkkk-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:55:10:095 wavaw2avwf-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:55:10:096 wavaw2avwf-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:55:10:097 wavaw2avwf-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:55:11:232 kkkk-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:55:11:233 kkkk-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:55:11:233 kkkk-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:58:03:762|client-chat.cpp:main:160 wavaw2avwf-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:58:03:763|client-chat.cpp:main:161 wavaw2avwf-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:58:03:763|client-chat.cpp:main:162 wavaw2avwf-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:58:03:763|client-chat.cpp:main:170 wavaw2avwf-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:58:03:763|client-chat.cpp:main:179 wavaw2avwf-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:58:03:763|client-chat.cpp:main:188 wavaw2avwf-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:58:05:111|client-chat.cpp:main:160 kkkk-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:58:05:111|client-chat.cpp:main:161 kkkk-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:58:05:111|client-chat.cpp:main:162 kkkk-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 00:58:05:111|client-chat.cpp:main:170 kkkk-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:58:05:111|client-chat.cpp:main:179 kkkk-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:58:05:111|client-chat.cpp:main:188 kkkk-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 00:58:13:767 wavaw2avwf-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:58:13:767 wavaw2avwf-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:58:13:767 wavaw2avwf-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:58:15:115 kkkk-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:58:15:115 kkkk-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 00:58:15:115 kkkk-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:04:04:336|client-chat.cpp:main:160 abc-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:04:336|client-chat.cpp:main:161 abc-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:04:336|client-chat.cpp:main:162 abc-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:04:337|client-chat.cpp:main:170 abc-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:04:337|client-chat.cpp:main:179 abc-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:04:337|client-chat.cpp:main:188 abc-3] Client Started To Run, Code: 21004
+[Fail] Crash Code: 2
+[Pass] [2026-09-30 01:04:24:767|client-chat.cpp:main:160 wavaw2avwf-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:24:767|client-chat.cpp:main:161 wavaw2avwf-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:24:767|client-chat.cpp:main:162 wavaw2avwf-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:24:767|client-chat.cpp:main:170 wavaw2avwf-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:24:767|client-chat.cpp:main:179 wavaw2avwf-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:24:768|client-chat.cpp:main:188 wavaw2avwf-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:25:777|client-chat.cpp:main:160 klm-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:25:777|client-chat.cpp:main:161 klm-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:25:777|client-chat.cpp:main:162 klm-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:04:25:777|client-chat.cpp:main:170 klm-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:25:777|client-chat.cpp:main:179 klm-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:25:778|client-chat.cpp:main:188 klm-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:04:34:773 wavaw2avwf-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:04:34:773 wavaw2avwf-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:04:34:773 wavaw2avwf-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:04:35:784 klm-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:04:35:784 klm-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:04:35:784 klm-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:10:21:695|client-chat.cpp:main:160 wavaw2avwf-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:10:21:695|client-chat.cpp:main:161 wavaw2avwf-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:10:21:695|client-chat.cpp:main:162 wavaw2avwf-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:10:21:695|client-chat.cpp:main:170 wavaw2avwf-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:10:21:695|client-chat.cpp:main:179 wavaw2avwf-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:10:21:695|client-chat.cpp:main:188 wavaw2avwf-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:10:22:866|client-chat.cpp:main:160 klm-1] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:10:22:866|client-chat.cpp:main:161 klm-2] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:10:22:866|client-chat.cpp:main:162 klm-3] Client Has No Error, Flag: 60817408
+[Pass] [2026-09-30 01:10:22:866|client-chat.cpp:main:170 klm-1] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:10:22:866|client-chat.cpp:main:179 klm-2] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:10:22:866|client-chat.cpp:main:188 klm-3] Client Started To Run, Code: 21004
+[Pass] [2026-09-30 01:10:31:699 wavaw2avwf-1] Client Stopped, Code: 20011
+[Fail] [2026-09-30 01:10:31:699 wavaw2avwf-2] Client Stopped, Code: 10
+[Pass] [2026-09-30 01:10:31:700 wavaw2avwf-3] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:10:32:870 klm-1] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:10:32:871 klm-2] Client Stopped, Code: 20011
+[Pass] [2026-09-30 01:10:32:871 klm-3] Client Stopped, Code: 20011

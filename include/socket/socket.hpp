@@ -344,12 +344,12 @@ namespace netsocket
             virtual void print() noexcept;
 
             virtual inline algorithm::Algorithm& get_cipher() noexcept;
-            virtual inline log::Logger<output::file::FileOut>& get_logger() noexcept;
+            virtual inline log::Logger<file::FileOut>& get_logger() noexcept;
             virtual inline policy::AccessPolicy& get_policy() noexcept;
             virtual inline flag::Flag& get_flag() noexcept;
 
             virtual inline const algorithm::Algorithm& get_cipher() const noexcept;
-            virtual inline const log::Logger<output::file::FileOut>& get_logger() const noexcept;
+            virtual inline const log::Logger<file::FileOut>& get_logger() const noexcept;
             virtual inline const policy::AccessPolicy& get_policy() const noexcept;
             virtual inline const flag::Flag& get_flag() const noexcept;
 
@@ -621,7 +621,7 @@ namespace netsocket
      * 
      * @return Logger&
      */
-    log::Logger<output::file::FileOut>& Socket::get_logger() noexcept
+    log::Logger<file::FileOut>& Socket::get_logger() noexcept
     {
         return this->m_logger;
     }
@@ -634,7 +634,7 @@ namespace netsocket
      * 
      * @return const Logger&
      */
-    const log::Logger<output::file::FileOut>& Socket::get_logger() const noexcept
+    const log::Logger<file::FileOut>& Socket::get_logger() const noexcept
     {
         return this->m_logger;
     }
@@ -1007,7 +1007,7 @@ namespace netsocket
         // LOGGER
         DEBUG_ONLY(
             const std::string tm_ip = get_ip(ar_target_sock);
-            this->m_logger.write(level_t::Debug, this->get_policy().get_username(), tm_ip + " Sent", GET_SOURCE)
+            this->m_logger.write(level_t::Debug, this->get_policy().get_username(), "Sent to: " + tm_ip, GET_SOURCE)
         );
 
         return Status::ok(domain_t::socket, status::to_underlying(socket_code_t::socket_data_sent));
