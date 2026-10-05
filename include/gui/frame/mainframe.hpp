@@ -2,8 +2,16 @@
 #pragma once
 
 /**
+ * Main Frame (Ana Ekran)
  * 
- * g++ -std=c++17 -Iinclude/ source/gui/gui.cpp `wx-config --cxxflags --libs` -Wall -Werror -Wextra -o build/app-gui.exe
+ * Grafik arayüzünde yapılan her şeyin işlendiği ana dosya.
+ * Butonlar, yazılar, kutucuklar ve dahası burada oluşturuluyor.
+ * Ne işlem yapacakları belirleniyor ve sistemin ona göre
+ * işleyişi sağlanıyor, bu sayede kullanıcıların uygulamayı
+ * kolayca kullanabileceği bir arayüz ortaya çıkıyor.
+ * wxWidgets ile geliştiriliyor ve ekran tasarımı bitti,
+ * sırada ise ekranda bulunan elemanların işlevini sağlamak
+ * ve programı çalıştırmayı denemek. (2026/10/05)
  */
 
 // Include
