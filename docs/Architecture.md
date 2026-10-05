@@ -7,6 +7,7 @@
 - [Geliştirici](Developer.md)
 - [Derleme](Build.md)
 - [Kayıtlar](Logs.md)
+- [Grafik Arayüzü](Gui.md)
 
 ---
 
