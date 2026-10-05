@@ -10,6 +10,8 @@
 #include <wx/wx.h>
 #include <wx/valnum.h>
 
+#include <pool/cipherpool.hpp>
+
 // Namespace
 namespace gui::frame
 {
@@ -41,6 +43,7 @@ namespace gui::frame
             wxTextCtrl* m_server_ip { nullptr };
             wxTextCtrl* m_username { nullptr };
             wxTextCtrl* m_password { nullptr };
+            wxTextCtrl* m_encryption_key { nullptr };
             wxStaticText* m_connection_status { nullptr };
             wxRadioBox* m_client_or_server { nullptr };
             wxRadioBox* m_ipv4_or_v6 { nullptr };
@@ -264,7 +267,7 @@ namespace gui::frame
         // Mesaj yazma kısmı
         this->m_chat_input = new wxTextCtrl(this->m_panel, wxID_ANY, "",
             wxDefaultPosition, wxSize(-1, 50),
-            wxTE_MULTILINE | wxTE_RICH2 | wxTE_PROCESS_ENTER | wxBORDER_NONE
+            wxTE_MULTILINE | wxTE_RICH2 | wxBORDER_NONE
         );
 
         this->m_chat_input->SetBackgroundColour(tm_bg_colour);
@@ -290,9 +293,12 @@ namespace gui::frame
 
         // Bağlantı durumu göstergesi
         this->m_connection_status = new wxStaticText(this->m_panel, wxID_ANY, "Not Connected",
-            wxDefaultPosition, wxSize(140, 40),
+            wxDefaultPosition, wxSize(150, -1),
             wxALIGN_CENTER_HORIZONTAL | wxST_NO_AUTORESIZE
         );
+        this->m_connection_status->SetFont(tm_btn_font);
+        this->m_connection_status->SetForegroundColour(tm_fg_colour);
+        this->m_connection_status->SetBackgroundColour(tm_bg_colour);
 
         // Gönder Butonu (Sol tarafta)
         tm_mid_control_sizer->Add(this->m_btn_send, 0, wxRIGHT, 10);
@@ -351,7 +357,8 @@ namespace gui::frame
 
         // Şifreleme türleri
         wxArrayString tm_enc_list;
-        tm_enc_list.Add("Xor");
+        for( pool::cipherpool::cipher_name_t tm_cipher : pool::cipherpool::st_cipher_list )    
+            tm_enc_list.Add(tm_cipher);
 
         this->m_crypt_list = new wxChoice(this->m_panel, wxID_ANY,
             wxDefaultPosition, wxSize(100, -1),
@@ -384,7 +391,7 @@ namespace gui::frame
 
         this->m_max_same_ip_limit = new wxTextCtrl(this->m_panel, wxID_ANY, "",
             wxDefaultPosition, wxSize(100, -1),
-            wxTE_RICH2 | wxTE_PROCESS_ENTER | wxBORDER_NONE
+            wxTE_RICH2 | wxBORDER_NONE
         );
         this->m_max_same_ip_limit->Bind(wxEVT_CHAR, &MainFrame::AllowOnlyNumbers, this);
         this->m_max_same_ip_limit->SetValidator(tm_numeric_val);
@@ -395,7 +402,7 @@ namespace gui::frame
 
         this->m_max_connection_limit = new wxTextCtrl(this->m_panel, wxID_ANY, "",
             wxDefaultPosition, wxSize(100, -1),
-            wxTE_RICH2 | wxTE_PROCESS_ENTER | wxBORDER_NONE
+            wxTE_RICH2 | wxBORDER_NONE
         );
         this->m_max_connection_limit->Bind(wxEVT_CHAR, &MainFrame::AllowOnlyNumbers, this);
         this->m_max_connection_limit->SetValidator(tm_numeric_val);
@@ -407,8 +414,88 @@ namespace gui::frame
         tm_data_control_sizer->Add(this->m_max_same_ip_limit, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 10);
         tm_data_control_sizer->Add(this->m_max_connection_limit, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 10);
 
+        // Port Numarası
+        this->m_port = new wxTextCtrl(this->m_panel, wxID_ANY, "",
+            wxDefaultPosition, wxSize(50, -1),
+            wxTE_RICH2 | wxBORDER_NONE
+        );
+        this->m_port->Bind(wxEVT_CHAR, &MainFrame::AllowOnlyNumbers, this);
+        this->m_port->SetValidator(tm_numeric_val);
+        this->m_port->SetHint("Port");
+        this->m_port->SetFont(tm_small_font);
+        this->m_port->SetForegroundColour(tm_fg_colour);
+        this->m_port->SetBackgroundColour(tm_bg_colour);
+
+        tm_data_control_sizer->Add(this->m_port, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 10);
+
+        // Kayıt Dosyası Konumu
+        this->m_log_filepath = new wxTextCtrl(this->m_panel, wxID_ANY, "",
+            wxDefaultPosition, wxSize(500, -1),
+            wxTE_RICH2 | wxBORDER_NONE
+        );
+        this->m_log_filepath->SetHint("Log Filepath");
+        this->m_log_filepath->SetFont(tm_small_font);
+        this->m_log_filepath->SetForegroundColour(tm_fg_colour);
+        this->m_log_filepath->SetBackgroundColour(tm_bg_colour);
+
+        tm_data_control_sizer->Add(this->m_log_filepath, 0, wxALIGN_CENTER_VERTICAL, 10);
+
         // Ana Sizer'a Ekle
         tm_panel_sizer->Add(tm_data_control_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+
+        // Giriş Veri Kısmı (Kullanıcı Adı, Ip Adresi, Şifre vs. için Yatay Sizer)
+        wxBoxSizer* tm_login_sizer = new wxBoxSizer(wxHORIZONTAL);
+
+        // Kullanıcı Adı girme kısmı
+        this->m_username = new wxTextCtrl(this->m_panel, wxID_ANY, "",
+            wxDefaultPosition, wxSize(150, -1),
+            wxTE_RICH2 | wxBORDER_NONE
+        );
+        this->m_username->SetHint("Username");
+        this->m_username->SetFont(tm_small_font);
+        this->m_username->SetForegroundColour(tm_fg_colour);
+        this->m_username->SetBackgroundColour(tm_bg_colour);
+
+        tm_login_sizer->Add(this->m_username, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 10);
+
+        // Ip Adresi girme kısmı
+        this->m_server_ip = new wxTextCtrl(this->m_panel, wxID_ANY, "",
+            wxDefaultPosition, wxSize(150, -1),
+            wxTE_RICH2 | wxBORDER_NONE
+        );
+        this->m_server_ip->SetHint("Ip Address");
+        this->m_server_ip->SetFont(tm_small_font);
+        this->m_server_ip->SetForegroundColour(tm_fg_colour);
+        this->m_server_ip->SetBackgroundColour(tm_bg_colour);
+
+        tm_login_sizer->Add(this->m_server_ip, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 10);
+
+        // Şifre girme kısmı
+        this->m_password = new wxTextCtrl(this->m_panel, wxID_ANY, "",
+            wxDefaultPosition, wxSize(150, -1),
+            wxTE_RICH2 | wxBORDER_NONE
+        );
+        this->m_password->SetHint("Password");
+        this->m_password->SetFont(tm_small_font);
+        this->m_password->SetForegroundColour(tm_fg_colour);
+        this->m_password->SetBackgroundColour(tm_bg_colour);
+
+        tm_login_sizer->Add(this->m_password, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, 10);
+
+        // Kriptografi Anahtarı girme kısmı
+        this->m_encryption_key = new wxTextCtrl(this->m_panel, wxID_ANY, "",
+            wxDefaultPosition, wxSize(300, -1),
+            wxTE_RICH2 | wxBORDER_NONE
+        );
+        this->m_encryption_key->SetHint("Encryption Key");
+        this->m_encryption_key->SetFont(tm_small_font);
+        this->m_encryption_key->SetForegroundColour(tm_fg_colour);
+        this->m_encryption_key->SetBackgroundColour(tm_bg_colour);
+
+        tm_login_sizer->Add(this->m_encryption_key, 0, wxALIGN_CENTER_VERTICAL, 10);
+
+        // Ana Sizer'a Ekle
+        tm_panel_sizer->Add(tm_login_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 
         // Bütün Elemanlar Sizer'a Eklendikten Sonra Panelle Bağlama Yapılır
         this->m_panel->SetSizer(tm_panel_sizer);
