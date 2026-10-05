@@ -10,6 +10,21 @@ Bu dokümanın amacı:
 
 ---
 
+## v0.9.0
+
+- GUI: Programın sadece konsol ile çalışabilmesinin yanında
+    grafik arayüzüne sahip olarak daha iyi ve kullanıcı dostu
+    şekilde çalışmasını sağlamak.
+- CipherPool: Şifreleme türlerinin adını yazılı olduğu basit bir
+    liste.
+- Test: **Linux** da test edildi ve daha öncesinde **Windows** da
+    test edildi. Linux için **Debian/GNU 13** kullanıldı, Windows
+    için ise **Windows 10** kullanıldı. Arayüzde bulunan butonlar,
+    metinler, checkboxlar vs. sadece görsel olarak tasarlandı,
+    daha sonrasında çalışabilir hale getirilecek.
+
+---
+
 ## v0.8.9
 
 - Socket: Basit bir çıktı tarz düzeltmesi
