@@ -490,6 +490,7 @@ namespace netsocket::client
 
             // SOCKET CLOSE
             const Status tm_close = this->close();
+            (void)tm_close;
             DEBUG_ONLY(this->get_logger().write(level_t::Debug, "Client Socket Close, Code: " + std::to_string(tm_close.get_code()), GET_SOURCE));
 
             // REMOVE SERVER CONNECTION DATA FROM LIST
