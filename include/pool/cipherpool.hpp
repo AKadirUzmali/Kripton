@@ -8,7 +8,7 @@
  * sağlıyoruz bu sayede karmaşıklık daha az oluyor
  */
 
-#include <array>
+#include <unordered_map>
 
 #include <core/algorithm.hpp>
 #include <cipher/xor/xor.hpp>
@@ -20,10 +20,26 @@ namespace pool::cipherpool
     using namespace core::algorithm;
     using namespace cipher::stream;
 
-    // Cipher Name List
-    using cipher_name_t = std::string;
-    static const std::array<cipher_name_t, 1> st_cipher_list
+    // Cipher Type Enum
+    enum class ecipher_t
     {
-        "Xor"
+        Null = 0,
+        Xor
+    };
+
+    // Cipher Name Type
+    using cipher_name_t = std::string;
+
+    // Cipher Information
+    struct CipherInfo
+    {
+        ecipher_t m_type;
+        cipher_name_t m_name;
+    };
+
+    // Cipher Name List
+    static const std::array<CipherInfo, 1> st_cipher_list
+    {
+        { ecipher_t::Xor, "Xor" }
     };
 }
