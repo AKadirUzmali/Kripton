@@ -35,6 +35,13 @@ namespace gui::frame
     // Using Namespace
     using namespace pool;
 
+    // Menu ID Namespace
+    namespace menuids
+    {
+        const int menu_servers = 1000;
+        const int menu_clients = 1001;
+    };
+
     // Class
     class MainFrame : public wxFrame
     {
@@ -59,6 +66,9 @@ namespace gui::frame
             };
 
             wxPanel* m_panel { nullptr };
+            wxMenuBar* m_menubar { nullptr };
+            wxMenu* m_menu_conn { nullptr };
+
             wxStaticText* m_title_kripton { nullptr };
             wxButton* m_btn_disconnect { nullptr };
             wxButton* m_btn_connect { nullptr };
@@ -86,6 +96,7 @@ namespace gui::frame
 
             virtual void SetupButtonTheme(wxButton* ar_btn, const ButtonTheme& ar_theme);
 
+            virtual void SetupMainMenu();
             virtual void CreateControls();
             virtual void SetupEvents();
 
@@ -103,20 +114,43 @@ namespace gui::frame
 
         public:
             MainFrame(const wxString& ar_title);
+
+        protected:
+            static int s_counter_connection;
     };
 }
 
 // Namespace
 namespace gui::frame
 {
+    // Toplam bağlantı sayacı
+    int MainFrame::s_counter_connection = 0;
+
     /**
      * @brief Main Frame
      */
     MainFrame::MainFrame(const wxString& ar_title)
         : wxFrame(nullptr, wxID_ANY, ar_title)
     {
+        this->SetupMainMenu();
         this->CreateControls();
         this->SetupEvents();
+    }
+
+    /**
+     * @brief Setup Main Menu
+     * 
+     * Ana menü yapılarak oradan bağlantı yapılan yerler
+     * hakkında bilgi alınacak
+     */
+    void MainFrame::SetupMainMenu()
+    {
+        this->m_menubar = new wxMenuBar();
+        this->m_menu_conn = new wxMenu();
+
+        this->m_menubar->Append(this->m_menu_conn, "Connections");
+
+        this->SetMenuBar(this->m_menubar);
     }
 
     /**
@@ -229,18 +263,6 @@ namespace gui::frame
         // Ana Panel Dikey Sizer (Tüm Elemanları Üstten Alta Dizer)
         wxBoxSizer* tm_panel_sizer = new wxBoxSizer(wxVERTICAL);
 
-        // Başlık (Kripton)
-        this->m_title_kripton = new wxStaticText(this->m_panel, wxID_ANY, "Kripton",
-            wxDefaultPosition, wxDefaultSize,
-            wxALIGN_CENTER_HORIZONTAL | wxST_NO_AUTORESIZE
-        );
-        this->m_title_kripton->SetFont(tm_header_font);
-        this->m_title_kripton->SetBackgroundColour(tm_title_colour);
-        this->m_title_kripton->SetForegroundColour(tm_fg_colour);
-
-        // proportion = 0 (Yükseklik sabit), wxEXPAND (Yatayda tam genişlik kaplasın)
-        tm_panel_sizer->Add(this->m_title_kripton, 0, wxEXPAND | wxBOTTOM, 10);
-
         // Üst Ara Çubuk (Butonlar + Sayaç için Yatay Sizer)
         wxBoxSizer* tm_top_control_sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -252,6 +274,7 @@ namespace gui::frame
         this->m_btn_disconnect->SetFont(tm_btn_font);
         this->m_btn_disconnect->SetForegroundColour(tm_fg_colour);
         this->SetupButtonTheme(this->m_btn_disconnect, tm_disconnect_theme);
+        this->m_btn_disconnect->Hide(); // hiçbir bağlantı yokken bağlantı kesilemez, gizlesin başlangıç olarak
 
         // Bağlan butonu
         this->m_btn_connect = new wxButton(this->m_panel, wxID_ANY, "Connect",
@@ -283,7 +306,7 @@ namespace gui::frame
 
         // Üst Ara Çubuğu Ana Sizer'a Ekle
         tm_panel_sizer->Add(tm_top_control_sizer, 0,
-            wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10
+            wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM | wxTOP, 10
         );
 
         // Mesaj ekranı
@@ -331,6 +354,7 @@ namespace gui::frame
         this->m_btn_send->SetFont(tm_btn_font);
         this->m_btn_send->SetForegroundColour(tm_fg_colour);
         this->SetupButtonTheme(this->m_btn_send, tm_send_theme);
+        this->m_btn_send->Hide(); // bağlantı yokken ne mesajı gönderecek?
 
         // Bağlantı durumu göstergesi
         this->m_connection_status = new wxStaticText(this->m_panel, wxID_ANY, "Not Connected",
@@ -775,6 +799,38 @@ namespace gui::frame
                 }
             }
         }
+
+        // Gerekli olanlar gözüksün
+        this->m_btn_disconnect->Show();
+        this->m_btn_send->Show();
+
+        // Kullanılmayacak olanları gizle
+        this->m_btn_connect->Hide();
+        this->m_client_or_server->Hide();
+        this->m_ipv4_or_v6->Hide();
+        this->m_pwd_require->Hide();
+        this->m_log_require->Hide();
+        this->m_crypt_list->Hide();
+        this->m_encryption_key->Hide();
+
+        // Değiştirilmesini engelle
+        this->m_max_connection_limit->SetEditable(false);
+        this->m_max_same_ip_limit->SetEditable(false);
+        this->m_username->SetEditable(false);
+        this->m_password->SetEditable(false);
+        this->m_server_ip->SetEditable(false);
+        this->m_port->SetEditable(false);
+        this->m_log_filepath->SetEditable(false);
+
+        // yeni id ver
+        ++MainFrame::s_counter_connection;
+
+        // Menüye yeni bağlantıyı ekle
+        this->m_menu_conn->Append(MainFrame::s_counter_connection, (tm_user_type_index == 1 ? "[Server] " : "[Client] ") + tm_username_str);
+
+        // Arayüzü yenile
+        this->Layout();
+        this->m_menubar->Refresh();
     }
 
     /**
@@ -802,6 +858,35 @@ namespace gui::frame
 
         // bilgi çıktısı
         this->m_connection_status->SetLabel("Connections Closed");
+
+        // GEreksizleri gizle
+        this->m_btn_disconnect->Hide();
+        this->m_btn_send->Hide();
+
+        // Geri gösterme yap
+        this->m_btn_connect->Show();
+        this->m_client_or_server->Show();
+        this->m_ipv4_or_v6->Show();
+        this->m_pwd_require->Show();
+        this->m_log_require->Show();
+        this->m_crypt_list->Show();
+        this->m_encryption_key->Show();
+
+        // Değiştirilmesini aktif et
+        this->m_max_connection_limit->SetEditable(true);
+        this->m_max_same_ip_limit->SetEditable(true);
+        this->m_username->SetEditable(true);
+        this->m_password->SetEditable(true);
+        this->m_server_ip->SetEditable(true);
+        this->m_port->SetEditable(true);
+        this->m_log_filepath->SetEditable(true);
+
+        if( this->m_menu_conn->FindItem(MainFrame::s_counter_connection) )
+            this->m_menu_conn->Delete(MainFrame::s_counter_connection);
+
+        // Arayüzü yenile
+        this->Layout();
+        this->m_menubar->Refresh();
     }
 
     /**
